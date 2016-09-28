@@ -1,11 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
 
-export default class Base extends React.Component {
+import Header from "../components/header";
+
+export default class Base extends Component {
     render() {
 
         return (
             <div>
-                {this.props.children}
+                <Header/>
             </div>
 
         );

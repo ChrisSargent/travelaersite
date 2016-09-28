@@ -1,6 +1,5 @@
-import dispatcher from "../dispatcher";
-
 import axios from "axios";
+import dispatcher from "../dispatcher";
 
 export function fetchPosts() {
     dispatcher.dispatch({type: "FETCH_POSTS"});
@@ -11,10 +10,10 @@ export function fetchPosts() {
     }).then(function(response) {
       setTimeout(function () {
         // Just using to a timeout to simulate a delay
-        // console.log(response);
+        console.log(response);
         dispatcher.dispatch({type: "RECEIVE_POSTS", posts: response.data});
       }, 1000);
     }).catch(function(error) {
-        // console.log(error);
+        console.log(error);
     });
 }

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 
 import Loader from "../components/loader/";
 import Post from "../components/Post";
 import * as PostsActions from "../actions/PostsActions";
 import PostsStore from "../stores/PostsStore";
 
-export default class Posts extends React.Component {
+export default class Posts extends Component {
   constructor() {
     super();
     this.getPosts = this.getPosts.bind(this); // This just ensures we're always binding properly to this.getPosts
