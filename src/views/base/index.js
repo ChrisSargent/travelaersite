@@ -1,0 +1,68 @@
+import React, {Component} from 'react';
+
+import * as OptionsActions from './OptionsActions';
+import NavStore from '../../components/nav/NavStore';
+import OptionsStore from './OptionsStore';
+import PageStore from '../page/PageStore';
+
+import Footer from '../../components/footer';
+import Header from '../../components/header';
+import Loader from '../../components/loader/';
+
+export default class Base extends Component {
+  constructor() {
+    super();
+    this.requestOptions = this.requestOptions.bind(this);
+    this.setShowLoader = this.setShowLoader.bind(this);
+    this.state = {
+      options: OptionsStore.getOptions(),
+      showLoader: true
+    };
+  }
+
+  componentWillMount() {
+    OptionsActions.fetchOptions();
+    NavStore.on('change', this.setShowLoader);
+    OptionsStore.on('change', this.requestOptions);
+    PageStore.on('change', this.setShowLoader);
+  }
+
+  componentWillUnmount() {
+    NavStore.removeListener('change', this.setShowLoader);
+    OptionsStore.removeListener('change', this.requestOptions);
+    PageStore.removeListener('change', this.setShowLoader);
+  }
+
+  requestOptions() {
+    // console.log('Base | requestOptions');
+    this.setState({options: OptionsStore.getOptions()});
+    this.setShowLoader();
+  }
+
+  setShowLoader() {
+    const getPageLoading = PageStore.getPageLoading();
+    const getMenuLoading = NavStore.getMenuLoading();
+    const getOptionsLoading = OptionsStore.getOptionsLoading();
+    if(getPageLoading || getMenuLoading || getOptionsLoading) {
+      this.setState({showLoader: true});
+    } else {
+      this.setState({showLoader: false});
+    }
+  }
+
+  render() {
+    const {showLoader, options} = this.state;
+
+    return (
+      <div>
+        <Header/>
+
+          {this.props.children}
+
+        <Footer {...options}/>
+        {showLoader ? <Loader /> : false}
+      </div>
+
+    );
+  }
+}
