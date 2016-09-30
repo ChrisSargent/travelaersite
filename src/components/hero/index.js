@@ -6,19 +6,11 @@ function Hero(props) {
   return (
     <section className={acf_fc_layout}>
       <h1>
-        {headlinePre
-          ? <small>{headlinePre}
-            </small>
-          : null}
+        {headlinePre ? <small>{headlinePre} </small> : null}
         {headline}
-        {headlinePost
-          ? <small>
-              {headlinePost}</small>
-          : null}
+        {headlinePost ? <small> {headlinePost}</small> : null}
       </h1>
-      <div className="hero__content" dangerouslySetInnerHTML={{
-        __html: content
-      }}></div>
+      <div className="hero__content" dangerouslySetInnerHTML={{__html: content}}></div>
     </section>
   );
 }
