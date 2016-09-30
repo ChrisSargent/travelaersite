@@ -37,7 +37,7 @@ class PageStore extends EventEmitter {
 
       case 'RECEIVE_PAGE':
         // console.log('PageStore | handleActions | Receive Page');
-        this.page = action.page;
+        this.page = action.page[0];
         this.fetchingPage = false;
         break;
 

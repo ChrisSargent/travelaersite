@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PageStore from '../../stores/PageStore';
 
+import FooterAppend from '../footer__append';
 import Legal from '../legal';
 import Links from '../links';
 import Logo from '../logo';
@@ -30,6 +31,7 @@ export default class Footer extends Component {
 
   render() {
     const {props} = this;
+    const {footerAppend} = this.state;
 
     return (
       <footer>
@@ -52,7 +54,8 @@ export default class Footer extends Component {
           {props.socialNetworks ? <Social socialNetworks={props.socialNetworks} /> : false}
           {props.externalLinks ? <Links externalLinks={props.externalLinks} /> : false}
         </div>
-        <Legal legalName={props.legalName} append={this.state.footerAppend}/>
+        <FooterAppend text={footerAppend}/>
+        <Legal legalName={props.legalName} />
       </footer>
     );
   }

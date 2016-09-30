@@ -16,9 +16,9 @@ function Hero(props) {
               {headlinePost}</small>
           : null}
       </h1>
-      <p dangerouslySetInnerHTML={{
+      <div className="hero__content" dangerouslySetInnerHTML={{
         __html: content
-      }}></p>
+      }}></div>
     </section>
   );
 }

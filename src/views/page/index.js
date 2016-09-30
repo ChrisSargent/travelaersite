@@ -40,10 +40,11 @@ export default class Page extends Component {
   render() {
     var sectionMap;
     if (this.state.page.length === 0) {
+      // If we haven't got the page from the API yet, return as fast as possible
       return false;
     }
 
-    const page = this.state.page[0];
+    const page = this.state.page;
 
     if (page.acf) {
       sectionMap = page.acf.contentBlocks.map((sectionProps, index) => {
@@ -53,9 +54,16 @@ export default class Page extends Component {
       sectionMap = false;
     }
 
+    if (page.slug === 'home') {
+      // If we're on the home page we don't use the title or content
+      page.title = false;
+      page.content = false;
+    }
+
     return (
       <main key={page.id} id={page.slug} className={page.slug}>
-        {page.title.rendered}
+        {page.title ? <h1>{page.title.rendered}</h1> : false}
+        {page.content ? <div className="page__content" dangerouslySetInnerHTML={{__html: page.content.rendered}}></div> : false}
         {sectionMap}
       </main>
     );
