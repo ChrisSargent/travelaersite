@@ -1,15 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class Legal extends Component {
+function Legal(props) {
+  const {legalName} = props;
 
-  render() {
-    const {legalName, append} = this.props;
-
-    return (
-      <div className="legal">
-        {append ? <span className="legal__append">{append}</span> : false}
-        <span className="copy">&copy; 2016 {legalName}. All rights reserved.</span>
-      </div>
-    );
-  }
+  return (
+    <span className="legal">&copy; 2016 {legalName}. All rights reserved.</span>
+  );
 }
+
+export default Legal;

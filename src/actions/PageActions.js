@@ -1,9 +1,14 @@
 import axios from 'axios';
 import dispatcher from '../dispatcher';
 
-export function fetchPage(pageID) {
+export function fetchPage(slug) {
+  slug = slug || 'home';
   dispatcher.dispatch({type: 'FETCH_PAGE'});
-  axios.get('http://travelaersite.dev/wordpress/wp-json/wp/v2/pages/' + pageID).then(function(response) {
+  axios.get('http://travelaersite.dev/wordpress/wp-json/wp/v2/pages/', {
+    params: {
+      slug: slug
+    }
+  }).then(function(response) {
     setTimeout(function() {
       dispatcher.dispatch({type: 'RECEIVE_PAGE', page: response.data});
     }, 0);

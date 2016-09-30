@@ -8,24 +8,25 @@ import PageStore from '../../stores/PageStore';
 import Section from '../../components/section';
 
 export default class Page extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.requestPage = this.requestPage.bind(this);
     this.state = {
-      page: PageStore.getPage(),
-      pageID: props.route.pageID
+      page: PageStore.getPage()
     };
   }
 
   componentWillMount() {
-    const {pageID} = this.props.route;
-    PageActions.fetchPage(pageID);
+    PageActions.fetchPage(this.props.params.slug);
     PageStore.on('change', this.requestPage);
   }
 
   componentWillReceiveProps(props) {
-    const {pageID} = props.route;
-    PageActions.fetchPage(pageID);
+    // fetches the new page which will trigger a new requestPage being fired by the call backs
+    // const slug = this.filterSlug(props.params.slug);
+    if (this.props.params.slug !== props.params.slug) {
+      PageActions.fetchPage(props.params.slug);
+    }
   }
 
   componentWillUnmount() {
@@ -38,9 +39,13 @@ export default class Page extends Component {
 
   render() {
     var sectionMap;
-    const {page} = this.state;
+    if (this.state.page.length === 0) {
+      return false;
+    }
 
-    if(page.acf) {
+    const page = this.state.page[0];
+
+    if (page.acf) {
       sectionMap = page.acf.contentBlocks.map((sectionProps, index) => {
         return <Section key={index} {...sectionProps}/>;
       });
@@ -50,6 +55,7 @@ export default class Page extends Component {
 
     return (
       <main key={page.id} id={page.slug} className={page.slug}>
+        {page.title.rendered}
         {sectionMap}
       </main>
     );

@@ -39,7 +39,7 @@ export default class Nav extends Component {
         }
         return (
           <li key={item.ID}>
-            <Link to={item.object_slug}>{item.title}</Link>
+            <Link to={item.object_slug} activeClassName="nav__link--active">{item.title}</Link>
           </li>
         );
       });
