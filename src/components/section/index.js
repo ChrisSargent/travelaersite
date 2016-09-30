@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 
-import Hero from '../hero';
 import Banner from '../banner';
+import Hero from '../hero';
+import Mosaic from '../mosaic';
 
 export default class Sections extends Component {
   render() {
@@ -13,7 +14,10 @@ export default class Sections extends Component {
         return <Hero {...props}/>;
 
       case 'banner--logos':
-        return <Banner type="logos" {...props}/>;
+        return <Banner {...props}/>;
+
+      case 'mosaic':
+        return <Mosaic {...props}/>;
 
       default:
         return false;

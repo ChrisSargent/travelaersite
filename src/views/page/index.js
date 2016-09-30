@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 
-import * as PageActions from './PageActions';
-import PageStore from './PageStore';
+// Stores & Actions
+import * as PageActions from '../../actions/PageActions';
+import PageStore from '../../stores/PageStore';
+
+// Components
 import Section from '../../components/section';
 
-export default class Products extends Component {
+export default class Page extends Component {
   constructor(props) {
     super();
     this.requestPage = this.requestPage.bind(this);
@@ -34,20 +37,20 @@ export default class Products extends Component {
   }
 
   render() {
-    var sections;
+    var sectionMap;
     const {page} = this.state;
 
     if(page.acf) {
-      sections = page.acf.contentBlocks.map((sectionProps, index) => {
+      sectionMap = page.acf.contentBlocks.map((sectionProps, index) => {
         return <Section key={index} {...sectionProps}/>;
       });
     } else {
-      sections = false;
+      sectionMap = false;
     }
 
     return (
       <main key={page.id} id={page.slug} className={page.slug}>
-        {sections}
+        {sectionMap}
       </main>
     );
   }

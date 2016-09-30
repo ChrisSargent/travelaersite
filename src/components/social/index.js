@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export default class Social extends Component {
 
   render() {
-    const socialNetworks = this.props.socialNetworks.map((network, index) => {
+    const networkMap = this.props.socialNetworks.map((network, index) => {
       var classList = 'i--' + network.iconClass;
       return (
         <li key={index}>
@@ -19,7 +19,7 @@ export default class Social extends Component {
       <div className="social">
         <h2>Follow Us</h2>
         <ul>
-          {socialNetworks}
+          {networkMap}
         </ul>
       </div>
     );

@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 
-import * as OptionsActions from './OptionsActions';
-import NavStore from '../../components/nav/NavStore';
-import OptionsStore from './OptionsStore';
-import PageStore from '../page/PageStore';
+// Stores & Actions
+import NavStore from '../../stores/NavStore';
+import * as OptionsActions from '../../actions/OptionsActions';
+import OptionsStore from '../../stores/OptionsStore';
+import PageStore from '../../stores/PageStore';
 
+// Components
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Loader from '../../components/loader/';

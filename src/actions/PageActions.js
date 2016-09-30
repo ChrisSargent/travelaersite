@@ -1,5 +1,5 @@
 import axios from 'axios';
-import dispatcher from '../../dispatcher';
+import dispatcher from '../dispatcher';
 
 export function fetchPage(pageID) {
   dispatcher.dispatch({type: 'FETCH_PAGE'});

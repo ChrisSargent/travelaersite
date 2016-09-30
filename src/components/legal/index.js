@@ -8,7 +8,7 @@ export default class Legal extends Component {
     return (
       <div className="legal">
         {append ? <span className="legal__append">{append}</span> : false}
-        <span className="copy">&copy; {legalName}. All rights reserved.</span>
+        <span className="copy">&copy; 2016 {legalName}. All rights reserved.</span>
       </div>
     );
   }

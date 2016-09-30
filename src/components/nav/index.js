@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import * as NavActions from './NavActions';
-import NavStore from './NavStore';
+import * as NavActions from '../../actions/NavActions';
+import NavStore from '../../stores/NavStore';
 import {Link} from 'react-router';
 
 export default class Nav extends Component {
@@ -33,7 +33,7 @@ export default class Nav extends Component {
     if (this.state.menu) {
       const {menu} = this.state;
 
-      const MenuItems = menu.map((item) => {
+      const menuMap = menu.map((item) => {
         if (item.object_id === 5) {
           item.object_slug = '/';
         }
@@ -47,7 +47,7 @@ export default class Nav extends Component {
       return (
         <nav>
           <ul>
-            {MenuItems}
+            {menuMap}
           </ul>
         </nav>
       );

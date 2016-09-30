@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import PageStore from '../../views/page/PageStore';
+import PageStore from '../../stores/PageStore';
 
 import Legal from '../legal';
-// import Links from '../links';
+import Links from '../links';
 import Logo from '../logo';
 import Social from '../social';
 import Vcard from '../vcard';
@@ -50,7 +50,7 @@ export default class Footer extends Component {
           />
         <div>
           {props.socialNetworks ? <Social socialNetworks={props.socialNetworks} /> : false}
-
+          {props.externalLinks ? <Links externalLinks={props.externalLinks} /> : false}
         </div>
         <Legal legalName={props.legalName} append={this.state.footerAppend}/>
       </footer>

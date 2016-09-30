@@ -1,5 +1,5 @@
 import axios from 'axios';
-import dispatcher from '../../dispatcher';
+import dispatcher from '../dispatcher';
 
 export function fetchOptions() {
   dispatcher.dispatch({type: 'FETCH_OPTIONS'});
