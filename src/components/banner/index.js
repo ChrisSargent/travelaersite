@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Banner(props) {
-  const {acf_fc_layout, logos} = props;
+  const {acf_fc_layout, logos, title} = props;
   const logoMap = logos.map((logo, index) => {
     const classList = 'i--' + logo.iconClass;
 
@@ -15,9 +15,12 @@ function Banner(props) {
 
   return (
     <section className={acf_fc_layout}>
-      <ul>
-        {logoMap}
-      </ul>
+      <div className="cont--l">
+        <h1>{title}</h1>
+        <ul className="cont--l">
+          {logoMap}
+        </ul>
+      </div>
     </section>
   );
 }

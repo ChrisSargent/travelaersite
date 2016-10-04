@@ -1,0 +1,48 @@
+.loader
+  position: fixed
+  top: 0
+  left: 0
+  display: flex
+  visibility: hidden
+  align-items: center
+  justify-content: center
+  width: 100vw
+  height: 100vh
+  transition: opacity $tr--xs, transform $tr--xs, visibility $tr--xs
+  transform: scale(0)
+  pointer-events: none
+  opacity: 0
+  background-color: $co--br--blue-md
+
+  &.loading
+    visibility: visible
+    transition: none
+    transform: scale(1)
+    opacity: 1
+
+  svg
+    width: 100px
+
+
+#fans
+  visibility: hidden
+  transition: visibility $tr--xs
+  transform-origin: center
+  animation-name: spin
+  animation-duration: 5s
+  animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1)
+  animation-iteration-count: infinite
+  animation-fill-mode: forwards
+
+  .loading &
+    visibility: visible
+    transition: none
+    animation-iteration-count: infinite
+
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(3600deg)

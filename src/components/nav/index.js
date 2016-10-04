@@ -45,7 +45,7 @@ export default class Nav extends Component {
       });
 
       return (
-        <nav>
+        <nav className="nav--pri">
           <ul>
             {menuMap}
           </ul>

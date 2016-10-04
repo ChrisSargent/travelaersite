@@ -5,9 +5,11 @@ import Nav from '../nav';
 function Header() {
 
   return (
-    <header>
-      <Logo/>
-      <Nav location="primary"/>
+    <header className="site__hdr">
+      <div className="cont--xl">
+        <Logo/>
+        <Nav location="primary"/>
+      </div>
     </header>
   );
 }

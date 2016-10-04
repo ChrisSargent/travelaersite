@@ -14,7 +14,7 @@ function Links(props) {
   });
 
   return (
-    <div className="links--external">
+    <div className="links--ext">
       <h2>Awards</h2>
       <ul>
         {linkMap}

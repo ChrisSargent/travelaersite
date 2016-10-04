@@ -1,0 +1,49 @@
+.mosaic
+  ul
+    display: flex
+    flex-wrap: wrap
+    width: 100%
+
+  li
+    +bg-cover
+    position: relative
+    display: flex
+    height: 25vw
+    flex: 1 1 20%
+
+    a
+      width: 100%
+      white-space: normal
+
+    i
+      // position: absolute
+
+    img
+      display: none
+
+    &.tile--instagram
+      width: 25%
+      flex: none
+      // To maintain aspect ratio
+
+      span
+        +sr-only
+
+    &.tile--teal
+      background: $co--teal
+
+    &.tile--yellowgreen
+      background-color: $co--yelgreen
+
+    &.tile--blue
+      background: $co--blue
+
+.quote__fn
+  &::after
+    content: ', '
+
+.quote__pos
+
+.quote__co
+  color: $co--highlight
+  display: block

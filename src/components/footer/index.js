@@ -34,28 +34,30 @@ export default class Footer extends Component {
     const {footerAppend} = this.state;
 
     return (
-      <footer>
-        <Logo/>
-        <Vcard
-          coRegNumber={props.coRegNumber}
-          coTaxNumber={props.coTaxNumber}
-          contactEmail={props.contactEmail}
-          contactFax={props.contactFax}
-          contactPerson={props.contactPerson}
-          contactTelephone={props.contactTelephone}
-          country={props.country}
-          locality={props.locality}
-          postalCode={props.postalCode}
-          region={props.region}
-          streetAddress1={props.streetAddress1}
-          streetAddress2={props.streetAddress2}
-          />
-        <div>
-          {props.socialNetworks ? <Social socialNetworks={props.socialNetworks} /> : false}
-          {props.externalLinks ? <Links externalLinks={props.externalLinks} /> : false}
+      <footer className="site__ftr">
+        <div className="cont--l">
+          <Logo/>
+          <Vcard
+            coRegNumber={props.coRegNumber}
+            coTaxNumber={props.coTaxNumber}
+            contactEmail={props.contactEmail}
+            contactFax={props.contactFax}
+            contactPerson={props.contactPerson}
+            contactTelephone={props.contactTelephone}
+            country={props.country}
+            locality={props.locality}
+            postalCode={props.postalCode}
+            region={props.region}
+            streetAddress1={props.streetAddress1}
+            streetAddress2={props.streetAddress2}
+            />
+          <div>
+            {props.socialNetworks ? <Social socialNetworks={props.socialNetworks} /> : false}
+            {props.externalLinks ? <Links externalLinks={props.externalLinks} /> : false}
+          </div>
+          <FooterAppend text={footerAppend}/>
+          <Legal legalName={props.legalName} />
         </div>
-        <FooterAppend text={footerAppend}/>
-        <Legal legalName={props.legalName} />
       </footer>
     );
   }

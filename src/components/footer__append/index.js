@@ -3,7 +3,7 @@ import React from 'react';
 function FooterAppend(props) {
 
   return (
-    <div className="footer__append">{props.text}</div>
+    <div className="ftr__apd">{props.text}</div>
   );
 }
 

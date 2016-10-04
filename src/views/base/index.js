@@ -5,11 +5,15 @@ import NavStore from '../../stores/NavStore';
 import * as OptionsActions from '../../actions/OptionsActions';
 import OptionsStore from '../../stores/OptionsStore';
 import PageStore from '../../stores/PageStore';
+import * as SiteActions from '../../actions/SiteActions';
 
 // Components
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Loader from '../../components/loader/';
+
+// Library
+import '../../lib/sass/index.sass'
 
 export default class Base extends Component {
   constructor() {
@@ -24,6 +28,7 @@ export default class Base extends Component {
 
   componentWillMount() {
     OptionsActions.fetchOptions();
+    SiteActions.fetchSite();
     NavStore.on('change', this.setShowLoader);
     OptionsStore.on('change', this.requestOptions);
     PageStore.on('change', this.setShowLoader);
@@ -42,13 +47,16 @@ export default class Base extends Component {
   }
 
   setShowLoader() {
+    var that = this;
     const getPageLoading = PageStore.getPageLoading();
     const getMenuLoading = NavStore.getMenuLoading();
     const getOptionsLoading = OptionsStore.getOptionsLoading();
     if(getPageLoading || getMenuLoading || getOptionsLoading) {
-      this.setState({showLoader: true});
+      this.setState({showLoader: " loading"});
     } else {
-      this.setState({showLoader: false});
+      setTimeout(function () {
+        that.setState({showLoader: ""});
+      }, 0);
     }
   }
 
@@ -62,7 +70,7 @@ export default class Base extends Component {
           {this.props.children}
 
         <Footer {...options}/>
-        {showLoader ? <Loader /> : false}
+        <Loader loading={showLoader}/>
       </div>
 
     );

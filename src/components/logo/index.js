@@ -1,9 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router';
+import './_logo.sass';
 
 function Logo() {
   return (
-    <Link to="/">
+    <Link to="/" className="logo">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 222 35">
         <title>Travelaer</title>
         <g fill="none" fillRule="evenodd">
