@@ -1,13 +1,13 @@
 import React from 'react';
+import Icon from '../icons'
 
 function Social(props) {
   const networkMap = props.socialNetworks.map((network, index) => {
-    var classList = 'i--' + network.iconClass;
+
     return (
       <li key={index}>
         <a href={network.link} target="_blank">
-          <i className={classList} aria-hidden="true"></i>
-          <span className="i__text">{network.iconText}</span>
+          <Icon type={network.iconType} title={network.iconTitle} />
         </a>
       </li>
     );

@@ -2,10 +2,11 @@
   position: relative
   padding: $pd--v
   background-color: $co--bl-gr-lt
+  color: $co--blue--dk
 
   &::before
     // Tried this with a border on the ::after element and background clip but aliased the edge very poorly
-    +angled($co--br--green)
+    +angled($co--green)
     opacity: 0.5
     z-index: $z--sub + 1
     height: 30px

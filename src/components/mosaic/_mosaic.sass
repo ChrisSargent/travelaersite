@@ -8,26 +8,23 @@
     +bg-cover
     position: relative
     display: flex
-    height: 25vw
-    flex: 1 1 20%
+    height: 320px
+    flex: 1 1 220px
+
+    &:nth-child(4n)
+      flex: 1 1 440px
+
+    &:nth-child(6n)
+      flex: 2 2 560px
 
     a
+      display: block
       width: 100%
-      white-space: normal
-
-    i
-      // position: absolute
+      color: inherit
+      text-decoration: none
 
     img
-      display: none
-
-    &.tile--instagram
-      width: 25%
-      flex: none
-      // To maintain aspect ratio
-
-      span
-        +sr-only
+      +sr-only
 
     &.tile--teal
       background: $co--teal
@@ -38,6 +35,24 @@
     &.tile--blue
       background: $co--blue
 
+  svg.i
+    display: block
+    width: 2em
+    height: 2em
+
+.tile--instagram
+  flex: 1 0 320px
+  min-width: 320px
+  // To maintain aspect ratio for instagram
+
+  span
+    +sr-only
+
+
+.tile__content
+  display: block
+  font-weight: 700
+
 .quote__fn
   &::after
     content: ', '
@@ -45,5 +60,17 @@
 .quote__pos
 
 .quote__co
-  color: $co--highlight
   display: block
+  color: $co--highlight
+
+@media (min-width: 640px)
+  li.tile--instagram
+    max-width: 320px
+
+@media (min-width: 1200px)
+  .mosaic
+    li
+      max-width: 50%
+
+  li.tile--instagram
+    max-width: 320px

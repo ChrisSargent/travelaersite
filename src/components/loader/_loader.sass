@@ -8,16 +8,14 @@
   justify-content: center
   width: 100vw
   height: 100vh
-  transition: opacity $tr--xs, transform $tr--xs, visibility $tr--xs
-  transform: scale(0)
+  transition: opacity $tr--xs, visibility $tr--xs
   pointer-events: none
   opacity: 0
-  background-color: $co--br--blue-md
+  background-color: $co--blue--md
 
   &.loading
     visibility: visible
     transition: none
-    transform: scale(1)
     opacity: 1
 
   svg
@@ -37,7 +35,6 @@
   .loading &
     visibility: visible
     transition: none
-    animation-iteration-count: infinite
 
 
 @keyframes spin

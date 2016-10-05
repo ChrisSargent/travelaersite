@@ -1,13 +1,13 @@
 import React from 'react';
+import Icon from '../icons'
 
 function Links(props) {
   const linkMap = props.externalLinks.map((link, index) => {
-    var classList = 'i--' + link.iconClass;
+
     return (
       <li key={index}>
         <a href={link.link} target="_blank">
-          <i className={classList} aria-hidden="true"></i>
-          <span className="i__text">{link.iconText}</span>
+          <Icon type={link.iconType} title={link.iconTitle}/>
         </a>
       </li>
     );
