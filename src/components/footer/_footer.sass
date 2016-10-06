@@ -1,27 +1,19 @@
 .site__ftr
   position: relative
-  padding: $pd--v
-  background-color: $co--bl-gr-lt
+  z-index: $z--mid
+  padding: $pd--block
   color: $co--blue--dk
-
-  &::before
-    // Tried this with a border on the ::after element and background clip but aliased the edge very poorly
-    +angled($co--green)
-    opacity: 0.5
-    z-index: $z--sub + 1
-    height: 30px
-    top: -30px
-    transform-origin: left bottom
+  background-color: $co--bl-gr-lt
 
   &::after
-    +angled($co--bl-gr-lt)
-    transform-origin: left bottom
+    +angled($co--bl-gr-lt, top)
+    box-shadow: 0px -30px 0px 0px transparentize($co--green, 0.5)
 
   > div
     display: flex
     flex-wrap: wrap
-    justify-content: space-between
     align-items: flex-start
+    justify-content: space-between
 
   .logo
     width: 190px

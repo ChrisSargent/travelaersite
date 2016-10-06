@@ -1,13 +1,16 @@
 .section--hero
   flex-direction: row
+  padding: 0
   // To fix IE flex bug on min-height / direction column
 
-  > div
+  > div:first-child
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
     min-height: 100vh
+    padding-top: $pd--block
+    padding-bottom: $pd--block
 
   h1
     text-align: center
@@ -23,8 +26,3 @@
 
     p
       max-width: $sz--s
-
-.hero__content
-  a
-    text-decoration: none
-    color: $co--highlight

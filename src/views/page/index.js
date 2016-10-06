@@ -5,7 +5,7 @@ import * as PageActions from '../../actions/PageActions';
 import PageStore from '../../stores/PageStore';
 
 // Components
-import Section from '../../components/section';
+import Blocks from '../../components/blocks';
 
 export default class Page extends Component {
   constructor() {
@@ -38,7 +38,7 @@ export default class Page extends Component {
   }
 
   render() {
-    var sectionMap;
+    var blocksMap;
     if (this.state.page.length === 0) {
       // If we haven't got the page from the API yet, return as fast as possible
       return false;
@@ -47,11 +47,11 @@ export default class Page extends Component {
     const page = this.state.page;
 
     if (page.acf) {
-      sectionMap = page.acf.contentBlocks.map((sectionProps, index) => {
-        return <Section key={index} {...sectionProps}/>;
+      blocksMap = page.acf.contentBlocks.map((blockProps, index) => {
+        return <Blocks key={index} {...blockProps}/>;
       });
     } else {
-      sectionMap = false;
+      blocksMap = false;
     }
 
     if (page.slug === 'home') {
@@ -63,8 +63,8 @@ export default class Page extends Component {
     return (
       <main key={page.id} id={page.slug} className={page.slug}>
         {page.title ? <h1>{page.title.rendered}</h1> : false}
-        {page.content ? <div className="page__content" dangerouslySetInnerHTML={{__html: page.content.rendered}}></div> : false}
-        {sectionMap}
+        {page.content ? <div className="content--wysiwyg" dangerouslySetInnerHTML={{__html: page.content.rendered}}></div> : false}
+        {blocksMap}
       </main>
     );
   }

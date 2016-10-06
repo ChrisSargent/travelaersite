@@ -1,0 +1,25 @@
+.content
+  &--boxed
+    background-color: transparentize($co--wt, 0.5)
+
+  &--right,
+  &--left
+    h1
+      font-family: $ff--feature
+      color: $co--green
+
+    .wysiwyg
+      color: $co--bk
+
+
+.wysiwyg
+  a
+    text-decoration: none
+    color: $co--highlight
+
+
+@media (min-width: $bp--mn)
+  .content
+    &--right
+      margin-left: 50%
+      padding-left: $pd--h

@@ -52,10 +52,10 @@ export default class Base extends Component {
     const getMenuLoading = NavStore.getMenuLoading();
     const getOptionsLoading = OptionsStore.getOptionsLoading();
     if(getPageLoading || getMenuLoading || getOptionsLoading) {
-      this.setState({showLoader: " loading"});
+      this.setState({showLoader: ' loading'});
     } else {
       setTimeout(function () {
-        that.setState({showLoader: ""});
+        that.setState({showLoader: ''});
       }, 0);
     }
   }

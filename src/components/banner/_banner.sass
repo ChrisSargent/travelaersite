@@ -1,10 +1,13 @@
 .banner--logos
   position: relative
   text-align: center
-  padding: $pd--v
+  z-index: $z--mid
 
   &::after
-    +angled($co--green)
+    +angled($co--green, both)
+
+  h1
+    font-family: $ff--feature
 
   ul
     display: flex

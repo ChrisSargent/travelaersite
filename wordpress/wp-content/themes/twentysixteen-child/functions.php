@@ -29,3 +29,18 @@ function travelaer_acf_init()
     $api_key = get_field('gMapsApiKey', 'option');
     acf_update_setting('google_api_key', $api_key);
 }
+
+
+function travelaer_flexible_content_layout_title( $title, $field, $layout, $i ) {
+
+  if( $text = get_sub_field('title') ) {
+	} elseif ($text = get_sub_field('headline')) {
+	}
+	return $title . ' | ' . $text;
+	//
+}
+
+// name
+add_filter('acf/fields/flexible_content/layout_title', 'travelaer_flexible_content_layout_title', 10, 4);
+
+?>

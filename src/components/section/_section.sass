@@ -1,0 +1,27 @@
+.section
+  min-height: 100vh
+
+  &--sub
+    width: 50%
+
+    .content
+      display: flex
+      flex-direction: column
+      align-items: flex-start
+      height: 100%
+
+    .wysiwyg
+      color: $co--logo--blue-md
+
+    h2
+      text-transform: none
+      color: $co--bk
+
+    .btn
+      margin-top: auto
+
+@media (min-width: $bp--mn)
+  .section
+    &--sub__wrap
+      +inline($pd--h)
+      display: flex

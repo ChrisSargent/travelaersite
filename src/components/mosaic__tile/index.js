@@ -1,15 +1,16 @@
 import React from 'react';
+import css from '../../lib/css';
 import Icon from '../icons'
 
 function MosaicTile(props) {
-  var tileClassList, mediaLink, liStyle = {};
+  var tileClass, mediaLink, liStyle = {};
   const {type} = props.acf;
-  const tileWrapClass = "tile__wrap"
+  const tileWrapClass = 'tile__wrap'
 
-  tileClassList = 'tile--' + type;
+  tileClass = 'tile--' + type;
 
   if(props.acf.colour) {
-    tileClassList = tileClassList + ' tile--' + props.acf.colour
+    tileClass += ' tile--' + props.acf.colour
   }
 
   switch (type) {
@@ -20,11 +21,11 @@ function MosaicTile(props) {
     case 'quote':
       const {name, position, company} = props.acf;
       return (
-        <li className={tileClassList} style={liStyle}>
+        <li className={tileClass}>
           <div className={tileWrapClass}>
             <blockquote>
               <Icon type={type} title={type}/>
-              <span className="tile__content">{props.acf.content}</span>
+              <span className={css.wys}>{props.acf.content}</span>
               <footer>
                 <cite>
                   { name ? <span className="quote__fn">{name}</span> : false }
@@ -48,11 +49,11 @@ function MosaicTile(props) {
   }
 
   return (
-    <li className={tileClassList} style={liStyle}>
+    <li className={tileClass} style={liStyle}>
       <a href={props.acf.link} target="_blank" className={tileWrapClass}>
         <Icon type={type} title={type}/>
-        <span className="tile__content">{props.acf.content}</span>
-        { mediaLink ? <img src={mediaLink} alt=""/> : false }
+        <span className={css.wys}>{props.acf.content}</span>
+        { mediaLink ? <img src={mediaLink} alt="" className="img--replace"/> : false }
       </a>
     </li>
   );

@@ -1,19 +1,29 @@
+section
+  padding: $pd--block 0
+
 .cont
   position: relative
   margin: 0 auto
+  padding: 0 20px
 
 .cont--s
   @extend .cont
-  max-width: $sz--s
+  max-width: $sz--s + (2 * $pd--h)
 
 .cont--m
   @extend .cont
-  max-width: $sz--m
+  max-width: $sz--m + (2 * $pd--h)
 
 .cont--l
   @extend .cont
-  max-width: $sz--l
+  max-width: $sz--l + (2 * $pd--h)
 
 .cont--xl
   @extend .cont
-  max-width: $sz--xl
+  max-width: $sz--xl + (2 * $pd--h)
+
+.hasbg
+  +bg-cover
+
+.img--replace
+  +sr-only

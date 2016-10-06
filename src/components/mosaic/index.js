@@ -52,15 +52,18 @@ export default class Mosaic extends Component {
   }
 
   render() {
+    var sectionClass;
     const {mosaic} = this.state;
     const {acf_fc_layout} = this.props;
+
+    sectionClass = acf_fc_layout;
 
     const mosaicMap = mosaic.map((tile) => {
       return (<MosaicTile key={tile.id} {...tile}/>);
     });
 
     return (
-      <section className={acf_fc_layout}>
+      <section className={sectionClass}>
         <ul>
           {mosaicMap}
         </ul>
