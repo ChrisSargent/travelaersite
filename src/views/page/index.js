@@ -47,8 +47,8 @@ export default class Page extends Component {
     const page = this.state.page;
 
     if (page.acf) {
-      blocksMap = page.acf.contentBlocks.map((blockProps, index) => {
-        return <Blocks key={index} {...blockProps}/>;
+      blocksMap = page.acf.contentBlocks.map((block, index) => {
+        return <Blocks key={index} {...block}/>;
       });
     } else {
       blocksMap = false;

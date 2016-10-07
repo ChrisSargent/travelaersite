@@ -2,7 +2,7 @@ import React from 'react';
 
 function Screenshot(props) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 1014" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 1014" xmlnsXlink="http://www.w3.org/1999/xlink" className="screenshot">
       <g fill="#FFF">
         <rect width="491" height="1014" x="5" fillOpacity="0.5" stroke="#FFF" strokeWidth="4" rx="75"/>
         <rect width="6" height="75" x="495" y="215" rx="3"/>

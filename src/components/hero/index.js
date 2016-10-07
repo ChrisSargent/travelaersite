@@ -4,7 +4,7 @@ import css from '../../lib/css';
 function Hero(props) {
   const {acf_fc_layout, headlinePre, headline, headlinePost, content, image} = props;
   var sectionClass, sectionStyle , postClass = {};
-  
+
   sectionClass = acf_fc_layout;
   postClass = css.post;
 
@@ -20,9 +20,9 @@ function Hero(props) {
       <div className="cont--m">
         <div className={postClass}>
           <h1>
-            {headlinePre ? <small>{headlinePre} </small> : null}
-            {headline}
-            {headlinePost ? <small> {headlinePost}</small> : null}
+            {headlinePre}
+            <strong>{headline}</strong>
+            {headlinePost}
           </h1>
           <div className={css.wys} dangerouslySetInnerHTML={{__html: content}}></div>
         </div>

@@ -1,6 +1,5 @@
 import React from 'react';
-import css from '../../lib/css';
-import Icon from '../icons'
+import Icon from '../icons';
 
 function MosaicTile(props) {
   var tileClass, mediaLink, liStyle = {};
@@ -25,7 +24,7 @@ function MosaicTile(props) {
           <div className={tileWrapClass}>
             <blockquote>
               <Icon type={type} title={type}/>
-              <span className={css.wys}>{props.acf.content}</span>
+              <span className="tile__content">{props.acf.content}</span>
               <footer>
                 <cite>
                   { name ? <span className="quote__fn">{name}</span> : false }
@@ -52,7 +51,7 @@ function MosaicTile(props) {
     <li className={tileClass} style={liStyle}>
       <a href={props.acf.link} target="_blank" className={tileWrapClass}>
         <Icon type={type} title={type}/>
-        <span className={css.wys}>{props.acf.content}</span>
+        <span className="tile__content">{props.acf.content}</span>
         { mediaLink ? <img src={mediaLink} alt="" className="img--replace"/> : false }
       </a>
     </li>

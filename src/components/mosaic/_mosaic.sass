@@ -1,6 +1,6 @@
 .mosaic
   padding: 0
-  
+
   ul
     display: flex
     flex-wrap: wrap
@@ -25,6 +25,9 @@
       color: inherit
       text-decoration: none
 
+    cite
+      font-size: $fs--m
+
     &.tile--teal
       background: $co--teal
 
@@ -39,9 +42,10 @@
     width: 2em
     height: 2em
 
-  .wysiwyg
-    display: block
-    font-weight: 700
+.tile__content
+  font-size: $fs--ml
+  display: block
+  font-weight: 700
 
 .tile--instagram
   flex: 1 0 320px
