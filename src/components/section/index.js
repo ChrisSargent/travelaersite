@@ -3,18 +3,21 @@ import SectionSub from '../section--sub';
 import css from '../../lib/css';
 
 function Section(props) {
-  var subSectionMap, postClass, sectionClass, sectionStyle = {};
+  var subSectionMap, postClass, sectionClass, slug, sectionStyle = {};
   const {acf_fc_layout, title, content, subSections, type, image} = props;
 
   postClass = css.post + ' ' + type;
-  sectionClass = acf_fc_layout;
+
+  if (title) {
+    slug = title.replace(/\s+/g, '-').toLowerCase();
+    sectionClass = acf_fc_layout + ' ' + slug;
+  }
 
   if (subSections) {
     subSectionMap = subSections.map((subSection, index) => {
       return <SectionSub key={index} {...subSection}/>;
     });
   }
-
 
   if(image) {
     sectionStyle = {

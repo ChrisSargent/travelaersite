@@ -1,15 +1,14 @@
-html
+html,
+body
   font-family: $ff--base
   font-size: $fs--mob
   -webkit-text-size-adjust: none
-
-  @media (min-width: $bp--m)
-    font-size: $fs--dt
-
-body
   font-weight: 400
   line-height: $lh--base
   color: $co--wt
+
+  @media (min-width: $bp--m)
+    font-size: $fs--dt
 
 h1,
 h2,
@@ -19,12 +18,11 @@ h5,
 h6
   font-family: $ff--hdgs
   font-weight: 700
-  line-height: $lh--tight
-  margin-bottom: 1em
   text-transform: uppercase
 
-p
-  font-family: $ff--p
+h1
+  margin-bottom: 1.05em
+  line-height: 1.03
 
 strong
   font-weight: 700

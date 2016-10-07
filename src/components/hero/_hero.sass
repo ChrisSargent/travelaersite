@@ -13,22 +13,22 @@
     padding-bottom: $pd--block
 
   h1
+    letter-spacing: $ls--w
     font-size: $fs--xl
     text-align: center
 
     strong
+      position: relative
       font-weight: 400
       font-family: $ff--feature
       font-size: $fs--j
       display: block
-
-  .wysiwyg
-    p
-      margin: 0 auto
-      font-size: $fs--l
+      letter-spacing: normal
+      top: -0.085em
 
   &:first-of-type
-    text-align: center
-
-    p
-      max-width: $sz--s
+    .wysiwyg
+      p
+        margin: 0 auto
+        text-align: center
+        max-width: $sz--s

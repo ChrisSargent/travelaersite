@@ -36,27 +36,31 @@ export default class Footer extends Component {
     return (
       <footer className="site__ftr">
         <div className="cont--l">
-          <Logo/>
-          <Vcard
-            coRegNumber={props.coRegNumber}
-            coTaxNumber={props.coTaxNumber}
-            contactEmail={props.contactEmail}
-            contactFax={props.contactFax}
-            contactPerson={props.contactPerson}
-            contactTelephone={props.contactTelephone}
-            country={props.country}
-            locality={props.locality}
-            postalCode={props.postalCode}
-            region={props.region}
-            streetAddress1={props.streetAddress1}
-            streetAddress2={props.streetAddress2}
-            />
-          <div>
+          <div className="ftr__col">
+            <Logo />
+          </div>
+          <div className="ftr__col">
+            <Vcard
+              coRegNumber={props.coRegNumber}
+              coTaxNumber={props.coTaxNumber}
+              contactEmail={props.contactEmail}
+              contactFax={props.contactFax}
+              contactPerson={props.contactPerson}
+              contactTelephone={props.contactTelephone}
+              country={props.country}
+              locality={props.locality}
+              postalCode={props.postalCode}
+              region={props.region}
+              streetAddress1={props.streetAddress1}
+              streetAddress2={props.streetAddress2}
+              />
+            <FooterAppend text={footerAppend}/>
+            <Legal legalName={props.legalName} />
+          </div>
+          <div className="ftr__col">
             {props.socialNetworks ? <Social socialNetworks={props.socialNetworks} /> : false}
             {props.externalLinks ? <Links externalLinks={props.externalLinks} /> : false}
           </div>
-          <FooterAppend text={footerAppend}/>
-          <Legal legalName={props.legalName} />
         </div>
       </footer>
     );

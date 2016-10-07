@@ -8,10 +8,12 @@
 
   li
     +bg-cover
+    line-height: $lh--m
     position: relative
     display: flex
-    height: 320px
     flex: 1 1 220px
+    height: 320px
+    padding: $pd--l
 
     &:nth-child(4n)
       flex: 1 1 440px
@@ -22,8 +24,8 @@
     a
       display: block
       width: 100%
-      color: inherit
       text-decoration: none
+      color: inherit
 
     cite
       font-size: $fs--m
@@ -39,13 +41,14 @@
 
   svg.i
     display: block
-    width: 2em
-    height: 2em
+    width: 1.667em
+    height: 1.667em
+    margin-bottom: $pd--s
 
 .tile__content
   font-size: $fs--ml
-  display: block
   font-weight: 700
+  display: block
 
 .tile--instagram
   flex: 1 0 320px

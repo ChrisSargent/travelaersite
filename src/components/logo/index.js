@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router';
-import './_logo.sass';
 
 function Logo() {
   return (

@@ -1,19 +1,28 @@
 .vcard
-  columns: 2
   font-size: $fs--s
+  margin-bottom: $pd--xl
+  white-space: nowrap
 
   .fn:not(org)
     +sr-only
 
-  .street-address
-    span
-      display: block
+  .street-address span
+    display: block
 
   .vcard__item
     display: block
+
     span
       +sr-only
 
   a
     color: $co--logo--blue-md
     text-decoration: none
+
+@media (min-width: $bp--mn)
+  .vcard
+    display: flex
+
+  .vc__col
+    + .vc__col
+      padding-left: 40px

@@ -12,9 +12,10 @@
       height: 100%
 
     .wysiwyg
+      margin: $pd--xs 0 $pd--ml
+
       p
         color: $co--logo--blue-md
-        font-size: $fs--l
 
     h2
       font-weight: 700
@@ -25,8 +26,21 @@
     .btn
       margin-top: auto
 
+  &--sub__wrap
+    margin-top: $pd--xxl
+
+  &.products
+    $shadow: 60px
+    background-size: auto 90%
+    background-position: left bottom
+    // box-shadow: inset 0px 0px 60px -60px rgba(0,0,0,0.75)
+    box-shadow: inset 0 $shadow / -0.9 $shadow $shadow / -1 #333967
+
 @media (min-width: $bp--mn)
   .section
     &--sub__wrap
-      +inline($pd--h)
       display: flex
+
+      article
+        +inline-gap($pd--xl)
+        padding: $pd--l

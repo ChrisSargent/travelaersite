@@ -5,10 +5,12 @@ import Screenshot from '../screenshot';
 
 function SectionSub(props) {
   const {acf_fc_layout, title, content, linkTitle, linkTo, boxed, screenshots} = props;
-  var postClass = css.post, screenshotsMap;
+  var postClass = css.post, articleClass, screenshotsMap;
+
+  articleClass = acf_fc_layout;
 
   if (boxed) {
-    postClass += ' ' + css.post + '--boxed';
+    articleClass += ' boxed';
   }
 
   if (screenshots) {
@@ -21,10 +23,8 @@ function SectionSub(props) {
     });
   }
 
-  console.log(screenshots[0]);
-
   return (
-    <article className={acf_fc_layout}>
+    <article className={articleClass}>
       <div className={postClass}>
         <h2>{title}</h2>
         <div className={css.wys} dangerouslySetInnerHTML={{__html: content}}></div>

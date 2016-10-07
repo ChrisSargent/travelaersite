@@ -1,13 +1,16 @@
 .screenshot__wrap
   display: flex
+  flex-wrap: wrap
   top: 100%
   left: 0
   position: absolute
   width: 100%
-  outline: 1px solid red
-  height: 300px
 
 .screenshot
+  position: relative
   display: block
   width: 50%
-  height: auto
+
+  &:nth-child(even)
+    top: -55px
+    left: 20px

@@ -1,13 +1,15 @@
 .site__ftr
+  font-weight: 300
   position: relative
   z-index: $z--mid
   padding: $pd--block
   color: $co--blue--dk
   background-color: $co--bl-gr-lt
+  line-height: 1.334rem
 
   &::after
     +angled($co--bl-gr-lt, top)
-    box-shadow: 0px -30px 0px 0px transparentize($co--green, 0.5)
+    box-shadow: 0 -30px 0 0 transparentize($co--green, 0.5)
 
   > div
     display: flex
@@ -15,6 +17,6 @@
     align-items: flex-start
     justify-content: space-between
 
-  .logo
-    width: 190px
-    height: auto
+@media (min-width: $bp--mn)
+  .ftr__col
+    +inline-gap($pd--s)

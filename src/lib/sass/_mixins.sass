@@ -62,3 +62,13 @@
 
   > *
     padding: $gap
+
+=inline-gap($gap)
+  margin-left: $gap / 2
+  margin-right: $gap / 2
+
+  &:first-child
+    margin-left: 0
+
+  &:last-child
+    margin-right: 0
