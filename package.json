@@ -1,6 +1,6 @@
 {
   "name": "travelaersite",
-  "homepage": "http://travelaersite.dev/build/",
+  "homepage": "http://travelaer.stickypixel.com/",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -61,7 +61,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "deploy_wp": "rsync wordpress/ stgsear1@akascia.com:www/travelaer/wordpress --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
+    "deploy_app": "rsync build/ stgsear1@akascia.com:www/travelaer --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress"
   },
   "jest": {
     "moduleFileExtensions": [
