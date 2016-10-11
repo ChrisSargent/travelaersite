@@ -1,7 +1,7 @@
 {
   "name": "travelaersite",
   "homepage": "http://travelaer.stickypixel.com/",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "devDependencies": {
     "autoprefixer": "6.4.1",
