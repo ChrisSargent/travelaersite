@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('./_legal.sass');
+
 function Legal(props) {
   const {legalName} = props;
 

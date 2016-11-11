@@ -1,33 +1,29 @@
 import React from 'react';
 import css from '../../lib/css';
 
-function Hero(props) {
-  const {acf_fc_layout, headlinePre, headline, headlinePost, content, image} = props;
-  var sectionClass, sectionStyle , postClass = {};
+require('./_hero.sass');
 
-  sectionClass = acf_fc_layout;
-  postClass = css.post;
+function Hero(props) {
+  const {headlinePre, headline, headlinePost, content, image} = props;
+  var sectionStyle;
 
   if(image) {
     sectionStyle = {
       backgroundImage: 'url(' + image + ')',
     }
-    sectionClass += css.hasbg;
   }
 
   return (
-    <section className={sectionClass} style={sectionStyle}>
-      <div className="cont--m">
-        <div className={postClass}>
-          <h1>
+    <section className="hero-block" style={sectionStyle}>
+        <div className="hero-content">
+          <h1 className={css.header}>
             {headlinePre}
             <strong>{headline}</strong>
             {headlinePost}
           </h1>
           <div className={css.wys} dangerouslySetInnerHTML={{__html: content}}></div>
         </div>
-      </div>
-      { image ? <img src={image} alt="" className="img--replace"/> : false }
+      { image ? <img src={image} alt="" className="_replaceimg"/> : false }
     </section>
   );
 }

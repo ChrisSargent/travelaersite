@@ -5,7 +5,7 @@ class NavStore extends EventEmitter {
   constructor() {
     super();
     this.menu = [];
-    this.fetchingMenu = true;
+    this.fetchingMenu = false;
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 

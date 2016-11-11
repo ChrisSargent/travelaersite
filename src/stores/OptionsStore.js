@@ -5,7 +5,7 @@ class OptionsStore extends EventEmitter {
   constructor() {
     super();
     this.options = [];
-    this.fetchingOptions = true;
+    this.fetchingOptions = false;
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 

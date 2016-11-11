@@ -1,6 +1,8 @@
 import React from 'react';
 import Icon from '../icons'
 
+require('./_links.sass');
+
 function Links(props) {
   const linkMap = props.externalLinks.map((link, index) => {
 

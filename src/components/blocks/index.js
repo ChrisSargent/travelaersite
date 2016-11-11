@@ -7,10 +7,10 @@ import Section from '../section';
 
 function Blocks(props) {
   switch (props.acf_fc_layout) {
-    case 'section--hero':
+    case 'hero':
       return <Hero {...props}/>;
 
-    case 'banner--logos':
+    case 'banner':
       return <Banner {...props}/>;
 
     case 'mosaic':

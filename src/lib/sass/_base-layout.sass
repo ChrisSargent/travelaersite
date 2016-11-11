@@ -1,4 +1,5 @@
-section
+section,
+article
   padding: $pd--block 0
 
 .cont
@@ -9,10 +10,6 @@ section
 .cont--s
   @extend .cont
   max-width: $sz--s + (2 * $pd--h)
-
-.cont--m
-  @extend .cont
-  max-width: $sz--m + (2 * $pd--h)
 
 .cont--l
   @extend .cont
@@ -25,5 +22,5 @@ section
 .hasbg
   +bg-cover
 
-.img--replace
+._replaceimg
   +sr-only

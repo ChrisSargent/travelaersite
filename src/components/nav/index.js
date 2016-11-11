@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import globals from '../../lib/globals'
 
 import * as NavActions from '../../actions/NavActions';
 import NavStore from '../../stores/NavStore';
 import {Link} from 'react-router';
 
-export default class Nav extends Component {
+require('./_nav.sass');
+
+export default class NavBlock extends Component {
 
   constructor() {
     super();
@@ -35,18 +38,19 @@ export default class Nav extends Component {
 
       const menuMap = menu.map((item) => {
         if (item.object_id === 5) {
-          item.object_slug = '/';
+          item.object_slug = '';
         }
+        const link = globals.homeUrl + item.object_slug;
         return (
           <li key={item.ID}>
-            <Link to={item.object_slug} activeClassName="nav__link--active">{item.title}</Link>
+            <Link to={link} className="navlink" activeClassName="-active">{item.title}</Link>
           </li>
         );
       });
 
       return (
-        <nav className="nav--pri">
-          <ul>
+        <nav>
+          <ul className="nav-list">
             {menuMap}
           </ul>
         </nav>

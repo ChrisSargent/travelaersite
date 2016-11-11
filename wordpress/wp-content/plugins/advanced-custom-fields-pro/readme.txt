@@ -106,6 +106,40 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.5.0-beta1 =
+* True False field: Added new 'ui' setting which renders as a toggle switch
+* WYSIWYG field: Added new 'delay' setting which delays tinymce initialization until the field is clicked
+* Checkbox field: Added new 'allow_custom' and 'save_custom' settings allowing you to add custom choices
+* Select field: Fixed bug where Select2 fields did not correctly use the ‘allow null’ setting
+* Clone field: Fixed bug causing save/load issues found when 2 sub fields clone in the same field/group.
+* Flexible Content field: Improved popup style and validation messages
+* Google Map field: Prevent scroll zoom
+* Date picker field: Added better compatibility logic for custom 'date_format' setting found in version < 5.0.0
+* API: acf_form() 'id' setting is now used as 'id' attribute in <form> element
+* Options page: Fixed incorrect redirect URL from a sub options page
+* Core: Added support for the wp_termmeta table (includes DB upgrade)
+* Core: Added new 'select_2_version' setting which can be changed between 3 and 4
+* Core: Added new 'enqueue_select2' setting which can be used to prevent the library from being enqueued
+* Core: Added new 'enqueue_google_maps' setting which can be used to prevent the library from being enqueued
+* Core: Minor fixes and improvements
+
+* Language: Updated Portuguese translation - thanks to Pedro Mendonca
+* Language: Updated Swiss German translation - thanks to Raphael Hüni
+
+= 5.4.8 =
+* Flexible Content field: Fixed bug in 'layout_title' filter preventing values being loaded correctly
+
+= 5.4.7 =
+* Time Picker field: Fixed bug preventing default time from being selected
+* Date Picker field: Improved compatibility with unix timestamp values
+* File field: Fixed validation bugs when used as a sub field (multiple selection)
+* Select field: Fixed bug incorrectly allowing a disabled field (hidden by conditional logic) to save values
+* API: Added new `add_sub_row()` function
+* API: Added new `update_sub_row()` function
+* API: Added new `delete_sub_row()` function
+* Core: Fixed bug causing 'sync' issues with sub clone fields
+* Core: Minor fixes and improvements
+
 = 5.4.6 =
 * Gallery field: Fixed bug where open sidebar fields were saved to post
 * Flexible Content field: Fixed bug causing Google map render issue within collapsed layout

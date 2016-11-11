@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('./_vcard.sass');
+
 function Vcard(props) {
   return (
     <div className="vcard">

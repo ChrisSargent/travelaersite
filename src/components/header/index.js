@@ -2,11 +2,13 @@ import React from 'react';
 import Logo from '../logo';
 import Nav from '../nav';
 
-function Header() {
+require('./_header.sass');
+
+function SiteHeader() {
 
   return (
-    <header className="site__hdr">
-      <div className="cont--xl">
+    <header className="site-header">
+      <div className="header">
         <Logo/>
         <Nav location="primary"/>
       </div>
@@ -14,4 +16,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default SiteHeader;

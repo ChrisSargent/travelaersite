@@ -52,7 +52,7 @@ function MosaicTile(props) {
       <a href={props.acf.link} target="_blank" className={tileWrapClass}>
         <Icon type={type} title={type}/>
         <span className="tile__content">{props.acf.content}</span>
-        { mediaLink ? <img src={mediaLink} alt="" className="img--replace"/> : false }
+        { mediaLink ? <img src={mediaLink} alt="" className="_replaceimg"/> : false }
       </a>
     </li>
   );

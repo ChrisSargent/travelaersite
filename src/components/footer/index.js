@@ -8,6 +8,8 @@ import Logo from '../logo';
 import Social from '../social';
 import Vcard from '../vcard';
 
+require('./_footer.sass');
+
 export default class Footer extends Component {
   constructor() {
     super();

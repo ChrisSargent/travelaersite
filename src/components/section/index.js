@@ -2,6 +2,8 @@ import React from 'react';
 import SectionSub from '../section--sub';
 import css from '../../lib/css';
 
+require('./_section.sass');
+
 function Section(props) {
   var subSectionMap, postClass, sectionClass, slug, sectionStyle = {};
   const {acf_fc_layout, title, content, subSections, type, image} = props;
@@ -35,7 +37,7 @@ function Section(props) {
         </div>
         { subSectionMap ? <div className="section--sub__wrap">{subSectionMap}</div> : false }
       </div>
-      { image ? <img src={image} alt="" className="img--replace"/> : false }
+      { image ? <img src={image} alt="" className="_replaceimg"/> : false }
     </section>
   );
 }

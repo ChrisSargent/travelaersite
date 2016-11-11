@@ -5,7 +5,7 @@ class MosaicStore extends EventEmitter {
   constructor() {
     super();
     this.mosaic = [];
-    this.fetchingMosaic = true;
+    this.fetchingMosaic = false;
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 

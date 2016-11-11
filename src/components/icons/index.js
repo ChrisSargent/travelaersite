@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('./_icons.sass');
+
 function Icon(props) {
   const {type, title} = props;
   var path, viewbox;

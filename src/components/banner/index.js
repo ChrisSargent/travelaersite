@@ -1,9 +1,10 @@
 import React from 'react';
 import Icon from '../icons';
 
+require('./_banner.sass');
+
 function Banner(props) {
-  const {acf_fc_layout, logos, title} = props;
-  var sectionClass = acf_fc_layout;
+  const {logos, title} = props;
 
   const logoMap = logos.map((logo, index) => {
     return (
@@ -14,7 +15,7 @@ function Banner(props) {
   });
 
   return (
-    <section className={sectionClass}>
+    <section className="banner">
       <div className="cont--l">
         <h1>{title}</h1>
         <ul>

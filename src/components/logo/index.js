@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 
+require('./_logo.sass');
+
 function Logo() {
   return (
     <Link to="/" className="logo">

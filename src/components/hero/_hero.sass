@@ -1,34 +1,39 @@
-.section--hero
+@import _variables
+@import _mixins
+
+.hero-block
+  +bg-cover
+  display: flex
   flex-direction: row
+  // To fix IE flex bug on min-height / flex direction column
   padding: 0
-  // To fix IE flex bug on min-height / direction column
 
-  > div:first-child
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    min-height: 100vh
-    padding-top: $pd--block
-    padding-bottom: $pd--block
+.hero-content
+  +cont--m
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  min-height: 100vh
+  padding-top: $pd--block
+  padding-bottom: $pd--block
 
-  h1
-    letter-spacing: $ls--w
+  .header
     font-size: $fs--xl
     text-align: center
+    letter-spacing: $ls--w
 
     strong
-      position: relative
-      font-weight: 400
       font-family: $ff--feature
       font-size: $fs--j
+      font-weight: 400
+      position: relative
+      top: -0.085em
       display: block
       letter-spacing: normal
-      top: -0.085em
 
-  &:first-of-type
-    .wysiwyg
-      p
-        margin: 0 auto
-        text-align: center
-        max-width: $sz--s
+  .wysiwyg
+    p
+      max-width: $sz--s
+      margin: 0 auto
+      text-align: center

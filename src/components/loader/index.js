@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('./_loader.sass');
+
 function Loader(props) {
   const loaderClass = 'loader' + props.loading
 

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import css from '../../lib/css';
 
 // Stores & Actions
 import * as PageActions from '../../actions/PageActions';
@@ -22,7 +23,7 @@ export default class Page extends Component {
   }
 
   componentWillReceiveProps(props) {
-    // fetches the new page which will trigger a new requestPage being fired by the call backs
+    // // If the requested slug doesn't match the current slug, fetches the new page which will trigger a new requestPage being fired by the call backs
     // const slug = this.filterSlug(props.params.slug);
     if (this.props.params.slug !== props.params.slug) {
       PageActions.fetchPage(props.params.slug);
@@ -47,6 +48,7 @@ export default class Page extends Component {
     const page = this.state.page;
 
     if (page.acf) {
+      // Get all the content blocks and map them to a variable
       blocksMap = page.acf.contentBlocks.map((block, index) => {
         return <Blocks key={index} {...block}/>;
       });
@@ -61,9 +63,9 @@ export default class Page extends Component {
     }
 
     return (
-      <main key={page.id} id={page.slug} className={page.slug}>
+      <main id={page.slug} className={page.slug}>
         {page.title ? <h1>{page.title.rendered}</h1> : false}
-        {page.content ? <div className="content--wysiwyg" dangerouslySetInnerHTML={{__html: page.content.rendered}}></div> : false}
+        {page.content ? <div className={css.wys} dangerouslySetInnerHTML={{__html: page.content.rendered}}></div> : false}
         {blocksMap}
       </main>
     );

@@ -153,6 +153,10 @@ module.exports = {
     ]
   },
 
+  sassLoader: {
+    includePaths: ["./src/lib/sass/"]
+  },
+
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [

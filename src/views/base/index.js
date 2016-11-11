@@ -5,6 +5,7 @@ import NavStore from '../../stores/NavStore';
 import * as OptionsActions from '../../actions/OptionsActions';
 import OptionsStore from '../../stores/OptionsStore';
 import PageStore from '../../stores/PageStore';
+import PostsStore from '../../stores/PostsStore';
 import * as SiteActions from '../../actions/SiteActions';
 
 // Components
@@ -29,15 +30,19 @@ export default class Base extends Component {
   componentWillMount() {
     OptionsActions.fetchOptions();
     SiteActions.fetchSite();
-    NavStore.on('change', this.setShowLoader);
     OptionsStore.on('change', this.requestOptions);
+    // Add listeners for changes to loading state
+    NavStore.on('change', this.setShowLoader);
     PageStore.on('change', this.setShowLoader);
+    PostsStore.on('change', this.setShowLoader);
   }
 
   componentWillUnmount() {
-    NavStore.removeListener('change', this.setShowLoader);
     OptionsStore.removeListener('change', this.requestOptions);
+    // Remove listeners for changes to loading state
+    NavStore.removeListener('change', this.setShowLoader);
     PageStore.removeListener('change', this.setShowLoader);
+    PostsStore.removeListener('change', this.setShowLoader);
   }
 
   requestOptions() {
@@ -47,15 +52,16 @@ export default class Base extends Component {
   }
 
   setShowLoader() {
-    var that = this;
-    const getPageLoading = PageStore.getPageLoading();
-    const getMenuLoading = NavStore.getMenuLoading();
-    const getOptionsLoading = OptionsStore.getOptionsLoading();
-    if(getPageLoading || getMenuLoading || getOptionsLoading) {
+    var self = this;
+    var getPageLoading = PageStore.getPageLoading();
+    var getMenuLoading = NavStore.getMenuLoading();
+    var getOptionsLoading = OptionsStore.getOptionsLoading();
+    var getPostsLoading = PostsStore.getPostsLoading();
+    if(getPageLoading || getMenuLoading || getOptionsLoading || getPostsLoading) {
       this.setState({showLoader: ' loading'});
     } else {
       setTimeout(function () {
-        that.setState({showLoader: ''});
+        self.setState({showLoader: ''});
       }, 0);
     }
   }

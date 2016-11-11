@@ -5,6 +5,8 @@ import * as MosaicActions from '../../actions/MosaicActions';
 import MosaicStore from '../../stores/MosaicStore';
 import MosaicTile from '../../components/mosaic__tile';
 
+require('./_mosaic.sass');
+
 export default class Mosaic extends Component {
   constructor() {
     super();

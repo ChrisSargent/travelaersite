@@ -1,16 +1,20 @@
-.nav--pri
-  $pad: 1em
-  
-  ul
-    font-size: $fs--xs
-    display: flex
-    margin: 0 $pad / -1
+@import _variables
+@import _mixins
 
-    a
-      padding: $pad
-      display: block
-      color: $co--blue--dk
-      text-transform: uppercase
-      text-decoration: none
-      font-family: $ff--nav
-      letter-spacing: $ls--w
+.nav-list
+  $pad: 1em
+  display: flex
+  margin: 0 ($pad / -1)
+
+  .navlink
+    font-size: $fs--xs
+    padding: $pad
+    display: block
+    color: $co--blue--dk
+    text-transform: uppercase
+    text-decoration: none
+    font-family: $ff--nav
+    letter-spacing: $ls--w
+
+    &.-active
+      color: $co--green

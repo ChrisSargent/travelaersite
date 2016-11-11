@@ -72,3 +72,27 @@
 
   &:last-child
     margin-right: 0
+
+
+// ******************************* Layout Mixins *******************************
+
+=cont
+  position: relative
+  margin: 0 auto
+  padding: 0 20px
+
+=cont--s
+  +cont
+  max-width: $sz--s + (2 * $pd--h)
+
+=cont--m
+  +cont
+  max-width: $sz--m + (2 * $pd--h)
+
+=cont--l
+  +cont
+  max-width: $sz--l + (2 * $pd--h)
+
+=cont--xl
+  +cont
+  max-width: $sz--xl + (2 * $pd--h)

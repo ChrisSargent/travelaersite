@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('./_screenshot.sass');
+
 function Screenshot(props) {
   return (
     <div className="screenshot">

@@ -1,12 +1,16 @@
-.site__hdr
+@import _variables
+@import _mixins
+
+.site-header
   position: fixed
+  z-index: $z--top
   top: 0
   left: 0
   width: 100%
-  z-index: $z--top
   padding: 1.33em 0
 
-  > div
+  > .header
+    +cont--xl
     display: flex
     align-items: center
     justify-content: space-between

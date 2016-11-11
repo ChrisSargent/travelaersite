@@ -5,7 +5,7 @@ class PageStore extends EventEmitter {
   constructor() {
     super();
     this.page = [];
-    this.fetchingPage = true;
+    this.fetchingPage = false;
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
