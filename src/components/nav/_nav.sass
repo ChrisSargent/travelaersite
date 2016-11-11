@@ -2,19 +2,16 @@
 @import _mixins
 
 .nav-list
-  $pad: 1em
-  display: flex
-  margin: 0 ($pad / -1)
+  +inline-children($pd--s)
 
-  .navlink
-    font-size: $fs--xs
-    padding: $pad
-    display: block
-    color: $co--blue--dk
-    text-transform: uppercase
-    text-decoration: none
+  > li > .navlink
     font-family: $ff--nav
+    font-size: $fs--xs
+    display: block
+    text-decoration: none
     letter-spacing: $ls--w
+    text-transform: uppercase
+    color: $co--blue--dk
 
     &.-active
       color: $co--green

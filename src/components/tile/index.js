@@ -1,16 +1,16 @@
 import React from 'react';
 import Icon from '../icons';
 
+require('./_tile.sass');
+
 function MosaicTile(props) {
-  var tileClass, mediaLink, liStyle = {};
-  const {type} = props.acf;
+  const {type, colour, size} = props.acf;
   const tileWrapClass = 'tile__wrap'
+  var tileClass, mediaLink, liStyle = {};
 
-  tileClass = 'tile--' + type;
-
-  if(props.acf.colour) {
-    tileClass += ' tile--' + props.acf.colour
-  }
+  tileClass = 'tile -' + type;
+  colour && (tileClass += ' -' + colour);
+  size && (tileClass += ' -' + size);
 
   switch (type) {
     case 'instagram':
@@ -27,9 +27,9 @@ function MosaicTile(props) {
               <span className="tile__content">{props.acf.content}</span>
               <footer>
                 <cite>
-                  { name ? <span className="quote__fn">{name}</span> : false }
-                  { position ? <span className="quote__pos">{position}</span> : false }
-                  { company ? <span className="quote__co">{company}</span> : false }
+                  { name && <span className="quote__fn">{name}</span> }
+                  { position && <span className="quote__pos">{position}</span> }
+                  { company && <span className="quote__co">{company}</span> }
                 </cite>
               </footer>
             </blockquote>

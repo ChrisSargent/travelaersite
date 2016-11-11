@@ -8,12 +8,13 @@
   // To fix IE flex bug on min-height / flex direction column
   padding: 0
 
+  &.-fullscreen
+    .hero-content
+      min-height: 100vh
+
 .hero-content
   +cont--m
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
+  +center-box
   min-height: 64vh
   padding-top: $pd--block
   padding-bottom: $pd--block
@@ -31,12 +32,3 @@
       top: -0.085em
       display: block
       letter-spacing: normal
-
-  .wysiwyg
-    p
-      max-width: $sz--s
-      margin: 0 auto
-      text-align: center
-
-  &.-fullscreen
-    min-height: 100vh

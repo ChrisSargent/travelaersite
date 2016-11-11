@@ -6,14 +6,15 @@
       color: $co--green
       letter-spacing: $ls--w
 
-    .wysiwyg
+    .wysiwyg-block
       p
         font-family: $ff--base
         font-size: $fs--h
         color: $co--bk
         line-height: $lh--l
 
-.wysiwyg
+.wysiwyg-block
+  margin: 0 auto
   p
     font-family: $ff--p
     font-size: $fs--l
@@ -21,6 +22,9 @@
   a
     text-decoration: none
     color: $co--highlight
+
+  &.-narrow
+    max-width: $sz--s
 
 .boxed
   background-color: transparentize($co--wt, 0.15)

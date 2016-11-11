@@ -1,0 +1,72 @@
+@import _variables
+@import _mixins
+
+.tile
+  +bg-cover
+  line-height: $lh--m
+  position: relative
+  display: flex
+  height: 320px
+  padding: $pd--l
+
+  svg.i
+    display: block
+    width: 1.667em
+    height: 1.667em
+    margin-bottom: $pd--s
+
+
+  a
+    display: block
+    width: 100%
+    text-decoration: none
+    color: inherit
+
+  cite
+    font-size: $fs--m
+
+  &.-instagram
+    .tile__content
+      +sr-only
+
+  &.-instagram,
+  &.-square
+    flex: 1 0 320px
+    // min-width: 320px
+    // To maintain aspect ratio for instagram
+
+  &.-narrow
+    flex: 1 3 220px
+
+  &.-default
+    flex: 2 2 330px
+
+  &.-large
+    flex: 3 1 460px
+
+  &.-teal
+    background: $co--teal
+
+  &.-yellowgreen
+    background-color: $co--yelgreen
+
+  &.-blue
+    background: $co--blue
+
+.tile__content
+  font-size: $fs--ml
+  font-weight: 700
+  display: block
+
+  span
+    +sr-only
+
+.quote__fn
+  &::after
+    content: ', '
+
+.quote__pos
+
+.quote__co
+  display: block
+  color: $co--highlight

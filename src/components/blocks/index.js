@@ -6,6 +6,7 @@ import Mosaic from '../mosaic';
 import Section from '../section';
 
 function Blocks(props) {
+
   switch (props.acf_fc_layout) {
     case 'hero':
       return <Hero {...props}/>;

@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 // Stores & Actions
 import * as MosaicActions from '../../actions/MosaicActions';
 import MosaicStore from '../../stores/MosaicStore';
-import MosaicTile from '../../components/mosaic__tile';
+import Tile from '../../components/tile';
 
 require('./_mosaic.sass');
 
@@ -61,7 +61,7 @@ export default class Mosaic extends Component {
     sectionClass = acf_fc_layout;
 
     const mosaicMap = mosaic.map((tile) => {
-      return (<MosaicTile key={tile.id} {...tile}/>);
+      return (<Tile key={tile.id} {...tile}/>);
     });
 
     return (

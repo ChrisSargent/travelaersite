@@ -30,42 +30,50 @@
 
 =angled($color, $type)
   $type: both !default
-
-  @if $type == both
-    height: calc(100% + 5vw)
-    top: 0
-
-  @else if $type == top
-    height: 5vw
-    top: 0
-
-  @else if $type == bottom
-    height: 5vw
-    top: 100%
-
   content: ' '
   position: absolute
   z-index: $z--sub
   left: 0
   width: 100%
   transform: skewY($angle--ban)
-  background-color: $color
   transform-origin: left
+  background-color: $color
+
+  @if $type == both
+    top: 0
+    height: calc(100% + 5vw)
+
+  @else if $type == top
+    top: 0
+    height: 5vw
+
+  @else if $type == bottom
+    top: 100%
+    height: 5vw
+
 
 =bg-cover
   background-repeat: no-repeat
   background-position: center
   background-size: cover
 
-=inline($gap)
+// ******************************* Inline Mixins *******************************
+
+=inline-center-spaced
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+=inline-children($gap)
+  +inline-center-spaced
   margin: $gap / -1
 
   > *
     padding: $gap
 
-=inline-gap($gap)
-  margin-left: $gap / 2
+=inline-item-gap($gap)
   margin-right: $gap / 2
+  margin-left: $gap / 2
 
   &:first-child
     margin-left: 0
@@ -77,6 +85,7 @@
 // ******************************* Layout Mixins *******************************
 
 =cont
+  width: 100%
   position: relative
   margin: 0 auto
   padding: 0 20px
@@ -96,3 +105,9 @@
 =cont--xl
   +cont
   max-width: $sz--xl + (2 * $pd--h)
+
+=center-box
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
