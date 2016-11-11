@@ -3,9 +3,23 @@ import css from '../../lib/css';
 
 require('./_hero.sass');
 
+function HeroHeadline(props) {
+  const {headlinePre, headline, headlinePost} = props;
+
+  return (
+    <h1 className={css.header}>
+      {headlinePre}
+      <strong>{headline}</strong>
+      {headlinePost}
+    </h1>
+  );
+}
+
 function Hero(props) {
-  const {headlinePre, headline, headlinePost, content, image} = props;
-  var sectionStyle;
+  const {headlinePre, headline, headlinePost, content, image, fullscreen} = props;
+  var sectionStyle, sectionClass, displayHeadline;
+
+  sectionClass = 'hero-content';
 
   if(image) {
     sectionStyle = {
@@ -13,17 +27,21 @@ function Hero(props) {
     }
   }
 
+  if(headlinePre || headline || headlinePost) {
+    displayHeadline = true;
+  }
+
+  if(fullscreen) {
+    sectionClass += ' -fullscreen'
+  }
+
   return (
-    <section className="hero-block" style={sectionStyle}>
-        <div className="hero-content">
-          <h1 className={css.header}>
-            {headlinePre}
-            <strong>{headline}</strong>
-            {headlinePost}
-          </h1>
-          <div className={css.wys} dangerouslySetInnerHTML={{__html: content}}></div>
-        </div>
-      { image ? <img src={image} alt="" className="_replaceimg"/> : false }
+    <section className="hero-section" style={sectionStyle}>
+      <div className={sectionClass}>
+        {displayHeadline && <HeroHeadline {...props} />}
+        {content && <div className={css.wys} dangerouslySetInnerHTML={{__html: content}}></div>}
+      </div>
+      { image && <img src={image} alt="" className="_replaceimg"/> }
     </section>
   );
 }

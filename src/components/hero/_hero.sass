@@ -1,7 +1,7 @@
 @import _variables
 @import _mixins
 
-.hero-block
+.hero-section
   +bg-cover
   display: flex
   flex-direction: row
@@ -14,11 +14,11 @@
   flex-direction: column
   align-items: center
   justify-content: center
-  min-height: 100vh
+  min-height: 64vh
   padding-top: $pd--block
   padding-bottom: $pd--block
 
-  .header
+  .headline
     font-size: $fs--xl
     text-align: center
     letter-spacing: $ls--w
@@ -37,3 +37,6 @@
       max-width: $sz--s
       margin: 0 auto
       text-align: center
+
+  &.-fullscreen
+    min-height: 100vh

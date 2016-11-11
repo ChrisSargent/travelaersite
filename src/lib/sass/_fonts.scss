@@ -1,0 +1,79 @@
+@font-face {
+	font-family: 'Alternate Gothic';
+	src: url('#{$font-path}/alternategotno3d.eot');
+	src: local('☺'), url('#{$font-path}/alternategotno3d.woff') format('woff'), url('#{$font-path}/alternategotno3d.ttf') format('truetype'), url('#{$font-path}/alternategotno3d.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('#{$font-path}/Montserrat-Light.eot');
+	src: local('☺'), url('#{$font-path}/Montserrat-Light.woff') format('woff'), url('#{$font-path}/Montserrat-Light.ttf') format('truetype'), url('#{$font-path}/Montserrat-Light.svg') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('#{$font-path}/Montserrat-Regular.eot');
+	src: local('☺'), url('#{$font-path}/Montserrat-Regular.woff') format('woff'), url('#{$font-path}/Montserrat-Regular.ttf') format('truetype'), url('#{$font-path}/Montserrat-Regular.svg') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('#{$font-path}/Montserrat-Bold.eot');
+	src: local('☺'), url('#{$font-path}/Montserrat-Bold.woff') format('woff'), url('#{$font-path}/Montserrat-Bold.ttf') format('truetype'), url('#{$font-path}/Montserrat-Bold.svg') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Neuton';
+	src: url('#{$font-path}/Neuton-ExtraLight.eot');
+	src: local('☺'), url('#{$font-path}/Neuton-ExtraLight.woff') format('woff'), url('#{$font-path}/Neuton-ExtraLight.ttf') format('truetype'), url('#{$font-path}/Neuton-ExtraLight.svg') format('svg');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Neuton';
+	src: url('#{$font-path}/Neuton-Light.eot');
+	src: local('☺'), url('#{$font-path}/Neuton-Light.woff') format('woff'), url('#{$font-path}/Neuton-Light.ttf') format('truetype'), url('#{$font-path}/Neuton-Light.svg') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Neuton';
+	src: url('#{$font-path}/Neuton-Regular.eot');
+	src: local('☺'), url('#{$font-path}/Neuton-Regular.woff') format('woff'), url('#{$font-path}/Neuton-Regular.ttf') format('truetype'), url('#{$font-path}/Neuton-Regular.svg') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Neuton';
+	src: url('#{$font-path}/Neuton-Bold.eot');
+	src: local('☺'), url('#{$font-path}/Neuton-Bold.woff') format('woff'), url('#{$font-path}/Neuton-Bold.ttf') format('truetype'), url('#{$font-path}/Neuton-Bold.svg') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Neuton';
+	src: url('#{$font-path}/Neuton-ExtraBold.eot');
+	src: local('☺'), url('#{$font-path}/Neuton-ExtraBold.woff') format('woff'), url('#{$font-path}/Neuton-ExtraBold.ttf') format('truetype'), url('#{$font-path}/Neuton-ExtraBold.svg') format('svg');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Neuton';
+	src: url('#{$font-path}/Neuton-Italic.eot');
+	src: local('☺'), url('#{$font-path}/Neuton-Italic.woff') format('woff'), url('#{$font-path}/Neuton-Italic.ttf') format('truetype'), url('#{$font-path}/Neuton-Italic.svg') format('svg');
+	font-weight: 400;
+	font-style: italic;
+}

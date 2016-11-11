@@ -15,7 +15,7 @@ function Banner(props) {
   });
 
   return (
-    <section className="banner">
+    <section className="banner-section">
       <div className="cont--l">
         <h1>{title}</h1>
         <ul>
