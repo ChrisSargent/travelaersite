@@ -49,10 +49,8 @@ export default class Post extends Component {
       <main id={post.slug} className={post.slug}>
         <Hero />
         <article>
-          <div className="cont--l">
-            {post.title && <h1>{post.title.rendered}</h1>}
-            {post.content && <Wysiwyg content={post.content} />}
-          </div>
+          {post.title && <h1>{post.title.rendered}</h1>}
+          {post.content && <Wysiwyg content={post.content} />}
         </article>
       </main>
     );

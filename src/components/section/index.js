@@ -1,6 +1,6 @@
 import React from 'react';
 import Article from '../article';
-import RowBlock from '../row-block';
+import Row from '../row';
 import css from '../../lib/css';
 
 require('./_section.sass');
@@ -31,7 +31,7 @@ function Section(props) {
           <Article title={title} content={content} modifier={modifier} divOnly />
         </div>
       </div>
-      <RowBlock columns={subSections} />
+      <Row columns={subSections} />
       { image && <img src={image} alt="" className="_replaceimg"/> }
     </section>
   );

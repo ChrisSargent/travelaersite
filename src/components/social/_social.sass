@@ -1,12 +1,13 @@
 @import _variables
 @import _mixins
 
-.social
-  h2
+.social-block
+  > .title
     +sr-only
 
-  ul
-    +inline-children(4px)
+
+.social-list
+  +inline-children-item(4px)
 
   svg.i
     width: auto

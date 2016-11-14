@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PageStore from '../../stores/PageStore';
 
-import FooterAppend from '../footer__append';
+import Credit from '../credit';
 import Legal from '../legal';
 import Links from '../links';
 import Logo from '../logo';
@@ -36,12 +36,12 @@ export default class Footer extends Component {
     const {footerAppend} = this.state;
 
     return (
-      <footer className="site__ftr">
-        <div className="cont--l">
-          <div className="ftr__col">
+      <footer className="site-footer">
+        <div className="row-block">
+          <div className="column">
             <Logo />
           </div>
-          <div className="ftr__col">
+          <div className="column">
             <Vcard
               coRegNumber={props.coRegNumber}
               coTaxNumber={props.coTaxNumber}
@@ -56,10 +56,10 @@ export default class Footer extends Component {
               streetAddress1={props.streetAddress1}
               streetAddress2={props.streetAddress2}
               />
-            <FooterAppend text={footerAppend}/>
+            <Credit text={footerAppend}/>
             <Legal legalName={props.legalName} />
           </div>
-          <div className="ftr__col">
+          <div className="column">
             {props.socialNetworks ? <Social socialNetworks={props.socialNetworks} /> : false}
             {props.externalLinks ? <Links externalLinks={props.externalLinks} /> : false}
           </div>

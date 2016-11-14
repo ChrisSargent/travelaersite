@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-require('./_actions-block.sass');
+require('./_actions.sass');
 
 function Actions(props) {
   const {actions} = props;

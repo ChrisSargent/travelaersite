@@ -7,7 +7,7 @@ function Social(props) {
   const networkMap = props.socialNetworks.map((network, index) => {
 
     return (
-      <li key={index}>
+      <li key={index} className="item">
         <a href={network.link} target="_blank">
           <Icon type={network.iconType} title={network.iconTitle} />
         </a>
@@ -16,9 +16,9 @@ function Social(props) {
   });
 
   return (
-    <div className="social">
-      <h2>Follow Us</h2>
-      <ul>
+    <div className="social-block">
+      <h2 className="title">Follow Us</h2>
+      <ul className="social-list">
         {networkMap}
       </ul>
     </div>

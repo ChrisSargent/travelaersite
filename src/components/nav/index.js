@@ -42,7 +42,7 @@ export default class NavBlock extends Component {
         }
         const link = globals.homeUrl + item.object_slug;
         return (
-          <li key={item.ID}>
+          <li key={item.ID} className="item">
             <Link to={link} className="navlink" activeClassName="-active">{item.title}</Link>
           </li>
         );

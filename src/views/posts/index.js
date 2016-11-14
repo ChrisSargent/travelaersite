@@ -39,11 +39,9 @@ export default class Posts extends Component {
     return (
       <main id="posts" className="posts">
         <section>
-          <div className="cont--l">
-            <ul>
-              {postsMap}
-            </ul>
-          </div>
+          <ul>
+            {postsMap}
+          </ul>
         </section>
       </main>
     );

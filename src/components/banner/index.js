@@ -9,7 +9,7 @@ function Banner(props) {
 
   const logoMap = logos.map((logo, index) => {
     return (
-      <li key={index}>
+      <li key={index} className="item">
         <Icon type={logo.iconType} title={logo.iconTitle}/>
       </li>
     );

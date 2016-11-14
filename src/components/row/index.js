@@ -1,9 +1,9 @@
 import React from 'react';
 import Article from '../article';
 
-require('./_row-block.sass');
+require('./_row.sass');
 
-function RowBlock(props) {
+function Row(props) {
   var columnsMap;
   const {columns} = props;
 
@@ -25,4 +25,4 @@ function RowBlock(props) {
 
 }
 
-export default RowBlock;
+export default Row;

@@ -1,7 +1,7 @@
 @import _variables
 @import _mixins
 
-.site__ftr
+.site-footer
   font-weight: 300
   position: relative
   z-index: $z--mid
@@ -13,12 +13,6 @@
   &::after
     +angled($co--bl-gr-lt, top)
     box-shadow: 0 -30px 0 0 transparentize($co--green, 0.5)
-
-  > div
-    display: flex
-    flex-wrap: wrap
-    align-items: flex-start
-    justify-content: space-between
 
 @media (min-width: $bp--mn)
   .ftr__col

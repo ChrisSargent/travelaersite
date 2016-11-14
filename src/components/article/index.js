@@ -1,5 +1,5 @@
 import React from 'react';
-import Actions from '../actions-block';
+import Actions from '../actions';
 import ArticleHeader from '../article-header';
 import Screenshots from '../screenshots';
 import Wysiwyg from '../wysiwyg';
