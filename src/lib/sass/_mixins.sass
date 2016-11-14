@@ -71,7 +71,7 @@
   > *
     padding: $gap
 
-=inline-item-gap($gap)
+=column($gap)
   margin-right: $gap / 2
   margin-left: $gap / 2
 
@@ -84,27 +84,24 @@
 
 // ******************************* Layout Mixins *******************************
 
-=cont
-  width: 100%
+=cont($maxw)
   position: relative
+  width: 100%
+  max-width: $maxw + (2 * $pd--h)
   margin: 0 auto
   padding: 0 20px
 
 =cont--s
-  +cont
-  max-width: $sz--s + (2 * $pd--h)
+  +cont($sz--s)
 
 =cont--m
-  +cont
-  max-width: $sz--m + (2 * $pd--h)
+  +cont($sz--m)
 
 =cont--l
-  +cont
-  max-width: $sz--l + (2 * $pd--h)
+  +cont($sz--l)
 
 =cont--xl
-  +cont
-  max-width: $sz--xl + (2 * $pd--h)
+  +cont($sz--xl)
 
 =center-box
   display: flex

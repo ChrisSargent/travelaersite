@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import css from '../../lib/css';
+import Wysiwyg from '../../components/wysiwyg';
 
 // Stores & Actions
 import * as PostsActions from '../../actions/PostsActions';
@@ -50,8 +50,8 @@ export default class Post extends Component {
         <Hero />
         <article>
           <div className="cont--l">
-            {post.title ? <h1>{post.title.rendered}</h1> : false}
-            {post.content ? <div className={css.wys} dangerouslySetInnerHTML={{__html: post.content.rendered}}></div> : false}
+            {post.title && <h1>{post.title.rendered}</h1>}
+            {post.content && <Wysiwyg content={post.content} />}
           </div>
         </article>
       </main>

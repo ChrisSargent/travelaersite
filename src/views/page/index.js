@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import css from '../../lib/css';
+import Wysiwyg from '../../components/wysiwyg';
 
 // Stores & Actions
 import * as PageActions from '../../actions/PageActions';
@@ -64,8 +64,8 @@ export default class Page extends Component {
 
     return (
       <main id={page.slug} className={page.slug}>
-        {page.title ? <h1>{page.title.rendered}</h1> : false}
-        {page.content ? <div className={css.wys} dangerouslySetInnerHTML={{__html: page.content.rendered}}></div> : false}
+        {page.title && <h1>{page.title.rendered}</h1>}
+        {page.content && <Wysiwyg content={page.content} />}
         {blocksMap}
       </main>
     );

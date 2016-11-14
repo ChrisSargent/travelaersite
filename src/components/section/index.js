@@ -1,25 +1,18 @@
 import React from 'react';
-import SectionSub from '../section--sub';
+import Article from '../article';
+import RowBlock from '../row-block';
 import css from '../../lib/css';
 
 require('./_section.sass');
 
 function Section(props) {
-  var subSectionMap, postClass, sectionClass, slug, sectionStyle = {};
-  const {acf_fc_layout, title, content, subSections, type, image} = props;
+  var sectionClass, sectionStyle, colClass = {};
+  var {slug} = props;
+  const {title, content, subSections, position, modifier, image} = props;
 
-  postClass = css.post + ' ' + type;
-
-  if (title) {
-    slug = title.replace(/\s+/g, '-').toLowerCase();
-    sectionClass = acf_fc_layout + ' ' + slug;
-  }
-
-  if (subSections) {
-    subSectionMap = subSections.map((subSection, index) => {
-      return <SectionSub key={index} {...subSection}/>;
-    });
-  }
+  sectionClass = "normal-section";
+  (!slug && title) && (slug = title.replace(/\s+/g, '-').toLowerCase());
+  sectionClass += ' -' + slug;
 
   if(image) {
     sectionStyle = {
@@ -28,16 +21,18 @@ function Section(props) {
     sectionClass += css.hasbg;
   }
 
+  colClass = "column";
+  position && (colClass += ' -' + position);
+
   return (
     <section className={sectionClass} style={sectionStyle}>
-      <div className="cont--xl">
-        <div className={postClass}>
-          <h1>{title}</h1>
-          <div className={css.wys} dangerouslySetInnerHTML={{__html: content}}></div>
+      <div className="row-block">
+        <div className={colClass}>
+          <Article title={title} content={content} modifier={modifier} divOnly />
         </div>
-        { subSectionMap ? <div className="section--sub__wrap">{subSectionMap}</div> : false }
       </div>
-      { image ? <img src={image} alt="" className="_replaceimg"/> : false }
+      <RowBlock columns={subSections} />
+      { image && <img src={image} alt="" className="_replaceimg"/> }
     </section>
   );
 }

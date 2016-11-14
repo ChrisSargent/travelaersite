@@ -1,5 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
+import Wysiwyg from '../wysiwyg';
 
 require('./_hero.sass');
 
@@ -13,18 +14,14 @@ function HeroHeadline(props) {
       {headlinePost}
     </h1>
   );
-}
+};
 
 function Hero(props) {
-  const {headlinePre, headline, headlinePost, content, image, fullscreen, size, centered} = props;
-  var sectionStyle, sectionClass, wysiwygClass, displayHeadline;
+  const {headlinePre, headline, headlinePost, content, image, fullscreen, size} = props;
+  var sectionStyle, contentClass, displayHeadline;
 
-  sectionClass = 'hero-section';
-  fullscreen && (sectionClass += ' -fullscreen');
-
-  wysiwygClass = css.wys;
-  size && (wysiwygClass += ' -' + size);
-  centered && (wysiwygClass += css.centered);
+  contentClass = 'hero-content';
+  fullscreen && (contentClass += ' -fullscreen');
 
   if(image) {
     sectionStyle = {
@@ -35,14 +32,14 @@ function Hero(props) {
   (headlinePre || headline || headlinePost) && (displayHeadline = true);
 
   return (
-    <section className={sectionClass} style={sectionStyle}>
-      <div className="hero-content">
+    <section className="hero-section" style={sectionStyle}>
+      <div className={contentClass}>
         {displayHeadline && <HeroHeadline {...props} />}
-        {content && <div className={wysiwygClass} dangerouslySetInnerHTML={{__html: content}}></div>}
+        <Wysiwyg content={content} size={size} />
       </div>
       { image && <img src={image} alt="" className="_replaceimg"/> }
     </section>
   );
-}
+};
 
 export default Hero;

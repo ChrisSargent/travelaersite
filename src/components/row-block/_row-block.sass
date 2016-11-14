@@ -1,0 +1,18 @@
+@import _variables
+@import _mixins
+
+.row-block
+  +cont--xl
+  display: flex
+
+  + .row-block
+    margin-top: $pd--xxl
+
+  @media (min-width: $bp--mn)
+    > .column
+      +column($pd--xl)
+      width: 50%
+
+      &.-pushright
+        margin-left: 50%
+        padding-left: ($pd--xl / 2)

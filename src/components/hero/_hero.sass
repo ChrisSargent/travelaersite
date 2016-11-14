@@ -8,10 +8,6 @@
   // To fix IE flex bug on min-height / flex direction column
   padding: 0
 
-  &.-fullscreen
-    .hero-content
-      min-height: 100vh
-
 .hero-content
   +cont--m
   +center-box
@@ -19,8 +15,10 @@
   padding-top: $pd--block
   padding-bottom: $pd--block
 
-  .headline
+  > .header
     font-size: $fs--xl
+    line-height: 1.03
+    margin-bottom: 1.05em
     text-align: center
     letter-spacing: $ls--w
 
@@ -32,3 +30,6 @@
       top: -0.085em
       display: block
       letter-spacing: normal
+
+  &.-fullscreen
+    min-height: 100vh

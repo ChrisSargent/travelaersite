@@ -1,10 +1,10 @@
 import React from 'react';
 
-require('./_screenshot.sass');
+require('./_screenshots.sass');
 
 function Screenshot(props) {
   return (
-    <div className="screenshot">
+    <li className="screenshot">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 1018" xmlnsXlink="http://www.w3.org/1999/xlink">
         <g fill="#fff" fillRule="evenodd" transform="translate(0 2)">
           <rect width="491" height="1014" x="5" fillOpacity=".3" stroke="#fff" strokeWidth="4" rx="75"/>
@@ -18,8 +18,28 @@ function Screenshot(props) {
         </g>
         <image width="431" height="766" x="35" y="123" xlinkHref={props.image}/>
       </svg>
-    </div>
+    </li>
   );
 }
 
-export default Screenshot;
+function ScreenShots(props) {
+  var screenshotsMap;
+  const {screenshots} = props;
+
+  if (screenshots && screenshots[0].image) {
+    screenshotsMap = screenshots.map((screenshot, index) => {
+      if(screenshot.image) {
+        return <Screenshot key={index} image={screenshot.image}/>
+      } else {
+        return false;
+      }
+    });
+    return (
+      <ul className="screenshot__wrap">{screenshotsMap}</ul>
+    );
+  } else {
+    return false;
+  }
+}
+
+export default ScreenShots;

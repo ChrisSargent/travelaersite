@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from '../icons';
+import css from '../../lib/css';
 
 require('./_banner.sass');
 
@@ -16,9 +17,9 @@ function Banner(props) {
 
   return (
     <section className="banner-section">
-      <div className="cont--l">
-        <h1>{title}</h1>
-        <ul>
+      <div className="logo-block">
+        <h1 className={css.header}>{title}</h1>
+        <ul className="logos">
           {logoMap}
         </ul>
       </div>

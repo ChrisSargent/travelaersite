@@ -3,14 +3,17 @@
 
 .banner-section
   position: relative
-  text-align: center
   z-index: $z--mid
 
   &::after
     +angled($co--green, both)
 
-  h1
+.logo-block
+  +cont--xl
+  text-align: center
+
+  > .header
     font-weight: 300
 
-  ul
+  > .logos
     +inline-children($pd--s)
