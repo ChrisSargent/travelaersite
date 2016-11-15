@@ -30,17 +30,31 @@ function travelaer_acf_init()
     acf_update_setting('google_api_key', $api_key);
 }
 
-
+// Change the displayed name for content blocks
+add_filter('acf/fields/flexible_content/layout_title', 'travelaer_flexible_content_layout_title', 10, 4);
 function travelaer_flexible_content_layout_title( $title, $field, $layout, $i ) {
 
   if( $text = get_sub_field('title') ) {
 	} elseif ($text = get_sub_field('headline')) {
 	}
 	return $title . ' | ' . $text;
-	//
 }
 
-// name
-add_filter('acf/fields/flexible_content/layout_title', 'travelaer_flexible_content_layout_title', 10, 4);
 
-?>
+// Changes the title placeholder text on some custom post types
+add_filter('enter_title_here', 'travelaer_title_placeholders');
+function travelaer_title_placeholders($title)
+{
+    $screen = get_current_screen();
+    switch ($screen->post_type) {
+      case 'team_member':
+        $title = 'Enter Name';
+        break;
+
+      default:
+        # code...
+        break;
+    }
+
+    return $title;
+}

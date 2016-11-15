@@ -3,10 +3,12 @@ import React from 'react';
 require('./_article-header.sass');
 
 function ArticleHeader(props) {
-  const {title, modifier} = props;
-  var artHeadClass = 'article-header';
+  const {modifier} = props;
+  var {title} = props, artHeadClass;
 
-  modifier && (artHeadClass += ' -' + modifier);
+  modifier ? artHeadClass = 'header-' + modifier : artHeadClass = 'header-article';
+
+  typeof title === 'object' && (title = title.rendered);
 
   return (
     <header className={artHeadClass}>

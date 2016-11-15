@@ -37,11 +37,11 @@ export default class Footer extends Component {
 
     return (
       <footer className="site-footer">
-        <div className="row-block">
-          <div className="column">
+        <div className="footer-content">
+          <div className="item">
             <Logo />
           </div>
-          <div className="column">
+          <div className="item">
             <Vcard
               coRegNumber={props.coRegNumber}
               coTaxNumber={props.coTaxNumber}
@@ -59,9 +59,9 @@ export default class Footer extends Component {
             <Credit text={footerAppend}/>
             <Legal legalName={props.legalName} />
           </div>
-          <div className="column">
-            {props.socialNetworks ? <Social socialNetworks={props.socialNetworks} /> : false}
-            {props.externalLinks ? <Links externalLinks={props.externalLinks} /> : false}
+          <div className="item">
+            {props.socialNetworks && <Social socialNetworks={props.socialNetworks} />}
+            {props.externalLinks && <Links externalLinks={props.externalLinks} />}
           </div>
         </div>
       </footer>

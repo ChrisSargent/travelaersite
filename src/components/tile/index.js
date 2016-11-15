@@ -18,7 +18,7 @@ function MosaicTile(props) {
       break;
 
     case 'quote':
-      const {name, position, company} = props.acf;
+      const {name, job_title, company} = props.acf;
       return (
         <li className={tileClass}>
           <div className={tileWrapClass}>
@@ -28,7 +28,7 @@ function MosaicTile(props) {
               <footer>
                 <cite>
                   { name && <span className="quote__fn">{name}</span> }
-                  { position && <span className="quote__pos">{position}</span> }
+                  { job_title && <span className="quote__pos">{job_title}</span> }
                   { company && <span className="quote__co">{company}</span> }
                 </cite>
               </footer>
@@ -52,7 +52,7 @@ function MosaicTile(props) {
       <a href={props.acf.link} target="_blank" className={tileWrapClass}>
         <Icon type={type} title={type}/>
         <span className="tile__content">{props.acf.content}</span>
-        { mediaLink ? <img src={mediaLink} alt="" className="_replaceimg"/> : false }
+        { mediaLink && <img src={mediaLink} alt="" className="_replaceimg"/> }
       </a>
     </li>
   );

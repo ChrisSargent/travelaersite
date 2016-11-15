@@ -59,28 +59,39 @@
 
 // ******************************* Inline Mixins *******************************
 
-=inline-center-spaced
+=inline-children-item($gap: 0)
   display: flex
   align-items: center
   justify-content: space-between
 
-=inline-children-item($gap)
-  +inline-center-spaced
-  margin: $gap / -1
+  @if $gap != 0
+    margin: $gap / -1
+
+    > .item
+      padding: $gap
+
+=columns($cols: auto, $gap: 0)
+  $width: 100% / $cols
+
+  @if $cols == auto
+    $width: $cols
+
+  display: flex
+  justify-content: space-between
+
+  &:not(:first-child)
+    margin-top: $pd--xxl
 
   > .item
-    padding: $gap
+    margin-right: $gap / 2
+    margin-left: $gap / 2
+    width: $width
 
-=column($gap)
-  margin-right: $gap / 2
-  margin-left: $gap / 2
+    &:first-child
+      margin-left: 0
 
-  &:first-child
-    margin-left: 0
-
-  &:last-child
-    margin-right: 0
-
+    &:last-child
+      margin-right: 0
 
 // ******************************* Layout Mixins *******************************
 
@@ -108,3 +119,17 @@
   flex-direction: column
   align-items: center
   justify-content: center
+
+// ***************************** Component Mixins ******************************
+
+=article-block($pad)
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  width: 100%
+  height: 100%
+  padding: $pad
+
+  &.-boxed
+    background-color: transparentize($co--wt, 0.15)

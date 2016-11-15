@@ -9,8 +9,8 @@ function PostItem(props) {
     <li>
       <article>
         <a href={link}>
-          {title ? <h1>{title.rendered}</h1> : false}
-          {content ? <div className="wysiwyg-block" dangerouslySetInnerHTML={{__html: content.rendered}}></div> : false}
+          {title && <h1>{title.rendered}</h1>}
+          {content && <div className="wysiwyg-block" dangerouslySetInnerHTML={{__html: content.rendered}}></div>}
         </a>
       </article>
     </li>

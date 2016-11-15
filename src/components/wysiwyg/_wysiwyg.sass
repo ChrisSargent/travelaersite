@@ -1,9 +1,9 @@
 @import _variables
 @import _mixins
 
-.wysiwyg-block
-  font-family: $ff--p
-  font-size: $fs--l
+=wysiwyg-block($ff: $ff--p, $fs: $fs--l)
+  font-family: $ff
+  font-size: $fs
   margin: 0 auto
 
   a
@@ -13,12 +13,16 @@
   &.-narrow
     max-width: $sz--s
 
-  &.-alternate1
-    font-family: $ff--base
-    font-size: $fs--h
-    font-weight: 300
-    line-height: $lh--l
-    color: $co--bk
 
-  &.-alternate2
-    color: $co--logo--blue-md
+.wysiwyg-block
+  +wysiwyg-block()
+
+.wysiwyg-products
+  +wysiwyg-block($ff--base, $fs--h)
+  font-weight: 300
+  line-height: $lh--l
+  color: $co--bk
+
+.wysiwyg-product
+  +wysiwyg-block
+  color: $co--logo--blue-md

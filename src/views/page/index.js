@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-import Wysiwyg from '../../components/wysiwyg';
 
 // Stores & Actions
 import * as PageActions from '../../actions/PageActions';
 import PageStore from '../../stores/PageStore';
 
 // Components
-import Blocks from '../../components/blocks';
+import Banner from '../../components/banner';
+import Hero from '../../components/hero';
+import Mosaic from '../../components/mosaic';
+import Section from '../../components/section';
+import Team from '../../components/team';
 
 export default class Page extends Component {
   constructor() {
@@ -50,22 +53,32 @@ export default class Page extends Component {
     if (page.acf) {
       // Get all the content blocks and map them to a variable
       blocksMap = page.acf.contentBlocks.map((block, index) => {
-        return <Blocks key={index} {...block}/>;
+        switch (block.acf_fc_layout) {
+          case 'hero':
+            return <Hero key={index} {...block}/>;
+
+          case 'banner':
+            return <Banner key={index} {...block}/>;
+
+          case 'mosaic':
+            return <Mosaic key={index} {...block}/>;
+
+          case 'section':
+            return <Section key={index} {...block}/>;
+
+          case 'team':
+            return <Team key={index} {...block}/>;
+
+          default:
+            return false;
+        }
       });
     } else {
       blocksMap = false;
     }
 
-    if (page.slug === 'home') {
-      // If we're on the home page we don't use the title or content
-      page.title = false;
-      page.content = false;
-    }
-
     return (
       <main id={page.slug} className={page.slug}>
-        {page.title && <h1>{page.title.rendered}</h1>}
-        {page.content && <Wysiwyg content={page.content} />}
         {blocksMap}
       </main>
     );

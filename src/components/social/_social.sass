@@ -5,18 +5,17 @@
   > .title
     +sr-only
 
-
 .social-list
   +inline-children-item(4px)
 
-  svg.i
+.social-link
+  display: block
+  min-width: $ia-min-size
+  min-height: $ia-min-size
+  text-align: center
+  text-decoration: none
+  color: $co--logo--blue-md
+
+  > .i
     width: auto
     height: 1.425em
-
-  a
-    display: block
-    min-width: $ia-min-size
-    min-height: $ia-min-size
-    text-align: center
-    text-decoration: none
-    color: $co--logo--blue-md

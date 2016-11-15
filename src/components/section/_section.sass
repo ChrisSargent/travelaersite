@@ -13,7 +13,28 @@
   > .content
     +cont--xl
 
+.column-block
+  position: relative
+
+  &.-pushright
+    width: 50%
+    left: 50%
+    padding-left: ($pd--xl / 2)
+
+  &.-pushleft
+    width: 50%
+    left: 0
+    padding-right: ($pd--xl / 2)
+
 @media (min-width: $bp--mn)
   .section
     &--sub__wrap
       display: flex
+
+// ********************************* Articles **********************************
+
+.content-block
+  +article-block($pd--l)
+
+.content-products
+  +article-block($pd--l)
