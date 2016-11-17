@@ -17,7 +17,7 @@ ReactDOM.render(
     </Route>
     <Route path={globals.blogUrl} component={Base}>
       <IndexRoute component={Posts} />
-      <Route path="/:slug" component={Post} />
+      <Route path=":slug" component={Post} />
     </Route>
     <Route path={globals.homeUrl} component={Base}>
       <IndexRoute component={Page} />

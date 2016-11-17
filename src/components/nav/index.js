@@ -9,6 +9,7 @@ require('./_nav.sass');
 
 function MenuItem(props) {
   const {item} = props;
+  var linkClass;
 
   // Is this the home page link?
   switch (item.object_id) {
@@ -21,36 +22,50 @@ function MenuItem(props) {
       item.link = item.base + item.object_slug;
   }
 
-  item.children.length > 0 && (item.children.base = item.link + '/');
+  linkClass = "nav-link";
+  if (item.children.length > 0) {
+    item.children.base = item.link + '/';
+    linkClass += " -hassub";
+  }
 
   return (
     <li className="item">
-      { item.index ?
-        <IndexLink to={item.link} className="navlink" activeClassName="-active">{item.title}</IndexLink> :
-        <Link to={item.link} className="navlink" activeClassName="-active">{item.title}</Link>
+      {item.index
+        ? <IndexLink to={item.link} className={linkClass} activeClassName="-active">{item.title}</IndexLink>
+        : <Link to={item.link} className={linkClass} activeClassName="-active">{item.title}</Link>
       }
-      { item.children.length > 0 && <Menu items={item.children} /> }
+      {item.children.length > 0 && <Menu items={item.children}/>}
     </li>
   );
 }
 
 function Menu(props) {
   const {items} = props;
-  var listClass;
+  var primaryNav;
 
-  if(items) {
-    items.base === globals.homeUrl ? listClass = 'nav-list' : listClass = 'subnav-list';
+  if (items) {
+    items.base === globals.homeUrl
+      ? primaryNav = true
+      : primaryNav = false;
 
     const itemsMap = items.map((item) => {
       item.base = items.base;
-      return (<MenuItem key={item.ID} item={item} />);
+      return (<MenuItem key={item.ID} item={item}/>);
     });
 
-    return (
-      <ul className={listClass}>
-        {itemsMap}
-      </ul>
-    );
+    if (primaryNav) {
+      return (
+        <ul className="nav-list">{itemsMap}</ul>
+      );
+    } else {
+      return (
+        <div className="subnav-wrap">
+          <div className="container">
+            <ul className="subnav-list">{itemsMap}</ul>
+          </div>
+        </div>
+      );
+    }
   } else {
     return null;
   }
@@ -87,8 +102,8 @@ export default class NavBlock extends Component {
       menu.base = globals.homeUrl;
 
       return (
-        <nav>
-          <Menu items={menu} />
+        <nav className="nav-block">
+          <Menu items={menu}/>
         </nav>
       );
 

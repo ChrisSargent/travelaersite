@@ -21,6 +21,10 @@ function MemberVcard(props) {
           link = 'https://twitter.com/' + contact_detail;
           break;
 
+        case 'email':
+          link = 'mailto:' + contact_detail;
+          break;
+
         default:
           return false;
       }

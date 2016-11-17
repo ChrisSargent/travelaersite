@@ -18,6 +18,22 @@
     display: table
     clear: both
 
+=shadowborder($color: $co--wt)
+  box-shadow: 0px 8px 0px 0px transparentize($color, 0.5)
+
+=caret($color, $sz: 16px)
+  display: block
+  width: 0
+  height: 0
+  border: ($sz / 2) solid transparent
+  border-bottom-color: $color
+  margin-top: ($sz / -1)
+  margin-left: ($sz / -1)
+  content: ' '
+  position: absolute
+  top: 100%
+  left: 50%
+
 =sr-only
   position: absolute
   overflow: hidden
@@ -59,16 +75,26 @@
 
 // ******************************* Inline Mixins *******************************
 
-=inline-children-item($gap: 0)
+=inline-children-item($v-gap: $pd--s, $h-gap: $pd--s)
   display: flex
   align-items: center
   justify-content: space-between
 
-  @if $gap != 0
-    margin: $gap / -1
+  @if $v-gap != 0
+    margin-top: $v-gap / -1
+    margin-bottom: $v-gap / -1
 
     > .item
-      padding: $gap
+      padding-top: $v-gap
+      padding-bottom: $v-gap
+
+  @if $h-gap != 0
+    margin-right: $h-gap / -1
+    margin-left: $h-gap / -1
+
+    > .item
+      padding-right: $h-gap
+      padding-left: $h-gap
 
 =columns($cols: auto, $gap: 0)
   $width: 100% / $cols
@@ -96,7 +122,6 @@
 // ******************************* Layout Mixins *******************************
 
 =cont($maxw)
-  position: relative
   width: 100%
   max-width: $maxw + (2 * $pd--h)
   margin: 0 auto

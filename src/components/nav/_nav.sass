@@ -1,7 +1,7 @@
 @import _variables
 @import _mixins
 
-=navlink
+=nav-link
   font-family: $ff--nav
   font-size: $fs--xs
   display: block
@@ -9,29 +9,54 @@
   letter-spacing: $ls--w
   text-transform: uppercase
 
+.nav-block
+  align-self: stretch
+
 .nav-list
-  +inline-children-item($pd--s)
+  +inline-children-item(0)
+  align-items: stretch
+  height: 100%
+  position: relative
 
-  > .item > .navlink
-    +navlink
-    color: $co--blue--dk
-
-    &.-active
-      color: $co--green
-
-.subnav-list
-  +inline-children-item($pd--s)
-  display: none
-  position: fixed
-  width: 100vw
-  left: 0
-
-  .navlink.-active + &
+  > .item
     display: flex
+    align-items: center
+    position: relative
 
-  > .item > .navlink
-    +navlink
+.nav-link
+  +nav-link
+  color: $co--blue--dk
+
+  &.-active
     color: $co--green
+
+    &.-hassub
+      &::after
+        +caret($co--green)
+
+  .subnav-list &
+    color: $co--wt
 
     &.-active
       color: $co--highlight
+
+.subnav-wrap
+  +shadowborder($co--green)
+  background-color: $co--green
+  display: none
+  position: fixed
+  width: 100%
+  left: 0
+  top: $ht-header--dt
+  padding: $pd--s
+
+  > .container
+    +cont--xl
+    display: flex
+    justify-content: flex-end
+
+  .nav-link.-active + &
+    display: block
+
+.subnav-list
+  +inline-children-item

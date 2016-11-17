@@ -37,7 +37,7 @@ export default class Team extends Component {
 
     const teamMap = team.map((member) => {
       return (
-        <li key={member.id}>
+        <li key={member.id} className="item">
           <Member {...member} />
         </li>
       );
