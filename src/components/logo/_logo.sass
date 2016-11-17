@@ -1,4 +1,15 @@
 @import _variables
+@import _mixins
+
+.logo-block
+  +cont--xl
+  text-align: center
+
+  > .header
+    +heading-light
+
+  > .logos
+    +inline-children-item($pd--s)
 
 .logo-link
   width: $logo-w

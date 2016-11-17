@@ -6,4 +6,29 @@
   +columns(2, $pd--xl)
 
 .article-product
-  +article-block($pd--l)
+  +article-block
+
+.header-products
+  +header-block
+
+  > .title
+    +heading-light
+    letter-spacing: $ls--w
+    color: $co--green
+
+.header-product
+  +header-block
+
+  > .title
+    font-size: $fs--xh
+    color: $co--bk
+
+.wysiwyg-products
+  +wysiwyg-block($ff--base, $fs--h)
+  font-weight: 300
+  line-height: $lh--l
+  color: $co--bk
+
+.wysiwyg-product
+  +wysiwyg-block
+  color: $co--logo--blue-md

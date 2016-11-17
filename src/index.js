@@ -12,13 +12,16 @@ const app = document.getElementById('root');
 
 ReactDOM.render(
   <Router history={browserHistory}>
+    <Route path={globals.companyUrl} component={Base}>
+      <Route path="(:slug)" component={Page} />
+    </Route>
     <Route path={globals.blogUrl} component={Base}>
       <IndexRoute component={Posts} />
-      <Route path=":slug" component={Post} />
+      <Route path="/:slug" component={Post} />
     </Route>
     <Route path={globals.homeUrl} component={Base}>
       <IndexRoute component={Page} />
-      <Route path="/:slug" component={Page} />
+      <Route path=":slug" component={Page} />
     </Route>
   </Router>
   , app);

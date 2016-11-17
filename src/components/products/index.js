@@ -14,12 +14,14 @@ function Product(props) {
   boxed && (articleClass += ' -boxed');
 
   return (
+    <div>
     <article className={articleClass}>
       <ArticleHeader title={title} modifier={modifier} />
       <Wysiwyg content={content} modifier={modifier} />
       <Actions actions={actions} />
-      <Screenshots screenshots={screenshots} />
     </article>
+    <Screenshots screenshots={screenshots} />
+    </div>
   )
 }
 

@@ -13,7 +13,7 @@ export function fetchPosts(slug) {
     // Just in a timeout to simulate network latency in dev
     setTimeout(function() {
       dispatcher.dispatch({type: 'RECEIVE_POSTS', posts: response.data});
-      console.log(response.data);
+      // console.log(response.data);
     }, 0);
   }).catch(function(error) {
     console.log(error);

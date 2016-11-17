@@ -13,11 +13,13 @@ function Member(props) {
   return (
     <article className="article-member">
       <Avatar avatar={acf.avatar} modifier={modifier} alt={title}/>
-      <div>
-        <ArticleHeader title={title} modifier={modifier} />
-        <Wysiwyg content={content} modifier={modifier} />
+      <div className="member-content">
+        <ArticleHeader title={title} subtitle={acf.job_title} modifier={modifier} />
+        <div className="content">
+          <Wysiwyg content={content} modifier={modifier} />
+          <MemberVcard name={title.rendered} contacts={acf.contact_details}/>
+        </div>
       </div>
-      <MemberVcard name={title.rendered} contacts={acf.contact_details}/>
     </article>
   )
 }

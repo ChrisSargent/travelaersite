@@ -1,5 +1,6 @@
 module.exports = {
   homeUrl: '/',
   jsonUrl: 'http://travelaersite.dev/wordpress/wp-json',
-  blogUrl: '/blog'
+  blogUrl: '/blog',
+  companyUrl: '/company',
 };

@@ -1,17 +1,37 @@
 @import _variables
 @import _mixins
 
+=navlink
+  font-family: $ff--nav
+  font-size: $fs--xs
+  display: block
+  text-decoration: none
+  letter-spacing: $ls--w
+  text-transform: uppercase
+
 .nav-list
   +inline-children-item($pd--s)
 
-  > li > .navlink
-    font-family: $ff--nav
-    font-size: $fs--xs
-    display: block
-    text-decoration: none
-    letter-spacing: $ls--w
-    text-transform: uppercase
+  > .item > .navlink
+    +navlink
     color: $co--blue--dk
 
     &.-active
       color: $co--green
+
+.subnav-list
+  +inline-children-item($pd--s)
+  display: none
+  position: fixed
+  width: 100vw
+  left: 0
+
+  .navlink.-active + &
+    display: flex
+
+  > .item > .navlink
+    +navlink
+    color: $co--green
+
+    &.-active
+      color: $co--highlight

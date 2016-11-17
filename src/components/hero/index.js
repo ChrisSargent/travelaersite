@@ -20,7 +20,7 @@ function Hero(props) {
   const {headlinePre, headline, headlinePost, content, image, fullscreen, size} = props;
   var sectionStyle, contentClass, displayHeadline;
 
-  contentClass = 'hero-content';
+  contentClass = 'content-hero';
   fullscreen && (contentClass += ' -fullscreen');
 
   if(image) {
