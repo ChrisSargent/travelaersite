@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from '../icons';
 import css from '../../lib/css';
 
 require('./_banner.sass');
@@ -10,16 +9,16 @@ function Banner(props) {
   const logoMap = logos.map((logo, index) => {
     return (
       <li key={index} className="item">
-        <Icon type={logo.iconType} title={logo.iconTitle}/>
+        <img src={logo.logo_image} alt={logo.logo_name} className="banner-image"/>
       </li>
     );
   });
 
   return (
     <section className="banner-section">
-      <div className="logo-block">
+      <div className="banner-block">
         <h1 className={css.header}>{title}</h1>
-        <ul className="logos">
+        <ul className="banner-list">
           {logoMap}
         </ul>
       </div>

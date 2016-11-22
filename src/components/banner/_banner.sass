@@ -7,3 +7,27 @@
 
   &::after
     +angled($co--green, both)
+
+.banner-block
+  +cont--xl
+  text-align: center
+
+  > .header
+    +heading-light
+    +header-block
+    color: $co--wt
+
+.banner-list
+  +inline-children-item
+
+  > .item
+    position: relative
+    box-sizing: content-box
+
+    > img
+      max-height: 50px
+      max-width: 200px
+      margin: 0 auto
+
+.banner-image
+  height:
