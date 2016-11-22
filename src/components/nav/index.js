@@ -92,7 +92,6 @@ export default class NavBlock extends Component {
   }
 
   requestMenu() {
-    // console.log('Nav | requestMenu');
     this.setState({menu: NavStore.getMenu()});
   }
 

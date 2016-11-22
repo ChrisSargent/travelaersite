@@ -10,16 +10,14 @@ class TeamStore extends EventEmitter {
   }
 
   getTeam() {
-    // console.log('TeamStore | getTeam');
     return this.team;
   }
 
-  getTeamLoading() {
+  getLoading() {
     return this.fetchingTeam;
   }
 
   handleActions(action) {
-    var self = this; // To use in the timeout
     switch (action.type) {
       case 'FETCH_TEAM':
         // console.log('TeamStore | handleActions | Fetch Team');
@@ -36,15 +34,8 @@ class TeamStore extends EventEmitter {
         break;
 
       default:
-        return true;
     }
-    // TODO: Find a way to take this out of the timeout
-    // Needs to be in a setTimeout to prevent error: Invariant Violation: Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.
-    // Tried for several hours using dispatcher.waitFor but no dice
-    setTimeout(function() {
-      self.emit('change');
-    });
-    return true;
+    this.emit('change');
   }
 
 }

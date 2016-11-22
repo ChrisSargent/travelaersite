@@ -57,7 +57,7 @@ function Icon(props) {
   }
 
   return (
-    <svg className="i" xmlns="http://www.w3.org/2000/svg" aria-labelled-by="title" viewBox={viewbox} fill="currentColor">
+    <svg className="i" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" viewBox={viewbox} fill="currentColor">
       <title>{title}</title>
       {path}
     </svg>

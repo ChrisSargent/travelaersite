@@ -24,13 +24,6 @@ export default class SinglePost extends Component {
     PostsStore.on('change', this.requestPosts);
   }
 
-  componentWillReceiveProps(props) {
-    // If the requested slug doesn't match the current slug, fetch the new post to trigger a new requestPosts being fired by the call backs
-    if (this.props.params.slug !== props.params.slug) {
-      PostsActions.fetchPosts(props.params.slug);
-    }
-  }
-
   componentWillUnmount() {
     PostsStore.removeListener('change', this.requestPosts);
   }
@@ -49,11 +42,11 @@ export default class SinglePost extends Component {
 
     return (
       <main id={post.slug} className={post.slug}>
-        <Hero />
-        <section className="post-section">
-          <Post post={post} />
-          <aside className="side-bar">Test</aside>
-        </section>
+        // <Hero />
+        // <section className="post-section">
+        //   <Post post={post} />
+        //   <aside className="side-bar">Test</aside>
+        // </section>
       </main>
     );
   }

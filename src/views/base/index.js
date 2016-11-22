@@ -33,7 +33,6 @@ export default class Base extends Component {
   }
 
   requestOptions() {
-    // console.log('Base | requestOptions');
     this.setState({options: OptionsStore.getOptions()});
   }
 

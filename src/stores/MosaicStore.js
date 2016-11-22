@@ -14,7 +14,7 @@ class MosaicStore extends EventEmitter {
     return this.mosaic;
   }
 
-  getMosaicLoading() {
+  getLoading() {
     return this.fetchingMosaic;
   }
 
@@ -32,10 +32,8 @@ class MosaicStore extends EventEmitter {
         break;
 
       default:
-        return true;
     }
     this.emit('change');
-    return true;
   }
 }
 

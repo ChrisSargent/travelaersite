@@ -14,7 +14,7 @@ class NavStore extends EventEmitter {
     return this.menu;
   }
 
-  getMenuLoading() {
+  getLoading() {
     return this.fetchingMenu;
   }
 
@@ -32,10 +32,8 @@ class NavStore extends EventEmitter {
         break;
 
       default:
-        return true;
     }
     this.emit('change');
-    return true;
   }
 }
 

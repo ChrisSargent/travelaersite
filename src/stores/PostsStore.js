@@ -14,12 +14,12 @@ class PostsStore extends EventEmitter {
     return this.posts;
   }
 
-  getPostsLoading() {
+  getLoading() {
+    // console.log('Posts: getLoading');
     return this.fetchingPosts;
   }
 
   handleActions(action) {
-    var self = this; // To use in the timeout
     switch (action.type) {
       case 'FETCH_POSTS':
         // console.log('PostsStore | handleActions | Fetch Posts');
@@ -33,15 +33,8 @@ class PostsStore extends EventEmitter {
         break;
 
       default:
-        return true;
     }
-    // TODO: Find a way to take this out of the timeout
-    // Needs to be in a setTimeout to prevent error: Invariant Violation: Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.
-    // Tried for several hours using dispatcher.waitFor but no dice
-    setTimeout(function() {
-      self.emit('change');
-    });
-    return true;
+    this.emit('change');
   }
 
 }

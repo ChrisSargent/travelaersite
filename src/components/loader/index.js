@@ -16,33 +16,37 @@ export default class Loader extends Component {
     this.state = {
       loaderClass: 'loader'
     };
+    // Keep stores that more regularly change near the front
+    this.stores = [PageStore, PostsStore, TeamStore, NavStore, OptionsStore]
   }
 
   componentWillMount() {
     // Add listeners for changes to loading state
-    OptionsStore.on('change', this.setShowLoader);
-    NavStore.on('change', this.setShowLoader);
-    PageStore.on('change', this.setShowLoader);
-    PostsStore.on('change', this.setShowLoader);
-    TeamStore.on('change', this.setShowLoader);
+    this.stores.map((store, index) => {
+      return store.on('change', this.setShowLoader);
+    });
   }
 
   componentWillUnmount() {
     // Remove listeners for changes to loading state
-    OptionsStore.removeListener('change', this.setShowLoader);
-    NavStore.removeListener('change', this.setShowLoader);
-    PageStore.removeListener('change', this.setShowLoader);
-    PostsStore.removeListener('change', this.setShowLoader);
-    PostsStore.removeListener('change', this.setShowLoader);
+    this.stores.map((store, index) => {
+      return store.removeListener('change', this.setShowLoader);
+    });
   }
 
   setShowLoader() {
-    var getPageLoading = PageStore.getPageLoading();
-    var getMenuLoading = NavStore.getMenuLoading();
-    var getOptionsLoading = OptionsStore.getOptionsLoading();
-    var getPostsLoading = PostsStore.getPostsLoading();
-    var getTeamLoading = TeamStore.getTeamLoading();
-    if(getPageLoading || getMenuLoading || getOptionsLoading || getPostsLoading || getTeamLoading) {
+    var isLoading = true;
+
+    for(var i = 0; i < this.stores.length; i++) {
+      if(this.stores[i].getLoading()){
+        isLoading = true;
+        break;
+      } else {
+        isLoading = false;
+      }
+    }
+
+    if (isLoading) {
       this.setState({loaderClass: 'loader -loading'});
     } else {
       this.setState({loaderClass: 'loader'});
@@ -54,7 +58,7 @@ export default class Loader extends Component {
 
     return (
       <div className={loaderClass}>
-        <Icon type="spinner" title="Loading..." />
+        <Icon type="spinner" title="Loading..."/>
       </div>
     );
   }

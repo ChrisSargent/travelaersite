@@ -5,7 +5,7 @@ class OptionsStore extends EventEmitter {
   constructor() {
     super();
     this.options = [];
-    this.fetchingOptions = false;
+    this.fetchingOptions = true;
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
@@ -14,7 +14,7 @@ class OptionsStore extends EventEmitter {
     return this.options;
   }
 
-  getOptionsLoading() {
+  getLoading() {
     return this.fetchingOptions;
   }
 
@@ -32,10 +32,8 @@ class OptionsStore extends EventEmitter {
         break;
 
       default:
-        return true;
     }
     this.emit('change');
-    return true;
   }
 }
 

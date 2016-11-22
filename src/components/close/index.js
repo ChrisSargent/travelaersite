@@ -4,7 +4,6 @@ require('./_close.sass');
 
 function Close(props) {
   const {close} = props;
-  console.log(close);
 
   return (
     <button className="btn-close btn -clear" onClick={close.bind(null, false)}>

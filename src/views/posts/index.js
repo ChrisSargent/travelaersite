@@ -31,7 +31,6 @@ export default class Posts extends Component {
 
   render() {
     const {posts} = this.state;
-    console.log(posts);
 
     if(posts.length > 0) {
       const postsMap = posts.map((post) => {

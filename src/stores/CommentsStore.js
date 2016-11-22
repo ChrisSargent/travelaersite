@@ -14,7 +14,7 @@ class CommentsStore extends EventEmitter {
     return this.comments;
   }
 
-  getCommentsLoading() {
+  getLoading() {
     return this.fetchingComments;
   }
 
@@ -25,29 +25,27 @@ class CommentsStore extends EventEmitter {
   handleActions(action) {
     switch (action.type) {
       case 'ADDING_COMMENT':
-        console.log('CommentsStore | handleActions | Adding Comments');
+        // console.log('CommentsStore | handleActions | Adding Comments');
         this.fetchingComments = true;
         this.resetForm = false;
         break;
 
       case 'ADDED_COMMENT':
-        console.log('CommentsStore | handleActions | Added Comments');
+        // console.log('CommentsStore | handleActions | Added Comments');
         this.comments = action.comments;
         this.fetchingComments = false;
         this.resetForm = true;
         break;
 
       case 'ERROR_COMMENT':
-        console.log('There was an error');
+        console.log('Sorry, there was an error');
         this.fetchingComments = false;
         this.resetForm = false;
       break;
 
       default:
-        return true;
     }
     this.emit('change');
-    return true;
   }
 }
 

@@ -28,10 +28,10 @@ class CommentLoader extends Component {
   }
 
   setShowLoader() {
-    var getCommentsLoading = CommentsStore.getCommentsLoading();
+    var getLoading = CommentsStore.getLoading();
     var self = this;
 
-    if(getCommentsLoading) {
+    if(getLoading) {
       this.setState({loaderClass: 'loader -submit -loading'});
     } else {
       setTimeout(function () {

@@ -1,5 +1,6 @@
 import React from 'react';
 import globals from '../../lib/globals'
+import {Link} from 'react-router';
 
 function PostItem(props) {
   const {title, slug} = props;
@@ -7,11 +8,7 @@ function PostItem(props) {
 
   return (
     <li>
-      <article>
-        <a href={link}>
-          {title && <h1>{title.rendered}</h1>}
-        </a>
-      </article>
+      <Link to={link} className="logo-brand">{title && <h1>{title.rendered}</h1>}</Link>
     </li>
   );
 }

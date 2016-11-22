@@ -3,8 +3,6 @@ import dispatcher from '../dispatcher';
 
 export function addComment(paramsString) {
   dispatcher.dispatch({type: 'ADDING_COMMENT'});
-  console.log(paramsString);
-
   axios.post('/wp/v2/comments' + paramsString).then(function(response) {
     dispatcher.dispatch({type: 'ADDED_COMMENT', comments: response.data});
     console.log(response.data);

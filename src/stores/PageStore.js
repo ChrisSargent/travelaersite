@@ -14,7 +14,7 @@ class PageStore extends EventEmitter {
     return this.page;
   }
 
-  getPageLoading() {
+  getLoading() {
     return this.fetchingPage;
   }
 
@@ -33,24 +33,23 @@ class PageStore extends EventEmitter {
       case 'FETCH_PAGE':
         // console.log('PageStore | handleActions | Fetch Page');
         this.fetchingPage = true;
+        this.emit('change');
         break;
 
       case 'RECEIVE_PAGE':
         // console.log('PageStore | handleActions | Receive Page');
         this.page = action.page[0];
         this.fetchingPage = false;
+        // TODO: Find a way to take this out of the timeout
+        // Needs to be in a setTimeout to prevent error: Invariant Violation: Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.
+        // Tried for several hours using dispatcher.waitFor but no dice
+        setTimeout(function() {
+          self.emit('change');
+        });
         break;
 
       default:
-        return true;
     }
-    // TODO: Find a way to take this out of the timeout
-    // Needs to be in a setTimeout to prevent error: Invariant Violation: Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.
-    // Tried for several hours using dispatcher.waitFor but no dice
-    setTimeout(function() {
-      self.emit('change');
-    });
-    return true;
   }
 
 }

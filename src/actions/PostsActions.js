@@ -11,7 +11,6 @@ export function fetchPosts(slug) {
     }
   }).then(function(response) {
     dispatcher.dispatch({type: 'RECEIVE_POSTS', posts: response.data});
-    // console.log(response.data);
   }).catch(function(error) {
     console.log(error);
   });

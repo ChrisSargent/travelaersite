@@ -27,7 +27,6 @@ export default class Mosaic extends Component {
   }
 
   requestMosaic() {
-    // console.log('Mosaic | requestMosaic');
     const mosaic = MosaicStore.getMosaic();
     this.setState({mosaic: this.shuffle(mosaic)});
   }
