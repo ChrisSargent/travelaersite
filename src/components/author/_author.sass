@@ -1,0 +1,39 @@
+@import _variables
+@import _mixins
+
+.article-author
+  padding: $pd--l
+  position: relative
+  display: flex
+  background-color: $co--wt
+
+  &::before
+    content: ' '
+    display: block
+    position: absolute
+    width: 100%
+    border-bottom: 1px solid $co--tint
+    top: 0
+    left: 0
+    transform: scale(0.5)
+
+.avatar-image.-author
+  width: 100px
+  height: 100px
+  border-radius: 50%
+  overflow: hidden
+
+.content-author
+  padding-left: $pd--l
+
+.header-author
+  +header-block
+  > .title
+    font-size: $fs--l
+    font-weight: 700
+
+.wysiwyg-author
+  +wysiwyg-block
+  font-size: $fs--m
+  padding-right: $pd--l
+  line-height: $lhr--xxl

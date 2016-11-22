@@ -1,0 +1,58 @@
+@import _variables
+@import _mixins
+
+.submit-section
+  position: relative
+  padding: $pd--xl 0
+  // To contain loader
+
+  .header + &
+    border-top: 1px solid $co--blue-grey--lt
+
+.loader
+  &.-submit
+    height: 100%
+    transition: opacity $tr--m, visibility $tr--m
+    position: absolute
+    left: -5%
+    right: 5%
+
+    &.-loading
+      opacity: 0.8
+      pointer-events: all
+
+.form-comment
+  $spacing: $pd--s
+  margin: $spacing / -2
+
+  input,
+  textarea
+    width: 100%
+    resize: none
+    padding-top: $pd--s
+    padding-bottom: $pd--s
+
+  textarea
+    height: 200px
+
+  > .name,
+  > .email,
+  > .comment
+    padding: $spacing / 2
+    font-size: $fs--xs
+
+  > .name
+    display: inline-block
+    width: 33%
+
+  > .email
+    display: inline-block
+    width: 67%
+
+  > .comment,
+    width: 100%
+    display: block
+
+  > .submit
+    padding: $spacing / 2
+    display: block

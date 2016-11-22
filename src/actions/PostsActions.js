@@ -1,20 +1,17 @@
 import axios from 'axios';
 import dispatcher from '../dispatcher';
-import globals from '../lib/globals'
 
 export function fetchPosts(slug) {
   slug = slug || '';
   dispatcher.dispatch({type: 'FETCH_POSTS'});
-  axios.get(globals.jsonUrl + '/wp/v2/posts/', {
+  axios.get('/wp/v2/posts/', {
     params: {
-      'filter[name]': slug
+      'filter[name]': slug,
+      '_embed': 'true'
     }
   }).then(function(response) {
-    // Just in a timeout to simulate network latency in dev
-    setTimeout(function() {
-      dispatcher.dispatch({type: 'RECEIVE_POSTS', posts: response.data});
-      // console.log(response.data);
-    }, 0);
+    dispatcher.dispatch({type: 'RECEIVE_POSTS', posts: response.data});
+    // console.log(response.data);
   }).catch(function(error) {
     console.log(error);
   });

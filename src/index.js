@@ -6,7 +6,7 @@ import globals from './lib/globals';
 import Base from './views/base';
 import Page from './views/page';
 import Posts from './views/posts';
-import Post from './views/post';
+import SinglePost from './views/single-post';
 
 const app = document.getElementById('root');
 
@@ -15,9 +15,12 @@ ReactDOM.render(
     <Route path={globals.companyUrl} component={Base}>
       <Route path="(:slug)" component={Page} />
     </Route>
+    <Route path={globals.productsUrl} component={Base}>
+      <Route path="(:slug)" component={Page} />
+    </Route>
     <Route path={globals.blogUrl} component={Base}>
       <IndexRoute component={Posts} />
-      <Route path=":slug" component={Post} />
+      <Route path=":slug" component={SinglePost} />
     </Route>
     <Route path={globals.homeUrl} component={Base}>
       <IndexRoute component={Page} />

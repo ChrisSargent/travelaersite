@@ -35,7 +35,7 @@ function Hero(props) {
     <section className="hero-section" style={sectionStyle}>
       <div className={contentClass}>
         {displayHeadline && <HeroHeadline {...props} />}
-        <Wysiwyg content={content} size={size} />
+        <Wysiwyg content={content} size={size} modifier="hero"/>
       </div>
       { image && <img src={image} alt="" className="_replaceimg"/> }
     </section>

@@ -6,7 +6,7 @@ import * as TeamActions from '../../actions/TeamActions';
 import TeamStore from '../../stores/TeamStore';
 
 // Components
-import Member from '../../components/member';
+import Member from '../member';
 
 require('./_team.sass');
 

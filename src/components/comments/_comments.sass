@@ -1,0 +1,39 @@
+@import _variables
+@import _mixins
+
+.comments-section
+  > .header
+    padding-bottom: $pd--xl
+
+.comment-list
+  border-bottom: 1px solid $co--blue-grey--lt
+
+  .comment-list
+    padding-left: $pd--ml
+    border-bottom: none
+
+.article-comment
+  display: flex
+  padding-bottom: $pd--xxl
+
+.avatar-image.-comment
+  width: 64px
+  height: 64px
+  border-radius: 50%
+  overflow: hidden
+  background-color: $co--teal
+
+.content-comment
+  flex-grow: 1
+  padding-left: $pd--l
+
+.header-comment
+  +header-block
+  > .title
+    font-size: $fs--l
+    font-weight: 700
+
+.wysiwyg-comment
+  +wysiwyg-block
+  font-size: $fs--m
+  line-height: $lhr--xxl

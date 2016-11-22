@@ -37,7 +37,7 @@ export default class Footer extends Component {
 
     return (
       <footer className="site-footer">
-        <div className="footer-content">
+        <div className="content-footer">
           <div className="item">
             <Logo />
           </div>

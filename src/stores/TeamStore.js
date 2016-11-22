@@ -32,7 +32,6 @@ class TeamStore extends EventEmitter {
         this.team.sort(function(a, b) {
           return parseFloat(a.menu_order) - parseFloat(b.menu_order);
         });
-        console.log(this.team);
         this.fetchingTeam = false;
         break;
 

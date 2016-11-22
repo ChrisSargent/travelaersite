@@ -1,10 +1,12 @@
 .btn
-  display: block
-  font-family: $ff--base
-  font-weight: 300
-  text-decoration: none
-  text-transform: uppercase
-  color: inherit
-  background-color: $co--green
-  letter-spacing: $ls--w
-  padding: 0.425em 0.515em
+  +input-reset($ff--base)
+  +btn
+
+  &.-cta
+    color: $co--wt
+    background-color: $co--green
+    padding: 0.425em 0.515em
+
+  &.-clear
+    background-color: transparent
+    color: $co--blue

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Wysiwyg from '../../components/wysiwyg';
 
 // Stores & Actions
 import * as PostsActions from '../../actions/PostsActions';
@@ -7,8 +6,11 @@ import PostsStore from '../../stores/PostsStore';
 
 // Components
 import Hero from '../../components/hero';
+import Post from '../../components/post';
 
-export default class Post extends Component {
+require('./_single-post.sass')
+
+export default class SinglePost extends Component {
   constructor() {
     super();
     this.requestPosts = this.requestPosts.bind(this);
@@ -48,10 +50,10 @@ export default class Post extends Component {
     return (
       <main id={post.slug} className={post.slug}>
         <Hero />
-        <article>
-          {post.title && <h1>{post.title.rendered}</h1>}
-          {post.content && <Wysiwyg content={post.content} />}
-        </article>
+        <section className="post-section">
+          <Post post={post} />
+          <aside className="side-bar">Test</aside>
+        </section>
       </main>
     );
   }

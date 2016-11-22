@@ -18,7 +18,7 @@ function Product(props) {
     <article className={articleClass}>
       <ArticleHeader title={title} modifier={modifier} />
       <Wysiwyg content={content} modifier={modifier} />
-      <Actions actions={actions} />
+      <Actions actions={actions} modifier="cta" />
     </article>
     <Screenshots screenshots={screenshots} />
     </div>

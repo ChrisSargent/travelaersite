@@ -1,16 +1,29 @@
-=input-reset
+=input-reset($font: inherit)
   -webkit-appearance: none
   appearance: none
-  font: inherit
-  font-weight: 300
+  font-family: $font
   line-height: $ia-min-size
   min-width: $ia-min-size
   min-height: $ia-min-size
-  padding: 0 1.2em
   white-space: nowrap
   text-decoration: none
   border: 0
   border-radius: 0
+  font-size: 100%
+  padding: 0
+
+  @media screen and (min-width: $bp--mn)
+    line-height: initial
+    min-width: initial
+    min-height: initial
+
+=btn
+  display: block
+  font-weight: 300
+  text-transform: uppercase
+  color: $co--wt
+  letter-spacing: $ls--w
+  cursor: pointer
 
 =clearfix
   &:after

@@ -63,6 +63,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "deploy_wp": "rsync wordpress/ stgsear1@akascia.com:www/travelaer/wordpress --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
+    "deploy_content": "rsync wordpress/wp-content/ stgsear1@akascia.com:www/travelaer/wordpress/wp-content --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
     "deploy_app": "rsync build/ stgsear1@akascia.com:www/travelaer --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress"
   },
   "jest": {

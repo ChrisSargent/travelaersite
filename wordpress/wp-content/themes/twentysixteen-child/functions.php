@@ -58,3 +58,106 @@ function travelaer_title_placeholders($title)
 
     return $title;
 }
+
+add_action( 'rest_api_init', 'travelaer_api_custom_post_fields' );
+function travelaer_api_custom_post_fields() {
+    register_rest_field( 'post',
+        't_author',
+        array(
+            'get_callback'    => 'travelaer_get_author_info',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+    register_rest_field( 'post',
+        't_tags',
+        array(
+            'get_callback'    => 'travelaer_get_tag_info',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+    register_rest_field( 'post',
+        't_comments_info',
+        array(
+            'get_callback'    => 'travelaer_get_comments_info',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
+
+function travelaer_get_author_info( $object, $field_name, $request ) {
+    $user_id = $object['author'];
+    $author['avatar'] = get_field('avatar', 'user_' . $user_id);
+    $author['description'] = get_the_author_meta('description');
+    $author['name'] = get_the_author();
+    return $author;
+}
+
+function travelaer_get_tag_info( $object, $field_name, $request ) {
+  $tags = [];
+    foreach ($object['tags'] as $id) {
+      $tag = get_tag($id)->name;
+      $tags[] = $tag;
+    }
+    return $tags;
+}
+
+function travelaer_get_comments_info($object, $field_name, $request) {
+  $comments = get_approved_comments($object['id']);
+  $t_comments_info['total'] = count($comments);
+
+  if(empty($comments)) {
+    return $t_comments_info;
+  }
+
+
+  foreach ($comments as $k => &$v) {
+    // Format the comment content in p tags
+    $v->comment_content = wpautop($v->comment_content);
+    // Set the index to be equal to the id so we can reference it later
+    $temp_comments[$v->comment_ID] = $v;
+  }
+
+  foreach ($temp_comments as $k => &$v) {
+    if ($v->comment_parent != 0) {
+      $parent_index = ($v->comment_parent);
+      $temp_comments[$parent_index] = (array)$temp_comments[$parent_index];
+      $temp_comments[$parent_index]['comment_replies'][] =& $v;
+      $temp_comments[$parent_index] = (object)$temp_comments[$parent_index];
+    }
+  }
+  unset($v);
+
+  foreach ($temp_comments as $k => $v) {
+    if ($v->comment_parent != 0) {
+      unset($temp_comments[$k]);
+    }
+  }
+
+  // Convert back to a standard index format that JS understands as an array
+  foreach ($temp_comments as $v) {
+    $t_comments_info['comments'][] = $v;
+  }
+
+  return $t_comments_info;
+}
+
+function pp($a)
+{
+    echo '<pre style="background-color:white;">'.print_r($a, 1).'</pre>';
+}
+
+add_action( 'init', 'handle_preflight' );
+
+function handle_preflight() {
+    header("Access-Control-Allow-Origin: " . get_http_origin());
+    header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
+    header("Access-Control-Allow-Credentials: true");
+
+    if ( 'OPTIONS' == $_SERVER['REQUEST_METHOD'] ) {
+        status_header(200);
+        exit();
+    }
+}

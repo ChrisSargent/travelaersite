@@ -4,12 +4,18 @@ import {Link} from 'react-router';
 require('./_actions.sass');
 
 function Actions(props) {
-  const {actions} = props;
-  var actionsMap;
+  const {actions, modifier} = props;
+  var actionsMap, btnClass;
+  btnClass = 'btn';
+  modifier && (btnClass += ' -' + modifier);
 
   if (actions) {
     actionsMap = actions.map((action, index) => {
-      return <Link key="index" to={action.linkTo} className="btn">{action.linkTitle}</Link>
+      if(action.onClick) {
+        return <button key="index" className={btnClass} onClick={action.onClick.bind(null, action.param)}>{action.linkTitle}</button>
+      } else {
+        return <Link key="index" to={action.linkTo} className={btnClass}>{action.linkTitle}</Link>
+      }
     });
 
     return (

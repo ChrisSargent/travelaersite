@@ -31,19 +31,25 @@ export default class Posts extends Component {
 
   render() {
     const {posts} = this.state;
+    console.log(posts);
 
-    const postsMap = posts.map((post) => {
-      return (<PostItem key={post.id} {...post}/>);
-    });
+    if(posts.length > 0) {
+      const postsMap = posts.map((post) => {
+        return (<PostItem key={post.id} {...post}/>);
+      });
 
-    return (
-      <main id="posts" className="posts">
-        <section>
-          <ul>
-            {postsMap}
-          </ul>
-        </section>
-      </main>
-    );
+      return (
+        <main id="posts" className="posts">
+          <section>
+            <ul>
+              {postsMap}
+            </ul>
+          </section>
+        </main>
+      );
+    } else {
+      return null;
+    }
+
   }
 }

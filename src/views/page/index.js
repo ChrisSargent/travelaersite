@@ -50,7 +50,7 @@ export default class Page extends Component {
 
     const page = this.state.page;
 
-    if (page.acf) {
+    if (page.acf.contentBlocks && page.acf.contentBlocks.length > 0) {
       // Get all the content blocks and map them to a variable
       blocksMap = page.acf.contentBlocks.map((block, index) => {
         switch (block.acf_fc_layout) {

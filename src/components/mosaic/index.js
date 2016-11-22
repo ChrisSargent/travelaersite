@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 // Stores & Actions
 import * as MosaicActions from '../../actions/MosaicActions';
 import MosaicStore from '../../stores/MosaicStore';
-import Tile from '../../components/tile';
+import Tile from '../tile';
 
 require('./_mosaic.sass');
 
