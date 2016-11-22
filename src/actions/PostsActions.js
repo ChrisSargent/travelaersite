@@ -2,6 +2,7 @@ import axios from 'axios';
 import dispatcher from '../dispatcher';
 
 export function fetchPosts(slug) {
+  console.log('Post Ajax');
   slug = slug || '';
   dispatcher.dispatch({type: 'FETCH_POSTS'});
   axios.get('/wp/v2/posts/', {
