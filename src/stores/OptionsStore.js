@@ -23,17 +23,18 @@ class OptionsStore extends EventEmitter {
       case 'FETCH_OPTIONS':
         // console.log('OptionsStore | handleActions | Fetch Options');
         this.fetchingOptions = true;
+        this.emit('change');
         break;
 
       case 'RECEIVE_OPTIONS':
         // console.log('OptionsStore | handleActions | Receive Options');
         this.options = action.options;
         this.fetchingOptions = false;
+        this.emit('change');
         break;
 
       default:
     }
-    this.emit('change');
   }
 }
 

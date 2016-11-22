@@ -23,17 +23,18 @@ class MosaicStore extends EventEmitter {
       case 'FETCH_MOSAIC':
         // console.log('MosaicStore | handleActions | Fetch Mosaic');
         this.fetchingMosaic = true;
+        this.emit('change');
         break;
 
       case 'RECEIVE_MOSAIC':
         // console.log('MosaicStore | handleActions | Receive Mosaic');
         this.mosaic = action.mosaic;
         this.fetchingMosaic = false;
+        this.emit('change');
         break;
 
       default:
     }
-    this.emit('change');
   }
 }
 

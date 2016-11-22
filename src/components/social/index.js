@@ -9,7 +9,7 @@ function Social(props) {
     return (
       <li key={index} className="item">
         <a href={network.link} target="_blank" className="social-link">
-          <Icon type={network.iconType} title={network.iconTitle} />
+          <Icon type={network.iconType} />
         </a>
       </li>
     );

@@ -9,7 +9,7 @@ function Links(props) {
     return (
       <li key={index}>
         <a href={link.link} target="_blank">
-          <Icon type={link.iconType} title={link.iconTitle}/>
+          <Icon type={link.iconType} />
         </a>
       </li>
     );

@@ -30,7 +30,7 @@ function MemberVcard(props) {
       }
       return (
         <div key={index}>
-          <Icon type={contact_type} title={contact_type} />
+          <Icon type={contact_type} />
           <a className="link" href={link} target="_blank">{contact_detail}</a>
         </div>
       );

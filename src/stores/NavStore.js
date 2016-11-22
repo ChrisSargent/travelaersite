@@ -23,17 +23,18 @@ class NavStore extends EventEmitter {
       case 'FETCH_MENU':
         // console.log('NavStore | handleActions | Fetch Menu');
         this.fetchingMenu = true;
+        this.emit('change');
         break;
 
       case 'RECEIVE_MENU':
         // console.log('NavStore | handleActions | Receive Menu');
         this.menu = action.menu;
         this.fetchingMenu = false;
+        this.emit('change');
         break;
 
       default:
     }
-    this.emit('change');
   }
 }
 

@@ -23,7 +23,7 @@ function MosaicTile(props) {
         <li className={tileClass}>
           <div className={tileWrapClass}>
             <blockquote>
-              <Icon type={type} title={type}/>
+              <Icon type={type} />
               <span className="tile__content">{props.acf.content}</span>
               <footer>
                 <cite>
@@ -50,7 +50,7 @@ function MosaicTile(props) {
   return (
     <li className={tileClass} style={liStyle}>
       <a href={props.acf.link} target="_blank" className={tileWrapClass}>
-        <Icon type={type} title={type}/>
+        <Icon type={type} />
         <span className="tile__content">{props.acf.content}</span>
         { mediaLink && <img src={mediaLink} alt="" className="_replaceimg"/> }
       </a>

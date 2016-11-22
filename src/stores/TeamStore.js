@@ -22,6 +22,7 @@ class TeamStore extends EventEmitter {
       case 'FETCH_TEAM':
         // console.log('TeamStore | handleActions | Fetch Team');
         this.fetchingTeam = true;
+        this.emit('change');
         break;
 
       case 'RECEIVE_TEAM':
@@ -31,11 +32,11 @@ class TeamStore extends EventEmitter {
           return parseFloat(a.menu_order) - parseFloat(b.menu_order);
         });
         this.fetchingTeam = false;
+        this.emit('change');
         break;
 
       default:
     }
-    this.emit('change');
   }
 
 }

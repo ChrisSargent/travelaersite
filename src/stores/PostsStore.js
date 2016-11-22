@@ -8,26 +8,29 @@ class PostsStore extends EventEmitter {
     super();
     this.posts = [];
     this.cache = [];
+    this.gotAllPosts = false;
     this.fetchingPosts = false;
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
   getPosts(slug) {
-    console.log('PostsStore | getPosts');
+    switch (slug) {
+      case 'all':
+        // If we've already got all the posts just return them
+        if (this.gotAllPosts) {
+          return this.posts;
+        }
+        break;
 
-    if (slug) {
-      // If looking for a single post, check the cache.
-      if (this.cache[slug]) {
-        // Return the post from the cache if it exists
-        return this.cache[slug];
-      } else {
-        // Else do an ajax call for it
-        PostsActions.fetchPosts(slug);
-      }
-    } else {
-      // If looking for all posts, run the full ajax call
-      return this.posts;
+      default:
+        // If looking for a single post, check the cache and return the post from the cache
+        if (this.cache[slug]) {
+          return this.cache[slug];
+        }
+        break;
     }
+    // Else do an ajax call for the post / posts
+    PostsActions.fetchPosts(slug);
   }
 
   getLoading() {
@@ -39,10 +42,8 @@ class PostsStore extends EventEmitter {
       var post = this.posts[i];
       if (!this.cache[post.slug]) {
         this.cache[post.slug] = post;
-        console.log('Added post to cache');
       }
     }
-    console.log(this.cache);
   }
 
   handleActions(action) {
@@ -50,18 +51,21 @@ class PostsStore extends EventEmitter {
       case 'FETCH_POSTS':
         // console.log('PostsStore | handleActions | Fetch Posts');
         this.fetchingPosts = true;
+        this.emit('change');
         break;
 
       case 'RECEIVE_POSTS':
         // console.log('PostsStore | handleActions | Receive Posts');
+        action.slug === 'all' && (this.gotAllPosts = true);
         this.posts = action.posts;
         this.updateCache();
         this.fetchingPosts = false;
+        this.emit('change');
         break;
 
       default:
     }
-    this.emit('change');
+
   }
 
 }

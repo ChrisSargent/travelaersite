@@ -12,7 +12,7 @@ require('./_single-post.sass')
 export default class SinglePost extends Component {
   constructor(props) {
     super(props);
-    this.requestPosts = this.requestPosts.bind(this);
+    this.requestPost = this.requestPost.bind(this);
     this.state = {};
   }
 
@@ -20,14 +20,14 @@ export default class SinglePost extends Component {
     this.setState({
       post: PostsStore.getPosts(this.props.params.slug)
     });
-    PostsStore.on('change', this.requestPosts);
+    PostsStore.on('change', this.requestPost);
   }
 
   componentWillUnmount() {
-    PostsStore.removeListener('change', this.requestPosts);
+    PostsStore.removeListener('change', this.requestPost);
   }
 
-  requestPosts() {
+  requestPost() {
     this.setState({
       post: PostsStore.getPosts(this.props.params.slug)
     });

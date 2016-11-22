@@ -45,7 +45,7 @@ class CommentLoader extends Component {
 
     return (
       <div className={loaderClass}>
-        <Icon type="spinner" title="Loading..." />
+        <Icon type="spinner" />
       </div>
     );
   }

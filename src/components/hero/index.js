@@ -1,23 +1,26 @@
 import React from 'react';
 import css from '../../lib/css';
+import Icon from '../icons';
 import Wysiwyg from '../wysiwyg';
 
 require('./_hero.sass');
 
 function HeroHeadline(props) {
-  const {headlinePre, headline, headlinePost} = props;
+  const {headlinePre, headline, headlinePost, headlineImage} = props;
+  console.log(props);
 
   return (
     <h1 className={css.header}>
       {headlinePre}
-      <strong>{headline}</strong>
+      {headline && <strong>{headline}</strong>}
+      {headlineImage && <Icon type={headlineImage} />}
       {headlinePost}
     </h1>
   );
 };
 
 function Hero(props) {
-  const {headlinePre, headline, headlinePost, content, image, fullscreen, size} = props;
+  const {headlinePre, headline, headlineImage, headlinePost, content, image, fullscreen, size} = props;
   var sectionStyle, contentClass, displayHeadline;
 
   contentClass = 'content-hero';
@@ -29,7 +32,7 @@ function Hero(props) {
     }
   }
 
-  (headlinePre || headline || headlinePost) && (displayHeadline = true);
+  (headlinePre || headline || headlinePost || headlineImage) && (displayHeadline = true);
 
   return (
     <section className="hero-section" style={sectionStyle}>

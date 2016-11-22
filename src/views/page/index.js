@@ -26,11 +26,10 @@ export default class Page extends Component {
   }
 
   componentWillReceiveProps(props) {
-    // // If the requested slug doesn't match the current slug, fetches the new page which will trigger a new requestPage being fired by the call backs
-    // const slug = this.filterSlug(props.params.slug);
-    // if (this.props.params.slug !== props.params.slug) {
-    //   PageActions.fetchPage(props.params.slug);
-    // }
+    // If the requested slug doesn't match the current slug, fetch the new page which will trigger a new requestPage being fired by the call backs
+    if (this.props.params.slug !== props.params.slug) {
+      PageActions.fetchPage(props.params.slug);
+    }
   }
 
   componentWillUnmount() {

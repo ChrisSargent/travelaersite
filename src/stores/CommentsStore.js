@@ -28,6 +28,7 @@ class CommentsStore extends EventEmitter {
         // console.log('CommentsStore | handleActions | Adding Comments');
         this.fetchingComments = true;
         this.resetForm = false;
+        this.emit('change');
         break;
 
       case 'ADDED_COMMENT':
@@ -35,17 +36,18 @@ class CommentsStore extends EventEmitter {
         this.comments = action.comments;
         this.fetchingComments = false;
         this.resetForm = true;
+        this.emit('change');
         break;
 
       case 'ERROR_COMMENT':
         console.log('Sorry, there was an error');
         this.fetchingComments = false;
         this.resetForm = false;
+        this.emit('change');
       break;
 
       default:
     }
-    this.emit('change');
   }
 }
 

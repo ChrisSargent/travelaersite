@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 // Stores & Actions
-import * as PostsActions from '../../actions/PostsActions';
+// import * as PostsActions from '../../actions/PostsActions';
 import PostsStore from '../../stores/PostsStore';
 
 // Components
@@ -11,13 +11,11 @@ export default class Posts extends Component {
   constructor() {
     super();
     this.requestPosts = this.requestPosts.bind(this);
-    this.state = {
-      posts: PostsStore.getPosts()
-    };
+    this.state = {};
   }
 
   componentWillMount() {
-    PostsActions.fetchPosts();
+    this.setState({posts: PostsStore.getPosts('all')});
     PostsStore.on('change', this.requestPosts);
   }
 
@@ -26,29 +24,28 @@ export default class Posts extends Component {
   }
 
   requestPosts() {
-    this.setState({posts: PostsStore.getPosts()});
+    this.setState({posts: PostsStore.getPosts('all')});
   }
 
   render() {
     const {posts} = this.state;
 
-    if(posts.length > 0) {
-      const postsMap = posts.map((post) => {
-        return (<PostItem key={post.id} {...post}/>);
-      });
-
-      return (
-        <main id="posts" className="posts">
-          <section>
-            <ul>
-              {postsMap}
-            </ul>
-          </section>
-        </main>
-      );
-    } else {
+    if (!posts) {
       return null;
     }
 
+    const postsMap = posts.map((post) => {
+      return (<PostItem key={post.id} {...post}/>);
+    });
+
+    return (
+      <main id="posts" className="posts">
+        <section>
+          <ul>
+            {postsMap}
+          </ul>
+        </section>
+      </main>
+    );
   }
 }
