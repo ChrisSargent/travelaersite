@@ -1,4 +1,5 @@
 import React from 'react';
+import css from '../../lib/css';
 
 require('./_article-header.sass');
 
@@ -12,8 +13,8 @@ function ArticleHeader(props) {
 
   return (
     <header className={artHeadClass}>
-      {title && <h1 className="title">{title}</h1>}
-      {subtitle && <span className="subtitle">{subtitle}</span>}
+      {title && <h1 className={css.title}>{title}</h1>}
+      {subtitle && <span className={css.subtitle}>{subtitle}</span>}
     </header>
   );
 }

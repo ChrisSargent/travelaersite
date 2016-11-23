@@ -8,6 +8,7 @@ import PageStore from '../../stores/PageStore';
 import Banner from '../../components/banner';
 import Hero from '../../components/hero';
 import Mosaic from '../../components/mosaic';
+import ProductModules from '../../components/product-modules';
 import Section from '../../components/section';
 import Team from '../../components/team';
 
@@ -67,6 +68,9 @@ export default class Page extends Component {
 
           case 'team':
             return <Team key={index} {...block}/>;
+
+          case 'product_modules':
+            return <ProductModules key={index} {...block}/>
 
           default:
             return false;

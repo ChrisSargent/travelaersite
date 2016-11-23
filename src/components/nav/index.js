@@ -59,7 +59,7 @@ function Menu(props) {
       );
     } else {
       return (
-        <div className="subnav-wrap">
+        <div className="subnav-block">
           <div className="container">
             <ul className="subnav-list">{itemsMap}</ul>
           </div>

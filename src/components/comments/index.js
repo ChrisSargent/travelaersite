@@ -81,7 +81,7 @@ export default class CommentBlock extends Component {
 
     return (
       <section className="comments-section">
-        <h1 className={css.header}>{titleText} to "{title}"</h1>
+        <h1 className={css.title}>{titleText} to "{title}"</h1>
         {total > 0 && <Comments comments={comments} interact={interact} /> }
         {!interact.focusedComment && <CommentForm post={post} />}
       </section>

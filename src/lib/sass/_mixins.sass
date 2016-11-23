@@ -1,23 +1,22 @@
-=input-reset($font: inherit)
+=reset-appearance
   -webkit-appearance: none
   appearance: none
-  font-family: $font
-  line-height: $ia-min-size
-  min-width: $ia-min-size
-  min-height: $ia-min-size
-  white-space: nowrap
   text-decoration: none
   border: 0
   border-radius: 0
   font-size: 100%
   padding: 0
 
-  @media screen and (min-width: $bp--mn)
-    line-height: initial
-    min-width: initial
-    min-height: initial
+=input-reset($font: inherit)
+  +reset-appearance
+  font-family: $font
+
+  @media screen and (max-width: $bp--mn - 1)
+    min-width: $ia-min-size
+    min-height: $ia-min-size
 
 =btn
+  white-space: nowrap
   display: block
   font-weight: 300
   text-transform: uppercase
@@ -85,6 +84,14 @@
   background-repeat: no-repeat
   background-position: center
   background-size: cover
+
+=pseudoscreen
+  content: ' '
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
 
 // ******************************* Inline Mixins *******************************
 
@@ -162,6 +169,10 @@
 =heading-light
   text-transform: uppercase
   font-weight: 300
+
+=heading-spaced
+  text-transform: uppercase
+  letter-spacing: $ls--w
 
 // ***************************** Component Mixins ******************************
 

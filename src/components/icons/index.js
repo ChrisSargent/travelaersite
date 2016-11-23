@@ -3,7 +3,6 @@ import React from 'react';
 require('./_icons.sass');
 
 function Icon(props) {
-  console.log(props);
   const {type} = props;
   var title, path, viewbox;
   viewbox = "0 0 32 32";

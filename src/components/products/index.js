@@ -20,7 +20,7 @@ function Product(props) {
       <Wysiwyg content={content} modifier={modifier} />
       <Actions actions={actions} modifier="cta" />
     </article>
-    <Screenshots screenshots={screenshots} />
+    <Screenshots screenshots={screenshots} modifier="home" />
     </div>
   )
 }

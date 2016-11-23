@@ -1,5 +1,20 @@
 @import _mixins
+@import _variables
 
-.links--ext
-  h2
+.extlinks-block
+  margin-top: $pd--xxs
+
+  .social-block + &
+    margin-left: 15px
+    // Alignment fix to bring in line with the social icons above
+
+  > .title
     +sr-only
+
+.extlinks-list
+  +inline-children-item(4px, 4px)
+
+.ext-link
+  > img
+    max-width: 130px
+    max-height: 55px

@@ -1,7 +1,8 @@
 module.exports = {
   container: 'container',
   content: 'content',
-  header: 'header',
+  title: 'title',
+  subtitle: 'subtitle',
   hasbg: ' _hasbg',
   centered: ' _centered',
 };

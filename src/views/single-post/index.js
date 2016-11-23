@@ -18,7 +18,7 @@ export default class SinglePost extends Component {
 
   componentWillMount() {
     this.setState({
-      post: PostsStore.getPosts(this.props.params.slug)
+      post: PostsStore.getPost(this.props.params.slug)
     });
     PostsStore.on('change', this.requestPost);
   }
@@ -29,7 +29,7 @@ export default class SinglePost extends Component {
 
   requestPost() {
     this.setState({
-      post: PostsStore.getPosts(this.props.params.slug)
+      post: PostsStore.getPost(this.props.params.slug)
     });
   }
 

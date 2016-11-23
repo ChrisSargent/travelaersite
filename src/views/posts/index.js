@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 // Stores & Actions
-// import * as PostsActions from '../../actions/PostsActions';
 import PostsStore from '../../stores/PostsStore';
 
 // Components
@@ -15,7 +14,7 @@ export default class Posts extends Component {
   }
 
   componentWillMount() {
-    this.setState({posts: PostsStore.getPosts('all')});
+    this.setState({posts: PostsStore.getPosts()});
     PostsStore.on('change', this.requestPosts);
   }
 
@@ -24,7 +23,7 @@ export default class Posts extends Component {
   }
 
   requestPosts() {
-    this.setState({posts: PostsStore.getPosts('all')});
+    this.setState({posts: PostsStore.getPosts()});
   }
 
   render() {

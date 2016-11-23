@@ -45,7 +45,7 @@ export default class Team extends Component {
 
     return (
       <section className="team-section">
-        <h1 className={css.header}>Our Team</h1>
+        <h1 className={css.title}>Our Team</h1>
         <ul className="team-list">
           {teamMap}
         </ul>

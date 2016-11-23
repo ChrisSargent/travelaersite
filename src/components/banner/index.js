@@ -17,7 +17,7 @@ function Banner(props) {
   return (
     <section className="banner-section">
       <div className="banner-block">
-        <h1 className={css.header}>{title}</h1>
+        <h1 className={css.title}>{title}</h1>
         <ul className="banner-list">
           {logoMap}
         </ul>

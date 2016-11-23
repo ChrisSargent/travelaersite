@@ -7,10 +7,9 @@ require('./_hero.sass');
 
 function HeroHeadline(props) {
   const {headlinePre, headline, headlinePost, headlineImage} = props;
-  console.log(props);
 
   return (
-    <h1 className={css.header}>
+    <h1 className={css.title}>
       {headlinePre}
       {headline && <strong>{headline}</strong>}
       {headlineImage && <Icon type={headlineImage} />}

@@ -2,12 +2,11 @@
 @import _mixins
 
 =nav-link
+  +heading-spaced
   font-family: $ff--nav
   font-size: $fs--xs
   display: block
   text-decoration: none
-  letter-spacing: $ls--w
-  text-transform: uppercase
 
 .nav-block
   align-self: stretch
@@ -40,7 +39,7 @@
     &.-active
       color: $co--brightyellow
 
-.subnav-wrap
+.subnav-block
   +shadowborder($co--green)
   background-color: $co--green
   display: none

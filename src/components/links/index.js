@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../icons'
+import css from '../../lib/css';
 
 require('./_links.sass');
 
@@ -7,18 +7,18 @@ function Links(props) {
   const linkMap = props.externalLinks.map((link, index) => {
 
     return (
-      <li key={index}>
-        <a href={link.link} target="_blank">
-          <Icon type={link.iconType} />
+      <li key={index} className="item">
+        <a className="ext-link" href={link.external_link} target="_blank">
+          <img src={link.external_logo} alt="" />
         </a>
       </li>
     );
   });
 
   return (
-    <div className="links--ext">
-      <h2>Awards</h2>
-      <ul>
+    <div className="extlinks-block">
+      <h2 className={css.title}>Awards</h2>
+      <ul className="extlinks-list">
         {linkMap}
       </ul>
     </div>

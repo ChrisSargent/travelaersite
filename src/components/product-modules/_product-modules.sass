@@ -1,0 +1,116 @@
+@import _variables
+@import _mixins
+
+$maxwidth: 300px
+
+.prodmods-section
+  color: red
+  background-color: $co--blue--md
+
+.prodmods-block
+  +cont--xl
+
+  > .title
+    +header-block
+    font-size: $fs--ml
+    max-width: $maxwidth
+    padding-left: $pd--m
+    color: $co--bk
+
+.prodmods-content
+  display: flex
+  align-items: center
+  margin-top: -100px
+
+.prodmodcontol-list
+  flex: none
+
+.prodmod-control
+  +input-reset
+  +heading-spaced
+  font-size: $fs--xs
+  line-height: $lh--lg
+  position: relative
+  z-index: $z--base
+  display: block
+  width: 100%
+  max-width: $maxwidth
+  height: 100%
+  padding: 0.4rem $pd--xl 0.4rem $pd--m
+  cursor: pointer
+  text-align: left
+  color: $co--blue-grey--tt
+  background-color: transparent
+
+  &:hover
+    color: $co--brightyellow
+
+  &::before
+    +pseudoscreen
+    z-index: $z--under
+    transition: transform $tr--f
+    transform: scale3d(1,0,1)
+    transform-origin: top
+    background: linear-gradient(to right, transparentize($co--blue--dk, 0.6) 0%, transparentize($co--blue--dk, 1) 100%)
+
+  &.-active,
+  &:focus
+    color: $co--wt
+    outline: none
+
+    &::before
+      transform: scale3d(1,1,1)
+
+.prodmod-list
+  display: flex
+  align-items: center
+  overflow: hidden
+  width: 100%
+  padding-left: $pd--ml
+
+.screenshot-list.-prodmod
+  flex: none
+  width: 30%
+
+.prodmod-content
+  position: relative
+  visibility: hidden
+  flex: none
+  width: 100%
+  transition: transform $tr--m, opacity $tr--m, visibility $tr--m
+  transform: translate3d(0, 0, 0)
+  opacity: 0
+  color: $co--wt
+
+  &.-active
+    visibility: visible
+    transform: translate3d(-100%, 0, 0)
+    opacity: 1
+
+  > .title
+    +header-block
+    +heading-spaced
+    display: block
+
+.wysiwyg-prodmod
+  line-height: $lh--xl
+
+  ul
+    position: relative
+
+    li
+      padding: $pd--xxs 0
+
+    > li
+      margin-left: $pd--s
+
+      &::before
+        content: '\00BB'
+        position: absolute
+        left: 0
+
+      ul > li
+        font-weight: 300
+
+        &::before
+          content: '\2022'

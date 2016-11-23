@@ -13,24 +13,22 @@ class PostsStore extends EventEmitter {
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
-  getPosts(slug) {
-    switch (slug) {
-      case 'all':
-        // If we've already got all the posts just return them
-        if (this.gotAllPosts) {
-          return this.posts;
-        }
-        break;
-
-      default:
-        // If looking for a single post, check the cache and return the post from the cache
-        if (this.cache[slug]) {
-          return this.cache[slug];
-        }
-        break;
+  getPosts() {
+    if (this.gotAllPosts) {
+      console.log('test');
+      return this.posts;
     }
-    // Else do an ajax call for the post / posts
-    PostsActions.fetchPosts(slug);
+    // Else do a WP call for the posts
+    PostsActions.fetchPosts();
+  }
+
+  getPost(slug) {
+    // If looking for a single post, check the cache and return the post from the cache
+    if (this.cache[slug]) {
+      return this.cache[slug];
+    }
+    // Else do a WP call for the post
+    PostsActions.fetchPost(slug);
   }
 
   getLoading() {
@@ -38,6 +36,7 @@ class PostsStore extends EventEmitter {
   }
 
   updateCache() {
+    // Puts the posts in to an array, indexed by their slug
     for (var i = 0; i < this.posts.length; i++) {
       var post = this.posts[i];
       if (!this.cache[post.slug]) {
@@ -56,10 +55,10 @@ class PostsStore extends EventEmitter {
 
       case 'RECEIVE_POSTS':
         // console.log('PostsStore | handleActions | Receive Posts');
-        action.slug === 'all' && (this.gotAllPosts = true);
+        this.fetchingPosts = false;
+        action.allPosts && (this.gotAllPosts = true);
         this.posts = action.posts;
         this.updateCache();
-        this.fetchingPosts = false;
         this.emit('change');
         break;
 
