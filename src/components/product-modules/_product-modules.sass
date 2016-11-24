@@ -1,29 +1,30 @@
 @import _variables
 @import _mixins
 
-$maxwidth: 300px
+$ctrlminwidth: 200px
+$ctrlwidth: 27.78%
 
 .prodmods-section
   color: red
   background-color: $co--blue--md
 
-.prodmods-block
+.prodmods-content
   +cont--xl
+  display: flex
+  align-items: center
+  margin-top: -200px
+
+.prodmods-side
+  flex: 0 0 $ctrlwidth
+  width: $ctrlwidth
+  min-width: $ctrlminwidth
 
   > .title
     +header-block
+    word-wrap: break-word
     font-size: $fs--ml
-    max-width: $maxwidth
-    padding-left: $pd--m
+    padding: 0 $pd--ml 0 $pd--m
     color: $co--bk
-
-.prodmods-content
-  display: flex
-  align-items: center
-  margin-top: -100px
-
-.prodmodcontol-list
-  flex: none
 
 .prodmod-control
   +input-reset
@@ -34,7 +35,6 @@ $maxwidth: 300px
   z-index: $z--base
   display: block
   width: 100%
-  max-width: $maxwidth
   height: 100%
   padding: 0.4rem $pd--xl 0.4rem $pd--m
   cursor: pointer
@@ -63,14 +63,14 @@ $maxwidth: 300px
 
 .prodmod-list
   display: flex
-  align-items: center
   overflow: hidden
+  align-items: center
   width: 100%
   padding-left: $pd--ml
 
 .screenshot-list.-prodmod
   flex: none
-  width: 30%
+  width: 34%
 
 .prodmod-content
   position: relative

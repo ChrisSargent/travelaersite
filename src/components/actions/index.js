@@ -12,9 +12,9 @@ function Actions(props) {
   if (actions) {
     actionsMap = actions.map((action, index) => {
       if(action.onClick) {
-        return <button key="index" className={btnClass} onClick={action.onClick.bind(null, action.param)}>{action.linkTitle}</button>
+        return <button key={index} className={btnClass} data-actionparam={action.param} onClick={action.onClick}>{action.linkTitle}</button>
       } else {
-        return <Link key="index" to={action.linkTo} className={btnClass}>{action.linkTitle}</Link>
+        return <Link key={index} to={action.linkTo} className={btnClass}>{action.linkTitle}</Link>
       }
     });
 

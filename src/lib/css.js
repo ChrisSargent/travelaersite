@@ -5,4 +5,6 @@ module.exports = {
   subtitle: 'subtitle',
   hasbg: ' _hasbg',
   centered: ' _centered',
+  column: 'column',
+  item: 'item',
 };

@@ -15,19 +15,24 @@ export default class ProductModules extends Component {
   }
 
   handleControlClick(ev) {
-    const activeMod = parseFloat(ev.target.dataset.index);
+    if (!ev.target.dataset.modtarget)
+      return;
+
+    ev.preventDefault();
+    const activeMod = parseFloat(ev.target.dataset.modtarget);
     this.setState({activeModule: activeMod});
   }
 
   render() {
     var productModulesMap,
       productModulesControlsMap,
-      screenshots = [];
+      screenshots = [],
+      images = [];
     const {product_module, title} = this.props;
 
-    if (!product_module) {
+    // Return ASAP if no modules
+    if (!product_module)
       return false;
-    }
 
     productModulesControlsMap = product_module.map((product, index) => {
       var btnClass;
@@ -36,7 +41,7 @@ export default class ProductModules extends Component {
 
       return (
         <li key={index}>
-          <button data-index={index} className={btnClass}>{product.module_title}</button>
+          <button data-modtarget={index} className={btnClass}>{product.module_title}</button>
         </li>
       );
     });
@@ -60,26 +65,27 @@ export default class ProductModules extends Component {
         </li>
       );
     });
-    var images = [];
 
     for (var i = 0; i < product_module.length; i++) {
       images[i] = product_module[i].module_screenshot;
     }
-    screenshots[0] = {images}
+    screenshots[0] = {
+      images
+    }
 
     return (
       <section className="prodmods-section">
-        <div className="prodmods-block">
-          <h1 className={css.title}>{title}</h1>
-          <div className="prodmods-content">
-            <ul className="prodmodcontol-list" onClick={this.handleControlClick}>
+        <div className="prodmods-content">
+          <div className="prodmods-side">
+            <h1 className={css.title}>{title}</h1>
+            <ul onClick={this.handleControlClick}>
               {productModulesControlsMap}
             </ul>
-            <Screenshots screenshots={screenshots} targetIndex={this.state.activeModule} modifier="prodmod"/>
-            <ul className="prodmod-list">
-              {productModulesMap}
-            </ul>
           </div>
+          <Screenshots screenshots={screenshots} targetIndex={this.state.activeModule} modifier="prodmod"/>
+          <ul className="prodmod-list">
+            {productModulesMap}
+          </ul>
         </div>
       </section>
     );

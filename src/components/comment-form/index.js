@@ -89,11 +89,11 @@ export default class CommentForm extends Component {
   }
 
   render() {
-    const {close} = this.props;
+    const {closeClick} = this.props;
 
     return (
       <section className="submit-section">
-        {close && <Close close={close} />}
+        {closeClick && <Close closeClick={closeClick} />}
         <ArticleHeader title="Leave a Comment" subtitle="Your email address will not be published" />
         <form className="form-comment" ref="commentForm" onSubmit={this.processComment} >
           <span className="name"><input type="text" ref="name" placeholder="Name" /></span>
