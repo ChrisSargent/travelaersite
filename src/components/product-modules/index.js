@@ -5,6 +5,58 @@ import Wysiwyg from '../wysiwyg';
 
 require('./_product-modules.sass');
 
+function Controls(props) {
+  const {controls, activeIndex, onClick} = props;
+
+  const controlsMap = controls.map((control, index) => {
+    var btnClass = 'prodmod-control';
+
+    (index === activeIndex) && (btnClass += ' -active');
+
+    return (
+      <li key={index}>
+        <button data-modtarget={index} className={btnClass}>{control.module_title}</button>
+      </li>
+    );
+  });
+  return (
+    <ul onClick={onClick}>
+      {controlsMap}
+    </ul>
+  )
+}
+
+function Modules(props) {
+  const {modules, activeIndex} = props;
+
+  const modulesMap = modules.map((module, index) => {
+    var itemClass,
+      itemStyle;
+    const {module_title, module_content} = module;
+
+    itemClass = 'prodmod-content';
+    (index === activeIndex) && (itemClass += ' -active');
+
+    // Effectily move each module on top of each other
+    itemStyle = {
+      left: -100 * (index - 1) + '%'
+    }
+
+    return (
+      <li key={index} className={itemClass} style={itemStyle}>
+        <span className={css.title}>{module_title}</span>
+        <Wysiwyg content={module_content} modifier="prodmod"/>
+      </li>
+    );
+  });
+
+  return (
+    <ul className="prodmod-list">
+      {modulesMap}
+    </ul>
+  );
+};
+
 export default class ProductModules extends Component {
   constructor(props) {
     super(props);
@@ -24,48 +76,15 @@ export default class ProductModules extends Component {
   }
 
   render() {
-    var productModulesMap,
-      productModulesControlsMap,
-      screenshots = [],
-      images = [];
-    const {product_module, title} = this.props;
-
     // Return ASAP if no modules
+    const {product_module, title} = this.props;
     if (!product_module)
       return false;
 
-    productModulesControlsMap = product_module.map((product, index) => {
-      var btnClass;
-      btnClass = 'prodmod-control';
-      (index === this.state.activeModule) && (btnClass += ' -active');
+    var screenshots = [],
+      images = [];
 
-      return (
-        <li key={index}>
-          <button data-modtarget={index} className={btnClass}>{product.module_title}</button>
-        </li>
-      );
-    });
-
-    productModulesMap = product_module.map((product, index) => {
-      var itemClass,
-        itemStyle;
-      const {module_title, module_content} = product;
-
-      itemClass = 'prodmod-content';
-      (index === this.state.activeModule) && (itemClass += ' -active');
-
-      itemStyle = {
-        left: -100 * (index - 1) + '%'
-      }
-
-      return (
-        <li key={index} className={itemClass} style={itemStyle}>
-          <span className={css.title}>{module_title}</span>
-          <Wysiwyg content={module_content} modifier="prodmod"/>
-        </li>
-      );
-    });
-
+    // Create an array of screenshots to pass to the Screenshots module
     for (var i = 0; i < product_module.length; i++) {
       images[i] = product_module[i].module_screenshot;
     }
@@ -78,14 +97,10 @@ export default class ProductModules extends Component {
         <div className="prodmods-content">
           <div className="prodmods-side">
             <h1 className={css.title}>{title}</h1>
-            <ul onClick={this.handleControlClick}>
-              {productModulesControlsMap}
-            </ul>
+            <Controls controls={product_module} activeIndex={this.state.activeModule} onClick={this.handleControlClick} />
           </div>
-          <Screenshots screenshots={screenshots} targetIndex={this.state.activeModule} modifier="prodmod"/>
-          <ul className="prodmod-list">
-            {productModulesMap}
-          </ul>
+          <Screenshots screenshots={screenshots} activeIndex={this.state.activeModule} modifier="prodmod"/>
+          <Modules modules={product_module} activeIndex={this.state.activeModule} />
         </div>
       </section>
     );

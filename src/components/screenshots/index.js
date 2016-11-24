@@ -3,7 +3,7 @@ import React from 'react';
 require('./_screenshots.sass');
 
 function ScreenShots(props) {
-  const {screenshots, modifier, targetIndex} = props;
+  const {screenshots, modifier, activeIndex} = props;
   var screenshotListClass;
 
   if (!screenshots) {
@@ -30,9 +30,9 @@ function ScreenShots(props) {
     })
 
     // Setup the styles if it's being used in a carousel
-    if (targetIndex) {
+    if (activeIndex) {
       screenStyles = {
-        transform: 'translate3d(0, ' + targetIndex * -100 + '%, 0)'
+        transform: 'translate3d(0, ' + activeIndex * -100 + '%, 0)'
       }
     }
     return (
