@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import css from '../../lib/css';
 
 // Stores & Actions
 import * as MosaicActions from '../../actions/MosaicActions';
@@ -55,17 +56,15 @@ export default class Mosaic extends Component {
   render() {
     var sectionClass;
     const {mosaic} = this.state;
-    const {acf_fc_layout} = this.props;
-
-    sectionClass = acf_fc_layout;
+    const compName = 'mosaic';
 
     const mosaicMap = mosaic.map((tile) => {
       return (<Tile key={tile.id} {...tile}/>);
     });
 
     return (
-      <section className={sectionClass}>
-        <ul>
+      <section className={css.section + compName}>
+        <ul className={css.list + compName}>
           {mosaicMap}
         </ul>
       </section>

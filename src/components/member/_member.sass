@@ -4,9 +4,9 @@
 .article-member
   display: flex
 
-.avatar-image.-member
-  width: 320px
-  height: 320px
+  > .avatar.-member
+    width: 320px
+    height: 320px
 
 .content-member
   padding: $pd--ml 0 0 $pd--xl
@@ -15,7 +15,7 @@
     display: flex
 
 .header-member
-  +header-block
+  +header-default
   > .title
     font-size: $fs--l
     font-weight: 700
@@ -25,7 +25,7 @@
     color: $co--blue-grey
 
 .wysiwyg-member
-  +wysiwyg-block
+  +wysiwyg-default
   font-size: $fs--m
   padding-right: $pd--l
   line-height: $lhr--xxl

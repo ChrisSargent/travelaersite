@@ -5,7 +5,7 @@ require('./_logo.sass');
 
 function Logo() {
   return (
-    <Link to="/" className="logo-brand">
+    <Link to="/" className="brandlogo">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 222 35">
         <title>Travelaer</title>
         <g fill="none" fillRule="evenodd">

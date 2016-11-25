@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import css from '../../lib/css';
 import PageStore from '../../stores/PageStore';
 
-import Credit from '../credit';
 import Legal from '../legal';
 import Links from '../links';
 import Logo from '../logo';
@@ -34,14 +34,15 @@ export default class Footer extends Component {
   render() {
     const {props} = this;
     const {footerAppend} = this.state;
+    const compName = 'sitefooter';
 
     return (
-      <footer className="site-footer">
-        <div className="content-footer">
-          <div className="item">
+      <footer className={css.footer + compName}>
+        <div className={css.content + compName}>
+          <div className={css.item}>
             <Logo />
           </div>
-          <div className="item">
+          <div className={css.item}>
             <Vcard
               coRegNumber={props.coRegNumber}
               coTaxNumber={props.coTaxNumber}
@@ -56,10 +57,9 @@ export default class Footer extends Component {
               streetAddress1={props.streetAddress1}
               streetAddress2={props.streetAddress2}
               />
-            <Credit text={footerAppend}/>
-            <Legal legalName={props.legalName} />
+            <Legal legalName={props.legalName} credit={footerAppend} />
           </div>
-          <div className="item">
+          <div className={css.item}>
             {props.socialNetworks && <Social socialNetworks={props.socialNetworks} />}
             {props.externalLinks && <Links externalLinks={props.externalLinks} />}
           </div>

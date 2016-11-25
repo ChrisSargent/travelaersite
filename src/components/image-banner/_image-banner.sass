@@ -1,0 +1,35 @@
+@import _variables
+@import _mixins
+
+.content-imagebanner
+  +cont--xxl
+  position: relative
+  padding: 0
+
+  > .image
+    box-shadow: 2px 2px 12px 0 rgba(0,0,0,0.5)
+
+    img
+      width: 100%
+      height: auto
+
+.block-strip
+  background-color: #ccccd8
+  position: absolute
+  width: 100%
+  top: 50%
+  left: 0
+  transform: translateY(-50%)
+
+.content-strip
+  display: flex
+  align-items: flex-start
+
+  > .title
+    color: $co--bk
+    font-size: $fs--ml
+
+.wysiwyg-strip
+  +wysiwyg-default(inherit, inherit)
+  color: $co--logo--blue-dk
+  line-height: $lh--xl

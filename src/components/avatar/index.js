@@ -6,7 +6,7 @@ function Avatar(props) {
   const {avatar, modifier, alt} = props;
   var styles = {}, avaClass;
 
-  avaClass = 'avatar-image';
+  avaClass = 'avatar';
   modifier && (avaClass += ' -' + modifier)
   avatar && (styles = {backgroundImage: 'url(' + avatar + ')'})
 

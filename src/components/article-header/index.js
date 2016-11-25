@@ -5,14 +5,14 @@ require('./_article-header.sass');
 
 function ArticleHeader(props) {
   const {modifier, subtitle} = props;
-  var {title} = props, artHeadClass;
+  var {title} = props, headClass;
 
-  modifier ? artHeadClass = 'header-' + modifier : artHeadClass = 'header-block';
+  modifier ? headClass = css.header + modifier : headClass = css.header + css.default;
 
   typeof title === 'object' && (title = title.rendered);
 
   return (
-    <header className={artHeadClass}>
+    <header className={headClass}>
       {title && <h1 className={css.title}>{title}</h1>}
       {subtitle && <span className={css.subtitle}>{subtitle}</span>}
     </header>

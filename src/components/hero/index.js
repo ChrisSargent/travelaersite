@@ -20,10 +20,10 @@ function HeroHeadline(props) {
 
 function Hero(props) {
   const {headlinePre, headline, headlineImage, headlinePost, content, image, fullscreen, size} = props;
-  var sectionStyle, contentClass, displayHeadline;
+  const compName = 'hero';
+  var sectionStyle, displayHeadline, modifier = '';
 
-  contentClass = 'content-hero';
-  fullscreen && (contentClass += ' -fullscreen');
+  fullscreen && (modifier = ' -fullscreen');
 
   if(image) {
     sectionStyle = {
@@ -34,12 +34,12 @@ function Hero(props) {
   (headlinePre || headline || headlinePost || headlineImage) && (displayHeadline = true);
 
   return (
-    <section className="hero-section" style={sectionStyle}>
-      <div className={contentClass}>
+    <section className={css.section + compName} style={sectionStyle}>
+      <div className={css.content + compName + modifier}>
         {displayHeadline && <HeroHeadline {...props} />}
-        <Wysiwyg content={content} size={size} modifier="hero"/>
+        <Wysiwyg content={content} size={size} modifier={compName}/>
       </div>
-      { image && <img src={image} alt="" className="_replaceimg"/> }
+      { image && <img src={image} className={css.replImg}/> }
     </section>
   );
 };

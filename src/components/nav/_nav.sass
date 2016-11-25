@@ -1,17 +1,17 @@
 @import _variables
 @import _mixins
 
-=nav-link
+=link-nav
   +heading-spaced
   font-family: $ff--nav
   font-size: $fs--xs
   display: block
   text-decoration: none
 
-.nav-block
+.block-nav
   align-self: stretch
 
-.nav-list
+.list-nav
   +inline-children-item(0)
   align-items: stretch
   height: 100%
@@ -22,8 +22,8 @@
     align-items: center
     position: relative
 
-.nav-link
-  +nav-link
+.link-nav
+  +link-nav
   color: $co--blue--dk
 
   &.-active
@@ -33,13 +33,7 @@
       &::after
         +caret($co--green)
 
-  .subnav-list &
-    color: $co--wt
-
-    &.-active
-      color: $co--brightyellow
-
-.subnav-block
+.block-subnav
   +shadowborder($co--green)
   background-color: $co--green
   display: none
@@ -54,8 +48,14 @@
     display: flex
     justify-content: flex-end
 
-  .nav-link.-active + &
+  .link-nav.-active + &
     display: block
 
-.subnav-list
+.list-subnav
   +inline-children-item
+
+  .link-nav
+    color: $co--wt
+
+    &.-active
+      color: $co--brightyellow

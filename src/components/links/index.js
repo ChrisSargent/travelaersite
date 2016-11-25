@@ -4,11 +4,12 @@ import css from '../../lib/css';
 require('./_links.sass');
 
 function Links(props) {
+  const compName = 'links';
   const linkMap = props.externalLinks.map((link, index) => {
 
     return (
-      <li key={index} className="item">
-        <a className="ext-link" href={link.external_link} target="_blank">
+      <li key={index} className={css.item}>
+        <a className="link" href={link.external_link} target="_blank">
           <img src={link.external_logo} alt="" />
         </a>
       </li>
@@ -16,9 +17,9 @@ function Links(props) {
   });
 
   return (
-    <div className="extlinks-block">
+    <div className={css.block + compName}>
       <h2 className={css.title}>Awards</h2>
-      <ul className="extlinks-list">
+      <ul className={css.list + compName}>
         {linkMap}
       </ul>
     </div>

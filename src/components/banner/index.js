@@ -5,6 +5,7 @@ require('./_banner.sass');
 
 function Banner(props) {
   const {logos, title} = props;
+  const compName = 'banner';
 
   const logoMap = logos.map((logo, index) => {
     return (
@@ -15,10 +16,10 @@ function Banner(props) {
   });
 
   return (
-    <section className="banner-section">
-      <div className="banner-block">
+    <section className={css.section + compName}>
+      <div className={css.block + compName}>
         <h1 className={css.title}>{title}</h1>
-        <ul className="banner-list">
+        <ul className={css.list + compName}>
           {logoMap}
         </ul>
       </div>

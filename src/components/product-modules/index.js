@@ -63,10 +63,10 @@ export default class ProductModules extends Component {
     this.state = {
       activeModule: 0
     };
-    this.handleControlClick = this.handleControlClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleControlClick(ev) {
+  handleClick(ev) {
     if (!ev.target.dataset.modtarget)
       return;
 
@@ -97,7 +97,7 @@ export default class ProductModules extends Component {
         <div className="prodmods-content">
           <div className="prodmods-side">
             <h1 className={css.title}>{title}</h1>
-            <Controls controls={product_module} activeIndex={this.state.activeModule} onClick={this.handleControlClick} />
+            <Controls controls={product_module} activeIndex={this.state.activeModule} onClick={this.handleClick} />
           </div>
           <Screenshots screenshots={screenshots} activeIndex={this.state.activeModule} modifier="prodmod"/>
           <Modules modules={product_module} activeIndex={this.state.activeModule} />

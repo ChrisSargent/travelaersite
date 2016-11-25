@@ -7,6 +7,7 @@ import PageStore from '../../stores/PageStore';
 // Components
 import Banner from '../../components/banner';
 import Hero from '../../components/hero';
+import ImageBanner from '../../components/image-banner';
 import Mosaic from '../../components/mosaic';
 import ProductModules from '../../components/product-modules';
 import Section from '../../components/section';
@@ -71,6 +72,9 @@ export default class Page extends Component {
 
           case 'product_modules':
             return <ProductModules key={index} {...block}/>
+
+          case 'image_banner':
+            return <ImageBanner key={index} {...block}/>
 
           default:
             return false;

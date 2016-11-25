@@ -1,10 +1,25 @@
 module.exports = {
+  section: 'section-',
   container: 'container',
-  content: 'content',
+  content: 'content-',
+  article: 'article-',
+  list: 'list-',
+  block: 'block-',
+  form: 'form-',
+  header: 'header-',
+  footer: 'footer-',
+
+
+  default: 'default',
   title: 'title',
+  loader: 'loader',
+  loading: ' -loading',
+  active: '-active',
   subtitle: 'subtitle',
-  hasbg: ' _hasbg',
-  centered: ' _centered',
   column: 'column',
   item: 'item',
+  btn: 'btn',
+  centered: ' _centered',
+  hasbg: ' _hasbg',
+  replImg: '_replaceimg',
 };

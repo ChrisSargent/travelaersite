@@ -1,4 +1,5 @@
 import React from 'react';
+import css from '../../lib/css';
 
 import ArticleHeader from '../article-header';
 import Avatar from '../avatar';
@@ -8,15 +9,14 @@ require('./_author.sass');
 
 function Author(props) {
   const {author} = props;
-
-  var title = 'Written by ' + author.name;
+  const compName = 'author';
 
   return (
-    <aside className="article-author">
-      <Avatar avatar={author.avatar} modifier="author" alt={author.name}/>
-      <div className="content-author">
-        <ArticleHeader title={title} modifier="author" />
-        <Wysiwyg content={author.description} modifier="author" />
+    <aside className={css.article + compName}>
+      <Avatar avatar={author.avatar} modifier={compName} alt={author.name}/>
+      <div className={css.content + compName}>
+        <ArticleHeader title={'Written by ' + author.name} modifier={compName} />
+        <Wysiwyg content={author.description} modifier={compName} />
       </div>
     </aside>
   );

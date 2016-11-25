@@ -24,6 +24,10 @@
   letter-spacing: $ls--w
   cursor: pointer
 
+=btn-clear
+  background-color: transparent
+  color: $co--blue--lt
+
 =clearfix
   &:after
     content: ' '
@@ -159,6 +163,9 @@
 =cont--xl
   +cont($sz--xl)
 
+=cont--xxl
+  +cont($sz--xxl)
+
 =center-box
   display: flex
   flex-direction: column
@@ -188,10 +195,10 @@
   &.-boxed
     background-color: transparentize($co--wt, 0.15)
 
-=header-block($spc: $pd--xs)
+=header-default($spc: $pd--xs)
   margin-bottom: $spc
 
-=wysiwyg-block($ff: $ff--p, $fs: $fs--l)
+=wysiwyg-default($ff: $ff--p, $fs: $fs--l)
   font-family: $ff
   font-size: $fs
   margin: 0 auto
@@ -208,6 +215,26 @@
   a
     text-decoration: none
     color: $co--brightyellow
+
+  ul
+    position: relative
+
+    li
+      padding: $pd--xxs 0
+
+    > li
+      margin-left: $pd--s
+
+      &::before
+        content: '\00BB'
+        position: absolute
+        left: 0
+
+      ul > li
+        font-weight: 300
+
+        &::before
+          content: '\2022'
 
   &.-narrow
     max-width: $sz--s

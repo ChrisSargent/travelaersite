@@ -1,7 +1,7 @@
 @import _variables
 @import _mixins
 
-.tile
+.block-tile
   +bg-cover
   line-height: $lh--m
   position: relative
@@ -9,6 +9,7 @@
   height: 320px
   padding: $pd--l
   color: $co--wt
+  background-color: $co--blue-grey--dk
 
   svg.i
     display: block
@@ -22,11 +23,8 @@
     text-decoration: none
     color: inherit
 
-  cite
-    font-size: $fs--m
-
   &.-instagram
-    .tile__content
+    .content-tile
       +sr-only
 
   &.-instagram,
@@ -51,20 +49,18 @@
   &.-blue
     background: $co--blue--lt
 
-.tile__content
+.content-tile
   font-size: $fs--lm
   font-weight: 700
   display: block
 
-  span
-    +sr-only
+.block-cite
+  font-size: $fs--m
 
-.quote__fn
-  &::after
-    content: ', '
+  > .fn
+    &::after
+      content: ', '
 
-.quote__pos
-
-.quote__co
-  display: block
-  color: $co--brightyellow
+  > .co
+    display: block
+    color: $co--brightyellow

@@ -8,7 +8,7 @@ function PostItem(props) {
 
   return (
     <li>
-      <Link to={link} className="logo-brand">{title && <h1>{title.rendered}</h1>}</Link>
+      <Link to={link}>{title && <h1>{title.rendered}</h1>}</Link>
     </li>
   );
 }

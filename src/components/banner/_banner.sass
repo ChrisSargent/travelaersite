@@ -1,23 +1,23 @@
 @import _variables
 @import _mixins
 
-.banner-section
+.section-banner
   position: relative
   z-index: $z--mid
 
   &::after
     +angled($co--green, both)
 
-.banner-block
+.block-banner
   +cont--xl
   text-align: center
 
   > .title
     +heading-light
-    +header-block
+    +header-default
     color: $co--wt
 
-.banner-list
+.list-banner
   +inline-children-item
 
   > .item
@@ -29,5 +29,5 @@
       max-width: 200px
       margin: 0 auto
 
-.banner-image
+.image-banner
   height:

@@ -12,7 +12,6 @@ $ctrlwidth: 27.78%
   +cont--xl
   display: flex
   align-items: center
-  margin-top: -200px
 
 .prodmods-side
   flex: 0 0 $ctrlwidth
@@ -20,7 +19,7 @@ $ctrlwidth: 27.78%
   min-width: $ctrlminwidth
 
   > .title
-    +header-block
+    +header-default
     word-wrap: break-word
     font-size: $fs--ml
     padding: 0 $pd--ml 0 $pd--m
@@ -88,29 +87,10 @@ $ctrlwidth: 27.78%
     opacity: 1
 
   > .title
-    +header-block
+    +header-default
     +heading-spaced
     display: block
 
 .wysiwyg-prodmod
+  +wysiwyg-default(inherit, inherit)
   line-height: $lh--xl
-
-  ul
-    position: relative
-
-    li
-      padding: $pd--xxs 0
-
-    > li
-      margin-left: $pd--s
-
-      &::before
-        content: '\00BB'
-        position: absolute
-        left: 0
-
-      ul > li
-        font-weight: 300
-
-        &::before
-          content: '\2022'

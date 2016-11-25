@@ -1,4 +1,6 @@
 import React from 'react';
+import css from '../../lib/css';
+
 import ArticleHeader from '../article-header';
 import Avatar from '../avatar';
 import MemberVcard from '../member-vcard';
@@ -8,15 +10,15 @@ require('./_member.sass');
 
 function Member(props) {
   const {title, content, acf} = props;
-  const modifier = 'member'
+  const compName = 'member'
 
   return (
-    <article className="article-member">
-      <Avatar avatar={acf.avatar} modifier={modifier} alt={title}/>
-      <div className="content-member">
-        <ArticleHeader title={title} subtitle={acf.job_title} modifier={modifier} />
+    <article className={css.article + compName}>
+      <Avatar avatar={acf.avatar} modifier={compName} alt={title}/>
+      <div className={css.content + compName}>
+        <ArticleHeader title={title} subtitle={acf.job_title} modifier={compName} />
         <div className="content">
-          <Wysiwyg content={content} modifier={modifier} />
+          <Wysiwyg content={content} modifier={compName} />
           <MemberVcard name={title.rendered} contacts={acf.contact_details}/>
         </div>
       </div>

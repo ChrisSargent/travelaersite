@@ -6,7 +6,7 @@ function Wysiwyg(props) {
   const {modifier, size} = props;
   var {content} = props, wysClass;
 
-  modifier ? wysClass = 'wysiwyg-' + modifier : wysClass = 'wysiwyg-block';
+  modifier ? wysClass = 'wysiwyg-' + modifier : wysClass = 'wysiwyg-default';
   size && (wysClass += ' -' + size);
 
   typeof content === 'object' && (content = content.rendered);

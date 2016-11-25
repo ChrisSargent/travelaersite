@@ -12,6 +12,7 @@ require('./_comments.sass');
 
 function Comment(props) {
   const {comment_ID, comment_author, comment_content, comment_date_gmt, comment_post_ID} = props.comment;
+  const compName = 'comment';
   const {ui} = props;
   const dateString = dateFormat(comment_date_gmt, true);
   const actions = [
@@ -23,11 +24,11 @@ function Comment(props) {
   ];
 
   return (
-    <div className="article-comment">
-      <Avatar avatar="" modifier="comment" alt={comment_author}/>
-      <div className="content-comment">
-        <ArticleHeader title={comment_author} subtitle={dateString} modifier="comment"/>
-        <Wysiwyg content={comment_content} modifier="comment"/>
+    <div className={css.article + compName}>
+      <Avatar avatar="" modifier={compName} alt={comment_author}/>
+      <div className={css.content + compName}>
+        <ArticleHeader title={comment_author} subtitle={dateString} modifier={compName}/>
+        <Wysiwyg content={comment_content} modifier={compName}/>
         <Actions actions={actions} modifier="clear"/>
         {ui.focusedComment === comment_ID && <CommentForm parent={comment_ID} post={comment_post_ID} closeClick={ui.replyClick}/>}
       </div>
@@ -37,9 +38,10 @@ function Comment(props) {
 
 function CommentList(props) {
   const {comments, ui} = props;
+  const compName = 'comments';
   const commentsMap = comments.map((comment) => {
     return (
-      <li key={comment.comment_ID} className="item">
+      <li key={comment.comment_ID} className={css.item}>
         <Comment comment={comment} ui={ui}/>
         {comment.comment_replies && <CommentList comments={comment.comment_replies} ui={ui}/>}
       </li>
@@ -47,7 +49,7 @@ function CommentList(props) {
   });
 
   return (
-    <ol className="comment-list">
+    <ol className={css.list + compName}>
       {commentsMap}
     </ol>
   );
@@ -75,6 +77,8 @@ export default class CommentBlock extends Component {
     var titleText;
     const {total, comments} = this.props.commentsInfo;
     const {title, post} = this.props;
+    const compName = 'comments';
+
     const ui = {
       replyClick: this.handleClick,
       focusedComment: this.state.focusedComment
@@ -85,7 +89,7 @@ export default class CommentBlock extends Component {
       : titleText = 'Be the first to respond ';
 
     return (
-      <section className="comments-section">
+      <section className={css.section + compName}>
         <h1 className={css.title}>{titleText} to "{title}"</h1>
         {total > 0 && <CommentList comments={comments} ui={ui}/>}
         {!ui.focusedComment && <CommentForm post={post}/>}

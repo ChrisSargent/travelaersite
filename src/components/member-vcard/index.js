@@ -29,18 +29,20 @@ function MemberVcard(props) {
           return false;
       }
       return (
-        <div key={index}>
+        <li key={index}>
           <Icon type={contact_type} />
           <a className="link" href={link} target="_blank">{contact_detail}</a>
-        </div>
+        </li>
       );
     });
   }
 
   return (
-    <aside className="member-vcard">
+    <aside className="vcard-member">
       {name && <div className="fn">{name}</div> }
-      {contactsMap}
+      <ul>
+        {contactsMap}
+      </ul>
     </aside>
   )
 }

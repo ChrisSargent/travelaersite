@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import css from '../../lib/css';
 import Icon from '../icons';
 require('./_loader.sass');
 
@@ -14,7 +15,7 @@ export default class Loader extends Component {
     super();
     this.setShowLoader = this.setShowLoader.bind(this);
     this.state = {
-      loaderClass: 'loader'
+      loadingClass: ''
     };
     // Keep stores that more regularly change near the front
     this.stores = [PageStore, PostsStore, TeamStore, NavStore, OptionsStore]
@@ -47,17 +48,17 @@ export default class Loader extends Component {
     }
 
     if (isLoading) {
-      this.setState({loaderClass: 'loader -loading'});
+      this.setState({loadingClass: css.loading});
     } else {
-      this.setState({loaderClass: 'loader'});
+      this.setState({loadingClass: ''});
     }
   }
 
   render() {
-    const {loaderClass} = this.state;
+    const {loadingClass} = this.state;
 
     return (
-      <div className={loaderClass}>
+      <div className={css.loader + loadingClass}>
         <Icon type="spinner" />
       </div>
     );

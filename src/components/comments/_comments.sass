@@ -1,14 +1,14 @@
 @import _variables
 @import _mixins
 
-.comments-section
+.section-comments
   > .title
     padding-bottom: $pd--xl
 
-.comment-list
+.list-comments
   border-bottom: 1px solid $co--blue-grey--tt
 
-  .comment-list
+  .list-comments
     padding-left: $pd--ml
     border-bottom: none
 
@@ -16,24 +16,24 @@
   display: flex
   padding-bottom: $pd--xxl
 
-.avatar-image.-comment
-  width: 64px
-  height: 64px
-  border-radius: 50%
-  overflow: hidden
-  background-color: $co--teal
+  > .avatar.-comment
+    width: 64px
+    height: 64px
+    border-radius: 50%
+    overflow: hidden
+    background-color: $co--teal
 
 .content-comment
   flex-grow: 1
   padding-left: $pd--l
 
 .header-comment
-  +header-block
+  +header-default
   > .title
     font-size: $fs--l
     font-weight: 700
 
 .wysiwyg-comment
-  +wysiwyg-block
+  +wysiwyg-default
   font-size: $fs--m
   line-height: $lhr--xxl

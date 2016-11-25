@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import css from '../../lib/css';
 import globals from '../../lib/globals'
 
 import * as NavActions from '../../actions/NavActions';
@@ -22,18 +23,18 @@ function MenuItem(props) {
       item.link = item.base + item.object_slug;
   }
 
-  linkClass = "nav-link";
+  linkClass = 'link-nav';
   if (item.children.length > 0) {
     item.children.base = item.link + '/';
     linkClass += " -hassub";
   }
 
   return (
-    <li className="item">
+    <li className={css.item}>
       {item.index
-        ? <IndexLink to={item.link} className={linkClass} activeClassName="-active">{item.title}</IndexLink>
-        : <Link to={item.link} className={linkClass} activeClassName="-active">{item.title}</Link>
-      }
+        ? <IndexLink to={item.link} className={linkClass} activeClassName={css.active}>{item.title}</IndexLink>
+      : <Link to={item.link} className={linkClass} activeClassName={css.active}>{item.title}</Link>
+}
       {item.children.length > 0 && <Menu items={item.children}/>}
     </li>
   );
@@ -54,14 +55,16 @@ function Menu(props) {
     });
 
     if (primaryNav) {
+      const compName = 'nav';
       return (
-        <ul className="nav-list">{itemsMap}</ul>
+        <ul className={css.list + compName}>{itemsMap}</ul>
       );
     } else {
+      const compName = 'subnav';
       return (
-        <div className="subnav-block">
-          <div className="container">
-            <ul className="subnav-list">{itemsMap}</ul>
+        <div className={css.block + compName}>
+          <div className={css.container}>
+            <ul className={css.list + compName}>{itemsMap}</ul>
           </div>
         </div>
       );
@@ -96,18 +99,18 @@ export default class NavBlock extends Component {
   }
 
   render() {
-    if (this.state.menu.length > 0) {
-      const {menu} = this.state;
-      menu.base = globals.homeUrl;
-
-      return (
-        <nav className="nav-block">
-          <Menu items={menu}/>
-        </nav>
-      );
-
-    } else {
+    if (this.state.menu.length === 0)
       return null;
-    }
+
+    const {menu} = this.state;
+    const compName = 'nav';
+    menu.base = globals.homeUrl;
+
+    return (
+      <nav className={css.block + compName}>
+        <Menu items={menu}/>
+      </nav>
+    );
+
   }
 }

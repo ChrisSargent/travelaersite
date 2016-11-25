@@ -1,9 +1,10 @@
 @import _variables
 @import _mixins
 
-.submit-section
+.section-submit
   position: relative
   padding: $pd--xl 0
+  animation: formEnter $tr--f both
   // To contain loader
 
   .header + &
@@ -11,26 +12,26 @@
 
 .loader
   &.-submit
+    position: absolute
+    right: 5%
+    left: -5%
     height: 100%
     transition: opacity $tr--m, visibility $tr--m
-    position: absolute
-    left: -5%
-    right: 5%
 
     &.-loading
-      opacity: 0.8
       pointer-events: all
+      opacity: 0.8
 
-.form-comment
+.form-submit
   $spacing: $pd--s
   margin: $spacing / -2
 
   input,
   textarea
     width: 100%
-    resize: none
     padding-top: $pd--s
     padding-bottom: $pd--s
+    resize: none
 
   textarea
     height: 200px
@@ -38,8 +39,8 @@
   > .name,
   > .email,
   > .comment
-    padding: $spacing / 2
     font-size: $fs--xs
+    padding: $spacing / 2
 
   > .name
     display: inline-block
@@ -49,10 +50,20 @@
     display: inline-block
     width: 67%
 
-  > .comment,
-    width: 100%
+  > .comment
     display: block
+    width: 100%
 
   > .submit
-    padding: $spacing / 2
     display: block
+    padding: $spacing / 2
+
+
+@keyframes formEnter
+  0%
+    transform: translate3d(50px,0,0)
+    opacity: 0
+
+  100%
+    transform: translate3d(0,0,0)
+    opacity: 1

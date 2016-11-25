@@ -1,7 +1,7 @@
 @import _mixins
 @import _variables
 
-.extlinks-block
+.block-links
   margin-top: $pd--xxs
 
   .social-block + &
@@ -11,10 +11,10 @@
   > .title
     +sr-only
 
-.extlinks-list
+.list-links
   +inline-children-item(4px, 4px)
 
-.ext-link
-  > img
-    max-width: 130px
-    max-height: 55px
+  > .item > .link
+      display: block
+      max-width: 130px
+      max-height: 55px
