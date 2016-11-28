@@ -10,6 +10,7 @@ require('./_nav.sass');
 
 function MenuItem(props) {
   const {item} = props;
+  const compName = 'nav';
   var linkClass;
 
   // Is this the home page link?
@@ -23,7 +24,7 @@ function MenuItem(props) {
       item.link = item.base + item.object_slug;
   }
 
-  linkClass = 'link-nav';
+  linkClass = css.link + compName;
   if (item.children.length > 0) {
     item.children.base = item.link + '/';
     linkClass += " -hassub";
@@ -33,8 +34,7 @@ function MenuItem(props) {
     <li className={css.item}>
       {item.index
         ? <IndexLink to={item.link} className={linkClass} activeClassName={css.active}>{item.title}</IndexLink>
-      : <Link to={item.link} className={linkClass} activeClassName={css.active}>{item.title}</Link>
-}
+        : <Link to={item.link} className={linkClass} activeClassName={css.active}>{item.title}</Link>}
       {item.children.length > 0 && <Menu items={item.children}/>}
     </li>
   );

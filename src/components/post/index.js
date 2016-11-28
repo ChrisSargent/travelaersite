@@ -1,4 +1,5 @@
 import React from 'react';
+import css from '../../lib/css';
 
 import ArticleHeader from '../article-header';
 import Author from '../author';
@@ -10,6 +11,7 @@ require('./_post.sass');
 
 function Post(props) {
   const {post} = props;
+  const compName = 'post';
 
   var postInfo = {
     views: '',
@@ -21,10 +23,10 @@ function Post(props) {
   };
 
   return (
-    <article className="article-post">
-      <ArticleHeader title={post.title} modifier="post"/>
+    <article className={css.article + compName}>
+      <ArticleHeader title={post.title} modifier={compName}/>
       <Info info={postInfo}/>
-      <Wysiwyg content={post.content} modifier="post"/>
+      <Wysiwyg content={post.content}/>
       <Author author={post.t_author}/>
       <CommentBlock commentsInfo={post.t_comments_info} title={post.title.rendered} post={post.id} />
     </article>

@@ -34,19 +34,20 @@ export default class Team extends Component {
 
   render() {
     const {team} = this.state;
+    const compName = 'team';
 
     const teamMap = team.map((member) => {
       return (
-        <li key={member.id} className="item">
+        <li key={member.id} className={css.item}>
           <Member {...member} />
         </li>
       );
     });
 
     return (
-      <section className="team-section">
+      <section className={css.section + compName}>
         <h1 className={css.title}>Our Team</h1>
-        <ul className="team-list">
+        <ul className={css.list + compName}>
           {teamMap}
         </ul>
       </section>

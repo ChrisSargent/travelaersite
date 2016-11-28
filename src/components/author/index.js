@@ -16,7 +16,7 @@ function Author(props) {
       <Avatar avatar={author.avatar} modifier={compName} alt={author.name}/>
       <div className={css.content + compName}>
         <ArticleHeader title={'Written by ' + author.name} modifier={compName} />
-        <Wysiwyg content={author.description} modifier={compName} />
+        <Wysiwyg content={author.description} />
       </div>
     </aside>
   );

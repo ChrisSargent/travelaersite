@@ -15,7 +15,7 @@ export default class Loader extends Component {
     super();
     this.setShowLoader = this.setShowLoader.bind(this);
     this.state = {
-      loadingClass: ''
+      loadingClass: css.loading
     };
     // Keep stores that more regularly change near the front
     this.stores = [PageStore, PostsStore, TeamStore, NavStore, OptionsStore]
@@ -40,18 +40,13 @@ export default class Loader extends Component {
 
     for(var i = 0; i < this.stores.length; i++) {
       if(this.stores[i].getLoading()){
-        isLoading = true;
         break;
       } else {
         isLoading = false;
       }
     }
 
-    if (isLoading) {
-      this.setState({loadingClass: css.loading});
-    } else {
-      this.setState({loadingClass: ''});
-    }
+    isLoading ? this.setState({loadingClass: css.loading}) : this.setState({loadingClass: ''});
   }
 
   render() {

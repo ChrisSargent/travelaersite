@@ -6,10 +6,10 @@ import Wysiwyg from '../wysiwyg';
 require('./_product-modules.sass');
 
 function Controls(props) {
-  const {controls, activeIndex, onClick} = props;
+  const {controls, activeIndex, onClick, modifier} = props;
 
   const controlsMap = controls.map((control, index) => {
-    var btnClass = 'prodmod-control';
+    var btnClass = 'control-' + modifier;
 
     (index === activeIndex) && (btnClass += ' -active');
 
@@ -28,13 +28,14 @@ function Controls(props) {
 
 function Modules(props) {
   const {modules, activeIndex} = props;
+  const compName = 'prodmod';
 
   const modulesMap = modules.map((module, index) => {
     var itemClass,
       itemStyle;
     const {module_title, module_content} = module;
 
-    itemClass = 'prodmod-content';
+    itemClass = css.content + compName;
     (index === activeIndex) && (itemClass += ' -active');
 
     // Effectily move each module on top of each other
@@ -45,19 +46,20 @@ function Modules(props) {
     return (
       <li key={index} className={itemClass} style={itemStyle}>
         <span className={css.title}>{module_title}</span>
-        <Wysiwyg content={module_content} modifier="prodmod"/>
+        <Wysiwyg content={module_content} modifier={compName}/>
       </li>
     );
   });
 
   return (
-    <ul className="prodmod-list">
+    <ul className={css.list + compName}>
       {modulesMap}
     </ul>
   );
 };
 
 export default class ProductModules extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -78,6 +80,8 @@ export default class ProductModules extends Component {
   render() {
     // Return ASAP if no modules
     const {product_module, title} = this.props;
+    const compName = 'prodmods';
+
     if (!product_module)
       return false;
 
@@ -93,13 +97,13 @@ export default class ProductModules extends Component {
     }
 
     return (
-      <section className="prodmods-section">
-        <div className="prodmods-content">
-          <div className="prodmods-side">
+      <section className={css.section + compName}>
+        <div className={css.content + compName}>
+          <div className={'side-' + compName}>
             <h1 className={css.title}>{title}</h1>
-            <Controls controls={product_module} activeIndex={this.state.activeModule} onClick={this.handleClick} />
+            <Controls controls={product_module} activeIndex={this.state.activeModule} onClick={this.handleClick} modifier={compName} />
           </div>
-          <Screenshots screenshots={screenshots} activeIndex={this.state.activeModule} modifier="prodmod"/>
+          <Screenshots screenshots={screenshots} activeIndex={this.state.activeModule} />
           <Modules modules={product_module} activeIndex={this.state.activeModule} />
         </div>
       </section>

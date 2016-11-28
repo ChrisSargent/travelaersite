@@ -8,7 +8,7 @@ module.exports = {
   form: 'form-',
   header: 'header-',
   footer: 'footer-',
-
+  link: 'link-',
 
   default: 'default',
   title: 'title',
@@ -22,4 +22,6 @@ module.exports = {
   centered: ' _centered',
   hasbg: ' _hasbg',
   replImg: '_replaceimg',
+  label: 'label',
+  wrap: 'wrap',
 };

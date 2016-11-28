@@ -1,12 +1,8 @@
 @import _variables
 @import _mixins
 
-.product-list
-  +cont--xl
-  +columns(2, $pd--xl)
-
-.article-product
-  +article-block
+.article-products
+  +article-default
 
 .header-products
   +header-default
@@ -17,18 +13,23 @@
     // letter-spacing: $ls--w
     color: $co--green
 
+.list-product
+  +cont--xl
+  +columns(2, $pd--xl)
+
+  > .item
+    position: relative
+
+.article-product
+  +article-default
+
+  > .wysiwyg
+    +wysiwyg-default
+
+
 .header-product
   +header-default
 
   > .title
     font-size: $fs--xh
     color: $co--bk
-
-.wysiwyg-products
-  +wysiwyg-default($ff--base, $fs--h)
-  font-weight: 300
-  line-height: $lh--ml
-  color: $co--bk
-
-.wysiwyg-product
-  +wysiwyg-default

@@ -4,6 +4,15 @@
 .article-post
   flex: 1
 
+  > .wysiwyg
+    +wysiwyg-default
+    background-color: $co--wt
+    padding: $pd--l
+    color: $co--blue--dk
+    line-height: $lh--xxl
+    font-size: $fs--m
+
+
 .header-post
   background-color: $co--teal
   color: $co--wt
@@ -11,11 +20,3 @@
   > .title
     font-size: $fs--xl
     padding: $pd--xl $pd--l $pd--l
-
-.wysiwyg-post
-  +wysiwyg-default
-  background-color: $co--wt
-  padding: $pd--l
-  color: $co--blue--dk
-  line-height: $lh--xxl
-  font-size: $fs--m

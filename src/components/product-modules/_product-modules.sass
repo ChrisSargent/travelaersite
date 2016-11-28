@@ -4,16 +4,20 @@
 $ctrlminwidth: 200px
 $ctrlwidth: 27.78%
 
-.prodmods-section
+.section-prodmods
   color: red
   background-color: $co--blue--md
 
-.prodmods-content
+.content-prodmods
   +cont--xl
   display: flex
   align-items: center
 
-.prodmods-side
+  > .list-screenshot
+    flex: none
+    width: 34%
+
+.side-prodmods
   flex: 0 0 $ctrlwidth
   width: $ctrlwidth
   min-width: $ctrlminwidth
@@ -25,7 +29,7 @@ $ctrlwidth: 27.78%
     padding: 0 $pd--ml 0 $pd--m
     color: $co--bk
 
-.prodmod-control
+.control-prodmods
   +input-reset
   +heading-spaced
   font-size: $fs--xs
@@ -60,18 +64,14 @@ $ctrlwidth: 27.78%
     &::before
       transform: scale3d(1,1,1)
 
-.prodmod-list
+.list-prodmod
   display: flex
   overflow: hidden
   align-items: center
   width: 100%
   padding-left: $pd--ml
 
-.screenshot-list.-prodmod
-  flex: none
-  width: 34%
-
-.prodmod-content
+.content-prodmod
   position: relative
   visibility: hidden
   flex: none
@@ -91,6 +91,6 @@ $ctrlwidth: 27.78%
     +heading-spaced
     display: block
 
-.wysiwyg-prodmod
-  +wysiwyg-default(inherit, inherit)
-  line-height: $lh--xl
+  > .wysiwyg
+    +wysiwyg-default(inherit, inherit)
+    line-height: $lh--xl

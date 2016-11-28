@@ -12,10 +12,10 @@
   .street-address span
     display: block
 
-  .vcard__item
+  > .column > .item
     display: block
 
-    span
+    > .label
       +sr-only
 
   a
@@ -26,6 +26,5 @@
   .vcard
     display: flex
 
-  .vc__col
-    + .vc__col
-      padding-left: 40px
+    > .column + .column
+      padding-left: $pd--l

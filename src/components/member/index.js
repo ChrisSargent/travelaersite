@@ -17,8 +17,8 @@ function Member(props) {
       <Avatar avatar={acf.avatar} modifier={compName} alt={title}/>
       <div className={css.content + compName}>
         <ArticleHeader title={title} subtitle={acf.job_title} modifier={compName} />
-        <div className="content">
-          <Wysiwyg content={content} modifier={compName} />
+        <div className={css.wrap}>
+          <Wysiwyg content={content} />
           <MemberVcard name={title.rendered} contacts={acf.contact_details}/>
         </div>
       </div>

@@ -28,7 +28,7 @@ function Comment(props) {
       <Avatar avatar="" modifier={compName} alt={comment_author}/>
       <div className={css.content + compName}>
         <ArticleHeader title={comment_author} subtitle={dateString} modifier={compName}/>
-        <Wysiwyg content={comment_content} modifier={compName}/>
+        <Wysiwyg content={comment_content} />
         <Actions actions={actions} modifier="clear"/>
         {ui.focusedComment === comment_ID && <CommentForm parent={comment_ID} post={comment_post_ID} closeClick={ui.replyClick}/>}
       </div>

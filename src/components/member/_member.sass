@@ -11,8 +11,14 @@
 .content-member
   padding: $pd--ml 0 0 $pd--xl
 
-  > .content
+  > .wrap
     display: flex
+
+    > .wysiwyg
+      +wysiwyg-default
+      font-size: $fs--m
+      padding-right: $pd--l
+      line-height: $lhr--xxl
 
 .header-member
   +header-default
@@ -23,9 +29,3 @@
   > .subtitle
     font-size: $fs--m
     color: $co--blue-grey
-
-.wysiwyg-member
-  +wysiwyg-default
-  font-size: $fs--m
-  padding-right: $pd--l
-  line-height: $lhr--xxl

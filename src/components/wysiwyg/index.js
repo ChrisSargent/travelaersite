@@ -4,9 +4,10 @@ require('./_wysiwyg.sass');
 
 function Wysiwyg(props) {
   const {modifier, size} = props;
+  const compName = 'wysiwyg';
   var {content} = props, wysClass;
 
-  modifier ? wysClass = 'wysiwyg-' + modifier : wysClass = 'wysiwyg-default';
+  wysClass = compName;
   size && (wysClass += ' -' + size);
 
   typeof content === 'object' && (content = content.rendered);

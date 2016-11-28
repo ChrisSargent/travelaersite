@@ -1,16 +1,18 @@
 import React from 'react';
+import css from '../../lib/css';
 
 require('./_screenshots.sass');
 
 function ScreenShots(props) {
   const {screenshots, modifier, activeIndex} = props;
+  const compName = 'screenshot';
   var screenshotListClass;
 
   if (!screenshots) {
     return false;
   }
 
-  screenshotListClass = 'screenshot-list';
+  screenshotListClass = css.list + compName;
   modifier && (screenshotListClass += ' -' + modifier);
 
   const screenshotsMap = screenshots.map((screenshot, index) => {
@@ -36,7 +38,7 @@ function ScreenShots(props) {
       }
     }
     return (
-      <li key={index} className="item">
+      <li key={index} className={css.item}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 1018" xmlnsXlink="http://www.w3.org/1999/xlink">
           <g fill="#fff" fillRule="evenodd" transform="translate(0 2)">
             <rect width="491" height="1014" x="5" fillOpacity=".3" stroke="#fff" strokeWidth="4" rx="75"/>
@@ -49,7 +51,7 @@ function ScreenShots(props) {
             <rect width="80" height="8" x="211" y="60" rx="4"/>
           </g>
         </svg>
-        <div className="screen-frame">
+        <div className={'frame-' + compName}>
           <div className="screen" style={screenStyles}>
             {imageMap}
           </div>

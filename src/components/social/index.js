@@ -1,14 +1,18 @@
 import React from 'react';
+import css from '../../lib/css';
+
 import Icon from '../icons'
 
 require('./_social.sass');
 
 function Social(props) {
+  const compName = 'social';
+
   const networkMap = props.socialNetworks.map((network, index) => {
 
     return (
-      <li key={index} className="item">
-        <a href={network.link} target="_blank" className="social-link">
+      <li key={index} className={css.item}>
+        <a href={network.link} target="_blank" className={css.link + compName}>
           <Icon type={network.iconType} />
         </a>
       </li>
@@ -16,9 +20,9 @@ function Social(props) {
   });
 
   return (
-    <div className="social-block">
-      <h2 className="title">Follow Us</h2>
-      <ul className="social-list">
+    <div className={css.block + compName}>
+      <h2 className={css.title}>Follow Us</h2>
+      <ul className={css.list + compName}>
         {networkMap}
       </ul>
     </div>

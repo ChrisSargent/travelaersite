@@ -1,4 +1,6 @@
 import React from 'react';
+import css from '../../lib/css';
+
 import Actions from '../actions';
 import ArticleHeader from '../article-header';
 import Screenshots from '../screenshots';
@@ -6,45 +8,43 @@ import Wysiwyg from '../wysiwyg';
 
 require('./_products.sass');
 
-function Product(props) {
-  const {title, content, actions, boxed, screenshots, modifier} = props;
-  var articleClass;
-
-  modifier ? articleClass = 'article-' + modifier : articleClass = "article-block";
-  boxed && (articleClass += ' -boxed');
-
-  return (
-    <div>
-    <article className={articleClass}>
-      <ArticleHeader title={title} modifier={modifier} />
-      <Wysiwyg content={content} modifier={modifier} />
-      <Actions actions={actions} modifier="cta" />
-    </article>
-    <Screenshots screenshots={screenshots} modifier="home" />
-    </div>
-  )
-}
-
 function Products(props) {
   var productsMap;
   const {products} = props;
+  const compName = 'product';
 
-  if (products) {
-    productsMap = products.map((product, index) => {
-      return (
-        <li key={product.id || index} className="item">
-          <Product {...product} />
-        </li>
-      );
-    });
+  if (!products)
+    return null;
+
+  productsMap = products.map((product, index) => {
+    var articleClass;
+
+    const {
+      title,
+      content,
+      actions,
+      boxed,
+      screenshots,
+    } = product;
+
+    articleClass = css.article + compName;
+    boxed && (articleClass += ' -boxed');
 
     return (
-      <ul className="product-list">{productsMap}</ul>
+      <li key={product.id || index} className={css.item}>
+        <article className={articleClass}>
+          <ArticleHeader title={title} modifier={compName}/>
+          <Wysiwyg content={content}/>
+          <Actions actions={actions} modifier="cta"/>
+        </article>
+        <Screenshots screenshots={screenshots} modifier="home"/>
+      </li>
     );
-  } else {
-    return false;
-  }
+  });
 
+  return (
+    <ul className={css.list + compName}>{productsMap}</ul>
+  );
 }
 
 export default Products;

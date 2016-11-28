@@ -13,7 +13,7 @@ function Strip(props) {
     <div className={css.block + compName}>
       <div className={css.content + compName}>
         <h1 className={css.title}>{title}</h1>
-        <Wysiwyg content={content} modifier={compName} />
+        <Wysiwyg content={content} />
       </div>
     </div>
   )
