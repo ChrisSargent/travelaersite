@@ -1,27 +1,34 @@
 module.exports = {
+  // Component Blocks
+  header: 'header-',
+  footer: 'footer-',
   section: 'section-',
-  container: 'container',
+  block: 'block-',
   content: 'content-',
   article: 'article-',
   list: 'list-',
-  block: 'block-',
   form: 'form-',
-  header: 'header-',
-  footer: 'footer-',
   link: 'link-',
 
+  // Elements
+  container: 'container',
   default: 'default',
   title: 'title',
-  loader: 'loader',
-  loading: ' -loading',
-  active: '-active',
   subtitle: 'subtitle',
+  loader: 'loader',
   column: 'column',
   item: 'item',
   btn: 'btn',
+  label: 'label',
+  wrap: 'wrap',
+  icon: 'i',
+
+  // Modifiers
+  loading: ' -loading',
+  active: '-active',
+
+  // Helpers
   centered: ' _centered',
   hasbg: ' _hasbg',
   replImg: '_replaceimg',
-  label: 'label',
-  wrap: 'wrap',
 };

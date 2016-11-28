@@ -2,6 +2,7 @@
 @import _mixins
 
 .section-default
+  +block-pad
   min-height: 100vh
 
   &.-products
@@ -13,24 +14,24 @@
   > .container
     +cont--xl
 
+    > .column
+      position: relative
+
+      &.-pushright
+        width: 50%
+        left: 50%
+        padding-left: ($pd--xl / 2)
+
+      &.-pushleft
+        width: 50%
+        left: 0
+        padding-right: ($pd--xl / 2)
+
 .article-default
   +article-default
-    
+
   > .wysiwyg
     +wysiwyg-default($ff--base, $fs--h)
     font-weight: 300
     line-height: $lh--ml
     color: $co--bk
-
-.column-block
-  position: relative
-
-  &.-pushright
-    width: 50%
-    left: 50%
-    padding-left: ($pd--xl / 2)
-
-  &.-pushleft
-    width: 50%
-    left: 0
-    padding-right: ($pd--xl / 2)

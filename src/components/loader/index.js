@@ -40,6 +40,7 @@ export default class Loader extends Component {
 
     for(var i = 0; i < this.stores.length; i++) {
       if(this.stores[i].getLoading()){
+        isLoading = true;
         break;
       } else {
         isLoading = false;

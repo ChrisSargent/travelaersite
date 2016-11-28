@@ -1,10 +1,12 @@
 import React from 'react';
+import css from '../../lib/css';
 
 require('./_icons.sass');
 
 function Icon(props) {
   const {type} = props;
   var title, path, viewbox;
+
   viewbox = "0 0 32 32";
 
   switch (type) {
@@ -85,12 +87,17 @@ function Icon(props) {
               </g>
       break;
 
+    case 'comversational-diagram':
+      title = 'How Comversational Works';
+      viewbox = "0 0 0 0";
+      break
+
     default:
 
   }
 
   return (
-    <svg className="i" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" viewBox={viewbox} fill="currentColor">
+    <svg className={css.icon + ' -' + type} xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" viewBox={viewbox} fill="currentColor">
       <title>{title}</title>
       {path}
     </svg>

@@ -2,19 +2,31 @@
 @import _mixins
 
 .section-submit
+  +block-pad($pd--xl)
   position: relative
-  padding: $pd--xl 0
   animation: formEnter $tr--f both
   // To contain loader
 
   .header + &
     border-top: 1px solid $co--blue-grey--tt
 
+
+.header-submit
+  +header-default
+
+  > .title
+    font-size: $fs--m
+
+  > .subtitle
+    color: $co--blue-grey
+    font-size: $fs--t
+
 .loader
   &.-submit
     position: absolute
-    right: 5%
+    right: -5%
     left: -5%
+    width: auto
     height: 100%
     transition: opacity $tr--m, visibility $tr--m
 
@@ -28,18 +40,22 @@
 
   input,
   textarea
+    color: $co--blue-grey--md
     width: 100%
     padding-top: $pd--s
     padding-bottom: $pd--s
     resize: none
+    &::-webkit-input-placeholder
+      color: inherit
 
   textarea
     height: 200px
+    line-height: $lh--xl
 
   > .name,
   > .email,
   > .comment
-    font-size: $fs--xs
+    font-size: $fs--xxs
     padding: $spacing / 2
 
   > .name

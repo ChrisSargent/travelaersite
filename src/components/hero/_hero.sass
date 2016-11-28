@@ -11,15 +11,15 @@
 .content-hero
   +cont--m
   +center-box
+  +block-pad
   min-height: 64vh
-  padding-top: $pd--block
-  padding-bottom: $pd--block
   color: $co--wt
 
   > .title
     +heading-spaced
     font-size: $fs--xl
     line-height: 1.75
+    width: 100%
     margin-bottom: 1.05em
     text-align: center
     color: $co--wt
@@ -28,20 +28,18 @@
       font-family: $ff--feature
       font-size: $fs--j
       font-weight: 400
+      line-height: 0.8
       position: relative
       top: -0.105em
       display: block
       letter-spacing: normal
-      line-height: 0.8
 
     > .i
       display: block
-      width: 100%
-      height: auto
+      margin: 0 auto
 
   > .wysiwyg
-    +wysiwyg-default
-
+    +wysiwyg-default($fs: $fs--l)
 
   &.-fullscreen
     min-height: 100vh

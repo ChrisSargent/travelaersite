@@ -27,13 +27,14 @@
   padding-left: $pd--l
 
   > .wysiwyg
-    +wysiwyg-default
-    font-size: $fs--m
+    +wysiwyg-default($fs: 1rem)
+    font-weight: 300
     padding-right: $pd--l
-    line-height: $lhr--xxl
+    line-height: $lh--xl
 
 .header-author
   +header-default
+
   > .title
-    font-size: $fs--l
+    font-size: $fs--ms
     font-weight: 700

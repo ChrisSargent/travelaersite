@@ -11,7 +11,7 @@ function Strip(props) {
 
   return (
     <div className={css.block + compName}>
-      <div className={css.content + compName}>
+      <div className={css.article + compName}>
         <h1 className={css.title}>{title}</h1>
         <Wysiwyg content={content} />
       </div>

@@ -36,7 +36,7 @@ function Section(props) {
   }
 
   // Setup the positioning classes
-  colClass = "column-block"
+  colClass = css.column;
   position && (colClass += ' -' + position);
 
   // Setup the article classes

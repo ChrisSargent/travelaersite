@@ -34,16 +34,15 @@ export default class SinglePost extends Component {
   }
 
   render() {
-    if (!this.state.post) {
+    if (!this.state.post)
       // If we haven't got the post from the API yet, return as fast as possible
       return false;
-    }
 
     const post = this.state.post;
 
     return (
       <main id={post.slug} className={post.slug}>
-        <Hero/>
+        <Hero image={post.t_featured_image.url}/>
         <section className="post-section">
           <Post post={post}/>
           <aside className="side-bar">Test</aside>

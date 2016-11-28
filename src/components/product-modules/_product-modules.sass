@@ -5,7 +5,7 @@ $ctrlminwidth: 200px
 $ctrlwidth: 27.78%
 
 .section-prodmods
-  color: red
+  +block-pad
   background-color: $co--blue--md
 
 .content-prodmods
@@ -16,17 +16,19 @@ $ctrlwidth: 27.78%
   > .list-screenshot
     flex: none
     width: 34%
+    margin: -100px 0 0
 
 .side-prodmods
   flex: 0 0 $ctrlwidth
+  align-self: flex-start
   width: $ctrlwidth
   min-width: $ctrlminwidth
 
   > .title
     +header-default
-    word-wrap: break-word
     font-size: $fs--ml
     padding: 0 $pd--ml 0 $pd--m
+    word-wrap: break-word
     color: $co--bk
 
 .control-prodmods

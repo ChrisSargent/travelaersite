@@ -95,11 +95,11 @@ export default class CommentForm extends Component {
     return (
       <section className={css.section + compName}>
         {closeClick && <Close closeClick={closeClick} />}
-        <ArticleHeader title="Leave a Comment" subtitle="Your email address will not be published" />
+        <ArticleHeader title="Leave a Comment" subtitle="Your email address will not be published" modifier={compName}/>
         <form className={css.form + compName} ref="commentForm" onSubmit={this.processComment} >
           <span className="name"><input type="text" ref="name" placeholder="Name" /></span>
           <span className="email"><input type="email" ref="email" placeholder="Email" /></span>
-          <span className="comment"><textarea ref="comment" placeholder="Your comment" /></span>
+          <span className="comment"><textarea ref="comment" placeholder="Your Comment" /></span>
           <span className="submit"><button id="submit" type="submit" className={css.btn + ' -cta'}>Submit</button></span>
         </form>
         <CommentLoader />

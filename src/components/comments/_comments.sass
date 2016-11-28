@@ -2,7 +2,10 @@
 @import _mixins
 
 .section-comments
+  +block-pad($pd--xl)
+
   > .title
+    font-size: $fs--m
     padding-bottom: $pd--xl
 
 .list-comments
@@ -29,11 +32,22 @@
 
   > .wysiwyg
     +wysiwyg-default
-    font-size: $fs--m
-    line-height: $lhr--xxl
+    line-height: $lh--xl
+
+  > .footer-actions
+    font-size: $fs--xs
 
 .header-comment
   +header-default
+  display: flex
+  align-items: baseline
+
   > .title
-    font-size: $fs--l
+    font-size: $fs--xs
+    color: $co--blue-grey--md
     font-weight: 700
+
+  > .subtitle
+    margin-left: $pd--m
+    color: $co--blue-grey
+    font-size: $fs--t

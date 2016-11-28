@@ -85,6 +85,14 @@ function travelaer_api_custom_post_fields() {
             'schema'          => null,
         )
     );
+    register_rest_field( 'post',
+        't_featured_image',
+        array(
+            'get_callback'    => 'travelaer_get_featured_image',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
 }
 
 function travelaer_get_author_info( $object, $field_name, $request ) {
@@ -102,6 +110,17 @@ function travelaer_get_tag_info( $object, $field_name, $request ) {
       $tags[] = $tag;
     }
     return $tags;
+}
+
+function travelaer_get_featured_image( $object, $field_name, $request ) {
+  $image_data = wp_get_attachment_image_src(get_post_thumbnail_id( $object['id'] ), "large" );
+  $image = array(
+    'url' => $image_data[0],
+    'width' => $image_data[1],
+    'height' => $image_data[2],
+   );
+
+  return $image;
 }
 
 function travelaer_get_comments_info($object, $field_name, $request) {

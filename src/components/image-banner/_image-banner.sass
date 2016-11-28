@@ -21,15 +21,17 @@
   left: 0
   transform: translateY(-50%)
 
-.content-strip
-  display: flex
-  align-items: flex-start
+.article-strip
+  +cont--l
+  +article-default($dir: row)
 
   > .title
     color: $co--bk
     font-size: $fs--ml
+    max-width: 30%
 
   > .wysiwyg
-    +wysiwyg-default(inherit, inherit)
+    +wysiwyg-default($ff: inherit)
     color: $co--logo--blue-dk
     line-height: $lh--xl
+    padding-left: $pd--l

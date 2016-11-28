@@ -2,21 +2,19 @@
 @import _mixins
 
 .article-post
-  flex: 1
+  width: 70%
 
   > .wysiwyg
-    +wysiwyg-default
-    background-color: $co--wt
+    +wysiwyg-default($fs: $fs--m)
+    font-weight: 300
+    line-height: $lh--ml
     padding: $pd--l
-    color: $co--blue--dk
-    line-height: $lh--xxl
-    font-size: $fs--m
-
+    background-color: $co--wt
 
 .header-post
-  background-color: $co--teal
   color: $co--wt
+  background-color: $co--teal
 
   > .title
-    font-size: $fs--xl
+    font-size: $fs--xh
     padding: $pd--xl $pd--l $pd--l
