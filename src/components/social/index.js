@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import Icon from '../icons'
+import SVG from '../svg'
 
 require('./_social.sass');
 
@@ -13,7 +13,7 @@ function Social(props) {
     return (
       <li key={index} className={css.item}>
         <a href={network.link} target="_blank" className={css.link + compName}>
-          <Icon type={network.iconType} />
+          <SVG type={network.iconType} />
         </a>
       </li>
     );

@@ -3,7 +3,7 @@ import css from '../../lib/css';
 
 import ArticleHeader from '../article-header';
 import Close from '../close';
-import Icon from '../icons';
+import SVG from '../svg';
 
 import * as CommentsActions from '../../actions/CommentsActions';
 import CommentsStore from '../../stores/CommentsStore';
@@ -45,7 +45,7 @@ class CommentLoader extends Component {
 
     return (
       <div className={css.loader + loadingClass + ' -submit'}>
-        <Icon type="spinner" />
+        <SVG type="spinner" />
       </div>
     );
   }

@@ -54,7 +54,6 @@ export default class Mosaic extends Component {
   }
 
   render() {
-    var sectionClass;
     const {mosaic} = this.state;
     const compName = 'mosaic';
 

@@ -3,7 +3,7 @@ import React from 'react';
 require('./_wysiwyg.sass');
 
 function Wysiwyg(props) {
-  const {modifier, size} = props;
+  const {size} = props;
   const compName = 'wysiwyg';
   var {content} = props, wysClass;
 

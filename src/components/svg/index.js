@@ -1,9 +1,11 @@
 import React from 'react';
 import css from '../../lib/css';
 
-require('./_icons.sass');
+import ComDiag from '../comversational-diagram';
 
-function Icon(props) {
+require('./_svgs.sass');
+
+function SVG(props) {
   const {type} = props;
   var title, path, viewbox;
 
@@ -89,7 +91,8 @@ function Icon(props) {
 
     case 'comversational-diagram':
       title = 'How Comversational Works';
-      viewbox = "0 0 0 0";
+      viewbox = "0 0 2030 1101";
+      path = <ComDiag />;
       break
 
     default:
@@ -104,4 +107,4 @@ function Icon(props) {
   )
 }
 
-export default Icon
+export default SVG

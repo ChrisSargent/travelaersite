@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../icons';
+import SVG from '../svg';
 
 require('./_member-vcard.sass');
 
@@ -30,7 +30,7 @@ function MemberVcard(props) {
       }
       return (
         <li key={index}>
-          <Icon type={contact_type} />
+          <SVG type={contact_type} />
           <a className="link" href={link} target="_blank">{contact_detail}</a>
         </li>
       );

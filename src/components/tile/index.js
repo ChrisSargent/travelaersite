@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import Icon from '../icons';
+import SVG from '../svg';
 
 require('./_tile.sass');
 
@@ -30,7 +30,7 @@ function MosaicTile(props) {
       return (
         <li className={css.block + tileClass}>
           <blockquote>
-            <Icon type={type}/>
+            <SVG type={type}/>
             <span className={css.content + compName}>{props.acf.content}</span>
             <footer>
               <cite className={css.block + 'cite'}>
@@ -50,7 +50,7 @@ function MosaicTile(props) {
   return (
     <li className={css.block + tileClass} style={liStyle}>
       <a href={props.acf.link} target="_blank">
-        <Icon type={type}/>
+        <SVG type={type}/>
         <span className={css.content + compName}>{props.acf.content}</span>
         {mediaLink && <img src={mediaLink} alt="" className="_replaceimg"/>}
       </a>

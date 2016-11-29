@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
-import Icon from '../icons';
+import SVG from '../svg';
 require('./_loader.sass');
 
 // Stores
@@ -55,7 +55,7 @@ export default class Loader extends Component {
 
     return (
       <div className={css.loader + loadingClass}>
-        <Icon type="spinner" />
+        <SVG type="spinner" />
       </div>
     );
   }
