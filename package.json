@@ -2,7 +2,7 @@
   "name": "travelaersite",
   "homepage": "http://travelaer.stickypixel.com/",
   "proxy": "http://travelaersite.dev/",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "devDependencies": {
     "autoprefixer": "6.5.1",
