@@ -15,7 +15,6 @@ class PostsStore extends EventEmitter {
 
   getPosts() {
     if (this.gotAllPosts) {
-      console.log('test');
       return this.posts;
     }
     // Else do a WP call for the posts

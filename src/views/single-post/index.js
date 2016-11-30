@@ -45,7 +45,7 @@ export default class SinglePost extends Component {
         <Hero image={post.t_featured_image.url}/>
         <section className="post-section">
           <Post post={post}/>
-          <aside className="side-bar">Test</aside>
+          <aside className="side-bar">Side Bar to Come</aside>
         </section>
       </main>
     );

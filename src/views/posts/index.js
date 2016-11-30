@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import css from '../../lib/css'
+
+require('./_posts.sass');
 
 // Stores & Actions
 import PostsStore from '../../stores/PostsStore';
@@ -28,6 +31,7 @@ export default class Posts extends Component {
 
   render() {
     const {posts} = this.state;
+    const compName = 'posts';
 
     if (!posts) {
       return null;
@@ -40,7 +44,7 @@ export default class Posts extends Component {
     return (
       <main id="posts" className="posts">
         <section>
-          <ul>
+          <ul className={css.list + compName}>
             {postsMap}
           </ul>
         </section>
