@@ -55,5 +55,4 @@ class PageStore extends EventEmitter {
 }
 
 const pageStore = new PageStore();
-
 export default pageStore;

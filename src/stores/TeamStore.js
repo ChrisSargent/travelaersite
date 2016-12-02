@@ -42,5 +42,4 @@ class TeamStore extends EventEmitter {
 }
 
 const teamStore = new TeamStore();
-
 export default teamStore;

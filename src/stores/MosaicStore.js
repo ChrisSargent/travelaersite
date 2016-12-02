@@ -38,8 +38,5 @@ class MosaicStore extends EventEmitter {
   }
 }
 
-MosaicStore.dispatchToken = null;
-
 const mosaicStore = new MosaicStore();
-
 export default mosaicStore;

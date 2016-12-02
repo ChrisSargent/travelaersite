@@ -4,58 +4,41 @@ import SVG from '../svg';
 require('./_loader.sass');
 
 // Stores
-import NavStore from '../../stores/NavStore';
-import OptionsStore from '../../stores/OptionsStore';
-import PageStore from '../../stores/PageStore';
-import PostsStore from '../../stores/PostsStore';
-import TeamStore from '../../stores/TeamStore';
+import LoaderStore from '../../stores/LoaderStore';
 
 export default class Loader extends Component {
   constructor() {
     super();
     this.setShowLoader = this.setShowLoader.bind(this);
     this.state = {
-      loadingClass: css.loading
+      displayLoader: true
     };
-    // Keep stores that more regularly change near the front
-    this.stores = [PageStore, PostsStore, TeamStore, NavStore, OptionsStore]
   }
 
   componentWillMount() {
     // Add listeners for changes to loading state
-    this.stores.map((store, index) => {
-      return store.on('change', this.setShowLoader);
-    });
+    LoaderStore.on('change', this.setShowLoader);
   }
 
   componentWillUnmount() {
     // Remove listeners for changes to loading state
-    this.stores.map((store, index) => {
-      return store.removeListener('change', this.setShowLoader);
-    });
+    LoaderStore.removeListener('change', this.setShowLoader);
   }
 
   setShowLoader() {
-    var isLoading = true;
-
-    for(var i = 0; i < this.stores.length; i++) {
-      if(this.stores[i].getLoading()){
-        isLoading = true;
-        break;
-      } else {
-        isLoading = false;
-      }
-    }
-
-    isLoading ? this.setState({loadingClass: css.loading}) : this.setState({loadingClass: ''});
+    this.setState({displayLoader: LoaderStore.getLoading()});
   }
 
   render() {
-    const {loadingClass} = this.state;
+    var loadingClass;
+    
+    this.state.displayLoader
+      ? loadingClass = css.loading
+      : loadingClass = '';
 
     return (
       <div className={css.loader + loadingClass}>
-        <SVG type="spinner" />
+        <SVG type="spinner"/>
       </div>
     );
   }

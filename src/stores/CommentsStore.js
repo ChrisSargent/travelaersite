@@ -51,8 +51,5 @@ class CommentsStore extends EventEmitter {
   }
 }
 
-CommentsStore.dispatchToken = null;
-
 const commentsStore = new CommentsStore();
-
 export default commentsStore;

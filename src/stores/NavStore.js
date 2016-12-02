@@ -39,5 +39,4 @@ class NavStore extends EventEmitter {
 }
 
 const navStore = new NavStore();
-
 export default navStore;

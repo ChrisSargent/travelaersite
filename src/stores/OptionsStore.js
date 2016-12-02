@@ -39,5 +39,4 @@ class OptionsStore extends EventEmitter {
 }
 
 const optionsStore = new OptionsStore();
-
 export default optionsStore;

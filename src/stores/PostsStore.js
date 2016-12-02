@@ -69,5 +69,4 @@ class PostsStore extends EventEmitter {
 }
 
 const postsStore = new PostsStore();
-
 export default postsStore;
