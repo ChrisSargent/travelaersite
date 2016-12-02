@@ -9,6 +9,7 @@ module.exports = {
   list: 'list-',
   form: 'form-',
   link: 'link-',
+  sidebar: 'sidebar-',
 
   // Elements
   container: 'container',

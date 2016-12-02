@@ -12,12 +12,12 @@ class LoaderStore extends EventEmitter {
 
   addToLoadingArray(id) {
     this.loadingArray.push(id);
-    console.log(this.loadingArray);
+    // console.log(this.loadingArray);
   }
 
   removeFromLoadingArray(id) {
     this.loadingArray.splice(id, 1);
-    console.log(this.loadingArray);
+    // console.log(this.loadingArray);
   }
 
   getLoading() {

@@ -1,0 +1,79 @@
+@import _variables
+@import _mixins
+
+.list-recentposts
+  > .item
+    position: relative
+
+    a
+      text-decoration: none
+
+    + .item
+      margin-top: 1px
+
+    &:nth-child(1)
+      .header-recentpost.-large
+        background-color: $co--green
+
+    &:nth-child(2)
+      margin: $pd--s 0
+
+      .header-recentpost.-large
+        background-color: $co--blue--md
+
+
+.article-recentpost
+  display: flex
+  background-color: $co--wt
+
+  .title
+    color: $co--blue-grey--dk
+
+  .subtitle
+    color: $co--blue-grey
+
+  &.-large
+    +bg-cover
+    display: block
+    width: 100%
+    color: $co--wt
+
+    &::after
+      padding-top: 90%
+      content: ' '
+      display: block
+
+.avatar.-recentpost
+  width: 33%
+
+  &::after
+    content: ' '
+    padding-top: 100%
+    display: block
+
+.header-recentpost
+  padding: $pd--l $pd--s
+  align-self: center
+
+  .subtitle
+    font-size: $fs--t
+
+  &.-large
+    position: absolute
+    bottom: 0
+    width: 100%
+    display: flex
+    align-items: center
+
+    .i.-post
+      flex: none
+      width: 1.5em
+      height: 1.5em
+      margin-right: $pd--xs
+
+    .title
+      color: $co--wt
+      font-size: $fs--lm
+
+    .subtitle
+      color: $co--wt

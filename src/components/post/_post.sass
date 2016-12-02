@@ -2,7 +2,8 @@
 @import _mixins
 
 .article-post
-  width: 70%
+  width: 480px
+  flex: 10 2 480px
 
   > .wysiwyg
     +wysiwyg-default($fs: $fs--m)
@@ -15,6 +16,6 @@
   color: $co--wt
   background-color: $co--teal
 
-  > .title
+  .title
     font-size: $fs--xh
     padding: $pd--xl $pd--l $pd--l
