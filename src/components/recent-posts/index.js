@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import css from '../../lib/css';
+import dateFormat from '../../lib/date';
 import globals from '../../lib/globals';
-import dateFormat from '../../lib/date.js';
 import PostsStore from '../../stores/PostsStore';
 
 require('./_recent-posts.sass');
 
 import ArticleHeader from '../article-header';
-import Avatar from '../avatar';
+import ImageCover from '../image-cover';
 
 export default class RecentPosts extends Component {
   constructor(props) {
@@ -41,50 +41,38 @@ export default class RecentPosts extends Component {
   render() {
     const {posts} = this.state;
     const compName = 'recentposts';
+    var count = 0;
 
     if (!posts)
       return null;
 
-    const postsMap = posts.map((post, i) => {
-      var dateString,
-        articleStyle,
-        modifier,
-        avatar,
+    const postsMap = posts.map((post) => {
+      console.log(post);
+      var modifier,
         icon;
 
-      if (this.state.currPost === post.id || i > 7) {
-        // Don't show the current posts in the latest posts list
+      if (this.state.currPost === post.id || count > 7) {
+        // Don't show the current posts in the latest posts list nor more than 7
         return null;
       }
-
-      dateString = dateFormat(post.date_gmt, false);
-
+      count++
       const compName = 'recentpost';
-      const image = post.t_featured_image.url;
+      const dateString = dateFormat(post.date_gmt, false);
       const link = globals.blogUrl + '/' + post.slug;
 
-      if (i < 2) {
+      if (count <= 2) {
         modifier = compName + ' -large';
         icon = 'post';
-        avatar = false;
-
-        if (image) {
-          articleStyle = {
-            backgroundImage: 'url(' + image + ')'
-          }
-        }
       } else {
         modifier = compName;
         icon = false;
-        avatar = true;
       }
       return (
         <li key={post.id} className={css.item}>
           <Link to={link}>
-            <article className={css.article + modifier} style={articleStyle}>
-              {avatar && <Avatar avatar={image} modifier={modifier}/>}
+            <article className={css.article + modifier}>
+              <ImageCover image={post.t_featured_image} />
               <ArticleHeader title={post.title} subtitle={dateString} icon={icon} modifier={modifier}/>
-              {image && (i < 2) && <img src={image} className={css.replImg} ref={this.handleRef}/>}
             </article>
           </Link>
         </li>

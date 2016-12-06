@@ -51,7 +51,8 @@ $ctrlwidth: 27.78%
     color: $co--brightyellow
 
   &::before
-    +pseudoscreen
+    +stretch
+    content: ' '
     z-index: $z--under
     transition: transform $tr--f
     transform: scale3d(1,0,1)

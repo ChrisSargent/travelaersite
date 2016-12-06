@@ -1,6 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
-import dateFormat from '../../lib/date.js'
+import dateFormat from '../../lib/date'
 
 require('./_info.sass');
 

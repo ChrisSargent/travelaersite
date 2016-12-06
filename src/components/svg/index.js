@@ -7,7 +7,13 @@ require('./_svgs.sass');
 
 function SVG(props) {
   const {type} = props;
-  var title, path, viewbox;
+
+  if (!type)
+    return null;
+
+  var title,
+    path,
+    viewbox;
 
   viewbox = "0 0 32 32";
 

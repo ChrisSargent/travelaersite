@@ -52,7 +52,7 @@ function MosaicTile(props) {
       <a href={props.acf.link} target="_blank">
         <SVG type={type}/>
         <span className={css.content + compName}>{props.acf.content}</span>
-        {mediaLink && <img src={mediaLink} alt="" className="_replaceimg"/>}
+        {mediaLink && <img src={mediaLink} alt="" className={css.replImg}/>}
       </a>
     </li>
   );

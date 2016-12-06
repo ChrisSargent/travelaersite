@@ -3,13 +3,17 @@
 
 .section-default
   +block-pad
+  position: relative
   min-height: 100vh
 
   &.-products
     $shadow: 60px
-    background-size: auto 90%
-    background-position: left bottom
     box-shadow: inset 0 $shadow / -0.9 $shadow $shadow / -1 #333967
+
+    > ._bgimg
+      background-size: auto 90%
+      background-position: left bottom
+
 
   > .container
     +cont--xl

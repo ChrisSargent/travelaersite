@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
-import dateFormat from '../../lib/date.js'
+import dateFormat from '../../lib/date'
 
 import Actions from '../actions';
 import ArticleHeader from '../article-header';
-import Avatar from '../avatar';
+import ImageCover from '../image-cover';
 import CommentForm from '../comment-form';
 import Wysiwyg from '../wysiwyg';
 
@@ -25,7 +25,7 @@ function Comment(props) {
 
   return (
     <div className={css.article + compName}>
-      <Avatar avatar="" modifier={compName} alt={comment_author}/>
+      <ImageCover avatar="true" image="commentAtatar" alt={comment_author}/>
       <div className={css.content + compName}>
         <ArticleHeader title={comment_author} subtitle={dateString} modifier={compName}/>
         <Wysiwyg content={comment_content} />

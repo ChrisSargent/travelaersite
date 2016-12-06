@@ -1,5 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
+import Image from '../image';
 
 require('./_banner.sass');
 
@@ -8,16 +9,17 @@ function Banner(props) {
   const compName = 'banner';
 
   const logoMap = logos.map((logo, index) => {
+
     return (
-      <li key={index} className="item">
-        <img src={logo.logo_image} alt={logo.logo_name} className="banner-image"/>
+      <li key={index} className={css.item}>
+        <Image image={logo.logo_image} alt={logo.logo_name} srcVersion="medium" sizes="20vw"/>
       </li>
     );
   });
 
   return (
     <section className={css.section + compName}>
-      <div className={css.block + compName}>
+      <div className={css.content + compName}>
         <h1 className={css.title}>{title}</h1>
         <ul className={css.list + compName}>
           {logoMap}

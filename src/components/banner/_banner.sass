@@ -2,15 +2,15 @@
 @import _mixins
 
 .section-banner
-  +block-pad
   position: relative
   z-index: $z--mid
 
   &::after
     +angled($co--green, both)
 
-.block-banner
+.content-banner
   +cont--xl
+  +block-pad
   text-align: center
 
   > .title
@@ -26,9 +26,6 @@
     box-sizing: content-box
 
     > img
-      max-height: 50px
       max-width: 200px
+      max-height: 50px
       margin: 0 auto
-
-.image-banner
-  height:

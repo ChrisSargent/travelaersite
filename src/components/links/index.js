@@ -1,5 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
+import Image from '../image';
 
 require('./_links.sass');
 
@@ -10,7 +11,7 @@ function Links(props) {
     return (
       <li key={index} className={css.item}>
         <a className="link" href={link.external_link} target="_blank">
-          <img src={link.external_logo} alt="" />
+          <Image image={link.external_logo} srcVersion='medium' sizes="130px"/>
         </a>
       </li>
     );

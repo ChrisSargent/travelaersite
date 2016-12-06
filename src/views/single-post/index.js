@@ -5,7 +5,7 @@ import css from '../../lib/css'
 import PostsStore from '../../stores/PostsStore';
 
 // Components
-import Hero from '../../components/hero';
+import ImageCover from '../../components/image-cover';
 import Post from '../../components/post';
 import RecentPosts from '../../components/recent-posts';
 
@@ -44,16 +44,18 @@ export default class SinglePost extends Component {
   }
 
   render() {
-    if (!this.state.post)
+    const post = this.state.post;
+    if (!post)
       // If we haven't got the post from the API yet, return as fast as possible
       return false;
 
     const compName = 'singlepost';
-    const post = this.state.post;
 
     return (
       <main id={post.slug} className={post.slug}>
-        <Hero image={post.t_featured_image.url}/>
+        <section className={css.section + 'hero'}>
+          <ImageCover image={post.t_featured_image} />
+        </section>
         <section className={css.section + compName}>
           <Post post={post}/>
           <aside className={css.sidebar + compName}>

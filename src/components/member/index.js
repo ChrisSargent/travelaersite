@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 
 import ArticleHeader from '../article-header';
-import Avatar from '../avatar';
+import ImageCover from '../image-cover';
 import MemberVcard from '../member-vcard';
 import Wysiwyg from '../wysiwyg';
 
@@ -14,7 +14,7 @@ function Member(props) {
 
   return (
     <article className={css.article + compName}>
-      <Avatar avatar={acf.avatar} modifier={compName} alt={title}/>
+      <ImageCover avatar="true" image={acf.avatar} alt={title}/>
       <div className={css.content + compName}>
         <ArticleHeader title={title} subtitle={acf.job_title} modifier={compName} />
         <div className={css.wrap}>

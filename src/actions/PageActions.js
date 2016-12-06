@@ -12,6 +12,7 @@ export function fetchPage(slug) {
   }).then(function(response) {
     dispatcher.dispatch({type: 'RECEIVE_PAGE', page: response.data});
     dispatcher.dispatch({type: 'FINISHED_LOADING', id: 'fetchPage'});
+    // console.log(response.data);
   }).catch(function(error) {
     console.log(error);
   });

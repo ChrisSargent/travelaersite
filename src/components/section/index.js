@@ -3,14 +3,13 @@ import css from '../../lib/css';
 
 import ArticleHeader from '../article-header';
 import Products from '../products';
+import ImageCover from '../image-cover';
 import Wysiwyg from '../wysiwyg';
 
 require('./_section.sass');
 
 function Section(props) {
   var sectionClass,
-    slug,
-    sectionStyle,
     colClass,
     articleClass;
   const {
@@ -24,16 +23,7 @@ function Section(props) {
 
   // Setup the section classes
   sectionClass = css.section + css.default;
-  title && (slug = title.replace(/\s+/g, '-').toLowerCase());
-  slug && (sectionClass += ' -' + slug);
-
-  // Setup the background image
-  if (image) {
-    sectionStyle = {
-      backgroundImage: 'url(' + image + ')'
-    }
-    sectionClass += css.hasbg;
-  }
+  title && (sectionClass += ' -' + title.replace(/\s+/g, '-').toLowerCase());
 
   // Setup the positioning classes
   colClass = css.column;
@@ -44,7 +34,7 @@ function Section(props) {
   modifier && (articleClass += ' -' + modifier)
 
   return (
-    <section className={sectionClass} style={sectionStyle}>
+    <section className={sectionClass}>
       <div className={css.container}>
         <div className={colClass}>
           <div className={articleClass}>
@@ -53,7 +43,8 @@ function Section(props) {
           </div>
         </div>
       </div>
-      <Products products={subSections}/> {image && <img src={image} alt={title} className={css.replImg}/>}
+      <Products products={subSections}/>
+      <ImageCover image={image}/>
     </section>
   );
 }

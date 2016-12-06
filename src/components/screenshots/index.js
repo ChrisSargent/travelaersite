@@ -1,5 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
+import Image from '../image';
 
 require('./_screenshots.sass');
 
@@ -24,11 +25,7 @@ function ScreenShots(props) {
 
     // Create the image map
     imageMap = screenshot.images.map((image, index) => {
-      if(image) {
-        return <img key={index} src={image}/>
-      } else {
-        return false;
-      }
+      return <Image key={index} image={image} srcVersion='large' sizes="320px"/>
     })
 
     // Setup the styles if it's being used in a carousel

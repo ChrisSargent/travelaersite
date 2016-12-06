@@ -10,6 +10,8 @@ module.exports = {
   form: 'form-',
   link: 'link-',
   sidebar: 'sidebar-',
+  image: 'image-',
+  main: 'main-',
 
   // Elements
   container: 'container',
@@ -31,5 +33,5 @@ module.exports = {
   // Helpers
   centered: ' _centered',
   hasbg: ' _hasbg',
-  replImg: '_replaceimg',
+  replImg: '_bgimg',
 };

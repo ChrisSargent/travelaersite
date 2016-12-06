@@ -1,6 +1,7 @@
 import React from 'react';
 import css from '../../lib/css';
 
+import Image from '../image';
 import Wysiwyg from '../wysiwyg';
 
 require('./_image-banner.sass');
@@ -20,15 +21,12 @@ function Strip(props) {
 }
 
 function ImageBanner(props) {
-  const {image} = props;
   const compName = 'imagebanner';
 
   return (
     <section className={css.section + compName}>
       <div className={css.content + compName}>
-        <div className="image">
-          <img src={image}/>
-        </div>
+        <Image image={props.image} srcVersion='large' sizes="100vw"/>
         <Strip {...props} />
       </div>
     </section>
