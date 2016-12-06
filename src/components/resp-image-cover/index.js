@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import css from '../../lib/css';
 import * as LoadingActions from '../../actions/LoadingActions';
 
-import Image from '../image';
+import RespImage from '../resp-image';
 
-require('./_avatar.sass');
+require('./_resp-image-cover.sass');
 
 export default class ImageCover extends Component {
 
   /*
-   * If requested in Wordpress the image-cover component will ask the spinner to
+   * If requested in Wordpress the resp-image-cover component will ask the spinner to
    * display until the image has loaded.
    * It does this by not setting the background image style until the equivalent
    * img in the html has loaded and its currentSrc calculated.
@@ -22,6 +22,10 @@ export default class ImageCover extends Component {
     };
     this.handleLoad = this.handleLoad.bind(this);
     this.handleRef = this.handleRef.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    !nextProps.image && this.setState({bgSrc: null});
   }
 
   handleRef(el) {
@@ -41,27 +45,25 @@ export default class ImageCover extends Component {
     typeof el.currentSrc === "undefined"
       ? imgSrc = el.src
       : imgSrc = el.currentSrc;
+
     this.setState({bgSrc: imgSrc});
   }
 
   render() {
-    // IMAGE: image, alt, srcVersion, className, onLoadCb, refCb
-    const {image, avatar} = this.props;
-
     var bgSrc,
       tagClass,
-      sizes,
-      srcVersion;
+      refCb;
+    const {className, modifier} = this.props;
 
-    if (avatar) {
-      tagClass = 'avatar';
-      sizes = '320px';
-      srcVersion = 'medium';
-    } else {
-      tagClass = css.replImg;
-      sizes = '100vw';
-      srcVersion = 'large';
-    }
+    className
+      ? tagClass = className
+      : tagClass = css.replImg;
+
+    modifier && (tagClass += ' -' + modifier)
+
+    this.props.wait
+      ? refCb = this.handleRef
+      : refCb = null;
 
     if (this.state.bgSrc) {
       bgSrc = {
@@ -71,8 +73,7 @@ export default class ImageCover extends Component {
 
     return (
       <div className={tagClass} style={bgSrc}>
-        {this.props.children && <div className={css.container}>{this.props.children}</div>}
-        <Image image={image} srcVersion={srcVersion} sizes={sizes} refCb={this.handleRef} onLoadCb={this.handleLoad} />
+        <RespImage {...this.props} className='' refCb={refCb} onLoadCb={this.handleLoad}/>
       </div>
     );
   }

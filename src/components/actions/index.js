@@ -13,10 +13,16 @@ function Actions(props) {
 
   if (actions) {
     actionsMap = actions.map((action, index) => {
+      var url;
+
+      action.linkTo && action.linkTo.indexOf('http') >= 0
+        ? url = action.linkTo.replace(/^.*\/\/[^\/]+/, '').replace('/wordpress', '')
+        : url = action.linkTo;
+
       if(action.onClick) {
         return <button key={index} className={btnClass} data-actionparam={action.param} onClick={action.onClick}>{action.linkTitle}</button>
       } else {
-        return <Link key={index} to={action.linkTo} className={btnClass}>{action.linkTitle}</Link>
+        return <Link key={index} to={url} className={btnClass}>{action.linkTitle}</Link>
       }
     });
 

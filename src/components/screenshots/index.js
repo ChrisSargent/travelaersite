@@ -1,6 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
-import Image from '../image';
+import RespImage from '../resp-image';
 
 require('./_screenshots.sass');
 
@@ -9,9 +9,8 @@ function ScreenShots(props) {
   const compName = 'screenshot';
   var screenshotListClass;
 
-  if (!screenshots) {
-    return false;
-  }
+  if (!screenshots)
+    return null;
 
   screenshotListClass = css.list + compName;
   modifier && (screenshotListClass += ' -' + modifier);
@@ -20,12 +19,12 @@ function ScreenShots(props) {
     var imageMap,
       screenStyles;
 
-    // If we only get one image, just put it in to an array so we can handle it the same
-    screenshot.image && (screenshot.images = [screenshot.image])
+    // If we only get one image per 'screenshot', just put it in to an array so we can handle it the same
+    !screenshot.images && (screenshot.images = [screenshot])
 
     // Create the image map
     imageMap = screenshot.images.map((image, index) => {
-      return <Image key={index} image={image} srcVersion='large' sizes="320px"/>
+      return <RespImage key={index} image={image} srcVersion='large' respSizes="320px"/>
     })
 
     // Setup the styles if it's being used in a carousel

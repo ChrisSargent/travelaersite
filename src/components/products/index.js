@@ -1,49 +1,38 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import Actions from '../actions';
 import ArticleHeader from '../article-header';
-import Screenshots from '../screenshots';
+import ProductList from '../product-list';
+import RespImageCover from '../resp-image-cover';
+import Section from '../section';
 import Wysiwyg from '../wysiwyg';
 
 require('./_products.sass');
 
 function Products(props) {
-  var productsMap;
-  const {products} = props;
-  const compName = 'product';
+  var articleClass;
+  const {
+    title,
+    content,
+    products,
+    position,
+    image
+  } = props;
+  const compName = 'products'
 
-  if (!products)
-    return null;
-
-  productsMap = products.map((product, index) => {
-    var articleClass;
-
-    const {
-      title,
-      content,
-      actions,
-      boxed,
-      screenshots,
-    } = product;
-
-    articleClass = css.article + compName;
-    boxed && (articleClass += ' -boxed');
-
-    return (
-      <li key={product.id || index} className={css.item}>
-        <article className={articleClass}>
-          <ArticleHeader title={title} modifier={compName}/>
-          <Wysiwyg content={content}/>
-          <Actions actions={actions} modifier="cta"/>
-        </article>
-        <Screenshots screenshots={screenshots} modifier="home"/>
-      </li>
-    );
-  });
+  // Setup the positioning classes
+  articleClass = css.article + compName;
+  position && (articleClass += ' -' + position);
 
   return (
-    <ul className={css.list + compName}>{productsMap}</ul>
+    <Section compName={compName}>
+      <div className={articleClass}>
+        <ArticleHeader title={title} modifier={compName}/>
+        <Wysiwyg content={content}/>
+      </div>
+      <ProductList products={products}/>
+      <RespImageCover image={image} modifier={compName}/>
+    </Section>
   );
 }
 

@@ -23,6 +23,8 @@
 
 
 .article-recentpost
+  position: relative
+  z-index: $z--base
   display: flex
   background-color: $co--wt
 
@@ -43,13 +45,16 @@
       content: ' '
       display: block
 
-.avatar.-recentpost
-  width: 33%
+  &:not(.-large)
 
-  &::after
-    content: ' '
-    padding-top: 100%
-    display: block
+    > ._bgimg
+      position: static
+      width: 33%
+
+      &::after
+        content: ' '
+        padding-top: 100%
+        display: block
 
 .header-recentpost
   padding: $pd--l $pd--s

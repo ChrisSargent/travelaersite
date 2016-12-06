@@ -1,0 +1,27 @@
+@import _variables
+@import _mixins
+
+.list-product
+  +columns(2, $pd--xl)
+  margin-bottom: 350px
+
+  > .item
+    position: relative
+
+.article-product
+  +article-default
+
+  > .wysiwyg
+    +wysiwyg-default($fs: $fs--l)
+    color: $co--blue--md
+
+  > .footer-actions
+    padding-top: $pd--ml
+
+
+.header-product
+  +header-default
+
+  .title
+    font-size: $fs--xxh
+    color: $co--bk

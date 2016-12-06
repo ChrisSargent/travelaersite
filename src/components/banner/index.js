@@ -1,6 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
-import Image from '../image';
+import RespImage from '../resp-image';
 
 require('./_banner.sass');
 
@@ -12,7 +12,7 @@ function Banner(props) {
 
     return (
       <li key={index} className={css.item}>
-        <Image image={logo.logo_image} alt={logo.logo_name} srcVersion="medium" sizes="20vw"/>
+        <RespImage image={logo} srcVersion="medium" respSizes="20vw"/>
       </li>
     );
   });

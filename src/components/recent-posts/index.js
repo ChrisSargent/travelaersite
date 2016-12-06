@@ -8,7 +8,7 @@ import PostsStore from '../../stores/PostsStore';
 require('./_recent-posts.sass');
 
 import ArticleHeader from '../article-header';
-import ImageCover from '../image-cover';
+import RespImageCover from '../resp-image-cover';
 
 export default class RecentPosts extends Component {
   constructor(props) {
@@ -29,9 +29,7 @@ export default class RecentPosts extends Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState({
-      currPost: props.currPost
-    });
+    this.setState({currPost: props.currPost});
   }
 
   requestPosts() {
@@ -47,7 +45,6 @@ export default class RecentPosts extends Component {
       return null;
 
     const postsMap = posts.map((post) => {
-      console.log(post);
       var modifier,
         icon;
 
@@ -71,7 +68,7 @@ export default class RecentPosts extends Component {
         <li key={post.id} className={css.item}>
           <Link to={link}>
             <article className={css.article + modifier}>
-              <ImageCover image={post.t_featured_image} />
+              <RespImageCover image={post.t_featured_image} srcVersion="medium" respSizes="350px" alt={post.title}/>
               <ArticleHeader title={post.title} subtitle={dateString} icon={icon} modifier={modifier}/>
             </article>
           </Link>

@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 
 import SVG from '../svg';
-import ImageCover from '../image-cover';
+import RespImageCover from '../resp-image-cover';
 import Wysiwyg from '../wysiwyg';
 
 require('./_hero.sass');
@@ -42,7 +42,7 @@ function Hero(props) {
         <Wysiwyg content={content} size={paragraphWidth}/>
         <SVG type={contentImage}/>
       </div>
-      <ImageCover image={image} wait={waitForHeroLoad} />
+      <RespImageCover image={image} wait={waitForHeroLoad} />
     </section>
   );
 };

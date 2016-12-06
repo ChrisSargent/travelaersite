@@ -5,7 +5,7 @@ import css from '../../lib/css'
 import PostsStore from '../../stores/PostsStore';
 
 // Components
-import ImageCover from '../../components/image-cover';
+import RespImageCover from '../../components/resp-image-cover';
 import Post from '../../components/post';
 import RecentPosts from '../../components/recent-posts';
 
@@ -54,7 +54,7 @@ export default class SinglePost extends Component {
     return (
       <main id={post.slug} className={post.slug}>
         <section className={css.section + 'hero'}>
-          <ImageCover image={post.t_featured_image} />
+          <RespImageCover image={post.t_featured_image} />
         </section>
         <section className={css.section + compName}>
           <Post post={post}/>

@@ -25,6 +25,7 @@ module.exports = {
   label: 'label',
   wrap: 'wrap',
   icon: 'i',
+  avatar: 'avatar',
 
   // Modifiers
   loading: ' -loading',

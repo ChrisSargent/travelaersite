@@ -10,7 +10,7 @@ import Hero from '../../components/hero';
 import ImageBanner from '../../components/image-banner';
 import Mosaic from '../../components/mosaic';
 import ProductModules from '../../components/product-modules';
-import Section from '../../components/section';
+import Products from '../../components/products';
 import Team from '../../components/team';
 
 export default class Page extends Component {
@@ -64,8 +64,8 @@ export default class Page extends Component {
           case 'mosaic':
             return <Mosaic key={index} {...block}/>;
 
-          case 'section':
-            return <Section key={index} {...block}/>;
+          case 'products':
+            return <Products key={index} {...block}/>;
 
           case 'team':
             return <Team key={index} {...block}/>;

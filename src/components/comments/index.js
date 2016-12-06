@@ -4,14 +4,21 @@ import dateFormat from '../../lib/date'
 
 import Actions from '../actions';
 import ArticleHeader from '../article-header';
-import ImageCover from '../image-cover';
+import RespImageCover from '../resp-image-cover';
 import CommentForm from '../comment-form';
 import Wysiwyg from '../wysiwyg';
 
 require('./_comments.sass');
 
 function Comment(props) {
-  const {comment_ID, comment_author, comment_content, comment_date_gmt, comment_post_ID} = props.comment;
+  const {
+    comment_ID,
+    comment_author,
+    comment_content,
+    comment_date_gmt,
+    comment_post_ID,
+    comment_author_avatar
+  } = props.comment;
   const compName = 'comment';
   const {ui} = props;
   const dateString = dateFormat(comment_date_gmt, true);
@@ -25,12 +32,11 @@ function Comment(props) {
 
   return (
     <div className={css.article + compName}>
-      <ImageCover avatar="true" image="commentAtatar" alt={comment_author}/>
+      <RespImageCover className={css.avatar} image={comment_author_avatar} alt={comment_author}/>
       <div className={css.content + compName}>
         <ArticleHeader title={comment_author} subtitle={dateString} modifier={compName}/>
-        <Wysiwyg content={comment_content} />
-        <Actions actions={actions} modifier="clear"/>
-        {ui.focusedComment === comment_ID && <CommentForm parent={comment_ID} post={comment_post_ID} closeClick={ui.replyClick}/>}
+        <Wysiwyg content={comment_content}/>
+        <Actions actions={actions} modifier="clear"/> {ui.focusedComment === comment_ID && <CommentForm parent={comment_ID} post={comment_post_ID} closeClick={ui.replyClick}/>}
       </div>
     </div>
   );
@@ -42,8 +48,7 @@ function CommentList(props) {
   const commentsMap = comments.map((comment) => {
     return (
       <li key={comment.comment_ID} className={css.item}>
-        <Comment comment={comment} ui={ui}/>
-        {comment.comment_replies && <CommentList comments={comment.comment_replies} ui={ui}/>}
+        <Comment comment={comment} ui={ui}/> {comment.comment_replies && <CommentList comments={comment.comment_replies} ui={ui}/>}
       </li>
     );
   });
@@ -90,7 +95,7 @@ export default class CommentBlock extends Component {
 
     return (
       <section className={css.section + compName}>
-        <h1 className={css.title}>{titleText} to "{title}"</h1>
+        <h1 className={css.title}>{titleText} to &quot;{title}&quot;</h1>
         {total > 0 && <CommentList comments={comments} ui={ui}/>}
         {!ui.focusedComment && <CommentForm post={post}/>}
       </section>
