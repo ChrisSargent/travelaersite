@@ -10,7 +10,8 @@
   justify-content: center
   width: 100vw
   height: 100vh
-  transition: opacity $tr--xs, visibility $tr--xs
+  transition: opacity $tr--m, visibility $tr--m
+  // transition-delay: 250ms
   pointer-events: none
   opacity: 0
   background-color: $co--blue--md
@@ -19,7 +20,7 @@
   &.-loading
     visibility: visible
     transition: none
-    opacity: 0.8
+    opacity: 1
 
   > .i
     width: 100px

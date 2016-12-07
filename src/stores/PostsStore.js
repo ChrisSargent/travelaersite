@@ -42,6 +42,7 @@ class PostsStore extends EventEmitter {
         this.cache[post.slug] = post;
       }
     }
+    console.log(this.cache);
   }
 
   handleActions(action) {
@@ -65,7 +66,6 @@ class PostsStore extends EventEmitter {
         setTimeout(function() {
           self.emit('change');
         });
-        // this.emit('change');
         break;
 
       default:
