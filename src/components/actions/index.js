@@ -16,7 +16,7 @@ function Actions(props) {
       var url;
 
       action.linkTo && action.linkTo.indexOf('http') >= 0
-        ? url = action.linkTo.replace(/^.*\/\/[^\/]+/, '').replace('/wordpress', '')
+        ? url = action.linkTo.replace(/^.*\/\/[^/]+/, '').replace('/wordpress', '')
         : url = action.linkTo;
 
       if(action.onClick) {

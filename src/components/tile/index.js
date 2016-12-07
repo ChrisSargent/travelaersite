@@ -19,7 +19,7 @@ function MosaicTile(props) {
 
   switch (type) {
     case 'instagram':
-      mediaLink = props.acf.link.split('?')[0] + 'media/?size=l';
+      mediaLink = props.acf.link.split('?')[0] + 'media?size=l';
       liStyle = {
         backgroundImage: 'url(' + mediaLink + ')'
       }

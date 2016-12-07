@@ -6,9 +6,9 @@ import dispatcher from '../dispatcher';
 */
 
 export function loading(id) {
-  dispatcher.dispatch({type: 'LOADING', id: 'loading' + id});
+  dispatcher.dispatch({loading: true, id: 'loading' + id});
 }
 
 export function finished(id) {
-  dispatcher.dispatch({type: 'FINISHED_LOADING', id: 'loading' + id});
+  dispatcher.dispatch({loading: false, id: 'loading' + id});
 }

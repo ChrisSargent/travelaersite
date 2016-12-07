@@ -81,7 +81,7 @@ function pp($a)
     echo '<pre style="background-color:white;">'.print_r($a, 1).'</pre>';
 }
 
-function write_log($log)
+function wlog($log)
 {
     if (is_array($log) || is_object($log)) {
         error_log(print_r($log, true));

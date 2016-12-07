@@ -27,15 +27,15 @@ class LoaderStore extends EventEmitter {
   }
 
   handleActions(action) {
-    switch (action.type) {
-      case 'LOADING':
+    switch (action.loading) {
+      case true:
         // console.log('LoaderStore | handleActions | Loading');
         this.addToLoadingArray(action.id);
         this.emit('change');
         break;
 
-      case 'FINISHED_LOADING':
-        // console.log('LoaderStore | handleActions | Finished');
+      case false:
+        // console.log('LoaderStore | handleActions | Not Loading');
         this.removeFromLoadingArray(action.id);
         this.emit('change');
         break;
