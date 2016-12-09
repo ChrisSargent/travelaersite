@@ -27,12 +27,12 @@ class NavStore extends EventEmitter {
   handleActions(action) {
     switch (action.type) {
       case 'FETCH_MENU':
-        console.log('NavStore | handleActions | Fetch Menu');
+        // console.log('NavStore | handleActions | Fetch Menu');
         // this.emit('change');
         break;
 
       case 'RECEIVE_MENU':
-        console.log('NavStore | handleActions | Receive Menu');
+        // console.log('NavStore | handleActions | Receive Menu');
         this.menu = action.menu;
         this.updateCache(action.location);
         this.emit('change');
