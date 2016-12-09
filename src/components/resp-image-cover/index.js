@@ -73,7 +73,7 @@ export default class ImageCover extends Component {
 
     return (
       <div className={tagClass} style={bgSrc}>
-        <RespImage {...this.props} className='' refCb={refCb} onLoadCb={this.handleLoad}/>
+        <RespImage {...this.props} refCb={refCb} onLoadCb={this.handleLoad}/>
       </div>
     );
   }

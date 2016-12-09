@@ -10,11 +10,11 @@ module.exports = {
   form: 'form-',
   link: 'link-',
   sidebar: 'sidebar-',
-  image: 'image-',
   main: 'main-',
   toggle: 'toggle-',
 
   // Elements
+  image: 'image',
   container: 'container',
   default: 'default',
   title: 'title',

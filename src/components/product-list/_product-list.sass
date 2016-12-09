@@ -3,7 +3,6 @@
 
 .list-product
   +columns(2, $pd--xl)
-  margin-bottom: 350px
 
   > .item
     position: relative
@@ -31,6 +30,12 @@
     color: $co--bk
 
 @media screen and (min-width: $bp--mn)
+  .list-product
+    margin-bottom: 350px
+
+    > .item + .item
+      padding-top: 0
+
   .header-product
 
     .title

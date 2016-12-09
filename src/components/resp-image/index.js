@@ -1,4 +1,5 @@
 import React from 'react';
+import css from '../../lib/css';
 
 require('./_image.sass');
 
@@ -8,7 +9,7 @@ function RespImage(props) {
     srcsetString,
     srcImage;
 
-  const {image, alt, srcVersion, className, onLoadCb, refCb} = props;
+  const {image, alt, srcVersion, onLoadCb, refCb} = props;
 
   if (!image)
     return null;
@@ -48,7 +49,7 @@ function RespImage(props) {
       alt={srcImage.alt}
       srcSet={srcsetString}
       sizes={respSizes}
-      className={className}
+      className={css.image}
       onLoad={onLoadCb}
       ref={refCb}
       />
