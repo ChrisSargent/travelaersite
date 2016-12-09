@@ -4,13 +4,13 @@ import dispatcher from '../dispatcher';
 export function fetchPage(slug) {
   const params = {
     slug: slug,
-    // fields: 'acf,slug'
+    fields: 'acf,slug'
   }
   dispatcher.dispatch({type: 'FETCH_PAGE', id: 'fetchPage', loading: true});
 
   axios.get('/wp/v2/pages', {params}).then(function(response) {
     dispatcher.dispatch({type: 'RECEIVE_PAGE', page: response.data[0], id: 'fetchPage', loading: false});
-    console.log(response.data);
+    // console.log(response.data);
   }).catch(function(error) {
     console.log(error);
   });

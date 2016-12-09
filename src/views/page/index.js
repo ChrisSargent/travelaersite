@@ -56,7 +56,7 @@ export default class Page extends Component {
           return <Banner key={index} {...block}/>;
 
         case 'mosaic':
-          return <Mosaic key={index} {...block}/>;
+          return <Mosaic key={index} tiles={block.tiles}/>;
 
         case 'products':
           return <Products key={index} {...block}/>;

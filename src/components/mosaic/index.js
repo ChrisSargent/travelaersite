@@ -1,50 +1,28 @@
-import React, {Component} from 'react';
+import React from 'react';
 import css from '../../lib/css';
 
-// Stores & Actions
-import MosaicStore from '../../stores/MosaicStore';
 import Tile from '../tile';
 
 require('./_mosaic.sass');
 
-export default class Mosaic extends Component {
-  constructor() {
-    super();
-    this.requestMosaic = this.requestMosaic.bind(this);
-    this.state = {};
-  }
+function Mosaic(props) {
 
-  componentWillMount() {
-    this.requestMosaic();
-    MosaicStore.on('change', this.requestMosaic);
-  }
+  const {tiles} = props;
+  if (!tiles)
+    return null;
 
-  componentWillUnmount() {
-    MosaicStore.removeListener('change', this.requestMosaic);
-  }
+  const compName = 'mosaic';
 
-  requestMosaic() {
-    const mosaic = MosaicStore.getMosaic();
-    mosaic && (this.setState({mosaic: mosaic}));
-  }
-
-  render() {
-    const {mosaic} = this.state;
-    if (!mosaic)
-      return null;
-
-    const compName = 'mosaic';
-
-    const mosaicMap = mosaic.map((tile) => {
-      return (<Tile key={tile.id} {...tile}/>);
-    });
-
-    return (
-      <section className={css.section + compName}>
-        <ul className={css.list + compName}>
-          {mosaicMap}
-        </ul>
-      </section>
-    );
-  }
+  const tileMap = tiles.map((tile) => {
+    return (<Tile key={tile.id} {...tile}/>);
+  });
+  return (
+    <section className={css.section + compName}>
+      <ul className={css.list + compName}>
+        {tileMap}
+      </ul>
+    </section>
+  );
 }
+
+export default Mosaic;
