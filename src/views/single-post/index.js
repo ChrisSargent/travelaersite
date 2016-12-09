@@ -19,9 +19,7 @@ export default class SinglePost extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      post: PostsStore.getPost(this.props.params.slug)
-    });
+    this.requestPost();
     PostsStore.on('change', this.requestPost);
   }
 
@@ -29,18 +27,16 @@ export default class SinglePost extends Component {
     PostsStore.removeListener('change', this.requestPost);
   }
 
-  componentWillReceiveProps(props) {
-    if (this.props.params.slug !== props.params.slug) {
-      this.setState({
-        post: PostsStore.getPost(props.params.slug)
-      });
+  componentWillReceiveProps(newProps) {
+    if (this.props.params.slug !== newProps.params.slug) {
+      const post = PostsStore.getPost(newProps.params.slug);
+      post && (this.setState({post: post}));
     }
   }
 
-  requestPost(slug) {
-    this.setState({
-      post: PostsStore.getPost(this.props.params.slug)
-    });
+  requestPost() {
+    const post = PostsStore.getPost(this.props.params.slug);
+    post && (this.setState({post: post}));
   }
 
   render() {
@@ -54,7 +50,7 @@ export default class SinglePost extends Component {
     return (
       <main id={post.slug} className={post.slug}>
         <section className={css.section + 'hero'}>
-          <RespImageCover image={post.t_featured_image} />
+          <RespImageCover image={post.t_featured_image}/>
         </section>
         <section className={css.section + compName}>
           <Post post={post}/>

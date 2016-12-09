@@ -10,9 +10,18 @@
   background-color: $co--blue-grey--tt
   line-height: 1.334rem
 
+  > .container
+    +cont--xl
+
   &::after
     +angled($co--blue-grey--tt, top)
 
 .content-sitefooter
-  +cont--xl
   +columns(auto, $pd--s)
+
+  > .item
+    margin-bottom: $pd--xl
+
+@media screen and (min-width: $bp--mn)
+  .content-sitefooter
+    flex-direction: row

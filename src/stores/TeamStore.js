@@ -1,28 +1,34 @@
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events';
 
+import * as TeamActions from '../actions/TeamActions';
+
 class TeamStore extends EventEmitter {
   constructor() {
     super();
     this.team = [];
-    this.fetchingTeam = false;
+    this.teamCache = [];
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
   getTeam() {
-    return this.team;
+    if (this.teamCache.length > 0) {
+      return this.teamCache;
+    } else {
+      TeamActions.fetchTeam();
+      return false;
+    }
   }
 
-  getLoading() {
-    return this.fetchingTeam;
+  updateCache() {
+    this.teamCache = this.team;
   }
 
   handleActions(action) {
     switch (action.type) {
       case 'FETCH_TEAM':
         // console.log('TeamStore | handleActions | Fetch Team');
-        this.fetchingTeam = true;
-        this.emit('change');
+        // this.emit('change');
         break;
 
       case 'RECEIVE_TEAM':
@@ -31,7 +37,7 @@ class TeamStore extends EventEmitter {
         this.team.sort(function(a, b) {
           return parseFloat(a.menu_order) - parseFloat(b.menu_order);
         });
-        this.fetchingTeam = false;
+        this.updateCache();
         this.emit('change');
         break;
 

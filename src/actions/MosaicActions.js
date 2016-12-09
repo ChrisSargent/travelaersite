@@ -5,7 +5,7 @@ export function fetchMosaic() {
   const params = {
     fields: 'id,acf'
   }
-  dispatcher.dispatch({type: 'FETCH_MOSAIC', id: 'fetchMosaic', loading: false});
+  dispatcher.dispatch({type: 'FETCH_MOSAIC', id: 'fetchMosaic', loading: true});
   axios.get('/wp/v2/tiles', {params}).then(function(response) {
     dispatcher.dispatch({type: 'RECEIVE_MOSAIC', mosaic: response.data, id: 'fetchMosaic', loading: false});
     // console.log(response.data);

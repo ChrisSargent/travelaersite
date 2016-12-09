@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import css from '../../lib/css';
 
 // Stores & Actions
-import * as MosaicActions from '../../actions/MosaicActions';
 import MosaicStore from '../../stores/MosaicStore';
 import Tile from '../tile';
 
@@ -13,13 +12,11 @@ export default class Mosaic extends Component {
     super();
     this.requestMosaic = this.requestMosaic.bind(this);
     this.shuffle = this.shuffle.bind(this);
-    this.state = {
-      mosaic: MosaicStore.getMosaic()
-    };
+    this.state = {};
   }
 
   componentWillMount() {
-    MosaicActions.fetchMosaic();
+    this.requestMosaic();
     MosaicStore.on('change', this.requestMosaic);
   }
 
@@ -29,7 +26,7 @@ export default class Mosaic extends Component {
 
   requestMosaic() {
     const mosaic = MosaicStore.getMosaic();
-    this.setState({mosaic: this.shuffle(mosaic)});
+    mosaic && (this.setState({mosaic: this.shuffle(mosaic)}));
   }
 
   shuffle(array) {
@@ -55,6 +52,9 @@ export default class Mosaic extends Component {
 
   render() {
     const {mosaic} = this.state;
+    if (!mosaic)
+      return null;
+
     const compName = 'mosaic';
 
     const mosaicMap = mosaic.map((tile) => {

@@ -24,8 +24,8 @@ export default class ImageCover extends Component {
     this.handleRef = this.handleRef.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    !nextProps.image && this.setState({bgSrc: null});
+  componentWillReceiveProps(newProps) {
+    !newProps.image && this.setState({bgSrc: null});
   }
 
   handleRef(el) {

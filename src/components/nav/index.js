@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import css from '../../lib/css';
 import globals from '../../lib/globals'
 
-import * as NavActions from '../../actions/NavActions';
+import MenuToggle from '../menu-toggle';
 import NavStore from '../../stores/NavStore';
 import {IndexLink, Link} from 'react-router';
 
@@ -42,35 +42,35 @@ function MenuItem(props) {
 
 function Menu(props) {
   const {items} = props;
+
+  if (!items)
+    return null;
+
   var primaryNav;
 
-  if (items) {
-    items.base === globals.homeUrl
-      ? primaryNav = true
-      : primaryNav = false;
+  items.base === globals.homeUrl
+    ? primaryNav = true
+    : primaryNav = false;
 
-    const itemsMap = items.map((item) => {
-      item.base = items.base;
-      return (<MenuItem key={item.ID} item={item}/>);
-    });
+  const itemsMap = items.map((item) => {
+    item.base = items.base;
+    return (<MenuItem key={item.ID} item={item}/>);
+  });
 
-    if (primaryNav) {
-      const compName = 'nav';
-      return (
-        <ul className={css.list + compName}>{itemsMap}</ul>
-      );
-    } else {
-      const compName = 'subnav';
-      return (
-        <div className={css.block + compName}>
-          <div className={css.container}>
-            <ul className={css.list + compName}>{itemsMap}</ul>
-          </div>
-        </div>
-      );
-    }
+  if (primaryNav) {
+    const compName = 'nav';
+    return (
+      <ul className={css.list + compName}>{itemsMap}</ul>
+    );
   } else {
-    return null;
+    const compName = 'subnav';
+    return (
+      <div className={css.block + compName}>
+        <div className={css.container}>
+          <ul className={css.list + compName}>{itemsMap}</ul>
+        </div>
+      </div>
+    );
   }
 }
 
@@ -79,14 +79,11 @@ export default class NavBlock extends Component {
   constructor() {
     super();
     this.requestMenu = this.requestMenu.bind(this); // This just ensures we're always binding properly to this.requestMenu
-    this.state = {
-      menu: NavStore.getMenu()
-    };
+    this.state = {};
   }
 
   componentWillMount() {
-    const {location} = this.props;
-    NavActions.fetchMenu(location);
+    this.requestMenu();
     NavStore.on('change', this.requestMenu);
   }
 
@@ -95,19 +92,22 @@ export default class NavBlock extends Component {
   }
 
   requestMenu() {
-    this.setState({menu: NavStore.getMenu()});
+    const menu = NavStore.getMenu(this.props.location);
+    menu && (this.setState({menu: menu}));
   }
 
   render() {
-    if (this.state.menu.length === 0)
+    const {menu} = this.state;
+    if (!menu)
       return null;
 
-    const {menu} = this.state;
     const compName = 'nav';
     menu.base = globals.homeUrl;
 
     return (
       <nav className={css.block + compName}>
+        <input type="checkbox" id={css.toggle + compName}/>
+        <MenuToggle controls={css.toggle + compName}/>
         <Menu items={menu}/>
       </nav>
     );

@@ -12,6 +12,7 @@ module.exports = {
   sidebar: 'sidebar-',
   image: 'image-',
   main: 'main-',
+  toggle: 'toggle-',
 
   // Elements
   container: 'container',

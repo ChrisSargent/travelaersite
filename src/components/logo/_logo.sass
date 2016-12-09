@@ -2,10 +2,14 @@
 @import _mixins
 
 .brandlogo
-  width: $logo-w
+  width: 131px
   display: block
   flex-shrink: 1
 
   > svg
     width: 100%
     height: auto
+
+@media screen and (min-width: $bp--nv)
+  .brandlogo
+    width: 190px

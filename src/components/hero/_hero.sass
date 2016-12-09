@@ -17,7 +17,7 @@
 
   > .title
     +heading-spaced
-    font-size: $fs--xl
+    font-size: $fs--m
     line-height: 1.75
     width: 100%
     margin-bottom: 1.05em
@@ -39,10 +39,22 @@
       margin: 0 auto
 
   > .wysiwyg
-    +wysiwyg-default($fs: $fs--l)
+    +wysiwyg-default($fs: $fs--m)
 
   &.-fullscreen
     min-height: 100vh
 
   &.-fullwidth
     max-width: $sz--xl
+
+
+@media screen and (min-width: $bp--mn)
+  .content-hero
+    > .title
+      font-size: $fs--xl
+
+      strong
+        font-size: $fs--xj
+
+    > .wysiwyg
+      font-size: $fs--l

@@ -16,7 +16,7 @@ export default class Posts extends Component {
   }
 
   componentWillMount() {
-    this.setState({posts: PostsStore.getPosts()});
+    this.requestPosts();
     PostsStore.on('change', this.requestPosts);
   }
 
@@ -25,16 +25,17 @@ export default class Posts extends Component {
   }
 
   requestPosts() {
-    this.setState({posts: PostsStore.getPosts()});
+    const posts = PostsStore.getPosts();
+    posts && (this.setState({posts: posts}));
   }
 
   render() {
     const {posts} = this.state;
-    const compName = 'posts';
 
-    if (!posts) {
+    if (!posts)
       return null;
-    }
+
+    const compName = 'posts';
 
     const postsMap = posts.map((post) => {
       const link = globals.blogUrl + '/' + post.slug;

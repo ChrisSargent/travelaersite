@@ -1,35 +1,40 @@
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events';
 
+import * as NavActions from '../actions/NavActions';
+
 class NavStore extends EventEmitter {
   constructor() {
     super();
     this.menu = [];
-    this.fetchingMenu = false;
+    this.menuCache = [];
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
-  getMenu() {
-    // console.log('NavStore | getMenu');
-    return this.menu;
+  getMenu(location) {
+    if (this.menuCache[location]) {
+      return this.menuCache[location];
+    } else {
+      NavActions.fetchMenu(location);
+      return false;
+    }
   }
 
-  getLoading() {
-    return this.fetchingMenu;
+  updateCache(location) {
+    this.menuCache[location] = this.menu;
   }
 
   handleActions(action) {
     switch (action.type) {
       case 'FETCH_MENU':
-        // console.log('NavStore | handleActions | Fetch Menu');
-        this.fetchingMenu = true;
-        this.emit('change');
+        console.log('NavStore | handleActions | Fetch Menu');
+        // this.emit('change');
         break;
 
       case 'RECEIVE_MENU':
-        // console.log('NavStore | handleActions | Receive Menu');
+        console.log('NavStore | handleActions | Receive Menu');
         this.menu = action.menu;
-        this.fetchingMenu = false;
+        this.updateCache(action.location);
         this.emit('change');
         break;
 

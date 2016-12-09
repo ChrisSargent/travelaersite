@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
 
-// Stores & Actions
-import * as TeamActions from '../../actions/TeamActions';
+// Stores
 import TeamStore from '../../stores/TeamStore';
 
 // Components
@@ -14,13 +13,11 @@ export default class Team extends Component {
   constructor() {
     super();
     this.requestTeam = this.requestTeam.bind(this);
-    this.state = {
-      team: TeamStore.getTeam()
-    };
+    this.state = {};
   }
 
   componentWillMount() {
-    TeamActions.fetchTeam();
+    this.requestTeam();
     TeamStore.on('change', this.requestTeam);
   }
 
@@ -29,10 +26,14 @@ export default class Team extends Component {
   }
 
   requestTeam() {
-    this.setState({team: TeamStore.getTeam()});
+    const team = TeamStore.getTeam();
+    team && (this.setState({team: team}));
   }
 
   render() {
+    if (!this.state.team)
+      return null
+
     const {team} = this.state;
     const compName = 'team';
 

@@ -9,29 +9,26 @@ class PostsStore extends EventEmitter {
     this.posts = [];
     this.cache = [];
     this.gotAllPosts = false;
-    this.fetchingPosts = false;
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
   getPosts() {
     if (this.gotAllPosts) {
       return this.posts;
+    } else {
+      PostsActions.fetchPosts();
+      return false;
     }
-    // Else do a WP call for the posts
-    PostsActions.fetchPosts();
   }
 
   getPost(slug) {
     // If looking for a single post, check the cache and return the post from the cache
     if (this.cache[slug]) {
       return this.cache[slug];
+    } else {
+      PostsActions.fetchPost(slug);
+      return false;
     }
-    // Else do a WP call for the post
-    PostsActions.fetchPost(slug);
-  }
-
-  getLoading() {
-    return this.fetchingPosts;
   }
 
   updateCache() {
@@ -42,21 +39,18 @@ class PostsStore extends EventEmitter {
         this.cache[post.slug] = post;
       }
     }
-    console.log(this.cache);
   }
 
   handleActions(action) {
     switch (action.type) {
       case 'FETCH_POSTS':
         // console.log('PostsStore | handleActions | Fetch Posts');
-        this.fetchingPosts = true;
-        this.emit('change');
+        // this.emit('change');
         break;
 
       case 'RECEIVE_POSTS':
         // console.log('PostsStore | handleActions | Receive Posts');
         var self = this;
-        this.fetchingPosts = false;
         action.allPosts && (this.gotAllPosts = true);
         this.posts = action.posts;
         this.updateCache();

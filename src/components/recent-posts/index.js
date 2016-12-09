@@ -28,8 +28,8 @@ export default class RecentPosts extends Component {
     PostsStore.removeListener('change', this.requestPosts);
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({currPost: props.currPost});
+  componentWillReceiveProps(newProps) {
+    this.setState({currPost: newProps.currPost});
   }
 
   requestPosts() {

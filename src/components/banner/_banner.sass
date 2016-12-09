@@ -8,8 +8,10 @@
   &::after
     +angled($co--green, both)
 
+  > .container
+    +cont--xl
+
 .content-banner
-  +cont--xl
   +block-pad
   text-align: center
 
@@ -20,12 +22,23 @@
 
 .list-banner
   +inline-children-item
+  justify-content: center
+  flex-wrap: wrap
 
   > .item
+    width: 50%
     position: relative
-    box-sizing: content-box
 
-    > img
+    img
+      width: 100%
+      height: auto
       max-width: 200px
       max-height: 50px
       margin: 0 auto
+
+@media screen and (min-width: $bp--mn)
+  .list-banner
+    flex-wrap: nowrap
+
+    > .item
+      box-sizing: content-box

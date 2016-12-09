@@ -9,7 +9,7 @@ export function fetchPage(slug) {
   dispatcher.dispatch({type: 'FETCH_PAGE', id: 'fetchPage', loading: true});
 
   axios.get('/wp/v2/pages', {params}).then(function(response) {
-    dispatcher.dispatch({type: 'RECEIVE_PAGE', pages: response.data, id: 'fetchPage', loading: false});
+    dispatcher.dispatch({type: 'RECEIVE_PAGE', page: response.data[0], id: 'fetchPage', loading: false});
     // console.log(response.data);
   }).catch(function(error) {
     console.log(error);

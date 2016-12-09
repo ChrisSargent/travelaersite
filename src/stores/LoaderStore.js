@@ -42,7 +42,7 @@ class LoaderStore extends EventEmitter {
 
       default:
     }
-    console.log(this.loadingArray);
+    // console.log(this.loadingArray);
   }
 }
 

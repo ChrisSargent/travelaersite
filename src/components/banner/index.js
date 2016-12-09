@@ -19,11 +19,13 @@ function Banner(props) {
 
   return (
     <section className={css.section + compName}>
-      <div className={css.content + compName}>
-        <h1 className={css.title}>{title}</h1>
-        <ul className={css.list + compName}>
-          {logoMap}
-        </ul>
+      <div className={css.container}>
+        <div className={css.content + compName}>
+          <h1 className={css.title}>{title}</h1>
+          <ul className={css.list + compName}>
+            {logoMap}
+          </ul>
+        </div>
       </div>
     </section>
   );

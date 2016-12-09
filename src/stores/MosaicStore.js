@@ -1,35 +1,40 @@
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events';
 
+import * as MosaicActions from '../actions/MosaicActions';
+
 class MosaicStore extends EventEmitter {
   constructor() {
     super();
     this.mosaic = [];
-    this.fetchingMosaic = false;
+    this.mosaicCache = [];
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
   getMosaic() {
-    // console.log('MosaicStore | getMosaic');
-    return this.mosaic;
+    if (this.mosaicCache.length > 0) {
+      return this.mosaicCache;
+    } else {
+      MosaicActions.fetchMosaic();
+      return false;
+    }
   }
 
-  getLoading() {
-    return this.fetchingMosaic;
+  updateCache() {
+    this.mosaicCache = this.mosaic;
   }
 
   handleActions(action) {
     switch (action.type) {
       case 'FETCH_MOSAIC':
         // console.log('MosaicStore | handleActions | Fetch Mosaic');
-        this.fetchingMosaic = true;
-        this.emit('change');
+        // this.emit('change');
         break;
 
       case 'RECEIVE_MOSAIC':
         // console.log('MosaicStore | handleActions | Receive Mosaic');
         this.mosaic = action.mosaic;
-        this.fetchingMosaic = false;
+        this.updateCache();
         this.emit('change');
         break;
 

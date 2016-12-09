@@ -3,7 +3,6 @@
 
 .vcard
   font-size: $fs--s
-  margin-bottom: $pd--xl
   white-space: nowrap
 
   .fn:not(org)
@@ -22,9 +21,13 @@
     color: $co--blue--md
     text-decoration: none
 
+  > .column + .column
+    padding-top: $pd--xxs
+
 @media (min-width: $bp--mn)
   .vcard
     display: flex
 
     > .column + .column
+      padding-top: 0
       padding-left: $pd--l

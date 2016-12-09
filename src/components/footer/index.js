@@ -38,31 +38,33 @@ export default class Footer extends Component {
 
     return (
       <footer className={css.footer + compName}>
-        <div className={css.content + compName}>
-          <div className={css.item}>
-            <Logo />
+        <div className={css.container}>
+          <div className={css.content + compName}>
+            <div className={css.item}>
+              <Logo />
+            </div>
+            <div className={css.item}>
+              <Vcard
+                coRegNumber={props.coRegNumber}
+                coTaxNumber={props.coTaxNumber}
+                contactEmail={props.contactEmail}
+                contactFax={props.contactFax}
+                contactPerson={props.contactPerson}
+                contactTelephone={props.contactTelephone}
+                country={props.country}
+                locality={props.locality}
+                postalCode={props.postalCode}
+                region={props.region}
+                streetAddress1={props.streetAddress1}
+                streetAddress2={props.streetAddress2}
+                />
+            </div>
+            <div className={css.item}>
+              {props.socialNetworks && <Social socialNetworks={props.socialNetworks} />}
+              {props.externalLinks && <Links externalLinks={props.externalLinks} />}
+            </div>
           </div>
-          <div className={css.item}>
-            <Vcard
-              coRegNumber={props.coRegNumber}
-              coTaxNumber={props.coTaxNumber}
-              contactEmail={props.contactEmail}
-              contactFax={props.contactFax}
-              contactPerson={props.contactPerson}
-              contactTelephone={props.contactTelephone}
-              country={props.country}
-              locality={props.locality}
-              postalCode={props.postalCode}
-              region={props.region}
-              streetAddress1={props.streetAddress1}
-              streetAddress2={props.streetAddress2}
-              />
-            <Legal legalName={props.legalName} credit={footerAppend} />
-          </div>
-          <div className={css.item}>
-            {props.socialNetworks && <Social socialNetworks={props.socialNetworks} />}
-            {props.externalLinks && <Links externalLinks={props.externalLinks} />}
-          </div>
+          <Legal legalName={props.legalName} credit={footerAppend} />
         </div>
       </footer>
     );

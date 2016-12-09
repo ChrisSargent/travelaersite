@@ -8,11 +8,15 @@
   > .item
     position: relative
 
+    + .item
+      padding-top: $pd--l
+
 .article-product
   +article-default
+  background-color: transparentize($co--wt, 0.15)
 
   > .wysiwyg
-    +wysiwyg-default($fs: $fs--l)
+    +wysiwyg-default($fs: $fs--mms)
     color: $co--blue--md
 
   > .footer-actions
@@ -23,5 +27,19 @@
   +header-default
 
   .title
-    font-size: $fs--xxh
+    font-size: $fs--ml
     color: $co--bk
+
+@media screen and (min-width: $bp--mn)
+  .header-product
+
+    .title
+      font-size: $fs--xxh
+
+  .article-product
+
+    &:not(.-boxed)
+      background-color: transparent
+
+    > .wysiwyg
+      font-size: $fs--l

@@ -20,18 +20,14 @@ export default class Page extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      page: PageStore.getPage(this.props.params.slug)
-    });
+    this.requestPage();
     PageStore.on('change', this.requestPage);
   }
 
-  componentWillReceiveProps(props) {
-    // If the requested slug doesn't match the current slug, fetch the new page which will trigger a new requestPage being fired by the call backs
-    if (this.props.params.slug !== props.params.slug) {
-      this.setState({
-        page: PageStore.getPage(props.params.slug)
-      });
+  componentWillReceiveProps(newProps) {
+    if (this.props.params.slug !== newProps.params.slug) {
+      const page = PageStore.getPage(newProps.params.slug);
+      page && (this.setState({page: page}));
     }
   }
 
@@ -40,16 +36,15 @@ export default class Page extends Component {
   }
 
   requestPage() {
-    this.setState({
-      page: PageStore.getPage(this.props.params.slug)
-    });
+    const page = PageStore.getPage(this.props.params.slug);
+    page && (this.setState({page: page}));
   }
 
   render() {
     const page = this.state.page;
-    if (!page.acf || !page.acf.contentBlocks || page.acf.contentBlocks.length <= 0)
-      // If we haven't got the page from the API yet, return as fast as possible
-      return false;
+
+    if (!page)
+      return null;
 
     // Get all the content blocks and map them to a variable
     const blocksMap = page.acf.contentBlocks.map((block, index) => {
@@ -78,10 +73,10 @@ export default class Page extends Component {
         default:
           return false;
       }
-    });
+    })
 
     return (
-      <main id={page.slug} className={page.slug}>
+      <main id={page.slug}>
         {blocksMap}
       </main>
     );

@@ -4,30 +4,30 @@
 .section-products
   $shadow: 60px
   +block-pad
+  background-color: $co--blue-grey--tt
   position: relative
   min-height: 100vh
   box-shadow: inset 0 $shadow / -0.9 $shadow $shadow / -1 #333967
+  z-index: $z--base
 
   > .container
     +cont--xl
 
 ._bgimg.-products
-  background-position: left bottom
+  // background-position: left bottom
   background-size: auto 90%
 
 .article-products
   +article-default
 
   > .wysiwyg
-    +wysiwyg-default($ff--base, $fs--h)
+    +wysiwyg-default($ff--base, $fs--mml)
     font-weight: 300
     line-height: $lh--ml
     color: $co--bk
 
   &.-pushright
-    left: 50%
-    width: 50%
-    padding-left: $pd--l + ($pd--xl / 2)
+    padding-left: 15%
 
 .header-products
   +header-default
@@ -36,3 +36,15 @@
     +heading-light
     +heading-spaced
     color: $co--green
+
+@media screen and (min-width: $bp--mn)
+  .article-products
+    > .wysiwyg
+      font-size: $fs--h
+
+    &.-pushright
+      left: 50%
+      width: 50%
+      padding-left: $pd--l + ($pd--xl / 2)
+
+  ._bgimg.-products

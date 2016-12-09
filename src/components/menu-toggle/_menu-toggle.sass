@@ -1,0 +1,70 @@
+@import _variables
+@import _mixins
+
+#toggle-nav
+  +sr-only
+
+.toggle-menu
+  position: relative
+  left: $pd--h--mb
+
+  .button
+    +input-reset($ff--base)
+    $size: 3px
+    $gap: 3px
+    $width: 20px
+    position: relative
+    display: block
+    width: $width
+    height: 100%
+    color: $co--blue-grey
+    background: none
+    pointer-events: none
+
+    .text
+      +sr-only
+
+    .bar
+      display: block
+      width: $width
+      height: $size
+      transition: all $tr--m
+      transform-origin: center
+      background-color: currentColor
+      margin: 0 auto
+      position: relative
+      border-radius: $size
+
+      &:nth-child(1)
+        top: $gap / -1
+        transform: rotate(0deg)
+
+      &:nth-child(2)
+        top: 0
+        transform: scale(1)
+
+      &:nth-child(3)
+        top: $gap
+        transform: rotate(0deg)
+
+
+#toggle-nav:checked ~ .toggle-menu
+  .bar
+    $width: 26px
+    $size: 3px
+    width: $width
+    &:nth-child(1)
+      top: $size
+      transform: rotate(405deg)
+
+    &:nth-child(2)
+      transform: scale(0)
+
+    &:nth-child(3)
+      top: $size / -1
+      transform: rotate(-405deg)
+
+@media screen and (min-width: $bp--nv)
+  #toggle-nav
+  .toggle-menu
+    display: none

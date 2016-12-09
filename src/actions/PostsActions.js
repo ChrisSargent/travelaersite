@@ -7,7 +7,7 @@ export function fetchPosts() {
   }
   dispatcher.dispatch({type: 'FETCH_POSTS', id: 'fetchPosts', loading: true});
   axios.get('/wp/v2/posts', {params}).then(function(response) {
-    console.log(response.data);
+    // console.log(response.data);
     dispatcher.dispatch({type: 'RECEIVE_POSTS', posts: response.data, allPosts: true, id: 'fetchPosts', loading: false});
   }).catch(function(error) {
     console.log(error);

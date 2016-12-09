@@ -3,15 +3,20 @@
 
 .header-siteheader
   +shadowborder
-  height: $ht-header--dt
   position: fixed
   z-index: $z--top
   top: 0
   left: 0
-  width: 100%
-  background: linear-gradient(to right, $co--wt 0%, $co--blue-grey--tt 100%)
+  width: 100vw
+  height: $ht-header--mb
+  background: linear-gradient(to right, $co--wt 0%, #e3e3ea 100%)
 
   > .container
     +cont--xl
     +inline-children-item(0,0)
     height: 100%
+
+@media screen and (min-width: $bp--nv)
+  .header-siteheader
+    height: $ht-header--dt
+    background: linear-gradient(to right, $co--wt 0%, $co--blue-grey--tt 100%)
