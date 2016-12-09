@@ -1,61 +1,33 @@
 @import _variables
 @import _mixins
 
-.block-tile
-  +bg-cover
+.content-tile
+  +stretch
+  font-size: 16px
+  padding: 1.25em
+  display: block
+  width: 100%
+  text-decoration: none
+  color: inherit
   line-height: $lh--m
-  position: relative
-  display: flex
-  height: 320px
-  padding: $pd--l
-  color: $co--wt
-  background-color: $co--blue-grey--dk
 
-  svg.i
+  > .i
     display: block
-    width: 1.667em
-    height: 1.667em
-    margin-bottom: $pd--s
+    width: 1.2em
+    height: 1.2em
+    margin-bottom: 0.5em
 
-  a
-    display: block
-    width: 100%
-    text-decoration: none
-    color: inherit
+  > .wysiwyg
+    font-weight: 700
 
-  &.-instagram
-    .content-tile
+    + footer
+      margin-top: 0.5em
+
+    .-instagram &
       +sr-only
 
-  &.-instagram,
-  &.-square
-    flex: 1 0 320px
-
-  &.-narrow
-    flex: 1 3 220px
-
-  &.-default
-    flex: 2 2 330px
-
-  &.-large
-    flex: 3 1 460px
-
-  &.-teal
-    background: $co--teal
-
-  &.-yellowgreen
-    background-color: $co--yelgreen--lt
-
-  &.-blue
-    background: $co--blue--lt
-
-.content-tile
-  font-size: $fs--lm
-  font-weight: 700
-  display: block
-
 .block-cite
-  font-size: $fs--m
+  font-size: 0.84em
 
   > .fn
     &::after
@@ -64,3 +36,7 @@
   > .co
     display: block
     color: $co--brightyellow
+
+@media screen and (min-width: $bp--mn)
+  .content-tile
+    font-size: 25px

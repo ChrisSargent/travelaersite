@@ -41,7 +41,7 @@ if ( ! class_exists( 'ACF_To_REST_API_Controller' ) ) {
 
 		protected function get_rest_base( $type ) {
 			global $wp_post_types;
-			
+
 			$default = apply_filters( 'acf/rest_api/default_rest_base', ! in_array( $type, array( 'post', 'page' ) ), $type );
 
 			if ( $default && isset( $wp_post_types[$type] ) && isset( $wp_post_types[$type]->rest_base ) ) {
@@ -58,11 +58,11 @@ if ( ! class_exists( 'ACF_To_REST_API_Controller' ) ) {
 		public function get_item_permissions_check( $request ) {
 			return apply_filters( 'acf/rest_api/item_permissions/get', true, $request, $this->type );
 		}
-		
+
 		public function rest_prepare( $response, $post, $request ) {
 			return $this->get_fields( $request, $response, $post );
 		}
-		
+
 		public function update_item_permissions_check( $request ) {
 			return apply_filters( 'acf/rest_api/item_permissions/update', current_user_can( 'edit_posts' ), $request, $this->type );
 		}
@@ -86,7 +86,7 @@ if ( ! class_exists( 'ACF_To_REST_API_Controller' ) ) {
 
 				return new WP_REST_Response( $this->get_fields( $request ), 200 );
 			}
-			
+
 			return new WP_Error( 'cant_update_item', __( 'Cannot update item', 'acf-to-rest-api' ), array( 'status' => 500 ) );
 		}
 
@@ -154,7 +154,7 @@ if ( ! class_exists( 'ACF_To_REST_API_Controller' ) ) {
 					$this->id = $object->term_id;
 				}
 			}
-			
+
 			$this->id = absint( $this->id );
 
 			return $this->id;
@@ -162,7 +162,7 @@ if ( ! class_exists( 'ACF_To_REST_API_Controller' ) ) {
 
 		protected function format_id( $object ) {
 			$this->get_id( $object );
-			
+
 			switch( $this->type ) {
 				case 'comment' :
 					$this->id = 'comment_' . $this->id;
@@ -182,7 +182,7 @@ if ( ! class_exists( 'ACF_To_REST_API_Controller' ) ) {
 					$this->id = 'options';
 					break;
 			}
-			
+
 			$this->id = apply_filters( 'acf/rest_api/id', $this->id );
 
 			return $this->id;
@@ -196,7 +196,7 @@ if ( ! class_exists( 'ACF_To_REST_API_Controller' ) ) {
 			if ( $request instanceof WP_REST_Request ) {
 				$field = $request->get_param( 'field' );
 			}
-			
+
 			if ( $swap ) {
 				$data = $response->get_data();
 			}
@@ -220,7 +220,7 @@ if ( ! class_exists( 'ACF_To_REST_API_Controller' ) ) {
 			} else {
 				$data['acf'] = array();
 			}
-			
+
 			if ( $swap ) {
 				$response->data = $data;
 				$data = $response;
@@ -237,7 +237,7 @@ if ( ! class_exists( 'ACF_To_REST_API_Controller' ) ) {
 			$fields     = array();
 			$fields_tmp = array();
 
-			if ( function_exists( 'acf_get_field_groups' ) && function_exists( 'acf_get_fields' ) && function_exists( 'acf_extract_var' ) ) {				
+			if ( function_exists( 'acf_get_field_groups' ) && function_exists( 'acf_get_fields' ) && function_exists( 'acf_extract_var' ) ) {
 				$field_groups = acf_get_field_groups( array( 'post_id' => $id ) );
 
 				if ( is_array( $field_groups ) && ! empty( $field_groups ) ) {

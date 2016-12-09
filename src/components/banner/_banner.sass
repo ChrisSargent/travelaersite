@@ -17,7 +17,7 @@
 
   > .title
     +heading-light
-    +header-default
+    +header-default($pd--ll)
     color: $co--wt
 
 .list-banner
@@ -30,10 +30,9 @@
     position: relative
 
     img
-      width: 100%
+      width: 80%
       height: auto
       max-width: 200px
-      max-height: 50px
       margin: 0 auto
 
 @media screen and (min-width: $bp--mn)
@@ -42,3 +41,8 @@
 
     > .item
       box-sizing: content-box
+
+      img
+        width: auto
+        height: auto
+        max-height: 50px

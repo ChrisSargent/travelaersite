@@ -7,6 +7,9 @@ function Wysiwyg(props) {
   const compName = 'wysiwyg';
   var {content} = props, wysClass;
 
+  if(!content)
+    return false;
+
   wysClass = compName;
   size && (wysClass += ' -' + size);
 

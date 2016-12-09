@@ -11,7 +11,6 @@ export default class Mosaic extends Component {
   constructor() {
     super();
     this.requestMosaic = this.requestMosaic.bind(this);
-    this.shuffle = this.shuffle.bind(this);
     this.state = {};
   }
 
@@ -26,28 +25,7 @@ export default class Mosaic extends Component {
 
   requestMosaic() {
     const mosaic = MosaicStore.getMosaic();
-    mosaic && (this.setState({mosaic: this.shuffle(mosaic)}));
-  }
-
-  shuffle(array) {
-    var currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
+    mosaic && (this.setState({mosaic: mosaic}));
   }
 
   render() {
