@@ -9,7 +9,7 @@
   padding: $pd--l
   text-align: center
   text-decoration: none
-  border-bottom: 1px solid $co--tint
+  border-bottom: 1px solid transparentize($co--wt, 0.7)
 
   @media screen and (min-width: $bp--nv)
     padding: 0
@@ -41,28 +41,19 @@
         +caret($co--green)
 
 .block-subnav
-  +shadowborder($co--green)
-  position: fixed
-  top: $ht-header--dt
-  left: 0
   display: none
-  width: 100%
-  padding: $pd--s
   background-color: $co--green
 
   > .container
-    +cont--xl
-    display: flex
-    justify-content: flex-end
+    +clearfix
 
   .link-nav.-active + &
     display: block
 
 .list-subnav
-  +inline-children-item
-
   .link-nav
     color: $co--wt
+    // border: 0
 
     &.-active
       color: $co--brightyellow
@@ -84,3 +75,18 @@
       display: flex
       align-items: center
       height: 100%
+
+  .block-subnav
+    +shadowborder($co--green)
+    padding: $pd--s
+    position: fixed
+    top: $ht-header--dt
+    left: 0
+    width: 100%
+
+    > .container
+      +cont--xl
+
+  .list-subnav
+    +inline-children-item
+    float: right

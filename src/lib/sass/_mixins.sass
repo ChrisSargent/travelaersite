@@ -4,11 +4,11 @@
   text-decoration: none
   border: 0
   border-radius: 0
-  font-size: 100%
   padding: 0
 
 =input-reset($font: inherit)
   +reset-appearance
+  font-size: 100%
   font-family: $font
 
   @media screen and (max-width: $bp--mn - 1)
@@ -24,8 +24,10 @@
   color: $co--wt
   letter-spacing: $ls--w
   cursor: pointer
+  font-size: $fs--xxs
 
   @media screen and (min-width: $bp--mn)
+    font-size: inherit
     display: block
 
 =btn-clear
@@ -192,8 +194,11 @@
 
 // ******************************* Text Mixins *********************************
 =heading-light
+  font-size: $fs--xxs
   text-transform: uppercase
   font-weight: 300
+  @media screen and (min-width: $bp--mn)
+    font-size: inherit
 
 =heading-spaced
   text-transform: uppercase
