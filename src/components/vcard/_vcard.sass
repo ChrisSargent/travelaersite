@@ -2,7 +2,7 @@
 @import _mixins
 
 .vcard
-  font-size: $fs--s
+  font-size: $fs--t
   white-space: nowrap
 
   .fn:not(org)
@@ -27,6 +27,7 @@
 @media (min-width: $bp--mn)
   .vcard
     display: flex
+    font-size: $fs--s
 
     > .column + .column
       padding-top: 0
