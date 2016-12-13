@@ -2,11 +2,10 @@
 @import _mixins
 
 .section-hero
-  display: flex
-  flex-direction: row
   // To fix IE flex bug on min-height / flex direction column
   position: relative
-  z-index: $z--base
+  display: flex
+  flex-direction: row
 
 .content-hero
   +cont--m
@@ -28,14 +27,13 @@
       font-size: $fs--j
       font-weight: 400
       line-height: 0.8
-      margin-bottom: 0.2em
-
       display: block
+      margin-bottom: 0.2em
       letter-spacing: normal
 
     > .i
-      padding-top: $pd--s
       margin: 0 auto
+      padding-top: $pd--s
 
   > .wysiwyg
     +wysiwyg-default($fs: $fs--mms)
