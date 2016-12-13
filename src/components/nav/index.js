@@ -41,7 +41,7 @@ function MenuItem(props) {
 }
 
 function Menu(props) {
-  const {items} = props;
+  const {items, onClick} = props;
 
   if (!items)
     return null;
@@ -60,7 +60,7 @@ function Menu(props) {
   if (primaryNav) {
     const compName = 'nav';
     return (
-      <ul className={css.list + compName}>{itemsMap}</ul>
+      <ul className={css.list + compName} onClick={onClick}>{itemsMap}</ul>
     );
   } else {
     const compName = 'subnav';
@@ -79,7 +79,10 @@ export default class NavBlock extends Component {
   constructor() {
     super();
     this.requestMenu = this.requestMenu.bind(this); // This just ensures we're always binding properly to this.requestMenu
+    this.closeMenu = this.closeMenu.bind(this); // This just ensures we're always binding properly to this.closeMenu
+    this.refMenu = this.refMenu.bind(this); // This just ensures we're always binding properly to this.refMenu
     this.state = {};
+    this.checkbox = {};
   }
 
   componentWillMount() {
@@ -96,6 +99,14 @@ export default class NavBlock extends Component {
     menu && (this.setState({menu: menu}));
   }
 
+  refMenu(el) {
+    this.checkbox = el;
+  }
+
+  closeMenu() {
+    this.checkbox.checked = false;
+  }
+
   render() {
     const {menu} = this.state;
     if (!menu)
@@ -106,9 +117,9 @@ export default class NavBlock extends Component {
 
     return (
       <nav className={css.block + compName}>
-        <input type="checkbox" id={css.toggle + compName}/>
+        <input type="checkbox" ref={this.refMenu} id={css.toggle + compName}/>
         <MenuToggle controls={css.toggle + compName}/>
-        <Menu items={menu}/>
+        <Menu items={menu} onClick={this.closeMenu}/>
       </nav>
     );
 

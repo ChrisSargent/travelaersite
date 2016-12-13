@@ -34,8 +34,8 @@ function MosaicTile(props) {
       const {name, job_title, company} = props.acf;
       TagName = 'blockquote';
       footer = (
-        <footer>
-          <cite className={css.block + 'cite'}>
+        <footer className={css.footer + compName}>
+          <cite>
             {name && <span className="fn">{name}</span>}
             {job_title && <span className="pos">{job_title}</span>}
             {company && <span className="co">{company}</span>}

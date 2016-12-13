@@ -2,8 +2,6 @@
 @import _mixins
 
 .article-post
-  width: 480px
-  flex: 10 2 480px
 
   > .wysiwyg
     +wysiwyg-default($fs: $fs--m)
@@ -19,3 +17,8 @@
   .title
     font-size: $fs--xh
     padding: $pd--xl $pd--l $pd--l
+
+@media screen and (min-width: $bp--mn)
+  .article-post
+    width: 480px
+    flex: 10 2 480px

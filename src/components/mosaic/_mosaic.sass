@@ -10,16 +10,10 @@
     +bg-cover
     line-height: $lh--m
     position: relative
-    padding: 1.75em
     color: $co--wt
     background-color: $co--blue-grey--dk
-    max-height: 50vw
+    min-height: 50vw
     flex-grow: 1
-
-    &::after
-      content: ' '
-      display: block
-      padding-top: 100%
 
     &.-instagram
       .wysiwyg
@@ -46,7 +40,7 @@
 @media screen and (min-width: $bp--mn)
   .list-mosaic
     > .item
-      height: 320px
+      min-height: 320px
 
       &::after
         display: none

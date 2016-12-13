@@ -2,11 +2,9 @@
 @import _mixins
 
 .content-tile
-  +stretch
   font-size: 16px
-  padding: 1.25em
+  padding: 1.25em 1.25em 2em
   display: block
-  width: 100%
   text-decoration: none
   color: inherit
   line-height: $lh--m
@@ -20,20 +18,18 @@
   > .wysiwyg
     font-weight: 700
 
-    + footer
-      margin-top: 0.5em
-
     .-instagram &
       +sr-only
 
-.block-cite
+.footer-tile
   font-size: 0.84em
+  margin-top: 0.5em
 
-  > .fn
+  .fn
     &::after
       content: ', '
 
-  > .co
+  .co
     display: block
     color: $co--brightyellow
 

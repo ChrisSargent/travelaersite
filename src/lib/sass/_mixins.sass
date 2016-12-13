@@ -17,12 +17,16 @@
 
 =btn
   white-space: nowrap
-  display: block
+  display: flex
+  align-items: center
   font-weight: 300
   text-transform: uppercase
   color: $co--wt
   letter-spacing: $ls--w
   cursor: pointer
+
+  @media screen and (min-width: $bp--mn)
+    display: block
 
 =btn-clear
   background-color: transparent
