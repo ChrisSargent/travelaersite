@@ -163,12 +163,13 @@
 
 =cont($maxw)
   width: 100%
-  max-width: $maxw + (2 * $pd--h--dt)
+  max-width: $sz--s + (2 * $pd--h--mb)
   margin: 0 auto
   padding-left: $pd--h--mb
   padding-right: $pd--h--mb
 
   @media screen and (min-width: $bp--nv)
+    max-width: $maxw + (2 * $pd--h--dt)
     padding-left: $pd--h--dt
     padding-right: $pd--h--dt
 
@@ -186,6 +187,12 @@
 
 =cont--xxl
   +cont($sz--xxl)
+
+=cont--xxl--nopad
+  width: 100%
+  max-width: $sz--xxl
+  margin: 0 auto
+
 
 =center-box
   display: flex

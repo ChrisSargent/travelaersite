@@ -1,39 +1,74 @@
 @import _variables
 @import _mixins
 
+$dashboardImageRatio: 60.5vw
+
 .content-imagebanner
-  +cont--xxl
+  +cont--xxl--nopad
   position: relative
+  z-index: $z--under
   padding: 0
 
-  img
-    box-shadow: 2px 2px 12px 0 rgba(0,0,0,0.5)
-    width: 100%
-    height: auto
+  > ._bgimg
+    position: static
+    height: $dashboardImageRatio / 2
+
+    &:first-child
+      background-position: left top
+
+    &:last-child
+      background-position: left bottom
 
 .block-strip
   background-color: #ccccd8
-  position: absolute
-  width: 100%
-  top: 50%
-  left: 0
-  transform: translateY(-50%)
 
 .article-strip
   +cont--l
   +article-default
+  background-color: #ccccd8
 
   > .title
-    color: $co--bk
+    +header-default
     font-size: $fs--ml
-    max-width: 30%
+    text-align: center
+    color: $co--bk
 
   > .wysiwyg
     +wysiwyg-default($ff: inherit)
-    color: $co--logo--blue-dk
     line-height: $lh--xl
-    padding-left: $pd--l
+    color: $co--logo--blue-dk
 
 @media screen and (min-width: $bp--mn)
+  .content-imagebanner
+    > ._bgimg
+      height: auto
+
+      &:first-child
+
+      &:last-child
+        display: none
+
+      img
+        position: static
+        clip: auto
+        width: 100%
+        height: auto
+        margin: 0
+        box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, 0.5)
+
+  .block-strip
+    position: absolute
+    top: 50%
+    left: 0
+    width: 100%
+    transform: translateY(-50%)
+
   .article-strip
     flex-direction: row
+
+    > .title
+      max-width: 30%
+      text-align: left
+
+    > .wysiwyg
+      padding-left: $pd--l
