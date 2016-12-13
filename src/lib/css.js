@@ -12,6 +12,7 @@ module.exports = {
   sidebar: 'sidebar-',
   main: 'main-',
   toggle: 'toggle-',
+  controls: 'controls-',
 
   // Elements
   image: 'image',
@@ -27,6 +28,7 @@ module.exports = {
   wrap: 'wrap',
   icon: 'i',
   avatar: 'avatar',
+  control: 'control',
 
   // Modifiers
   loading: ' -loading',

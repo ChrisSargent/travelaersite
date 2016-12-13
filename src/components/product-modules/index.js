@@ -6,23 +6,35 @@ import Wysiwyg from '../wysiwyg';
 require('./_product-modules.sass');
 
 function Controls(props) {
-  const {controls, activeIndex, onClick, modifier} = props;
+  const {controls, activeIndex, onClick} = props;
+  const compName = 'ctrls';
+  var slideStyles = {
+    transform: 'translate3d(' + activeIndex * -100 + '%, 0, 0)'
+  }
+
+  // activeIndex * -100
 
   const controlsMap = controls.map((control, index) => {
-    var btnClass = 'control-' + modifier;
+    var titleClass = css.control + ' -text';
 
-    (index === activeIndex) && (btnClass += ' -active');
+    (index === activeIndex) && (titleClass += ' -active');
 
     return (
-      <li key={index}>
-        <button data-modtarget={index} className={btnClass}>{control.module_title}</button>
+      <li key={index} className={css.item}>
+        <button data-modtarget={index} className={titleClass}>{control.module_title}</button>
       </li>
     );
   });
   return (
-    <ul onClick={onClick}>
-      {controlsMap}
-    </ul>
+    <div onClick={onClick} className={css.block + compName}>
+      <button data-modtarget="dec" className={css.control + ' -dec'}><span>Prev</span></button>
+      <div className={css.wrap}>
+        <ul className={css.list + compName} style={slideStyles}>
+          {controlsMap}
+        </ul>
+      </div>
+      <button data-modtarget="inc" className={css.control + ' -inc'}><span>Next</span></button>
+    </div>
   )
 }
 
@@ -35,7 +47,7 @@ function Modules(props) {
       itemStyle;
     const {module_title, module_content} = module;
 
-    itemClass = css.content + compName;
+    itemClass = css.item;
     (index === activeIndex) && (itemClass += ' -active');
 
     // Effectily move each module on top of each other
@@ -45,8 +57,10 @@ function Modules(props) {
 
     return (
       <li key={index} className={itemClass} style={itemStyle}>
-        <span className={css.title}>{module_title}</span>
-        <Wysiwyg content={module_content} modifier={compName}/>
+        <article className={css.content + compName}>
+          <span className={css.title}>{module_title}</span>
+          <Wysiwyg content={module_content} modifier={compName}/>
+        </article>
       </li>
     );
   });
@@ -63,23 +77,47 @@ export default class ProductModules extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeModule: 0
+      activeModule: 0,
+      totalModules: props.product_module.length
     };
     this.handleClick = this.handleClick.bind(this);
+    this.nextActiveIndex = this.nextActiveIndex.bind(this);
   }
 
   handleClick(ev) {
+    var {activeModule} = this.state, nextActive;
+
     if (!ev.target.dataset.modtarget)
       return;
 
     ev.preventDefault();
-    const activeMod = parseFloat(ev.target.dataset.modtarget);
-    this.setState({activeModule: activeMod});
+    switch (ev.target.dataset.modtarget) {
+      case 'inc':
+        nextActive = activeModule + 1;
+        break;
+      case 'dec':
+        nextActive = activeModule - 1;
+        break;
+      default:
+        nextActive = parseFloat(ev.target.dataset.modtarget);
+    }
+    this.nextActiveIndex(nextActive);
+  }
+
+  nextActiveIndex(nextActive) {
+    const {totalModules} = this.state;
+    if (nextActive < 0)
+			nextActive = totalModules - 1;
+
+		if (nextActive > totalModules - 1)
+			nextActive = 0;
+
+    this.setState({activeModule: nextActive});
   }
 
   render() {
-    // Return ASAP if no modules
     const {product_module, title} = this.props;
+    const {activeModule} = this.state;
     const compName = 'prodmods';
 
     if (!product_module)
@@ -101,10 +139,10 @@ export default class ProductModules extends Component {
         <div className={css.content + compName}>
           <div className={'side-' + compName}>
             <h1 className={css.title}>{title}</h1>
-            <Controls controls={product_module} activeIndex={this.state.activeModule} onClick={this.handleClick} modifier={compName} />
+            <Controls controls={product_module} activeIndex={activeModule} onClick={this.handleClick} modifier={compName} />
           </div>
-          <Screenshots screenshots={screenshots} activeIndex={this.state.activeModule} />
-          <Modules modules={product_module} activeIndex={this.state.activeModule} />
+          <Screenshots screenshots={screenshots} activeIndex={activeModule} />
+          <Modules modules={product_module} activeIndex={activeModule} />
         </div>
       </section>
     );

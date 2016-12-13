@@ -21,7 +21,7 @@
 
 .article-strip
   +cont--l
-  +article-default($dir: row)
+  +article-default
 
   > .title
     color: $co--bk
@@ -33,3 +33,7 @@
     color: $co--logo--blue-dk
     line-height: $lh--xl
     padding-left: $pd--l
+
+@media screen and (min-width: $bp--mn)
+  .article-strip
+    flex-direction: row

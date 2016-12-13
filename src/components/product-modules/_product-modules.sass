@@ -11,89 +11,193 @@ $ctrlwidth: 27.78%
 .content-prodmods
   +cont--xl
   display: flex
+  flex-direction: column
   align-items: center
 
   > .list-screenshot
+    order: 1
     flex: none
     width: 34%
-    margin: -100px 0 0
+    margin: (-100px) 0 0
+
+  > .side-prodmods
+    order: 2
+
+  > .list-prodmod
+    order: 3
 
 .side-prodmods
-  flex: 0 0 $ctrlwidth
-  align-self: flex-start
-  width: $ctrlwidth
-  min-width: $ctrlminwidth
+  width: 100%
 
   > .title
-    +header-default
+    padding: $pd--m 0
     font-size: $fs--ml
-    padding: 0 $pd--ml 0 $pd--m
+    text-align: center
     word-wrap: break-word
     color: $co--bk
 
-.control-prodmods
-  +input-reset
-  +heading-spaced
-  font-size: $fs--xs
-  line-height: $lh--lg
-  position: relative
-  z-index: $z--base
-  display: block
-  width: 100%
-  height: 100%
-  padding: 0.4rem $pd--xl 0.4rem $pd--m
-  cursor: pointer
-  text-align: left
-  color: $co--blue-grey--tt
-  background-color: transparent
+.block-ctrls
+  display: flex
+  align-items: center
 
-  &:hover
-    color: $co--brightyellow
+  .control
+    +input-reset
 
-  &::before
-    +stretch
-    content: ' '
-    z-index: $z--under
-    transition: transform $tr--f
-    transform: scale3d(1,0,1)
-    transform-origin: top
-    background: linear-gradient(to right, transparentize($co--blue--dk, 0.6) 0%, transparentize($co--blue--dk, 1) 100%)
+  > .control
+    +focus
+    background-color: $co--green
+    flex: none
+    display: flex
+    justify-content: center
+    align-items: center
+    cursor: pointer
 
-  &.-active,
-  &:focus
-    color: $co--wt
-    outline: none
+    &::after
+      content: ' '
+      pointer-events: none
+      display: block
+      width: 0
+      height: 0
+      border-top: 9px solid transparent
+      border-bottom: 9px solid transparent
 
-    &::before
-      transform: scale3d(1,1,1)
+    &.-dec
+      &::after
+        border-right: 12px solid $co--wt
+    &.-inc
+      &::after
+        border-left: 12px solid $co--wt
+
+    &:active
+      background-color: lighten($co--green, 10)
+
+    span
+      +sr-only
+
+  > .wrap
+    overflow: hidden
+    flex: 1
+
+.list-ctrls
+  display: flex
+  transition: transform $tr--m
+
+  > .item
+    width: 100%
+    flex: none
+
+  .control.-text
+    +heading-spaced
+    font-size: $fs--mms
+    line-height: $lh--m
+    position: relative
+    z-index: $z--base
+    display: block
+    flex: none
+    width: 100%
+    height: 100%
+    text-align: center
+    color: $co--blue-grey--tt
+    background-color: transparent
+    padding: 0 $pd--xxs
+
+    &.-active,
+    &:focus
+      color: $co--wt
+      outline: none
+
+      &::before
+        transform: scale3d(1, 1, 1)
 
 .list-prodmod
   display: flex
   overflow: hidden
-  align-items: center
   width: 100%
-  padding-left: $pd--ml
+  padding-top: $pd--m
+
+  > .item
+    position: relative
+    visibility: hidden
+    flex: none
+    width: 100%
+    transition: transform $tr--m, opacity $tr--m, visibility $tr--m
+    transform: translate3d(0, 0, 0)
+    opacity: 0
+
+    &.-active
+      visibility: visible
+      transform: translate3d(-100%, 0, 0)
+      opacity: 1
 
 .content-prodmod
-  position: relative
-  visibility: hidden
-  flex: none
-  width: 100%
-  transition: transform $tr--m, opacity $tr--m, visibility $tr--m
-  transform: translate3d(0, 0, 0)
-  opacity: 0
   color: $co--wt
 
-  &.-active
-    visibility: visible
-    transform: translate3d(-100%, 0, 0)
-    opacity: 1
-
   > .title
-    +header-default
-    +heading-spaced
-    display: block
+    display: none
 
   > .wysiwyg
     +wysiwyg-default(inherit, inherit)
     line-height: $lh--xl
+
+@media screen and (min-width: $bp--mn)
+  .content-prodmods
+    flex-direction: row
+
+    > .side-prodmods
+      order: 1
+
+    > .list-screenshot
+      order: 2
+
+    > .list-prodmod
+      order: 3
+
+  .side-prodmods
+    flex: 0 0 $ctrlwidth
+    align-self: flex-start
+    width: $ctrlwidth
+    min-width: $ctrlminwidth
+
+    > .title
+      padding: 0 $pd--ml 0 $pd--m
+      text-align: left
+
+  .list-ctrls
+    display: block
+    width: auto
+    overflow: auto
+    transform: none!important
+
+    .control.-text
+      line-height: $lh--lg
+      font-size: $fs--xs
+      cursor: pointer
+      text-align: left
+      padding: 0.42rem $pd--xl 0.42rem $pd--m
+
+      &::before
+        +stretch
+        content: ' '
+        z-index: $z--under
+        transition: transform $tr--f
+        transform: scale3d(1, 0, 1)
+        transform-origin: top
+        background: linear-gradient(to right, transparentize($co--blue--dk, 0.6) 0%, transparentize($co--blue--dk, 1) 100%)
+
+      &:hover
+        color: $co--brightyellow
+
+  .list-prodmod
+    align-items: center
+    padding-left: $pd--ml
+    padding-top: 0
+
+  .block-ctrls
+    > .control
+      display: none
+
+  .content-prodmod
+    > .title
+      +header-default
+      +heading-spaced
+      display: block
