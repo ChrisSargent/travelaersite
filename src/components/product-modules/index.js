@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
 import Screenshots from '../screenshots';
+import Section from '../section';
 import Wysiwyg from '../wysiwyg';
 
 require('./_product-modules.sass');
@@ -135,7 +136,7 @@ export default class ProductModules extends Component {
     }
 
     return (
-      <section className={css.section + compName}>
+      <Section compName={compName}>
         <div className={css.content + compName}>
           <div className={'side-' + compName}>
             <h1 className={css.title}>{title}</h1>
@@ -144,7 +145,7 @@ export default class ProductModules extends Component {
           <Screenshots screenshots={screenshots} activeIndex={activeModule} />
           <Modules modules={product_module} activeIndex={activeModule} />
         </div>
-      </section>
+      </Section>
     );
   }
 }

@@ -15,15 +15,14 @@ function Member(props) {
   return (
     <article className={css.article + compName}>
       <RespImageCover alt={title} className={css.avatar} image={acf.avatar} respSizes="320px" srcVersion="medium"/>
-      <div className={css.content + compName}>
-        <ArticleHeader title={title} subtitle={acf.job_title} modifier={compName} />
-        <div className={css.wrap}>
-          <Wysiwyg content={content} />
-          <MemberVcard name={title.rendered} contacts={acf.contact_details}/>
-        </div>
-      </div>
+      <ArticleHeader title={title} subtitle={acf.job_title} modifier={compName} />
+      <MemberVcard name={title.rendered} contacts={acf.contact_details}/>
+      <Wysiwyg content={content} />
     </article>
   )
 }
 
 export default Member;
+
+
+// <div className={css.content + compName}></div>

@@ -3,6 +3,7 @@ import css from '../../lib/css';
 
 import SVG from '../svg';
 import RespImageCover from '../resp-image-cover';
+import Section from '../section';
 import Wysiwyg from '../wysiwyg';
 
 require('./_hero.sass');
@@ -31,7 +32,7 @@ function Hero(props) {
     hasHeadline = true;
 
   return (
-    <section className={css.section + compName}>
+    <Section compName={compName}>
       <div className={css.content + compName + modifier}>
         {hasHeadline && <h1 className={css.title}>
           {headlinePre}
@@ -43,7 +44,7 @@ function Hero(props) {
         <SVG type={contentImage}/>
       </div>
       <RespImageCover image={image} wait={waitForHeroLoad} />
-    </section>
+    </Section>
   );
 };
 

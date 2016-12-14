@@ -6,13 +6,13 @@
   background-color: $co--blue-grey
   flex: none
 
-._hasbg
-  +bg-cover
+  > .image
+    +sr-only
 
 ._bgimg
   +stretch
   +bg-cover
   z-index: $z--under
 
-  img
+  > .image
     +sr-only

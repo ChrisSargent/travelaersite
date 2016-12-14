@@ -2,6 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 
 import Tile from '../tile';
+import Section from '../section';
 
 require('./_mosaic.sass');
 
@@ -17,11 +18,11 @@ function Mosaic(props) {
     return (<Tile key={tile.id} {...tile}/>);
   });
   return (
-    <section className={css.section + compName}>
+    <Section compName={compName}>
       <ul className={css.list + compName}>
         {tileMap}
       </ul>
-    </section>
+    </Section>
   );
 }
 

@@ -2,22 +2,26 @@
 @import _mixins
 
 .vcard-member
-  width: 13rem
+  +member-lh
   white-space: nowrap
-  flex: none
-  line-height: $lhr--xxl
 
   .fn
     +sr-only
 
   .link
-    font-size: $fs--ss
-    color: $co--blue-grey--md
+    font-size: $fs--xt
     text-decoration: none
+    color: $co--blue-grey--md
 
   .i
+    display: inline
     width: 1em
     height: 1em
-    color: $co--blue-grey
-    vertical-align: middle
     margin-right: $spc
+    vertical-align: middle
+    color: $co--blue-grey
+
+@media screen and (min-width: $bp--lg)
+  .vcard-member
+    .link
+      font-size: $fs--ss

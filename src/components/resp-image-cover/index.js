@@ -32,21 +32,16 @@ export default class ImageCover extends Component {
     el != null && this.props.wait && LoadingActions.loading(el);
   }
 
-  handleLoad(e) {
-    var imgSrc;
-    const el = e.target;
-
-    // Tell the Loader we've finished.
-    this.props.wait && LoadingActions.finished(el);
-
+  handleLoad(ev) {
     // Grab the browser-calculated source of the img and set the state
     // so the background of the hero matches (also fires on resize).
     // Also checks if currentSrc is supported
-    typeof el.currentSrc === "undefined"
-      ? imgSrc = el.src
-      : imgSrc = el.currentSrc;
-
+    const el = ev.target;
+    var imgSrc = el.currentSrc || el.src;
     this.setState({bgSrc: imgSrc});
+
+    // Tell the Loader we've finished.
+    this.props.wait && LoadingActions.finished(el);
   }
 
   render() {

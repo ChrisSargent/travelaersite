@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
+
 import css from '../../lib/css';
-
-// Stores
-import TeamStore from '../../stores/TeamStore';
-
-// Components
 import Member from '../member';
+import Section from '../section';
+import TeamStore from '../../stores/TeamStore';
 
 require('./_team.sass');
 
@@ -46,12 +44,14 @@ export default class Team extends Component {
     });
 
     return (
-      <section className={css.section + compName}>
-        <h1 className={css.title}>Our Team</h1>
-        <ul className={css.list + compName}>
-          {teamMap}
-        </ul>
-      </section>
+      <Section compName={compName}>
+        <div className={css.block + compName}>
+          <h1 className={css.title}>Our Team</h1>
+          <ul className={css.list + compName}>
+            {teamMap}
+          </ul>
+        </div>
+      </Section>
     );
   }
 }

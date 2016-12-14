@@ -2,12 +2,29 @@
 @import _mixins
 
 .section-team
+  > .container
+    +cont--xl
+
+.block-team
   +block-pad($pd--xl)
+
   > .title
     +sr-only
 
 .list-team
-  +cont--xl
+  > .item
+    padding-bottom: 30px
+    + .item
+      border-top: 1px solid transparentize($co--blue-grey, 0.7)
+      padding-top: 30px
 
-  > .item + .item
-    margin-top: 1px
+@media screen and (min-width: $bp--lg)
+  .list-team
+
+    > .item
+      padding: 0
+
+    > .item + .item
+      padding: 0
+      margin-top: 1px
+      border: 0

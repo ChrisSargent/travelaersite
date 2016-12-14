@@ -78,15 +78,22 @@ export default class NavBlock extends Component {
 
   constructor() {
     super();
-    this.requestMenu = this.requestMenu.bind(this); // This just ensures we're always binding properly to this.requestMenu
-    this.closeMenu = this.closeMenu.bind(this); // This just ensures we're always binding properly to this.closeMenu
-    this.refMenu = this.refMenu.bind(this); // This just ensures we're always binding properly to this.refMenu
-    this.state = {};
+    this.requestMenu = this.requestMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
+    this.refMenu = this.refMenu.bind(this);
+    this.state = {
+      atTop: true
+    };
     this.checkbox = {};
+    this.debounceScroll = this.debounceScroll.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.resizeTOut = null;
+    // TODO: Remove code for scroll event if not using
   }
 
   componentWillMount() {
     this.requestMenu();
+    window.addEventListener('scroll', this.debounceScroll);
     NavStore.on('change', this.requestMenu);
   }
 
@@ -105,6 +112,19 @@ export default class NavBlock extends Component {
 
   closeMenu() {
     this.checkbox.checked = false;
+  }
+
+  debounceScroll(ev) {
+    clearTimeout(this.resizeTOut);
+    this.resizeTOut = setTimeout(() => this.handleScroll(ev.srcElement.body.scrollTop), 100);
+  }
+
+  handleScroll(pos) {
+    if (pos >= 200 && this.state.atTop)
+      this.setState({atTop: false})
+
+    if (pos < 200 && !this.state.atTop)
+      this.setState({atTop: true})
   }
 
   render() {

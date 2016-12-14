@@ -17,14 +17,11 @@ export default class Base extends Component {
   constructor() {
     super();
     this.requestOptions = this.requestOptions.bind(this);
-    this.state = {
-      options: OptionsStore.getOptions(),
-    };
+    this.state = {};
   }
 
   componentWillMount() {
     OptionsActions.fetchOptions();
-    // SiteActions.fetchSite();
     OptionsStore.on('change', this.requestOptions);
   }
 

@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import css from '../../lib/css'
-
-// Stores & Actions
-import PostsStore from '../../stores/PostsStore';
-
-// Components
-import RespImageCover from '../../components/resp-image-cover';
 import Post from '../../components/post';
+import PostsStore from '../../stores/PostsStore';
 import RecentPosts from '../../components/recent-posts';
+import RespImageCover from '../../components/resp-image-cover';
+import Section from '../../components/section';
 
 require('./_single-post.sass')
 
@@ -52,12 +49,12 @@ export default class SinglePost extends Component {
         <section className={css.section + 'hero'}>
           <RespImageCover image={post.t_featured_image}/>
         </section>
-        <section className={css.section + compName}>
+        <Section compName={compName}>
           <Post post={post}/>
           <aside className={css.sidebar + compName}>
             <RecentPosts currPost={post.id}/>
           </aside>
-        </section>
+        </Section>
       </main>
     );
   }

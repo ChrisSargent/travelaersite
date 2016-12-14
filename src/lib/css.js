@@ -36,6 +36,5 @@ module.exports = {
 
   // Helpers
   centered: ' _centered',
-  hasbg: ' _hasbg',
   replImg: '_bgimg',
 };

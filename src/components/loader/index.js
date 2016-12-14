@@ -26,12 +26,17 @@ export default class Loader extends Component {
   }
 
   setShowLoader() {
-    this.setState({displayLoader: LoaderStore.getLoading()});
+    const self = this;
+    LoaderStore.getLoading()
+      ? this.setState({displayLoader: LoaderStore.getLoading()})
+      : setTimeout(function () {
+        self.setState({displayLoader: LoaderStore.getLoading()});
+      }, 250);
   }
 
   render() {
     var loadingClass;
-    
+
     this.state.displayLoader
       ? loadingClass = css.loading
       : loadingClass = '';

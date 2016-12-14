@@ -1,6 +1,7 @@
 import React from 'react';
 import css from '../../lib/css';
 import RespImage from '../resp-image';
+import Section from '../section';
 
 require('./_banner.sass');
 
@@ -18,16 +19,14 @@ function Banner(props) {
   });
 
   return (
-    <section className={css.section + compName}>
-      <div className={css.container}>
-        <div className={css.content + compName}>
-          <h1 className={css.title}>{title}</h1>
-          <ul className={css.list + compName}>
-            {logoMap}
-          </ul>
-        </div>
+    <Section compName={compName}>
+      <div className={css.content + compName}>
+        <h1 className={css.title}>{title}</h1>
+        <ul className={css.list + compName}>
+          {logoMap}
+        </ul>
       </div>
-    </section>
+    </Section>
   );
 }
 

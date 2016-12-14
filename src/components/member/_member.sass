@@ -2,32 +2,62 @@
 @import _mixins
 
 .article-member
-  display: flex
+  +clearfix
+
+  > *
+    overflow: hidden
+    // Prevent some wrapping
 
   > .avatar
-    width: 320px
-    height: 320px
+    float: left
+    width: 29%
+    margin-right: 4%
+    background-color: $co--teal
 
-.content-member
-  padding: $pd--ml 0 0 $pd--xl
+    &::after
+      content: ' '
+      display: block
+      padding-top: 100%
 
-  > .wrap
-    display: flex
-
-    > .wysiwyg
-      +wysiwyg-default($fs: $fs--m)
-      font-weight: 300
-      padding-right: $pd--l
-      line-height: $lhr--xxl
+  > .wysiwyg
+    +wysiwyg-default($fs: $fs--mss)
+    +member-lh
+    font-weight: 300
+    padding-top: $pd--xxs
+    clear: both
 
 .header-member
   +header-default
   .title
-    font-size: $fs--xl
+    font-size: $fs--l
     font-weight: 700
 
   .subtitle
-    font-size: $fs--m
-    color: $co--blue-grey
     letter-spacing: $ls--w
     text-transform: uppercase
+    color: $co--blue-grey
+
+@media screen and (min-width: $bp--sm)
+  .article-member
+    > .wysiwyg
+      clear: none
+
+@media screen and (min-width: $bp--lg)
+  .article-member
+    > .vcard-member
+      float: right
+      min-width: 14em
+
+    > .wysiwyg
+      font-size: $fs--m
+      padding-top: 0
+      padding-right: 2%
+
+  .header-member
+    padding-top: $pd--ml
+
+    .title
+      font-size: $fs--xl
+
+    .subtitle
+      font-size: $fs--m

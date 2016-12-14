@@ -2,6 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 
 import RespImageCover from '../resp-image-cover';
+import Section from '../section';
 import Wysiwyg from '../wysiwyg';
 
 require('./_image-banner.sass');
@@ -24,13 +25,13 @@ function ImageBanner(props) {
   const compName = 'imagebanner';
 
   return (
-    <section className={css.section + compName}>
+    <Section compName={compName}>
       <div className={css.content + compName}>
         <RespImageCover image={props.image} srcVersion='large' respSizes="100vw"/>
         <Strip {...props} />
         <RespImageCover image={props.image} srcVersion='large' respSizes="100vw"/>
       </div>
-    </section>
+    </Section>
   )
 }
 
