@@ -2,23 +2,39 @@
 @import _mixins
 
 .article-post
-
   > .wysiwyg
-    +wysiwyg-default($fs: $fs--m)
+    +wysiwyg-default($fs: $fs--mss)
+    +post-padding
     font-weight: 300
     line-height: $lh--ml
-    padding: $pd--l
     background-color: $co--wt
+    padding-top: $pd--ll
+    padding-bottom: $pd--s
 
 .header-post
+  +post-padding
+  padding-top: $pd--s
+  padding-bottom: $pd--s
   color: $co--wt
   background-color: $co--teal
 
   .title
-    font-size: $fs--xh
-    padding: $pd--xl $pd--l $pd--l
+    font-size: $fs--l
+    line-height: $lh--m
 
 @media screen and (min-width: $bp--mn)
   .article-post
     width: 480px
     flex: 10 2 480px
+
+    > .wysiwyg
+      font-size: $fs--m
+      padding-top: $pd--l
+      padding-bottom: $pd--l
+
+  .header-post
+    padding-top: $pd--xl
+    padding-bottom: $pd--l
+
+    .title
+      font-size: $fs--xh

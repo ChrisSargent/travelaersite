@@ -2,11 +2,15 @@
 @import _mixins
 
 .section-comments
-  +block-pad($pd--xl)
+  +block-pad($pd--l)
 
-  > .title
-    font-size: $fs--m
-    padding-bottom: $pd--xl
+  > .container
+    +post-padding
+
+.header-comments
+  .title
+    font-size: $fs--xxs
+    padding-bottom: $pd--l
 
 .list-comments
   border-bottom: 1px solid $co--blue-grey--tt
@@ -16,40 +20,58 @@
     border-bottom: none
 
 .article-comment
-  display: flex
-  padding-bottom: $pd--xxl
+  +avatar-object
+  padding-bottom: $pd--l
 
   > .avatar
-    width: 64px
-    height: 64px
+    max-width: 64px
+    width: 15%
     border-radius: 50%
-    overflow: hidden
-    background-color: $co--teal
 
-.content-comment
-  flex-grow: 1
-  padding-left: $pd--l
-
+.main-comment
   > .wysiwyg
     +wysiwyg-default
     font-weight: 300
     line-height: $lh--xl
     padding-bottom: $pd--s
 
-  > .footer-actions
-    font-size: $fs--xs
+  > .footer-actions .btn
+    font-size: $fs--xt
 
 .header-comment
   +header-default
-  display: flex
-  align-items: baseline
+  line-height: $lh--lg
 
   .title
-    font-size: $fs--xs
+    display: block
+    font-size: $fs--xt
     color: $co--blue-grey--md
     font-weight: 700
 
   .subtitle
-    margin-left: $pd--m
+    display: block
     color: $co--blue-grey
-    font-size: $fs--t
+    font-size: $fs--xxt
+
+@media screen and (min-width: $bp--mn)
+  .section-comments
+    +block-pad($pd--xl)
+
+  .header-comments
+    .title
+      font-size: $fs--m
+      padding-bottom: $pd--xl
+
+  .header-comment
+    .title
+      font-size: $fs--xs
+
+    .subtitle
+      font-size: $fs--t
+
+  .article-comment
+    padding-bottom: $pd--xxl
+
+  .main-comment
+    > .footer-actions .btn
+      font-size: $fs--xs

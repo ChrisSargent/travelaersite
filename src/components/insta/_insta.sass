@@ -1,0 +1,14 @@
+@import _variables
+@import _mixins
+
+.list-insta
+  +clearfix
+  > .item
+    width: 50%
+    position: relative
+    float: left
+
+    &::after
+      content: ' '
+      display: block
+      padding-top: 100%

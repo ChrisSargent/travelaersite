@@ -17,15 +17,15 @@ function ProductList(props) {
 
   const productsMap = products.map((product, index) => {
     var articleClass;
-
+    var {actions} = product;
     const {
       title,
       content,
-      actions,
       boxed,
       screenshots,
     } = product;
 
+    actions[0].modifier = 'cta';
     articleClass = css.article + compName;
     boxed && (articleClass += ' -boxed');
 
@@ -34,7 +34,7 @@ function ProductList(props) {
         <article className={articleClass}>
           <ArticleHeader title={title} modifier={compName}/>
           <Wysiwyg content={content}/>
-          <Actions actions={actions} modifier="cta"/>
+          <Actions actions={actions}/>
         </article>
         <Screenshots screenshots={screenshots} modifier="home"/>
       </li>

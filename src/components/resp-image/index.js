@@ -6,7 +6,7 @@ require('./_image.sass');
 function RespImage(props) {
   var respSizes,
     altText,
-    srcsetString,
+    srcsetString = '',
     srcImage;
 
   const {image, alt, srcVersion, onLoadCb, refCb} = props;
@@ -24,15 +24,16 @@ function RespImage(props) {
   altText.rendered && (altText = altText.rendered);
 
   if (image.sizes) {
-    srcsetString =  image.sizes.medium + ' ' + image.sizes['medium-width'] + 'w, ' +
-                    image.sizes.medium_large + ' ' + image.sizes['medium_large-width'] + 'w, ' +
-                    image.sizes['post-thumbnail'] + ' ' + image.sizes['post-thumbnail-width'] + 'w, ' +
-                    image.sizes.large + ' ' + image.sizes['large-width'] + 'w';
+    image.sizes.medium && (srcsetString += image.sizes.medium + ' ' + image.sizes['medium-width'] + 'w, ');
+    image.sizes.medium_large && (srcsetString += image.sizes.medium_large + ' ' + image.sizes['medium_large-width'] + 'w, ');
+    image.sizes['post-thumbnail'] && (srcsetString += image.sizes['post-thumbnail'] + ' ' + image.sizes['post-thumbnail-width'] + 'w, ');
+    image.sizes.large && (srcsetString += image.sizes.large + ' ' + image.sizes['large-width'] + 'w');
+
     srcImage = {
+      src: image.sizes[srcVersion],
       alt: altText,
       width: image.sizes[srcVersion + '-width'],
       height: image.sizes[srcVersion + '-height'],
-      src: image.sizes[srcVersion]
     };
     respSizes = props.respSizes || '100vw';
   } else {

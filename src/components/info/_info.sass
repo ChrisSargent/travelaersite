@@ -2,11 +2,18 @@
 @import _mixins
 
 .block-info
+  +post-padding
   background-color: $co--tint
-  padding: $pd--s $pd--l
+  padding-top: $pd--xxs
+  padding-bottom: $pd--xxs
   color: $co--blue-grey
-  font-size: $fs--t
+  font-size: $fs--xxt
   line-height: $lh--xxl
 
   > .author
     display: block
+
+  @media screen and (min-width: $bp--mn)
+    padding-top: $pd--s
+    padding-bottom: $pd--s
+    font-size: $fs--t

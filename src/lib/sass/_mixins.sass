@@ -233,6 +233,7 @@
 =wysiwyg-default($ff: $ff--p, $fs: 1rem)
   font-family: $ff
   font-size: $fs
+  overflow: hidden
 
   > :first-child
     margin-top: 0
@@ -279,3 +280,27 @@
 
   @media screen and (min-width: $bp--lg)
     line-height: 28px
+
+=post-padding
+  padding-left: $pd--h--mb
+  padding-right: $pd--h--mb
+
+  @media screen and (min-width: $bp--mn)
+    padding-left: $pd--l
+    padding-right: $pd--l
+
+=avatar-object
+  +clearfix
+
+  > *
+    overflow: hidden
+    // Prevent some wrapping
+
+  > .avatar
+    float: left
+    margin-right: 4%
+
+    &::after
+      content: ' '
+      display: block
+      padding-top: 100%

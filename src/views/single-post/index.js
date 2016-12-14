@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import css from '../../lib/css'
+import Insta from '../../components/insta';
 import Post from '../../components/post';
 import PostsStore from '../../stores/PostsStore';
 import RecentPosts from '../../components/recent-posts';
@@ -53,6 +54,7 @@ export default class SinglePost extends Component {
           <Post post={post}/>
           <aside className={css.sidebar + compName}>
             <RecentPosts currPost={post.id}/>
+            <Insta />
           </aside>
         </Section>
       </main>

@@ -2,22 +2,11 @@
 @import _mixins
 
 .article-member
-  +clearfix
-
-  > *
-    overflow: hidden
-    // Prevent some wrapping
+  +avatar-object
 
   > .avatar
-    float: left
     width: 29%
-    margin-right: 4%
     background-color: $co--teal
-
-    &::after
-      content: ' '
-      display: block
-      padding-top: 100%
 
   > .wysiwyg
     +wysiwyg-default($fs: $fs--mss)

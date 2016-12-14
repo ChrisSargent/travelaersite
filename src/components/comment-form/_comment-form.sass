@@ -2,7 +2,7 @@
 @import _mixins
 
 .section-submit
-  +block-pad($pd--xl)
+  +block-pad($pd--l)
   position: relative
   animation: formEnter $tr--f both
   // To contain loader
@@ -14,24 +14,23 @@
   +header-default($pd--s)
 
   .title
-    font-size: $fs--m
+    font-size: $fs--xxs
 
   .subtitle
     color: $co--blue-grey
-    font-size: $fs--t
+    font-size: $fs--xxt
 
-.loader
-  &.-submit
-    position: absolute
-    right: -5%
-    left: -5%
-    width: auto
-    height: 100%
-    transition: opacity $tr--m, visibility $tr--m
+.loader.-submit
+  position: absolute
+  right: $pd--h--mb / -1
+  left: $pd--h--mb / -1
+  width: auto
+  height: 100%
+  transition: opacity $tr--m, visibility $tr--m
 
-    &.-loading
-      pointer-events: all
-      opacity: 0.8
+  &.-loading
+    pointer-events: all
+    opacity: 0.8
 
 .form-submit
   $spacing: $pd--s
@@ -39,6 +38,7 @@
 
   input,
   textarea
+    +focus
     color: $co--blue-grey--md
     width: 100%
     padding-top: $pd--s
@@ -54,25 +54,48 @@
   > .name,
   > .email,
   > .comment
-    font-size: $fs--xxs
+    font-size: $fs--xt
     padding: $spacing / 2
-
-  > .name
-    display: inline-block
-    width: 33%
-
-  > .email
-    display: inline-block
-    width: 67%
-
-  > .comment
-    display: block
     width: 100%
-
-  > .submit
     display: block
+
+  > .footer-actions
     padding: $spacing / 2
 
+    .btn.-reset
+      display: none
+
+      .article-comment &
+        display: block
+
+@media screen and (min-width: $bp--mn)
+  .loader.-submit
+    right: $pd--h--dt / -1
+    left: $pd--h--dt / -1
+
+  .section-submit
+    +block-pad($pd--xl)
+
+  .header-submit
+    .title
+      font-size: $fs--m
+
+    .subtitle
+      font-size: $fs--t
+
+  .form-submit
+    > .name,
+    > .email,
+    > .comment
+      font-size: $fs--xxs
+
+    > .name
+      display: inline-block
+      width: 33%
+
+    > .email
+      display: inline-block
+      width: 67%
 
 @keyframes formEnter
   0%

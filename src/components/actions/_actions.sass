@@ -1,4 +1,12 @@
 @import _variables
+@import _mixins
 
 .footer-actions
+  display: flex
   margin-top: auto
+
+  .btn
+    +focus
+
+    + .btn
+      margin-left: 2px

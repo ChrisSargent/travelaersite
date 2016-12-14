@@ -2,9 +2,11 @@
 @import _mixins
 
 .article-author
-  padding: $pd--l
+  +post-padding
+  +avatar-object
+  padding-top: $pd--l
+  padding-bottom: $pd--l
   position: relative
-  display: flex
   background-color: $co--wt
 
   &::before
@@ -18,23 +20,28 @@
     transform: scale(0.5)
 
   > .avatar
-    width: 100px
-    height: 100px
+    width: 22.5%
+    max-width: 100px
     border-radius: 50%
-    overflow: hidden
 
 .content-author
-  padding-left: $pd--l
-
   > .wysiwyg
-    +wysiwyg-default($fs: 1rem)
+    +wysiwyg-default($fs: $fs--xs)
     font-weight: 300
-    padding-right: $pd--l
     line-height: $lh--xl
 
 .header-author
   +header-default
 
   .title
-    font-size: $fs--ms
+    font-size: $fs--xxs
     font-weight: 700
+
+@media screen and (min-width: $bp--mn)
+  .header-author
+    .title
+      font-size: $fs--ms
+
+  .content-author
+    > .wysiwyg
+      font-size: inherit

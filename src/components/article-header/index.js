@@ -19,7 +19,7 @@ function ArticleHeader(props) {
   return (
     <header className={headClass}>
       {icon && <SVG type={icon}/>}
-      <div className={css.wrap}>
+      <div className={css.container}>
         {title && <h1 className={css.title}>{title}</h1>}
         {subtitle && <span className={css.subtitle}>{subtitle}</span>}
       </div>

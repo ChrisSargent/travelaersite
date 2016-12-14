@@ -6,6 +6,7 @@ class CommentsStore extends EventEmitter {
     super();
     this.comments = [];
     this.resetForm = false;
+    this.showLoader = false;
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
@@ -17,11 +18,16 @@ class CommentsStore extends EventEmitter {
     return this.resetForm;
   }
 
+  getLoading() {
+    return this.showLoader;
+  }
+
   handleActions(action) {
     switch (action.type) {
       case 'ADDING_COMMENT':
         // console.log('CommentsStore | handleActions | Adding Comments');
         this.resetForm = false;
+        this.showLoader = true;
         this.emit('change');
         break;
 
@@ -29,14 +35,16 @@ class CommentsStore extends EventEmitter {
         // console.log('CommentsStore | handleActions | Added Comments');
         this.comments = action.comments;
         this.resetForm = true;
+        this.showLoader = false;
         this.emit('change');
         break;
 
       case 'ERROR_COMMENT':
         console.log('Sorry, there was an error');
         this.resetForm = false;
+        this.showLoader = false;
         this.emit('change');
-      break;
+        break;
 
       default:
     }

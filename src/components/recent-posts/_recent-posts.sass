@@ -21,7 +21,6 @@
       .header-recentpost.-large
         background-color: $co--blue--md
 
-
 .article-recentpost
   position: relative
   z-index: $z--base
@@ -35,50 +34,82 @@
     color: $co--blue-grey
 
   &.-large
-    +bg-cover
-    display: block
+    display: flex
+    justify-content: flex-end
     width: 100%
+    min-height: 120px
     color: $co--wt
 
-    &::after
-      padding-top: 90%
-      content: ' '
-      display: block
+    > ._bgimg
+      width: 50%
 
   &:not(.-large)
-
     > ._bgimg
       position: static
       width: 33%
 
       &::after
         content: ' '
-        padding-top: 100%
         display: block
+        padding-top: 100%
 
 .header-recentpost
+  display: flex
+  align-items: center
+  flex-grow: 1
   padding: $pd--l $pd--s
-  align-self: center
+
+  .title
+    font-size: $fs--mss
 
   .subtitle
     font-size: $fs--t
 
   &.-large
-    position: absolute
-    bottom: 0
-    width: 100%
     display: flex
-    align-items: center
+    align-items: flex-start
+    flex: none
+    width: 50%
+    padding: $pd--xs $pd--xxs
 
     .i.-post
       flex: none
-      width: 1.5em
-      height: 1.5em
-      margin-right: $pd--xs
+      width: 1em
+      height: 1em
+      margin-right: $pd--xxs
 
     .title
       color: $co--wt
-      font-size: $fs--lm
 
     .subtitle
       color: $co--wt
+
+@media screen and (min-width: $bp--mn)
+  .article-recentpost
+    &.-large
+      &::after
+        content: ' '
+        display: block
+        padding-top: 90%
+
+      > ._bgimg
+        width: 100%
+
+  .header-recentpost
+    .subtitle
+      font-size: $fs--t
+
+    &.-large
+      padding: $pd--l $pd--s
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+
+      .i.-post
+        width: 1.5em
+        height: 1.5em
+        margin-right: $pd--xs
+
+      .title
+        font-size: $fs--lm

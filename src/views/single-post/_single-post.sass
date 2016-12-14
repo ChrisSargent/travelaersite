@@ -3,13 +3,21 @@
 
 .section-singlepost
   > .container
-    +cont--xl
     +columns
-
-  .section-hero + &
-    margin-top: -13rem
+    align-items: flex-start
 
 .sidebar-singlepost
-  width: 320px
-  flex: 1 5 320px
-  margin-left: 2%
+  width: 100%
+
+@media screen and (min-width: $bp--mn)
+  .section-singlepost
+    > .container
+      +cont--xl
+
+    .section-hero + &
+      margin-top: -13rem
+
+  .sidebar-singlepost
+    width: 320px
+    flex: 1 5 320px
+    margin-left: 2%

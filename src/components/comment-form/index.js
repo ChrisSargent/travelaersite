@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
 
+import Actions from '../actions';
 import ArticleHeader from '../article-header';
-import Close from '../close';
 import SVG from '../svg';
 
 import * as CommentsActions from '../../actions/CommentsActions';
@@ -28,15 +28,12 @@ class CommentLoader extends Component {
   }
 
   setShowLoader() {
-    var self = this;
     const getLoading = CommentsStore.getLoading();
 
     if(getLoading) {
       this.setState({loadingClass: css.loading});
     } else {
-      setTimeout(function () {
-        self.setState({loadingClass: ''});
-      }, 1000);
+      this.setState({loadingClass: ''});
     }
   }
 
@@ -74,9 +71,9 @@ export default class CommentForm extends Component {
     CommentsStore.getResetForm() && this.refs.commentForm.reset();
   }
 
-  processComment(e) {
+  processComment(ev) {
     var commentData;
-    e.preventDefault();
+    ev.preventDefault();
 
     commentData = '?'
     commentData += 'author_name=' + encodeURIComponent(this.refs.name.value) +
@@ -89,18 +86,28 @@ export default class CommentForm extends Component {
   }
 
   render() {
-    const {closeClick} = this.props;
     const compName = 'submit';
+    const actions = [
+      {
+        modifier: 'cta',
+        linkTitle: 'Submit',
+        submit: true
+      },
+      {
+        modifier: 'reset',
+        linkTitle: 'Cancel',
+        param: 'close',
+      }
+    ]
 
     return (
       <section className={css.section + compName}>
-        {closeClick && <Close closeClick={closeClick} />}
         <ArticleHeader title="Leave a Comment" subtitle="Your email address will not be published" modifier={compName}/>
         <form className={css.form + compName} ref="commentForm" onSubmit={this.processComment} >
-          <span className="name"><input type="text" ref="name" placeholder="Name" /></span>
-          <span className="email"><input type="email" ref="email" placeholder="Email" /></span>
-          <span className="comment"><textarea ref="comment" placeholder="Your Comment" /></span>
-          <span className="submit"><button id="submit" type="submit" className={css.btn + ' -cta'}>Submit</button></span>
+          <span className="name"><input type="text" ref="name" placeholder="Name"/></span>
+          <span className="email"><input type="email" ref="email" placeholder="Email"/></span>
+          <span className="comment"><textarea ref="comment" placeholder="Your Comment"/></span>
+          <Actions actions={actions} />
         </form>
         <CommentLoader />
       </section>
