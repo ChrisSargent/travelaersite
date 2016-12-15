@@ -17,6 +17,7 @@ export default class Insta extends Component {
   }
 
   componentWillMount() {
+    this.requestOptions();
     OptionsStore.on('change', this.requestOptions);
     InstaStore.on('change', this.requestInsta);
   }
@@ -70,7 +71,6 @@ export default class Insta extends Component {
 
     const instaMap = insta.map((item) => {
       var image = this.imageAdaptor(item.images);
-      console.log(item);
 
       item.caption
         ? image.alt = item.caption.text
@@ -78,8 +78,10 @@ export default class Insta extends Component {
 
       return (
         <li key={item.id} className={css.item}>
-          <SVG type="instagram"/>
-          <RespImageCover image={image} />
+          <a href={item.link} target="_blank" className={css.link + compName}>
+            <SVG type="instagram"/>
+            <RespImageCover image={image} />
+          </a>
         </li>
       )
     })

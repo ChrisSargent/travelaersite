@@ -48,7 +48,10 @@ export default class ImageCover extends Component {
     var bgSrc,
       tagClass,
       refCb;
-    const {className, modifier} = this.props;
+    const {className, modifier, image} = this.props;
+
+    if (!image)
+      return null
 
     className
       ? tagClass = className

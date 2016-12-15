@@ -1,5 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
+import RespImageCover from '../resp-image-cover';
 import Wysiwyg from '../wysiwyg';
 
 import SVG from '../svg';
@@ -13,7 +14,6 @@ function MosaicTile(props) {
   const compName = 'tile';
   var tileClass = '',
     mediaLink,
-    liStyle = {},
     TagName = 'a',
     footer = null;
 
@@ -24,9 +24,6 @@ function MosaicTile(props) {
   switch (type) {
     case 'instagram':
       mediaLink = link.split('?')[0] + 'media?size=l';
-      liStyle = {
-        backgroundImage: 'url(' + mediaLink + ')'
-      }
       content = null;
       break;
 
@@ -49,12 +46,12 @@ function MosaicTile(props) {
   }
 
   return (
-    <li className={css.item + tileClass} style={liStyle}>
+    <li className={css.item + tileClass}>
       <TagName href={link} target="_blank" className={css.content + compName}>
         <SVG type={type}/>
         <Wysiwyg content={content}/>
         {footer}
-        {mediaLink && <img src={mediaLink} alt={alt} className={css.replImg}/>}
+        <RespImageCover image={mediaLink} alt={alt}/>
       </TagName>
     </li>
   );

@@ -304,3 +304,35 @@
       content: ' '
       display: block
       padding-top: 100%
+
+=hover-scale
+  overflow: hidden
+
+  // ._bgimg
+  //   &::after,
+  //   &::before
+  //     content: ' '
+  //     display: block
+  //     position: absolute
+  //     width: 100%
+  //     height: 70%
+  //     left: 0
+  //     transform-origin: left bottom
+  //     transform: translate3d(0, 0, 0)
+  //     transition: transform $tr--s
+  //
+  //   &::before
+  //     top: 100%
+  //     background-color: transparentize($co--teal, 0.2)
+  //   &::after
+  //     top: 150%
+  //     background-color: transparentize($co--blue--lt, 0.2)
+  //     transition-delay: $t--f
+
+  &:hover
+    ._bgimg
+      transform: scale3d(1.05, 1.05, 1)
+
+      // &::before,
+      // &::after
+      //   transform: translate3d(0, -400%, 0)
