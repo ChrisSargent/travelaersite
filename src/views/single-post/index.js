@@ -32,6 +32,10 @@ export default class SinglePost extends Component {
     }
   }
 
+  componentDidUpdate() {
+    window.twttr.widgets.load();
+  }
+
   requestPost() {
     const post = PostsStore.getPost(this.props.params.slug);
     post && (this.setState({post: post}));
@@ -40,7 +44,6 @@ export default class SinglePost extends Component {
   render() {
     const post = this.state.post;
     if (!post)
-      // If we haven't got the post from the API yet, return as fast as possible
       return false;
 
     const compName = 'singlepost';
@@ -54,7 +57,7 @@ export default class SinglePost extends Component {
           <Post post={post}/>
           <aside className={css.sidebar + compName}>
             <RecentPosts currPost={post.id}/>
-            <Insta />
+            <Insta/>
           </aside>
         </Section>
       </main>

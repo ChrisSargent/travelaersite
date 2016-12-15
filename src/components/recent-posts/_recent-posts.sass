@@ -47,7 +47,10 @@
   &:not(.-large)
     > ._bgimg
       position: static
+      flex: none
+      align-self: stretch
       width: 33%
+      height: auto
 
       &::after
         content: ' '
@@ -101,11 +104,11 @@
       font-size: $fs--t
 
     &.-large
-      padding: $pd--l $pd--s
       position: absolute
       bottom: 0
       left: 0
       width: 100%
+      padding: $pd--l $pd--s
 
       .i.-post
         width: 1.5em

@@ -3,15 +3,30 @@
 
 .block-info
   +post-padding
-  background-color: $co--tint
+  background-color: $co--blue-grey--tt
   padding-top: $pd--xxs
   padding-bottom: $pd--xxs
-  color: $co--blue-grey
+  color: $co--blue-grey--md
   font-size: $fs--xxt
   line-height: $lh--xxl
 
   > .author
     display: block
+
+  > .info + .info
+    margin-left: 1em
+
+  .i
+    width: 1em
+    height: 1em
+    display: inline
+    vertical-align: middle
+    margin-right: $spc
+
+  .i.-time
+    position: relative
+    top: -1px
+    // Alignment fix
 
   @media screen and (min-width: $bp--mn)
     padding-top: $pd--s

@@ -8,12 +8,12 @@ import SVG from '../svg';
 require('./_tile.sass');
 
 function MosaicTile(props) {
-  var {content} = props.acf
+  console.log(props);
+  var {content, image} = props.acf
   const {type, colour, size, link} = props.acf;
   const alt = content;
   const compName = 'tile';
   var tileClass = '',
-    mediaLink,
     TagName = 'a',
     footer = null;
 
@@ -23,7 +23,7 @@ function MosaicTile(props) {
 
   switch (type) {
     case 'instagram':
-      mediaLink = link.split('?')[0] + 'media?size=l';
+      image = link.split('?')[0] + 'media?size=l';
       content = null;
       break;
 
@@ -51,7 +51,7 @@ function MosaicTile(props) {
         <SVG type={type}/>
         <Wysiwyg content={content}/>
         {footer}
-        <RespImageCover image={mediaLink} alt={alt}/>
+        <RespImageCover image={image} alt={alt}/>
       </TagName>
     </li>
   );

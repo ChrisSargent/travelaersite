@@ -29,11 +29,7 @@
 #fans
   transition: visibility $tr--xs
   transform-origin: center
-  animation-name: spin
-  animation-duration: 5s
-  animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1)
-  animation-iteration-count: infinite
-  animation-fill-mode: forwards
+  animation: spin 5s infinite forwards cubic-bezier(0.1, 0.7, 1.0, 0.1)
 
   .-loading &
     transition: none

@@ -50,7 +50,8 @@ export default class ImageCover extends Component {
       refCb;
     const {className, modifier, image} = this.props;
 
-    if (!image)
+    if (!image && className !== css.avatar)
+      // Only return if there is no image and this is NOT an avatar
       return null
 
     className

@@ -76,6 +76,32 @@ function remove_default_image_sizes() {
     remove_image_size('medium_large');
 }
 
+
+// Put inline images into figures - removing the default inline style that WP put on normally
+add_filter( 'img_caption_shortcode', 'my_img_caption_shortcode', 10, 3 );
+function my_img_caption_shortcode( $empty, $attr, $content ){
+	$attr = shortcode_atts( array(
+		'id'      => '',
+		'align'   => 'alignnone',
+		'width'   => '',
+		'caption' => ''
+	), $attr );
+
+	if ( 1 > (int) $attr['width'] || empty( $attr['caption'] ) ) {
+		return '';
+	}
+
+	if ( $attr['id'] ) {
+		$attr['id'] = 'id="' . esc_attr( $attr['id'] ) . '" ';
+	}
+
+	return '<figure ' . $attr['id']
+	. 'class="wp-caption ' . esc_attr( $attr['align'] ) . '">'
+	. do_shortcode( $content )
+	. '<figcaption class="wp-caption-text">' . $attr['caption'] . '</figcaption>'
+	. '</figure>';
+}
+
 function pp($a)
 {
     echo '<pre style="background-color:white;">'.print_r($a, 1).'</pre>';

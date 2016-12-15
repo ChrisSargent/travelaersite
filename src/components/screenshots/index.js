@@ -24,7 +24,7 @@ function ScreenShots(props) {
 
     // Create the image map
     imageMap = screenshot.images.map((image, index) => {
-      return <RespImage key={index} image={image} srcVersion='large' respSizes="320px"/>
+      return <RespImage key={index} image={image} srcVersion='large' respSizes="(min-width: 840px) 320px, 175px"/>
     })
 
     // Setup the styles if it's being used in a carousel

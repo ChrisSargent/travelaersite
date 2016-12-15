@@ -3,11 +3,11 @@ import dispatcher from '../dispatcher';
 
 export function fetchPosts() {
   const params = {
-    // fields: 'categories,content,date_gmt,id,title,t_author,t_comments_info,t_featured_image,t_tags'
+    fields: 'content,date_gmt,id,title,slug,t_author,t_categories,t_comments_info,t_featured_image'
   }
-  dispatcher.dispatch({type: 'FETCH_POSTS', id: 'fetchPosts', loading: true});
+  dispatcher.dispatch({type: 'FETCH_POSTS', id: 'fetchPosts', loading: false});
   axios.get('/wp/v2/posts', {params}).then(function(response) {
-    // console.log(response.data);
+    // console.log('fetchPosts: ', response.data);
     dispatcher.dispatch({type: 'RECEIVE_POSTS', posts: response.data, allPosts: true, id: 'fetchPosts', loading: false});
   }).catch(function(error) {
     console.log(error);
@@ -16,17 +16,18 @@ export function fetchPosts() {
 
 export function fetchPost(slug) {
   const params = {
-    'filter[name]': slug,
-    // fields: 'categories,content,date_gmt,id,title,t_author,t_comments_info,t_featured_image,t_tags'
+    slug: slug,
+    fields: 'content,date_gmt,id,title,slug,t_author,t_categories,t_comments_info,t_featured_image',
   }
   dispatcher.dispatch({type: 'FETCH_POSTS', id: 'fetchPost', loading: true});
   axios.get('/wp/v2/posts', {params}).then(function(response) {
-    // console.log(response.data);
+    // console.log('fetchPost: ', response.data);
     dispatcher.dispatch({type: 'RECEIVE_POSTS', posts: response.data, id: 'fetchPost', loading: false});
   }).catch(function(error) {
     console.log(error);
   });
 }
+
 
 // Before:
 
@@ -52,6 +53,7 @@ export function fetchPost(slug) {
 // slug: "another-new-post-with-a-longer-title"
 // sticky: false
 // t_author: Object
+// t_categories: Array
 // t_comments_info: Object
 // t_featured_image: null
 // t_tags: Array[0]
