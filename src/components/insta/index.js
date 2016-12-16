@@ -92,19 +92,3 @@ export default class Insta extends Component {
     )
   }
 }
-
-// function loadInsta(limit) {
-//   var template = '<li>' +
-//   '<a href="{{link}}" class="anchor__wrap" target="_blank">' +
-//   '<figure>' +
-//   '<div class="image__replace" style="background-image:url(\'{{image}}\')" aria-hidden="true"></div>' +
-//   '<img src="{{image}}" width="{{width}}" height="{{height}}" alt="{{caption}}" />' +
-//   '<figcaption>' +
-//   '<i class="i--heart" aria-hidden="true"></i><span>Likes: </span>{{likes}}<i class="i--comment" aria-hidden="true"></i><span>Comments: </span>{{comments}}' +
-//   '</figcaption>' +
-//   '</figure>' +
-//   '</a>' +
-//   '</li>';
-//   });
-//   feed.run();
-// }

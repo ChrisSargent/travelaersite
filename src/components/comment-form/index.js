@@ -86,7 +86,7 @@ export default class CommentForm extends Component {
   }
 
   render() {
-    const compName = 'submit';
+    const {compName} = this.props;
     const actions = [
       {
         modifier: 'cta',

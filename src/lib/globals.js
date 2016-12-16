@@ -4,7 +4,8 @@ module.exports = {
   homeUrl: '/',
   blogUrl: '/blog',
   companyUrl: '/company',
-  productsUrl: '/products'
+  productsUrl: '/products',
+  contactUrl: '/contact-us',
 };
 
 

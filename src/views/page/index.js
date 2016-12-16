@@ -5,12 +5,15 @@ import PageStore from '../../stores/PageStore';
 
 // Components
 import Banner from '../../components/banner';
+import CommentForm from '../../components/comment-form';
 import Hero from '../../components/hero';
 import ImageBanner from '../../components/image-banner';
+import Gmap from '../../components/map';
 import Mosaic from '../../components/mosaic';
 import ProductModules from '../../components/product-modules';
 import Products from '../../components/products';
 import Team from '../../components/team';
+import Section from '../../components/section';
 
 export default class Page extends Component {
   constructor() {
@@ -48,31 +51,58 @@ export default class Page extends Component {
 
     // Get all the content blocks and map them to a variable
     const blocksMap = page.acf.contentBlocks.map((block, index) => {
+      var name, content;
       switch (block.acf_fc_layout) {
         case 'hero':
-          return <Hero key={index} {...block}/>;
+          name = 'hero';
+          content = <Hero {...block} compName={name}/>;
+          break;
 
         case 'banner':
-          return <Banner key={index} {...block}/>;
+          name = 'banner';
+          content = <Banner {...block} compName={name}/>;
+          break;
 
         case 'mosaic':
-          return <Mosaic key={index} tiles={block.tiles}/>;
+          name = 'mosaic';
+          content = <Mosaic tiles={block.tiles} compName={name}/>;
+          break;
 
         case 'products':
-          return <Products key={index} {...block}/>;
+          name = 'products';
+          content = <Products {...block} compName={name}/>;
+          break;
 
         case 'team':
-          return <Team key={index} {...block}/>;
+          name = 'team';
+          content = <Team {...block} compName={name}/>;
+          break;
 
         case 'product_modules':
-          return <ProductModules key={index} {...block}/>
+          name = 'prodmods';
+          content = <ProductModules {...block} compName={name}/>
+          break;
 
         case 'image_banner':
-          return <ImageBanner key={index} {...block}/>
+          name = 'imagebanner';
+          content = <ImageBanner {...block} compName={name}/>
+          break;
+
+        case 'map':
+          name = 'map';
+          content = <Gmap {...block} compName={name}/>
+          break;
+
+        case 'contact_form':
+          name = 'submit';
+          content = <CommentForm compName={name}/>
+          break;
 
         default:
-          return false;
       }
+      return (
+        <Section key={index} compName={name}>{content}</Section>
+      )
     })
 
     return (

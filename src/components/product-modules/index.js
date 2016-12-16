@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
 import Screenshots from '../screenshots';
-import Section from '../section';
 import Wysiwyg from '../wysiwyg';
 
 require('./_product-modules.sass');
@@ -28,13 +27,17 @@ function Controls(props) {
   });
   return (
     <div onClick={onClick} className={css.block + compName}>
-      <button data-modtarget="dec" className={css.control + ' -dec'}><span>Prev</span></button>
+      <button data-modtarget="dec" className={css.control + ' -dec'}>
+        <span>Prev</span>
+      </button>
       <div className={css.wrap}>
         <ul className={css.list + compName} style={slideStyles}>
           {controlsMap}
         </ul>
       </div>
-      <button data-modtarget="inc" className={css.control + ' -inc'}><span>Next</span></button>
+      <button data-modtarget="inc" className={css.control + ' -inc'}>
+        <span>Next</span>
+      </button>
     </div>
   )
 }
@@ -86,7 +89,8 @@ export default class ProductModules extends Component {
   }
 
   handleClick(ev) {
-    var {activeModule} = this.state, nextActive;
+    var {activeModule} = this.state,
+      nextActive;
 
     if (!ev.target.dataset.modtarget)
       return;
@@ -108,18 +112,17 @@ export default class ProductModules extends Component {
   nextActiveIndex(nextActive) {
     const {totalModules} = this.state;
     if (nextActive < 0)
-			nextActive = totalModules - 1;
+      nextActive = totalModules - 1;
 
-		if (nextActive > totalModules - 1)
-			nextActive = 0;
+    if (nextActive > totalModules - 1)
+      nextActive = 0;
 
     this.setState({activeModule: nextActive});
   }
 
   render() {
-    const {product_module, title} = this.props;
+    const {product_module, title, compName} = this.props;
     const {activeModule} = this.state;
-    const compName = 'prodmods';
 
     if (!product_module)
       return false;
@@ -136,16 +139,14 @@ export default class ProductModules extends Component {
     }
 
     return (
-      <Section compName={compName}>
-        <div className={css.content + compName}>
-          <div className={'side-' + compName}>
-            <h1 className={css.title}>{title}</h1>
-            <Controls controls={product_module} activeIndex={activeModule} onClick={this.handleClick} modifier={compName} />
-          </div>
-          <Screenshots screenshots={screenshots} activeIndex={activeModule} />
-          <Modules modules={product_module} activeIndex={activeModule} />
+      <div className={css.content + compName}>
+        <div className={'side-' + compName}>
+          <h1 className={css.title}>{title}</h1>
+          <Controls controls={product_module} activeIndex={activeModule} onClick={this.handleClick} modifier={compName}/>
         </div>
-      </Section>
+        <Screenshots screenshots={screenshots} activeIndex={activeModule}/>
+        <Modules modules={product_module} activeIndex={activeModule}/>
+      </div>
     );
   }
 }

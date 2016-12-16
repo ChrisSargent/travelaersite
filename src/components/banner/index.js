@@ -1,13 +1,11 @@
 import React from 'react';
 import css from '../../lib/css';
 import RespImage from '../resp-image';
-import Section from '../section';
 
 require('./_banner.sass');
 
 function Banner(props) {
-  const {logos, title} = props;
-  const compName = 'banner';
+  const {logos, title, compName} = props;
 
   const logoMap = logos.map((logo, index) => {
 
@@ -19,14 +17,12 @@ function Banner(props) {
   });
 
   return (
-    <Section compName={compName}>
-      <div className={css.content + compName}>
-        <h1 className={css.title}>{title}</h1>
-        <ul className={css.list + compName}>
-          {logoMap}
-        </ul>
-      </div>
-    </Section>
+    <div className={css.content + compName}>
+      <h1 className={css.title}>{title}</h1>
+      <ul className={css.list + compName}>
+        {logoMap}
+      </ul>
+    </div>
   );
 }
 

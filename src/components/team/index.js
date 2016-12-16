@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import css from '../../lib/css';
 import Member from '../member';
-import Section from '../section';
 import TeamStore from '../../stores/TeamStore';
 
 require('./_team.sass');
@@ -33,25 +32,23 @@ export default class Team extends Component {
       return null
 
     const {team} = this.state;
-    const compName = 'team';
+    const {compName} = this.props;
 
     const teamMap = team.map((member) => {
       return (
         <li key={member.id} className={css.item}>
-          <Member {...member} />
+          <Member {...member}/>
         </li>
       );
     });
 
     return (
-      <Section compName={compName}>
-        <div className={css.block + compName}>
-          <h1 className={css.title}>Our Team</h1>
-          <ul className={css.list + compName}>
-            {teamMap}
-          </ul>
-        </div>
-      </Section>
+      <div className={css.block + compName}>
+        <h1 className={css.title}>Our Team</h1>
+        <ul className={css.list + compName}>
+          {teamMap}
+        </ul>
+      </div>
     );
   }
 }
