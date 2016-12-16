@@ -11,27 +11,21 @@ import RespImageCover from '../resp-image-cover';
 
 function RecentPosts(props) {
 
-  const {posts, currPost} = props;
+  const {posts} = props;
   const compName = 'recentposts';
-  var count = 0;
 
   if (!posts)
     return null;
 
-  const postsMap = posts.map((post) => {
+  const postsMap = posts.map((post, index) => {
     var modifier,
       icon;
 
-    if (currPost === post.id || count > 7) {
-      // Don't show the current posts in the latest posts list nor more than 7
-      return null;
-    }
-    count++
     const compName = 'recentpost';
     const dateString = dateFormat(post.date_gmt, false);
     const link = globals.blogUrl + '/' + post.slug;
 
-    if (count <= 2) {
+    if (index <= 2) {
       modifier = compName + ' -large';
       icon = 'post';
     } else {

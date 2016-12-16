@@ -2,6 +2,7 @@
 @import _mixins
 
 .section-singlepost
+  padding-bottom: $pd--block
   > .container
     +columns
     align-items: flex-start
@@ -10,10 +11,8 @@
   width: 480px
   flex: 10 2 480px
 
-  > li > a
-    text-decoration: none
-    color: inherit
-    display: block
+  > .item + .item
+    margin-top: $pd--l
 
 .sidebar-singlepost
   width: 100%

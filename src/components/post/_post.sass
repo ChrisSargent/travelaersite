@@ -1,10 +1,10 @@
 @import _tools
 
 .article-post
-  background-color: $co--wt
   > .wysiwyg
     +wysiwyg-default($fs: $fs--mss)
     +post-padding
+    background-color: $co--wt
     font-weight: 300
     line-height: $lh--ml
     padding-top: $pd--ll
@@ -12,6 +12,7 @@
 
 .header-post
   +post-padding
+  position: relative
   padding-top: $pd--s
   padding-bottom: $pd--s
   color: $co--wt
@@ -20,6 +21,17 @@
   .title
     font-size: $fs--l
     line-height: $lh--m
+
+  &.-bg
+    background: none
+    padding-top: 8rem
+
+    &::after
+      +stretch
+      content: ' '
+      display: block
+      background: $fade--floor
+      z-index: $z--under
 
 @media screen and (min-width: $bp--mn)
   .article-post

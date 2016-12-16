@@ -12,78 +12,69 @@ require('./_single-post.sass')
 export default class SinglePost extends Component {
   constructor(props) {
     super(props);
-    // this.requestPost = this.requestPost.bind(this);
-    this.requestPosts = this.requestPosts.bind(this);
+    this.requestPostsObj = this.requestPostsObj.bind(this);
     this.state = {};
   }
 
   componentWillMount() {
-    this.requestPosts();
-    PostsStore.on('change', this.requestPosts);
+    this.requestPostsObj();
+    PostsStore.on('change', this.requestPostsObj);
   }
 
   componentWillUnmount() {
-    PostsStore.removeListener('change', this.requestPosts);
+    PostsStore.removeListener('change', this.requestPostsObj);
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.params.slug !== newProps.params.slug) {
-      const post = PostsStore.getPost(newProps.params.slug);
-      post && (this.setState({post: post}));
-    }
+    if (this.props.params.slug === newProps.params.slug)
+      return;
+
+    const postsObj = PostsStore.getPostsObj(newProps.params.slug);
+    postsObj && (this.setState({postsObj: postsObj}));
   }
 
   componentDidUpdate() {
-    // window.twttr.widgets.load();
+    window.twttr.widgets.load();
   }
 
-  requestPost() {
-    const post = PostsStore.getPost(this.props.params.slug);
-    post && (this.setState({post: post}));
-  }
-
-  requestPosts() {
-    const posts = PostsStore.getPosts();
-    posts && (this.setState({posts: posts}));
+  requestPostsObj() {
+    const {slug} = this.props.params;
+    const postsObj = PostsStore.getPostsObj(slug);
+    postsObj && (this.setState({postsObj: postsObj}));
   }
 
   render() {
-    console.log('State: ', this.state);
-    const {posts} = this.state;
-    const compName = 'singlepost';
-
-    if (!posts)
+    const {postsObj} = this.state;
+    if (!postsObj)
       return null;
 
-    const top5Posts = posts.slice(0,5);
-    const otherPosts = posts.slice(5);
-    const topPost = posts[0];
+    const compName = 'singlepost';
 
-    const postsMap = top5Posts.map((post, index) => {
-      var isTop, isExcerpt;
-      isExcerpt = true;
+    const postsMap = postsObj.posts.map((post, index) => {
+      var isMain;
+
       index === 0
-        ? isTop = true
-        : isTop = false;
+        ? isMain = true
+        : isMain = false;
 
       return (
-        <li key={post.id}>
-          <Post post={post} excerpt={isExcerpt} top={isTop}/>
+        <li key={post.id} className={css.item}>
+          <Post post={post} excerpt={postsObj.excerpts} main={isMain}/>
         </li>
-        );
+      );
     });
 
     return (
       <main>
         <section className={css.section + 'hero'}>
-          <RespImageCover image={topPost.t_featured_image}/>
+          <RespImageCover image={postsObj.image}/>
         </section>
         <Section compName={compName}>
           <ul className={css.list + compName}>
             {postsMap}
           </ul>
           <aside className={css.sidebar + compName}>
-            <RecentPosts posts={otherPosts} currPost={topPost.id}/>
+            <RecentPosts posts={postsObj.side} />
             <Insta/>
           </aside>
         </Section>

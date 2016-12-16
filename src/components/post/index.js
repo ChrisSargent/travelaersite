@@ -11,9 +11,11 @@ import Wysiwyg from '../wysiwyg';
 require('./_post.sass');
 
 function Post(props) {
-  const {post, excerpt, top} = props;
+  const {post, excerpt, main} = props;
   const compName = 'post';
-  var content;
+  var content,
+    image,
+    more;
   var postInfo = {
     views: '',
     comments: post.t_comments_info.total,
@@ -23,25 +25,31 @@ function Post(props) {
     author: post.t_author.name
   };
 
-  excerpt
-    ? content = trimContent(post.content.rendered, top)
-    : content = post.content
+  if (excerpt) {
+    content = trimContent(post.content.rendered, main)
+    more = globals.blogUrl + '/' + post.slug;
+  } else {
+    content = post.content;
+    more = false;
+  }
+  main
+    ? image = false
+    : image = post.t_featured_image;
 
   return (
     <article className={css.article + compName}>
-      <ArticleHeader title={post.title} modifier={compName}/>
+      <ArticleHeader title={post.title} modifier={compName} image={image}/>
       <PostInfo info={postInfo}/>
-      <Wysiwyg content={content} more={globals.blogUrl + '/' + post.slug} />
-      {!excerpt && <Author author={post.t_author}/> }
-      {!excerpt && <CommentBlock commentsInfo={post.t_comments_info} title={post.title.rendered} post={post.id} />}
+      <Wysiwyg content={content} more={more}/> {!excerpt && <Author author={post.t_author}/>}
+      {!excerpt && <CommentBlock commentsInfo={post.t_comments_info} title={post.title.rendered} post={post.id}/>}
     </article>
   )
 }
 
-function trimContent(content, top) {
+function trimContent(content, main) {
   var paras;
   // Set how many paragraphs we should cut to
-  top
+  main
     ? paras = 3
     : paras = 1
 

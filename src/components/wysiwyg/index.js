@@ -20,7 +20,7 @@ function Wysiwyg(props) {
   return (
     <div className={wysClass}>
       <div dangerouslySetInnerHTML={{__html: content}}></div>
-      {more && <Link to={more} className={css.more}>Read More</Link>}
+      {more && <Link to={more} className={css.more}>&raquo;&nbsp;Read More</Link>}
     </div>
   );
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import css from '../../lib/css';
-
+import RespImageCover from '../resp-image-cover'
 import SVG from '../svg';
 
 require('./_article-header.sass');
 
 function ArticleHeader(props) {
-  const {modifier, subtitle, icon} = props;
+  const {modifier, subtitle, icon, image} = props;
   var {title} = props,
     headClass;
 
@@ -14,6 +14,7 @@ function ArticleHeader(props) {
     ? headClass = css.header + modifier
     : headClass = css.header + css.default;
 
+  image && (headClass += ' -bg');
   typeof title === 'object' && (title = title.rendered);
 
   return (
@@ -23,6 +24,7 @@ function ArticleHeader(props) {
         {title && <h1 className={css.title}>{title}</h1>}
         {subtitle && <span className={css.subtitle}>{subtitle}</span>}
       </div>
+      <RespImageCover image={image} />
     </header>
   );
 }
