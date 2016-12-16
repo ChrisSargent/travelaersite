@@ -1,13 +1,12 @@
-@import _variables
-@import _mixins
+@import _tools
 
 .article-post
+  background-color: $co--wt
   > .wysiwyg
     +wysiwyg-default($fs: $fs--mss)
     +post-padding
     font-weight: 300
     line-height: $lh--ml
-    background-color: $co--wt
     padding-top: $pd--ll
     padding-bottom: $pd--s
 
@@ -24,9 +23,6 @@
 
 @media screen and (min-width: $bp--mn)
   .article-post
-    width: 480px
-    flex: 10 2 480px
-
     > .wysiwyg
       font-size: $fs--m
       padding-top: $pd--l

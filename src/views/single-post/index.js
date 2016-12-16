@@ -12,17 +12,18 @@ require('./_single-post.sass')
 export default class SinglePost extends Component {
   constructor(props) {
     super(props);
-    this.requestPost = this.requestPost.bind(this);
+    // this.requestPost = this.requestPost.bind(this);
+    this.requestPosts = this.requestPosts.bind(this);
     this.state = {};
   }
 
   componentWillMount() {
-    this.requestPost();
-    PostsStore.on('change', this.requestPost);
+    this.requestPosts();
+    PostsStore.on('change', this.requestPosts);
   }
 
   componentWillUnmount() {
-    PostsStore.removeListener('change', this.requestPost);
+    PostsStore.removeListener('change', this.requestPosts);
   }
 
   componentWillReceiveProps(newProps) {
@@ -33,7 +34,7 @@ export default class SinglePost extends Component {
   }
 
   componentDidUpdate() {
-    window.twttr.widgets.load();
+    // window.twttr.widgets.load();
   }
 
   requestPost() {
@@ -41,22 +42,48 @@ export default class SinglePost extends Component {
     post && (this.setState({post: post}));
   }
 
-  render() {
-    const post = this.state.post;
-    if (!post)
-      return false;
+  requestPosts() {
+    const posts = PostsStore.getPosts();
+    posts && (this.setState({posts: posts}));
+  }
 
+  render() {
+    console.log('State: ', this.state);
+    const {posts} = this.state;
     const compName = 'singlepost';
 
+    if (!posts)
+      return null;
+
+    const top5Posts = posts.slice(0,5);
+    const otherPosts = posts.slice(5);
+    const topPost = posts[0];
+
+    const postsMap = top5Posts.map((post, index) => {
+      var isTop, isExcerpt;
+      isExcerpt = true;
+      index === 0
+        ? isTop = true
+        : isTop = false;
+
+      return (
+        <li key={post.id}>
+          <Post post={post} excerpt={isExcerpt} top={isTop}/>
+        </li>
+        );
+    });
+
     return (
-      <main id={post.slug} className={post.slug}>
+      <main>
         <section className={css.section + 'hero'}>
-          <RespImageCover image={post.t_featured_image}/>
+          <RespImageCover image={topPost.t_featured_image}/>
         </section>
         <Section compName={compName}>
-          <Post post={post}/>
+          <ul className={css.list + compName}>
+            {postsMap}
+          </ul>
           <aside className={css.sidebar + compName}>
-            <RecentPosts currPost={post.id}/>
+            <RecentPosts posts={otherPosts} currPost={topPost.id}/>
             <Insta/>
           </aside>
         </Section>

@@ -29,6 +29,7 @@ module.exports = {
   icon: 'i',
   avatar: 'avatar',
   control: 'control',
+  more: 'more',
 
   // Modifiers
   loading: ' -loading',

@@ -29,6 +29,21 @@ strong
 ._centered
   text-align: center
 
-.twitter-tweet-rendered
-  margin-left: auto
-  margin-right: auto
+.btn
+  +input-reset($ff--base)
+  +btn
+
+  &.-cta,
+  &.-reset
+    padding: 0.425em 0.515em
+
+  &.-cta
+    color: $co--wt
+    background-color: $co--green
+
+  &.-clear
+    color: $co--blue--lt
+    background-color: transparent
+
+  &.-reset
+    background-color: $co--blue-grey

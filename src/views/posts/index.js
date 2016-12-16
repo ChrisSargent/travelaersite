@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import css from '../../lib/css'
-import globals from '../../lib/globals'
-import {Link} from 'react-router';
+
 
 require('./_posts.sass');
 
@@ -9,25 +8,6 @@ require('./_posts.sass');
 import PostsStore from '../../stores/PostsStore';
 
 export default class Posts extends Component {
-  constructor() {
-    super();
-    this.requestPosts = this.requestPosts.bind(this);
-    this.state = {};
-  }
-
-  componentWillMount() {
-    this.requestPosts();
-    PostsStore.on('change', this.requestPosts);
-  }
-
-  componentWillUnmount() {
-    PostsStore.removeListener('change', this.requestPosts);
-  }
-
-  requestPosts() {
-    const posts = PostsStore.getPosts();
-    posts && (this.setState({posts: posts}));
-  }
 
   render() {
     const {posts} = this.state;

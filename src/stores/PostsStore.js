@@ -21,15 +21,15 @@ class PostsStore extends EventEmitter {
     }
   }
 
-  getPost(slug) {
-    // If looking for a single post, check the cache and return the post from the cache
-    if (this.cache[slug]) {
-      return this.cache[slug];
-    } else {
-      PostsActions.fetchPost(slug);
-      return false;
-    }
-  }
+  // getPost(slug) {
+  //   // If looking for a single post, check the cache and return the post from the cache
+  //   if (this.cache[slug]) {
+  //     return this.cache[slug];
+  //   } else {
+  //     PostsActions.fetchPosts();
+  //     return false;
+  //   }
+  // }
 
   updateCache() {
     // Puts the posts in to an array, indexed by their slug
@@ -43,11 +43,6 @@ class PostsStore extends EventEmitter {
 
   handleActions(action) {
     switch (action.type) {
-      case 'FETCH_POSTS':
-        // console.log('PostsStore | handleActions | Fetch Posts');
-        // this.emit('change');
-        break;
-
       case 'RECEIVE_POSTS':
         // console.log('PostsStore | handleActions | Receive Posts');
         var self = this;

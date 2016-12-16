@@ -1,9 +1,11 @@
 import React from 'react';
+import css from '../../lib/css'
+import {Link} from 'react-router';
 
 require('./_wysiwyg.sass');
 
 function Wysiwyg(props) {
-  const {size} = props;
+  const {size, more} = props;
   const compName = 'wysiwyg';
   var {content} = props, wysClass;
 
@@ -16,7 +18,10 @@ function Wysiwyg(props) {
   typeof content === 'object' && (content = content.rendered);
 
   return (
-    <div className={wysClass} dangerouslySetInnerHTML={{__html: content}}></div>
+    <div className={wysClass}>
+      <div dangerouslySetInnerHTML={{__html: content}}></div>
+      {more && <Link to={more} className={css.more}>Read More</Link>}
+    </div>
   );
 }
 

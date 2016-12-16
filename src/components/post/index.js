@@ -1,5 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
+import globals from '../../lib/globals';
 
 import ArticleHeader from '../article-header';
 import Author from '../author';
@@ -10,9 +11,9 @@ import Wysiwyg from '../wysiwyg';
 require('./_post.sass');
 
 function Post(props) {
-  const {post} = props;
+  const {post, excerpt, top} = props;
   const compName = 'post';
-
+  var content;
   var postInfo = {
     views: '',
     comments: post.t_comments_info.total,
@@ -22,17 +23,30 @@ function Post(props) {
     author: post.t_author.name
   };
 
-  // The Ref Callback is run once when this component is mounted - switching between it's props does not cause a remount
+  excerpt
+    ? content = trimContent(post.content.rendered, top)
+    : content = post.content
 
   return (
     <article className={css.article + compName}>
       <ArticleHeader title={post.title} modifier={compName}/>
       <PostInfo info={postInfo}/>
-      <Wysiwyg content={post.content}/>
-      <Author author={post.t_author}/>
-      <CommentBlock commentsInfo={post.t_comments_info} title={post.title.rendered} post={post.id} />
+      <Wysiwyg content={content} more={globals.blogUrl + '/' + post.slug} />
+      {!excerpt && <Author author={post.t_author}/> }
+      {!excerpt && <CommentBlock commentsInfo={post.t_comments_info} title={post.title.rendered} post={post.id} />}
     </article>
   )
+}
+
+function trimContent(content, top) {
+  var paras;
+  // Set how many paragraphs we should cut to
+  top
+    ? paras = 3
+    : paras = 1
+
+  var excerpt = content.split('</p>', paras)
+  return excerpt.join('');
 }
 
 export default Post;

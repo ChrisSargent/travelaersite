@@ -1,0 +1,128 @@
+// ******************************* Text Mixins *********************************
+=heading-light
+  font-size: $fs--xxs
+  text-transform: uppercase
+  font-weight: 300
+  @media screen and (min-width: $bp--mn)
+    font-size: inherit
+
+=heading-spaced
+  text-transform: uppercase
+  letter-spacing: $ls--w
+
+// ***************************** Component Mixins ******************************
+
+=article-default($pad: $pd--l, $dir: column)
+  position: relative
+  display: flex
+  flex-direction: $dir
+  align-items: flex-start
+  width: 100%
+  height: 100%
+  padding: $pad
+
+=header-default($spc: $pd--xs)
+  margin-bottom: $spc
+
+=wysiwyg-default($ff: $ff--p, $fs: 1rem)
+  font-family: $ff
+  font-size: $fs
+  overflow: hidden
+
+  > :first-child
+    margin-top: 0
+
+  h1, h2, h3, h4, h5, h6
+    margin: $pd--s 0
+
+  p
+    margin: $pd--ml 0
+
+    &:first-child
+      margin-top: 0
+
+    &:last-child
+      margin-bottom: 0
+
+  a
+    text-decoration: none
+    color: $co--blue--lt
+
+  figure,
+  img
+    max-width: 100%
+    height: auto
+    margin: 0 auto
+
+  iframe
+    display: block
+    max-width: 100%
+    margin: 0 auto
+
+  figure
+    border: 1px solid $co--tint
+
+  figcaption
+    font-family: $ff--base
+    font-size: 0.65em
+    text-transform: uppercase
+    background-color: $co--tint
+    padding: $pd--xxs $pd--ml
+
+  ul
+    position: relative
+
+    li
+      padding: $pd--xxs 0
+
+    > li
+      margin-left: $pd--s
+
+      &::before
+        content: '\00BB'
+        position: absolute
+        left: 0
+
+      ul > li
+        font-weight: 300
+
+        &::before
+          content: '\2022'
+
+  blockquote
+    margin: $pd--xl
+    quotes: none
+    border: 0 solid $co--blue--lt
+    border-left-width: 2px
+    color: $co--blue-grey--md
+    font-style: italic
+    padding-left: $pd--m
+    line-height: $lh--lg
+
+    p:first-child
+      margin-top: 0
+
+    p:last-child
+      margin-bottom: 0
+
+  .twitter-tweet
+    margin-left: auto
+    margin-right: auto
+
+  &.-narrow
+    max-width: $sz--s
+
+=avatar-default
+  +clearfix
+  > *
+    overflow: hidden
+    // Prevent some wrapping
+
+  > .avatar
+    float: left
+    margin-right: 4%
+
+    &::after
+      content: ' '
+      display: block
+      padding-top: 100%
