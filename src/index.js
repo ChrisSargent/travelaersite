@@ -5,8 +5,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import globals from './lib/globals';
 import Base from './views/base';
 import Page from './views/page';
-// import Posts from './views/posts';
-import SinglePost from './views/single-post';
+import Posts from './views/posts';
 
 const app = document.getElementById('root');
 
@@ -27,8 +26,8 @@ ReactDOM.render(
     <Route path="(:slug)" component={Page}/>
   </Route>
   <Route path={globals.blogUrl} component={Base}>
-    <IndexRoute component={SinglePost}/>
-    <Route path="(:slug)" component={SinglePost}/>
+    <IndexRoute component={Posts}/>
+    <Route path="(:slug)" component={Posts}/>
   </Route>
   <Route path={globals.homeUrl} component={Base}>
     <IndexRoute component={Page}/>

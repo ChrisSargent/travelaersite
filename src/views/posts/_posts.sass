@@ -1,9 +1,32 @@
-.list-posts
-  min-height: 100vh
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-direction: column
+@import _variables
+@import _mixins
 
-  li
-    padding: 20px
+.section-posts
+  padding-bottom: $pd--block
+  > .container
+    +cont--xl
+    +columns
+    align-items: flex-start
+    padding-right: 0
+    padding-left: 0
+
+.list-posts
+  > .item + .item
+    margin-top: $pd--l
+
+.sidebar-posts
+  width: 100%
+
+@media screen and (min-width: $bp--mn)
+  .section-posts
+    .section-hero + &
+      margin-top: -13rem
+
+  .list-posts
+    flex: 1 1 540px
+    // width: 480px
+
+  .sidebar-posts
+    flex: 0 10 320px
+    // width: 320px
+    margin-left: 2%

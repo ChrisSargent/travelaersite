@@ -10,7 +10,6 @@ import ArticleHeader from '../article-header';
 import RespImageCover from '../resp-image-cover';
 
 function RecentPosts(props) {
-
   const {posts} = props;
   const compName = 'recentposts';
 
@@ -25,7 +24,7 @@ function RecentPosts(props) {
     const dateString = dateFormat(post.date_gmt, false);
     const link = globals.blogUrl + '/' + post.slug;
 
-    if (index <= 2) {
+    if (index < 2) {
       modifier = compName + ' -large';
       icon = 'post';
     } else {

@@ -62,7 +62,7 @@ class PostsStore extends EventEmitter {
     count = 0;
 
     for (i = 0; i < posts.length; i++) {
-      (i !== postIndex && count < 7) && (filteredPosts[i] = posts[i]);
+      (i !== postIndex && count < 7) && (filteredPosts.push(posts[i]));
       count++
     }
 
