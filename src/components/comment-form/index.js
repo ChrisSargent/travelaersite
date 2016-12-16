@@ -86,7 +86,7 @@ export default class CommentForm extends Component {
   }
 
   render() {
-    const {compName} = this.props;
+    const compName = 'submit';
     const actions = [
       {
         modifier: 'cta',
@@ -101,7 +101,7 @@ export default class CommentForm extends Component {
     ]
 
     return (
-      <section className={css.section + compName}>
+      <section className={css.block + compName}>
         <ArticleHeader title="Leave a Comment" subtitle="Your email address will not be published" modifier={compName}/>
         <form className={css.form + compName} ref="commentForm" onSubmit={this.processComment} >
           <span className="name"><input type="text" ref="name" placeholder="Name"/></span>

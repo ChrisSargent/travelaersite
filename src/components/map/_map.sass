@@ -1,0 +1,22 @@
+@import _tools
+
+.section-map
+  +cont--xl
+  > .container
+    position: relative
+
+.content-map
+  display: flex
+
+  > .vcard
+    padding: $pd--block $pd--ll
+    display: block
+    background-color: $co--blue--lt
+    color: $co--wt
+    min-width: 320px
+
+    .email
+      display: none
+
+    .column + .column
+      padding: $pd--m 0 0

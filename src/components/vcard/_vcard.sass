@@ -3,6 +3,7 @@
 .vcard
   font-size: $fs--xxs
   white-space: nowrap
+  font-weight: 300
 
   .fn:not(org)
     +sr-only
@@ -12,6 +13,9 @@
 
   > .column > .item
     display: block
+
+    &.-co
+      text-transform: uppercase
 
     > .label
       +sr-only

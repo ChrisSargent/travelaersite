@@ -6,7 +6,12 @@ require('./_links.sass');
 
 function Links(props) {
   const compName = 'links';
-  const linkMap = props.externalLinks.map((link, index) => {
+  const {externalLinks} = props;
+
+  if (!externalLinks)
+    return null;
+
+  const linkMap = externalLinks.map((link, index) => {
 
     return (
       <li key={index} className={css.item}>

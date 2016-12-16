@@ -7,21 +7,29 @@ require('./_social.sass');
 
 function Social(props) {
   const compName = 'social';
+  const {socialNetworks, modifier} = props;
+  var compClass = css.block + compName;
 
-  const networkMap = props.socialNetworks.map((network, index) => {
+  if (!socialNetworks)
+    return null;
+
+  modifier && (compClass += ' -' + modifier);
+
+  const networkMap = socialNetworks.map((network, index) => {
 
     return (
       <li key={index} className={css.item}>
         <a href={network.link} target="_blank" className={css.link + compName}>
-          <SVG type={network.iconType} />
+          <SVG type={network.iconType.value} />
+          <span className={css.label}>{network.iconType.label}</span>
         </a>
       </li>
     );
   });
 
   return (
-    <div className={css.block + compName}>
-      <h2 className={css.title}>Follow Us</h2>
+    <div className={compClass}>
+      <h2 className={css.title}>Connect with us on</h2>
       <ul className={css.list + compName}>
         {networkMap}
       </ul>

@@ -5,7 +5,7 @@ import PageStore from '../../stores/PageStore';
 
 // Components
 import Banner from '../../components/banner';
-import CommentForm from '../../components/comment-form';
+import Contact from '../../components/contact';
 import Hero from '../../components/hero';
 import ImageBanner from '../../components/image-banner';
 import Gmap from '../../components/map';
@@ -44,7 +44,8 @@ export default class Page extends Component {
   }
 
   render() {
-    const page = this.state.page;
+    const {page} = this.state;
+    const {options} = this.props;
 
     if (!page)
       return null;
@@ -90,12 +91,12 @@ export default class Page extends Component {
 
         case 'map':
           name = 'map';
-          content = <Gmap {...block} compName={name}/>
+          content = <Gmap {...block} compName={name} options={options}/>
           break;
 
         case 'contact_form':
-          name = 'submit';
-          content = <CommentForm compName={name}/>
+          name = 'contact';
+          content = <Contact compName={name} options={options}/>
           break;
 
         default:

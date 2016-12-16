@@ -60,8 +60,8 @@ export default class Footer extends Component {
                 />
             </div>
             <div className={css.item}>
-              {props.socialNetworks && <Social socialNetworks={props.socialNetworks} />}
-              {props.externalLinks && <Links externalLinks={props.externalLinks} />}
+              <Social socialNetworks={props.socialNetworks} modifier='condensed' />
+              <Links externalLinks={props.externalLinks} />
             </div>
           </div>
           <Legal legalName={props.legalName} credit={footerAppend} />

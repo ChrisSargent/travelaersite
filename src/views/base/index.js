@@ -36,13 +36,11 @@ export default class Base extends Component {
   render() {
     const {options} = this.state;
 
-    console.log(this.props.children);
-
     return (
       <div>
         <Header/>
 
-          {React.cloneElement(this.props.children, {...options})}
+          {React.cloneElement(this.props.children, {options: options})}
 
         <Footer {...options}/>
         <Loader />

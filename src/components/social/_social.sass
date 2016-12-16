@@ -2,18 +2,38 @@
 
 .block-social
   > .title
-    +sr-only
+    +header-default
+    +heading-light
+    +heading-spaced
+    font-size: $fs--xxt
+    text-align: center
 
-.list-social
-  +inline-children-item(4px, 4px)
+  &.-condensed
+    > .title
+      +sr-only
+
+    .list-social
+      +inline-children-item(4px, 4px)
+
+    .link-social
+      display: block
+
+      > .label
+        +sr-only
 
 .link-social
-  display: block
+  display: flex
+  align-items: center
   min-width: $ia-min-size
   min-height: $ia-min-size
   text-align: center
   text-decoration: none
   color: $co--blue--md
+  font-weight: 300
+
+  > .label
+    margin-left: $pd--s
+    letter-spacing: $ls--w
 
   > .i
     width: 1.425em
