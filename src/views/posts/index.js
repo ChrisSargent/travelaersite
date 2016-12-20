@@ -34,7 +34,7 @@ export default class Posts extends Component {
   }
 
   componentDidUpdate() {
-    window.twttr.widgets.load();
+    window.twttr && window.twttr.widgets.load();
   }
 
   requestPostsObj() {

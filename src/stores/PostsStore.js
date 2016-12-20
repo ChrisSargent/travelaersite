@@ -78,17 +78,24 @@ class PostsStore extends EventEmitter {
         posts: posts.slice(0, 5),
         side: posts.slice(5),
         image: posts[0].t_featured_image,
-        excerpts: true,
+        excerpts: true
       }
     } else {
       postsObj = {
         posts: [posts[postIndex]],
         side: this.generateOthers(posts, postIndex),
         image: posts[postIndex].t_featured_image,
-        excerpts: false,
+        excerpts: false
       }
     }
     return postsObj;
+  }
+
+  updatePostComments(postID, comments) {
+    const index = this.posts.findIndex(function(post) {
+      return post.id === postID ? post : null;
+    })
+    this.posts[index].t_comments_info = comments;
   }
 
   handleActions(action) {
@@ -105,6 +112,12 @@ class PostsStore extends EventEmitter {
         setTimeout(function() {
           self.emit('change');
         });
+        break;
+
+      case 'RECEIVE_POST':
+        const {id, t_comments_info} = action.post;
+        this.updatePostComments(id, t_comments_info);
+        this.emit('change');
         break;
 
       default:

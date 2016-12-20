@@ -3,10 +3,11 @@ import css from '../../lib/css';
 
 import Actions from '../actions';
 import ArticleHeader from '../article-header';
+import Message from '../message';
 import SVG from '../svg';
 
 import * as CommentsActions from '../../actions/CommentsActions';
-import CommentsStore from '../../stores/CommentsStore';
+import SubmitStore from '../../stores/SubmitStore';
 
 require('./_comment-form.sass');
 
@@ -20,15 +21,15 @@ class CommentLoader extends Component {
   }
 
   componentWillMount() {
-    CommentsStore.on('change', this.setShowLoader);
+    SubmitStore.on('change', this.setShowLoader);
   }
 
   componentWillUnmount() {
-    CommentsStore.removeListener('change', this.setShowLoader);
+    SubmitStore.removeListener('change', this.setShowLoader);
   }
 
   setShowLoader() {
-    const getLoading = CommentsStore.getLoading();
+    const getLoading = SubmitStore.getLoading();
 
     if(getLoading) {
       this.setState({loadingClass: css.loading});
@@ -52,23 +53,25 @@ export default class CommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      resetForm: false
+      messageObj: false,
     }
     this.processComment = this.processComment.bind(this);
-    this.resetForm = this.resetForm.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   };
 
   componentWillMount() {
-    CommentsStore.on('change', this.resetForm);
+    SubmitStore.on('change', this.handleUpdate);
   }
 
   componentWillUnmount() {
-    CommentsStore.removeListener('change', this.resetForm);
+    SubmitStore.removeListener('change', this.handleUpdate);
   }
 
-  resetForm() {
-    // Only resets the form if the submission was successful
-    CommentsStore.getResetForm() && this.refs.commentForm.reset();
+  handleUpdate() {
+    // Resets the form if the submission was successful
+    SubmitStore.shouldResetForm() && this.refs.commentForm.reset();
+    const messageObj = SubmitStore.getMessageObj();
+    this.setState({messageObj});
   }
 
   processComment(ev) {
@@ -79,15 +82,17 @@ export default class CommentForm extends Component {
     commentData += 'author_name=' + encodeURIComponent(this.refs.name.value) +
       '&author_email=' + encodeURIComponent(this.refs.email.value) +
       '&content=' + encodeURIComponent(this.refs.comment.value) +
-      '&parent=' + encodeURIComponent((this.props.parent || '0')) +
-      '&post=' + encodeURIComponent(this.props.post);
+      '&parent=' + encodeURIComponent((this.props.parentCommentID || '0')) +
+      '&post=' + encodeURIComponent(this.props.postID);
 
     CommentsActions.addComment(commentData);
   }
 
   render() {
     const compName = 'submit';
-    const actions = [
+    const {messageObj} = this.state;
+
+    const submitActions = [
       {
         modifier: 'cta',
         linkTitle: 'Submit',
@@ -103,11 +108,12 @@ export default class CommentForm extends Component {
     return (
       <section className={css.block + compName}>
         <ArticleHeader title="Leave a Comment" subtitle="Your email address will not be published" modifier={compName}/>
+        {messageObj && <Message messageObj={messageObj} />}
         <form className={css.form + compName} ref="commentForm" onSubmit={this.processComment} >
-          <span className="name"><input type="text" ref="name" placeholder="Name"/></span>
-          <span className="email"><input type="email" ref="email" placeholder="Email"/></span>
+          <span className="name"><input type="text" ref="name" placeholder="Name" value="Chris"/></span>
+          <span className="email"><input type="email" ref="email" placeholder="Email" value="chris@stickypixel.com"/></span>
           <span className="comment"><textarea ref="comment" placeholder="Your Comment"/></span>
-          <Actions actions={actions} />
+          <Actions actions={submitActions} />
         </form>
         <CommentLoader />
       </section>

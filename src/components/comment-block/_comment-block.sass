@@ -1,0 +1,21 @@
+@import _tools
+
+.section-comments
+  +block-pad($pd--l)
+
+  > .container
+    +post-padding
+
+.header-comments
+  .title
+    font-size: $fs--xxs
+    padding-bottom: $pd--l
+
+@media screen and (min-width: $bp--mn)
+  .section-comments
+    +block-pad($pd--xl)
+
+  .header-comments
+    .title
+      font-size: $fs--m
+      padding-bottom: $pd--xl

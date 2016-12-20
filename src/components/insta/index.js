@@ -40,8 +40,8 @@ export default class Insta extends Component {
   }
 
   requestInsta() {
-    const insta = InstaStore.getInsta(this.user);
-    insta && (this.setState({insta: insta}));
+    // const insta = InstaStore.getInsta(this.user);
+    // insta && (this.setState({insta: insta}));
   }
 
   imageAdaptor(images) {

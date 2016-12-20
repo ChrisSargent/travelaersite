@@ -1,0 +1,18 @@
+@import _tools
+
+.block-message
+  border: 1px solid $co--blue-grey--tt
+  font-size: $fs--xxs
+  padding: $pd--s
+  margin: $pd--s 0
+  font-weight: 300
+  line-height: $lh--lg
+
+  &.-error
+    border: 1px solid transparentize($co--error, 0.7)
+
+    span
+      color: $co--error
+
+  &.-success
+    border: 1px solid transparentize($co--success, 0.7)

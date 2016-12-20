@@ -34,6 +34,9 @@ module.exports = {
   // Modifiers
   loading: ' -loading',
   active: '-active',
+  error: '-error',
+  warning: '-warning',
+  success: '-success',
 
   // Helpers
   centered: ' _centered',

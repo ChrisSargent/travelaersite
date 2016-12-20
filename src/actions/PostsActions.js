@@ -2,12 +2,12 @@ import axios from 'axios';
 import dispatcher from '../dispatcher';
 
 // The return of all posts is about 65kb, just one is about 12kb
-// Therefore seems more efficient to just request all posts.
+// Therefore seems more efficient to request 10 posts at once.
 
 export function fetchPosts() {
   const params = {
     fields: 'content,date_gmt,id,title,slug,t_author,t_categories,t_comments_info,t_featured_image'
-  }
+  };
   dispatcher.dispatch({type: 'FETCH_POSTS', id: 'fetchPosts', loading: true});
   axios.get('/wp/v2/posts', {params}).then(function(response) {
     // console.log('fetchPosts: ', response.data);
@@ -17,20 +17,17 @@ export function fetchPosts() {
   });
 }
 
-// export function fetchPost(slug) {
-//   const params = {
-//     slug: slug,
-//     fields: 'content,date_gmt,id,title,slug,t_author,t_categories,t_comments_info,t_featured_image',
-//   }
-//   dispatcher.dispatch({type: 'FETCH_POSTS', id: 'fetchPost', loading: true});
-//   axios.get('/wp/v2/posts', {params}).then(function(response) {
-//     // console.log('fetchPost: ', response.data);
-//     dispatcher.dispatch({type: 'RECEIVE_POSTS', posts: response.data, id: 'fetchPost', loading: false});
-//   }).catch(function(error) {
-//     console.log(error);
-//   });
-// }
-
+export function fetchPost(postID) {
+  const params = {
+    fields: 'id,t_comments_info'
+  }
+  axios.get('/wp/v2/posts/' + postID, {params}).then(function(response) {
+    // console.log('fetchPost: ', response.data);
+    dispatcher.dispatch({type: 'RECEIVE_POST', post: response.data});
+  }).catch(function(error) {
+    console.log(error);
+  });
+}
 
 // Before:
 
