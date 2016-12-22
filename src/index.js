@@ -20,9 +20,11 @@ function handleUpdate(a, b) {
 ReactDOM.render(
   <Router history={browserHistory} onUpdate={handleUpdate}>
   <Route path={globals.companyUrl} component={Base}>
+    <IndexRoute component={Page}/>
     <Route path="(:slug)" component={Page}/>
   </Route>
   <Route path={globals.productsUrl} component={Base}>
+    <IndexRoute component={Page}/>
     <Route path="(:slug)" component={Page}/>
   </Route>
   <Route path={globals.blogUrl} component={Base}>
