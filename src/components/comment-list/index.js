@@ -4,7 +4,8 @@ import dateFormat from '../../lib/date'
 
 import Actions from '../actions';
 import ArticleHeader from '../article-header';
-import CommentForm from '../comment-form';
+import Submit from '../submit';
+import Message from '../message';
 import RespImageCover from '../resp-image-cover';
 import Wysiwyg from '../wysiwyg';
 
@@ -18,7 +19,7 @@ function Comment(props) {
     comment_date_gmt,
     comment_author_avatar
   } = props.comment;
-  const {postID, replyCommentID} = props;
+  const {postID, replyCommentID, messageCommentID} = props;
   const compName = 'comment';
   const dateString = dateFormat(comment_date_gmt, true);
   const actions = [
@@ -37,7 +38,8 @@ function Comment(props) {
         <Wysiwyg content={comment_content}/>
         <Actions actions={actions} />
       </div>
-      {replyCommentID === comment_ID && <CommentForm postID={postID} parentCommentID={comment_ID} />}
+      {messageCommentID === comment_ID && <Message />}
+      {replyCommentID === comment_ID && <Submit postType="comments" postID={postID} parentCommentID={comment_ID} />}
     </div>
   );
 }

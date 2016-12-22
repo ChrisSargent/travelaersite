@@ -1,13 +1,18 @@
 @import _tools
 
 .block-submit
-  +block-pad($pd--l)
   position: relative
-  animation: formEnter $tr--f both
   // To contain loader
 
   .header + &
     border-top: 1px solid $co--blue-grey--tt
+
+  .section-comments &
+    +block-pad($pd--l)
+
+  .article-comment &
+    animation: formEnter $tr--f both
+
 
 .header-submit
   +header-default($pd--s)
@@ -73,7 +78,8 @@
     left: $pd--h--dt / -1
 
   .block-submit
-    +block-pad($pd--xl)
+    .section-comments &
+      +block-pad($pd--xl)
 
   .header-submit
     .title

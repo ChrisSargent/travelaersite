@@ -8,7 +8,6 @@ import SVG from '../svg';
 require('./_tile.sass');
 
 function MosaicTile(props) {
-  console.log(props);
   var {content, image} = props.acf
   const {type, colour, size, link} = props.acf;
   const alt = content;

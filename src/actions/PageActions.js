@@ -4,7 +4,7 @@ import dispatcher from '../dispatcher';
 export function fetchPage(slug) {
   const params = {
     slug: slug,
-    fields: 'acf,slug'
+    fields: 'acf,slug,id'
   }
   dispatcher.dispatch({type: 'FETCH_PAGE', id: 'fetchPage', loading: true});
 

@@ -4,76 +4,50 @@ import {EventEmitter} from 'events';
 class SubmitStore extends EventEmitter {
   constructor() {
     super();
-    this.resetForm = false;
-    this.showLoader = false;
-    this.messageObj = {};
+    this.cachedState = {
+      showLoader: false,
+      name: '',
+      email: '',
+      comment: '',
+    };
+    this.submitted = false;
     this.dispatchToken = dispatcher.register(this.handleActions.bind(this));
   }
 
-  shouldResetForm() {
-    return this.resetForm;
+  getCachedState() {
+    return this.cachedState;
   }
 
-  getLoading() {
-    return this.showLoader;
-  }
-
-  getMessageObj() {
-    return this.messageObj;
-  }
-
-  setApprovedMessage() {
-    this.messageObj = {
-      message: 'Thanks! Your comment has been approved and added.',
-      messageType: 'success',
-    };
-  };
-
-  setPendingMessage() {
-    this.messageObj = {
-      message: 'Thanks! Your comment has been submitted and is awaiting approval.',
-      messageType: 'success',
-    };
-  };
-
-  setErrorMessage(action) {
-    this.messageObj = {
-      message: 'Sorry, there was a problem with your comment and it was not submitted. The error was: ',
-      messageType: 'error',
-      error: action.message,
-    }
+  getSubmitted() {
+    return this.submitted;
   }
 
   handleActions(action) {
     switch (action.type) {
       case 'ADDING_COMMENT':
-        // console.log('SubmitStore | handleActions | Adding Comment');
-        this.resetForm = false;
-        this.showLoader = true;
-        this.setApprovedMessage();
-        this.emit('change');
-        break;
-
-      case 'APPROVED_COMMENT':
-        // console.log('SubmitStore | handleActions | Approved Comment');
-        this.resetForm = true;
-        this.showLoader = false;
-        this.setPendingMessage();
+        // console.log('SubmitStore | handleActions | Adding Comment', this);
+        this.cachedState.showLoader = true;
+        this.submitted = false;
         this.emit('change');
         break;
 
       case 'PENDING_COMMENT':
-        // console.log('SubmitStore | handleActions | Pending Comment');
-        this.resetForm = true;
-        this.showLoader = false;
+      case 'APPROVED_COMMENT':
+        // console.log('SubmitStore | handleActions | Approved / Pending Comment', this);
+        this.cachedState.showLoader = false;
+        this.cachedState.comment = '';
+        this.submitted = true;
         this.emit('change');
         break;
 
       case 'ERROR_COMMENT':
-        this.resetForm = false;
-        this.showLoader = false;
-        this.setErrorMessage(action);
+        // console.log('MessageStore | handleActions | Error Comment', this);
+        this.cachedState.showLoader = false;
         this.emit('change');
+        break;
+
+      case 'STORE_INPUTS':
+        this.cachedState = action.cachedState;
         break;
 
       default:

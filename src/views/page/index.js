@@ -96,7 +96,7 @@ export default class Page extends Component {
 
         case 'contact_form':
           name = 'contact';
-          content = <Contact compName={name} options={options}/>
+          content = <Contact pageID={page.id} compName={name} options={options}/>
           break;
 
         default:

@@ -1,18 +1,35 @@
 @import _tools
 
 .block-message
-  border: 1px solid $co--blue-grey--tt
   font-size: $fs--xxs
-  padding: $pd--s
-  margin: $pd--s 0
   font-weight: 300
   line-height: $lh--lg
+  position: relative
+  margin: $pd--s 0
+  padding: $pd--s 3 * $pd--s $pd--s $pd--s
+  color: $co--wt
+
+  &:first-child
+    margin-top: 0
 
   &.-error
-    border: 1px solid transparentize($co--error, 0.7)
-
-    span
-      color: $co--error
+    background-color: $co--error
 
   &.-success
-    border: 1px solid transparentize($co--success, 0.7)
+    background-color: $co--success
+
+  > .error
+    font-weight: 700
+
+  > .close
+    display: block
+    font-size: 3em
+    position: absolute
+    top: 50%
+    right: $pd--s
+    transform: translateY(-50%) scaleX(1) rotate(0deg)
+    cursor: pointer
+    transition: transform $tr--m
+
+    &:hover
+      transform: translateY(-50%) scale(1.1) rotate(540deg)

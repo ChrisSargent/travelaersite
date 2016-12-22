@@ -1,21 +1,25 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import CommentForm from '../comment-form';
+import Message from '../message';
+import Submit from '../submit';
 import Social from '../social';
 
 require('./_contact.sass');
 
 function Contact(props) {
-  console.log(props);
-  const {compName, options} = props;
+  const {compName, options, pageID} = props;
+
   if(!options)
     return null;
 
   return (
     <div className={css.block + compName}>
       <Social socialNetworks={options.socialNetworks}/>
-      <CommentForm />
+      <div className={css.wrap}>
+        <Message />
+        <Submit postType="enquiries" postID={pageID}/>
+      </div>
     </div>
   );
 }
