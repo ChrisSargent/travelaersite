@@ -1,7 +1,7 @@
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events';
 
-import * as NavActions from '../actions/NavActions';
+import * as SiteActions from '../actions/SiteActions';
 
 class NavStore extends EventEmitter {
   constructor() {
@@ -15,7 +15,7 @@ class NavStore extends EventEmitter {
     if (this.menuCache[location]) {
       return this.menuCache[location];
     } else {
-      NavActions.fetchMenu(location);
+      SiteActions.fetchMenu(location);
       return false;
     }
   }

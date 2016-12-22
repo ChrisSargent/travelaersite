@@ -1,7 +1,7 @@
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events';
 
-import * as TeamActions from '../actions/TeamActions';
+import * as SiteActions from '../actions/SiteActions';
 
 class TeamStore extends EventEmitter {
   constructor() {
@@ -15,7 +15,7 @@ class TeamStore extends EventEmitter {
     if (this.teamCache.length > 0) {
       return this.teamCache;
     } else {
-      TeamActions.fetchTeam();
+      SiteActions.fetchTeam();
       return false;
     }
   }

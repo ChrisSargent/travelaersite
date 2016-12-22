@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
-import * as LoadingActions from '../../actions/LoadingActions';
+import * as SiteActions from '../../actions/SiteActions';
 
 import RespImage from '../resp-image';
 
@@ -29,7 +29,7 @@ export default class ImageCover extends Component {
   }
 
   handleRef(el) {
-    el != null && this.props.wait && LoadingActions.loading(el);
+    el != null && this.props.wait && SiteActions.loading(el);
   }
 
   handleLoad(ev) {
@@ -41,7 +41,7 @@ export default class ImageCover extends Component {
     this.setState({bgSrc: imgSrc});
 
     // Tell the Loader we've finished.
-    this.props.wait && LoadingActions.finished(el);
+    this.props.wait && SiteActions.finished(el);
   }
 
   render() {

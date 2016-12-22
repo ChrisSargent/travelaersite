@@ -22,7 +22,16 @@
   padding: $pad
 
 =header-default($spc: $pd--xs)
+  overflow: hidden
   margin-bottom: $spc
+  
+  > .container
+    overflow: hidden
+
+  .title,
+  .subtitle
+    overflow: hidden
+    text-overflow: ellipsis
 
 =wysiwyg-default($ff: $ff--p, $fs: 1rem)
   font-family: $ff

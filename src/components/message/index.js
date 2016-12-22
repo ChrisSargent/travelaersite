@@ -56,7 +56,7 @@ export default class Message extends Component {
     return (
       <div className={compClass}>
         {message}
-        {error && <span dangerouslySetInnerHTML={{__html: error}}></span>}
+        {error && <span className="error" dangerouslySetInnerHTML={{__html: error}}></span>}
         <span className="close" onClick={this.handleClose}>&times;</span>
       </div>
     );

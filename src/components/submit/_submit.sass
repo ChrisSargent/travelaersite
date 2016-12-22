@@ -10,8 +10,11 @@
   .section-comments &
     +block-pad($pd--l)
 
+  .section-comments .block-message + &
+      padding-top: $pd--s
+
   .article-comment &
-    animation: formEnter $tr--f both
+    animation: slideEnter $tr--f both
 
 
 .header-submit
@@ -101,12 +104,3 @@
     > .email
       display: inline-block
       width: 67%
-
-@keyframes formEnter
-  0%
-    transform: translate3d(50px,0,0)
-    opacity: 0
-
-  100%
-    transform: translate3d(0,0,0)
-    opacity: 1

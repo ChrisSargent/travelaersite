@@ -3,41 +3,49 @@ import ArticleHeader from '../article-header';
 import Submit from '../submit';
 import CommentList from '../comment-list';
 import Message from '../message';
-import * as MessageActions from '../../actions/MessageActions';
+import * as SiteActions from '../../actions/SiteActions';
 import SubmitStore from '../../stores/SubmitStore';
 import Section from '../section';
 
-require('./_comment-block.sass');
+require('./_comments.sass');
 
-export default class CommentBlock extends Component {
+export default class Comments extends Component {
   constructor(props) {
     super(props);
     this.state = {
       replyCommentID: false,
       messageCommentID: false,
     };
-    this.resetFormPosition = this.resetFormPosition.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   };
 
   componentWillMount() {
-    SubmitStore.on('change', this.resetFormPosition);
+    SubmitStore.on('change', this.handleChange);
   }
 
   componentWillUnmount() {
-    SubmitStore.removeListener('change', this.resetFormPosition);
+    SubmitStore.removeListener('change', this.handleChange);
   }
 
-  resetFormPosition() {
+  handleChange() {
+    const target = this.state.replyCommentID;
     const submitted = SubmitStore.getSubmitted();
-    submitted && this.setState({replyCommentID: false});
+
+    if(submitted) {
+      this.setState({replyCommentID: false});
+    } else {
+      this.setState({messageCommentID: target});
+    }
   }
 
   handleClick(ev) {
     const replyOn = ev.target.dataset.actionparam;
+
     switch (replyOn) {
       case 'close':
-        MessageActions.resetMessages();
+        SiteActions.resetMessages();
+        this.replyOn = replyOn;
         this.setState({replyCommentID: false, messageCommentID: false});
         break;
 
@@ -46,7 +54,8 @@ export default class CommentBlock extends Component {
         break;
 
       default:
-        MessageActions.resetMessages();
+        SiteActions.resetMessages();
+        this.replyOn = replyOn;
         this.setState({replyCommentID: replyOn, messageCommentID: replyOn});
     }
   }
@@ -68,7 +77,7 @@ export default class CommentBlock extends Component {
       <Section compName={compName}>
         <div onClick={this.handleClick}>
           <ArticleHeader title={titleText} modifier={compName}/>
-          <CommentList comments={comments} postID={postID} replyCommentID={replyCommentID} messageCommentID={messageCommentID} />
+          <CommentList comments={comments} postID={postID} replyCommentID={replyCommentID} messageCommentID={messageCommentID} compName={compName}/>
           {!messageCommentID && <Message reset={resetMessage} />}
           {!replyCommentID && <Submit postType="comments" postID={postID} parentCommentID="0" />}
         </div>

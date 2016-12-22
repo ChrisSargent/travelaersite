@@ -9,7 +9,7 @@ import Message from '../message';
 import RespImageCover from '../resp-image-cover';
 import Wysiwyg from '../wysiwyg';
 
-require('./_comments.sass');
+require('./_comment-list.sass');
 
 function Comment(props) {
   const {
@@ -19,7 +19,6 @@ function Comment(props) {
     comment_date_gmt,
     comment_author_avatar
   } = props.comment;
-  const {postID, replyCommentID, messageCommentID} = props;
   const compName = 'comment';
   const dateString = dateFormat(comment_date_gmt, true);
   const actions = [
@@ -38,15 +37,13 @@ function Comment(props) {
         <Wysiwyg content={comment_content}/>
         <Actions actions={actions} />
       </div>
-      {messageCommentID === comment_ID && <Message />}
-      {replyCommentID === comment_ID && <Submit postType="comments" postID={postID} parentCommentID={comment_ID} />}
     </div>
   );
 }
 
 function CommentList(props) {
   const {comments} = props;
-  const compName = 'comments';
+  const {postID, replyCommentID, messageCommentID, compName} = props;
 
   if(!comments)
     return null;
@@ -55,7 +52,9 @@ function CommentList(props) {
     const {comment_ID, comment_replies} = comment;
     return (
       <li key={comment_ID} className={css.item}>
-        <Comment {...props} comment={comment} />
+        <Comment comment={comment} />
+        {messageCommentID === comment_ID && <Message />}
+        {replyCommentID === comment_ID && <Submit postType="comments" postID={postID} parentCommentID={comment_ID} />}
         {comment_replies && <CommentList {...props} comments={comment_replies} />}
       </li>
     );

@@ -1,7 +1,7 @@
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events';
 
-import * as PageActions from '../actions/PageActions';
+import * as SiteActions from '../actions/SiteActions';
 
 class PageStore extends EventEmitter {
   constructor() {
@@ -16,7 +16,7 @@ class PageStore extends EventEmitter {
     if (this.pagesCache[slug]) {
       return this.pagesCache[slug];
     } else {
-      PageActions.fetchPage(slug);
+      SiteActions.fetchPage(slug);
       return false;
     }
   }

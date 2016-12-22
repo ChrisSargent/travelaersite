@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 
 // Stores & Actions
-import * as OptionsActions from '../../actions/OptionsActions';
+import * as SiteActions from '../../actions/SiteActions';
 import OptionsStore from '../../stores/OptionsStore';
-// import * as SiteActions from '../../actions/SiteActions';
 
 // Components
 import Footer from '../../components/footer';
@@ -21,7 +20,7 @@ export default class Base extends Component {
   }
 
   componentWillMount() {
-    OptionsActions.fetchOptions();
+    SiteActions.fetchOptions();
     OptionsStore.on('change', this.requestOptions);
   }
 

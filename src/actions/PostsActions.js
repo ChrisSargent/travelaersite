@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dispatcher from '../dispatcher';
 
-// The return of all posts is about 65kb, just one is about 12kb
+// The return of 10 posts is about 65kb, just one is about 12kb
 // Therefore seems more efficient to request 10 posts at once.
 
 export function fetchPosts() {

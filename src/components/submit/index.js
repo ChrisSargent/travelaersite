@@ -6,6 +6,7 @@ import ArticleHeader from '../article-header';
 import SVG from '../svg';
 
 import * as CommentsActions from '../../actions/CommentsActions';
+import * as SiteActions from '../../actions/SiteActions';
 import SubmitStore from '../../stores/SubmitStore';
 
 require('./_submit.sass');
@@ -13,7 +14,7 @@ require('./_submit.sass');
 export default class Submit extends Component {
   constructor(props) {
     super(props);
-    this.processComment = this.processComment.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -62,10 +63,11 @@ export default class Submit extends Component {
     CommentsActions.cacheState(this.state);
   }
 
-  processComment(ev) {
+  handleSubmit(ev) {
     ev.preventDefault();
     const commentData = '?author_name=' + encodeURIComponent(this.state.name) + '&author_email=' + encodeURIComponent(this.state.email) + '&content=' + encodeURIComponent(this.state.comment) + '&parent=' + encodeURIComponent((this.props.parentCommentID || '0')) + '&post=' + encodeURIComponent(this.props.postID);
     CommentsActions.addComment(commentData, this.updateComments);
+    SiteActions.resetMessages();
   }
 
   render() {
@@ -93,7 +95,7 @@ export default class Submit extends Component {
     return (
       <section className={css.block + compName}>
         <ArticleHeader title={this.title} subtitle={this.subtitle} modifier={compName}/>
-        <form className={css.form + compName} onSubmit={this.processComment}>
+        <form className={css.form + compName} onSubmit={this.handleSubmit}>
           <span className="name"><input type="text" placeholder="Name" name="name" value={name} onChange={this.handleChange} onBlur={this.handleBlur}/></span>
           <span className="email"><input type="email" placeholder="Email" name="email" value={email} onChange={this.handleChange} onBlur={this.handleBlur}/></span>
           <span className="comment"><textarea placeholder="Your Comment" name="comment" value={comment} onChange={this.handleChange} onBlur={this.handleBlur}/></span>

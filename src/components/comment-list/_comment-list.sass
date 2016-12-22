@@ -1,15 +1,33 @@
 @import _tools
 
+$spacing--mob: $pd--l / 2
+$spacing--dt: $pd--xl / 2
+
 .list-comments
   border-bottom: 1px solid $co--blue-grey--tt
+  padding-bottom: $pd--l
+
+  > .item
+    padding: $spacing--mob 0
+    animation: slideEnter $tr--f both
+
+    &:last-child
+      padding-bottom: 0
 
   .list-comments
+    padding-top: $spacing--mob
     padding-left: $pd--ml
+    padding-bottom: 0
     border-bottom: none
+
+  .block-message + &
+    padding-top: 0
+
+    > .item
+      padding-top: 0
 
 .article-comment
   +avatar-default
-  padding-bottom: $pd--l
 
   > .avatar
     max-width: 64px
@@ -42,15 +60,21 @@
     font-size: $fs--xxt
 
 @media screen and (min-width: $bp--mn)
+  .list-comments
+    padding-bottom: $pd--xl
+
+    > .item
+      padding: $spacing--dt 0
+
+    .list-comments
+      padding-top: $spacing--dt
+
   .header-comment
     .title
       font-size: $fs--xs
 
     .subtitle
       font-size: $fs--t
-
-  .article-comment
-    padding-bottom: $pd--xxl
 
   .main-comment
     > .footer-actions .btn

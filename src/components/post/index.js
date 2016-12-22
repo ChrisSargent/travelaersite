@@ -4,7 +4,7 @@ import globals from '../../lib/globals';
 
 import ArticleHeader from '../article-header';
 import Author from '../author';
-import CommentBlock from '../comment-block';
+import Comments from '../comments';
 import PostInfo from '../post-info';
 import Wysiwyg from '../wysiwyg';
 
@@ -56,7 +56,7 @@ function Post(props) {
       <ArticleHeader title={post.title} modifier={compName} image={image}/>
       <PostInfo info={postInfo}/>
       <Wysiwyg content={content} more={more}/> {!excerpt && <Author author={post.t_author}/>}
-      {displayComments && <CommentBlock commentsInfo={post.t_comments_info} postTitle={post.title.rendered} postID={post.id}/>}      
+      {displayComments && <Comments commentsInfo={post.t_comments_info} postTitle={post.title.rendered} postID={post.id}/>}
     </article>
   )
 }
