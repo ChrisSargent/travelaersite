@@ -1,0 +1,60 @@
+@import _tools
+
+// main > section,
+// main + footer
+//   opacity: 0.5
+//   outline: 1px solid blue
+//   outline-offset: -1px
+//
+// ._skew
+//   outline: 1px solid red
+//   outline-offset: -1px
+
+._skew
+  position: absolute
+  z-index: $z--under
+  left: 0
+  width: 100%
+  height: 100%
+  overflow: hidden
+  transform: skewY($angle--ban) scaleZ(1)
+  box-sizing: content-box
+
+  > ._unskew
+    position: absolute
+    left: 0
+    transform: skewY($angle--ban / -1)
+    height: 100%
+    width: 100%
+
+section
+  position: relative
+  z-index: $z--base
+
+  &.-skewbottom
+    > ._skew
+      top: $angle_h_ratio / -2
+      padding-bottom: $angle_h_ratio / 2
+
+      > ._unskew
+        top: $angle_h_ratio / 2
+
+  &.-skewtop
+    > ._skew
+      top: 0
+      padding-top: $angle_h_ratio / 2
+
+      > ._unskew
+        top: $angle_h_ratio / -2
+
+  &.-skewboth
+    > ._skew
+      top: 0
+
+      > ._unskew
+        top: $angle_h_ratio / -2
+        height: calc(100% + #{$angle_h_ratio})
+
+  &.-skewnone + .-skewtop,
+  &.-skewnone + .-skewboth,
+    margin-top: calc(#{$angle_h_ratio / -2} - 1px)

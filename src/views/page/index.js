@@ -52,8 +52,12 @@ export default class Page extends Component {
 
     // Get all the content blocks and map them to a variable
     const blocksMap = page.acf.contentBlocks.map((block, index) => {
-      var name, content;
-      switch (block.acf_fc_layout) {
+      var name,
+        content,
+        respSizes;
+        const {acf_fc_layout, image, waitForHeroLoad, skew} = block;
+
+      switch (acf_fc_layout) {
         case 'hero':
           name = 'hero';
           content = <Hero {...block} compName={name}/>;
@@ -71,6 +75,7 @@ export default class Page extends Component {
 
         case 'products':
           name = 'products';
+          respSizes = "(min-width: 840px) 150vw, 100vw"
           content = <Products {...block} compName={name}/>;
           break;
 
@@ -102,7 +107,7 @@ export default class Page extends Component {
         default:
       }
       return (
-        <Section key={index} compName={name}>{content}</Section>
+        <Section key={index} compName={name} image={image} wait={waitForHeroLoad} respSizes={respSizes} skew={skew}>{content}</Section>
       )
     })
 

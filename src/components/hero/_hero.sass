@@ -1,7 +1,6 @@
 @import _tools
 
 .section-hero
-  position: relative
   display: flex
   flex-direction: row
   // To fix IE flex bug on min-height / flex direction column
@@ -9,6 +8,9 @@
 
   > .container
     +cont--m
+
+  &.-small
+    min-height: 45vh
 
 .content-hero
   +center-box

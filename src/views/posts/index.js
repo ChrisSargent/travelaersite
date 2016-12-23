@@ -4,7 +4,6 @@ import Insta from '../../components/insta';
 import Post from '../../components/post';
 import PostsStore from '../../stores/PostsStore';
 import RecentPosts from '../../components/recent-posts';
-import RespImageCover from '../../components/resp-image-cover';
 import Section from '../../components/section';
 
 require('./_posts.sass')
@@ -44,11 +43,16 @@ export default class Posts extends Component {
   }
 
   render() {
+    var modifier;
     const {postsObj} = this.state;
+    const compName = 'posts';
+
     if (!postsObj)
       return null;
 
-    const compName = 'posts';
+    postsObj.posts.length > 1
+      ? modifier = ' -small'
+      : modifier = '';
 
     const postsMap = postsObj.posts.map((post, index) => {
       var isMain;
@@ -66,9 +70,7 @@ export default class Posts extends Component {
 
     return (
       <main>
-        <section className={css.section + 'hero'}>
-          <RespImageCover image={postsObj.image}/>
-        </section>
+        <Section compName={'hero' + modifier} image={postsObj.image} skew="bottom"/>
         <Section compName={compName}>
           <ul className={css.list + compName}>
             {postsMap}

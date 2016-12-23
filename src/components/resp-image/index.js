@@ -6,10 +6,11 @@ require('./_image.sass');
 function RespImage(props) {
   var respSizes,
     altText,
+    srcVersion,
     srcsetString = '',
     srcImage;
 
-  const {image, alt, srcVersion, onLoadCb, refCb} = props;
+  const {image, alt, onLoadCb, refCb} = props;
 
   if (!image)
     return null;
@@ -29,13 +30,15 @@ function RespImage(props) {
     image.sizes['post-thumbnail'] && (srcsetString += image.sizes['post-thumbnail'] + ' ' + image.sizes['post-thumbnail-width'] + 'w, ');
     image.sizes.large && (srcsetString += image.sizes.large + ' ' + image.sizes['large-width'] + 'w');
 
+    srcVersion = props.srcVersion || 'large';
+    respSizes = props.respSizes || '100vw';
+
     srcImage = {
       src: image.sizes[srcVersion],
       alt: altText,
       width: image.sizes[srcVersion + '-width'],
       height: image.sizes[srcVersion + '-height'],
     };
-    respSizes = props.respSizes || '100vw';
   } else {
     srcImage = {
       src: image,

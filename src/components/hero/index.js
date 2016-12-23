@@ -2,7 +2,6 @@ import React from 'react';
 import css from '../../lib/css';
 
 import SVG from '../svg';
-import RespImageCover from '../resp-image-cover';
 import Wysiwyg from '../wysiwyg';
 
 require('./_hero.sass');
@@ -17,11 +16,9 @@ function Hero(props) {
     headlinePost,
     headlineImage,
     content,
-    image,
     fullscreen,
     paragraphWidth,
     contentImage,
-    waitForHeroLoad
   } = props;
 
   fullscreen && (modifier = ' -fullscreen');
@@ -40,7 +37,6 @@ function Hero(props) {
       </h1>}
       <Wysiwyg content={content} size={paragraphWidth}/>
       <SVG type={contentImage}/>
-      <RespImageCover image={image} wait={waitForHeroLoad}/>
     </div>
   );
 };

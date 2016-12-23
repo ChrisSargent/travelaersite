@@ -1,11 +1,10 @@
 @import _tools
 
 .section-banner
-  position: relative
-  z-index: $z--mid
+  z-index: $z--top
 
-  &::after
-    +angled($co--green, both)
+  ._bg
+    background-color: $co--green
 
   > .container
     +cont--xl

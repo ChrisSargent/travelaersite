@@ -9,11 +9,12 @@
   background-color: $co--blue-grey--tt
   line-height: 1.334rem
 
+  &::after
+    content: ' '
+    background-color: $co--blue-grey--tt
+
   > .container
     +cont--xl
-
-  &::after
-    +angled($co--blue-grey--tt, top)
 
 .content-sitefooter
   +columns(auto, $pd--s)
