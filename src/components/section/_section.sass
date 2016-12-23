@@ -31,30 +31,30 @@ section
   position: relative
   z-index: $z--base
 
-  &.-skewbottom
-    > ._skew
+.-skewbottom
+  > ._skew
+    top: $angle_h_ratio / -2
+    padding-bottom: $angle_h_ratio / 2
+
+    > ._unskew
+      top: $angle_h_ratio / 2
+
+.-skewtop
+  > ._skew
+    top: 0
+    padding-top: $angle_h_ratio / 2
+
+    > ._unskew
       top: $angle_h_ratio / -2
-      padding-bottom: $angle_h_ratio / 2
 
-      > ._unskew
-        top: $angle_h_ratio / 2
+.-skewboth
+  > ._skew
+    top: 0
 
-  &.-skewtop
-    > ._skew
-      top: 0
-      padding-top: $angle_h_ratio / 2
+    > ._unskew
+      top: $angle_h_ratio / -2
+      height: calc(100% + #{$angle_h_ratio})
 
-      > ._unskew
-        top: $angle_h_ratio / -2
-
-  &.-skewboth
-    > ._skew
-      top: 0
-
-      > ._unskew
-        top: $angle_h_ratio / -2
-        height: calc(100% + #{$angle_h_ratio})
-
-  &.-skewnone + .-skewtop,
-  &.-skewnone + .-skewboth,
-    margin-top: calc(#{$angle_h_ratio / -2} - 1px)
+.-skewnone + .-skewtop,
+.-skewnone + .-skewboth,
+  margin-top: calc(#{$angle_h_ratio / -2} - 1px)

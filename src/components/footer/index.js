@@ -37,7 +37,7 @@ export default class Footer extends Component {
     const compName = 'sitefooter';
 
     return (
-      <footer className={css.footer + compName}>
+      <footer className={css.footer + compName + ' -skewtop'}>
         <div className={css.container}>
           <div className={css.content + compName}>
             <div className={css.item}>
@@ -65,6 +65,9 @@ export default class Footer extends Component {
             </div>
           </div>
           <Legal legalName={props.legalName} credit={footerAppend} />
+        </div>
+        <div className="_skew">
+          <div className="_bg _unskew"></div>
         </div>
       </footer>
     );
