@@ -32,11 +32,12 @@ export default class ImageCover extends Component {
 
   getPreviewBgStyle() {
     var imageBlob;
-    this.props.image && this.props.image.description
-      ? imageBlob = this.props.image.description
-      : imageBlob = null;
-    // return {backgroundImage: 'url(data:image/jpeg;' + imageBlob + ')'};
-    return {backgroundImage: 'url(data:image/jpeg;base64,' + imageBlob + ')'};
+    if(this.props.image && this.props.image.description) {
+      imageBlob = this.props.image.description
+      return {backgroundImage: 'url(data:image/jpeg;base64,' + imageBlob + ')'};
+    } else {
+      return null;
+    }
   }
 
   getBgStyle(imageSrc) {
