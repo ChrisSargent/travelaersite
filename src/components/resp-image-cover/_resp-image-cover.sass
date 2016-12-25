@@ -15,3 +15,12 @@
 
   > .image
     +sr-only
+
+._bgimgfull
+  +stretch
+  +bg-cover
+  opacity: 0
+
+  &.-loaded
+    transition: opacity $tr--s
+    opacity: 1

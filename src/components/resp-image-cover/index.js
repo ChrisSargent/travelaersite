@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
-import * as SiteActions from '../../actions/SiteActions';
 
 import RespImage from '../resp-image';
 
@@ -9,28 +8,41 @@ require('./_resp-image-cover.sass');
 export default class ImageCover extends Component {
 
   /*
-   * If requested in Wordpress the resp-image-cover component will ask the spinner to
-   * display until the image has loaded.
-   * It does this by not setting the background image style until the equivalent
-   * img in the html has loaded and its currentSrc calculated.
+   * User Experience Notes:
+   * Wordpress automatically creates a very small 20px width preview image.
+   * We initially use this to display as a 'placeholder'.
+   * We also include an img with srcset with 3 or more images for the browser to choose.
+   * When the browser has picked this image and that image has loaded, the main
+   * bgimage div has it's background set to that image and it's opacity faded in.
   */
 
   constructor(props) {
     super(props);
-    this.state = {
-      bgSrc: null
-    };
     this.handleLoad = this.handleLoad.bind(this);
-    this.handleRef = this.handleRef.bind(this);
+    this.getPreviewBgStyle = this.getPreviewBgStyle.bind(this);
+    this.getBgStyle = this.getBgStyle.bind(this);
+    this.state = {
+      fullBgSrc: null,
+    };
   }
 
   componentWillReceiveProps(newProps) {
-    !newProps.image && this.setState({bgSrc: null});
+    (newProps.image !== this.props.image) && this.setState({fullBgSrc: null});
   }
 
-  handleRef(el) {
-    el != null && this.props.wait && SiteActions.loading(el);
+  getPreviewBgStyle() {
+    var imageBlob;
+    this.props.image && this.props.image.description
+      ? imageBlob = this.props.image.description
+      : imageBlob = null;
+    // return {backgroundImage: 'url(data:image/jpeg;' + imageBlob + ')'};
+    return {backgroundImage: 'url(data:image/jpeg;base64,' + imageBlob + ')'};
   }
+
+  getBgStyle(imageSrc) {
+    return {backgroundImage: 'url(' + imageSrc + ')'};
+  }
+
 
   handleLoad(ev) {
     // Grab the browser-calculated source of the img and set the state
@@ -38,16 +50,13 @@ export default class ImageCover extends Component {
     // Also checks if currentSrc is supported
     const el = ev.target;
     var imgSrc = el.currentSrc || el.src;
-    this.setState({bgSrc: imgSrc});
-
-    // Tell the Loader we've finished.
-    this.props.wait && SiteActions.finished(el);
+    this.setState({fullBgSrc: imgSrc});
   }
 
   render() {
-    var bgSrc,
-      tagClass,
-      refCb;
+    var fullBgStyle,
+      fullBgClass,
+      tagClass;
     const {className, modifier, image} = this.props;
 
     if (!image && className !== css.avatar)
@@ -59,20 +68,19 @@ export default class ImageCover extends Component {
       : tagClass = css.replImg;
 
     modifier && (tagClass += ' -' + modifier)
+    fullBgClass = '_bgimgfull';
 
-    this.props.wait
-      ? refCb = this.handleRef
-      : refCb = null;
+    const previewBgStyle = this.getPreviewBgStyle();
 
-    if (this.state.bgSrc) {
-      bgSrc = {
-        backgroundImage: 'url(' + this.state.bgSrc + ')'
-      }
+    if (this.state.fullBgSrc) {
+      fullBgStyle = this.getBgStyle(this.state.fullBgSrc);
+      fullBgClass += ' -loaded';
     }
 
     return (
-      <div className={tagClass} style={bgSrc}>
-        <RespImage {...this.props} refCb={refCb} onLoadCb={this.handleLoad}/>
+      <div className={tagClass} style={previewBgStyle}>
+        <RespImage {...this.props} onLoadCb={this.handleLoad}/>
+        <div className={fullBgClass} style={fullBgStyle}></div>
       </div>
     );
   }

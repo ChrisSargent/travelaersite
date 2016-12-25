@@ -11,6 +11,7 @@
  * {@link https://codex.wordpress.org/Plugin_API}
  */
 
+require_once 'travelaer-wp.php';
 require_once 'travelaer-api.php';
 
 add_filter( 'twentysixteen_content_width', function( $content_width )

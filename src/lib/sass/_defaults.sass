@@ -1,14 +1,15 @@
 // ******************************* Text Mixins *********************************
 =heading-light
   font-size: $fs--xxs
-  text-transform: uppercase
   font-weight: 300
+  text-transform: uppercase
+
   @media screen and (min-width: $bp--mn)
     font-size: inherit
 
 =heading-spaced
-  text-transform: uppercase
   letter-spacing: $ls--w
+  text-transform: uppercase
 
 // ***************************** Component Mixins ******************************
 
@@ -41,7 +42,12 @@
   > :first-child
     margin-top: 0
 
-  h1, h2, h3, h4, h5, h6
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
     margin: $pd--s 0
 
   p
@@ -74,9 +80,9 @@
   figcaption
     font-family: $ff--base
     font-size: 0.65em
+    padding: $pd--xxs $pd--ml
     text-transform: uppercase
     background-color: $co--tint
-    padding: $pd--xxs $pd--ml
 
   ul
     position: relative
@@ -88,7 +94,7 @@
       margin-left: $pd--s
 
       &::before
-        content: '\00BB'
+        content: '»'
         position: absolute
         left: 0
 
@@ -96,33 +102,34 @@
         font-weight: 300
 
         &::before
-          content: '\2022'
+          content: '•'
 
   > .more
     display: block
     margin-top: $pd--s
 
   blockquote
+    font-style: italic
+    line-height: $lh--lg
     margin: $pd--xs
+    padding-left: $pd--m
     quotes: none
+    color: $co--blue-grey--md
     border: 0 solid $co--blue--lt
     border-left-width: 2px
-    color: $co--blue-grey--md
-    font-style: italic
-    padding-left: $pd--m
-    line-height: $lh--lg
 
-    p:first-child
-      margin-top: 0
+    p
+      &:first-child
+        margin-top: 0
 
-    p:last-child
-      margin-bottom: 0
+      &:last-child
+        margin-bottom: 0
 
   .twitter-tweet
-    margin-left: auto
+    width: 100% !important
+    max-width: 520px !important
     margin-right: auto
-    width: 100%!important
-    max-width: 520px!important
+    margin-left: auto
 
   &.-narrow
     max-width: $sz--s
@@ -131,14 +138,15 @@
     blockquote
       margin: $pd--xl
 
-
 =avatar-default
   +clearfix
+
   > *
     overflow: hidden
     // Prevent some wrapping
 
   > .avatar
+    position: relative
     float: left
     margin-right: 4%
 
