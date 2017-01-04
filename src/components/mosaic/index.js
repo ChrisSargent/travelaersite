@@ -6,6 +6,7 @@ import Tile from '../tile';
 require('./_mosaic.sass');
 
 function Mosaic(props) {
+  console.log(props);
 
   const {tiles, compName} = props;
   if (!tiles)

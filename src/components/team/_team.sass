@@ -21,6 +21,36 @@
       border-top: 1px solid transparentize($co--blue-grey, 0.7)
       padding-top: 30px
 
+.article-member
+  +avatar-default
+
+  > .avatar
+    width: 29%
+    background-color: $co--teal
+
+  > .wysiwyg
+    +wysiwyg-default($fs: $fs--mss)
+    +member-lh
+    font-weight: 300
+    padding-top: $pd--xxs
+    clear: both
+
+.header-member
+  +header-default
+  .title
+    font-size: $fs--l
+    font-weight: 700
+
+  .subtitle
+    letter-spacing: $ls--w
+    text-transform: uppercase
+    color: $co--blue-grey
+
+@media screen and (min-width: $bp--sm)
+  .article-member
+    > .wysiwyg
+      clear: none
+
 @media screen and (min-width: $bp--lg)
   .list-team
 
@@ -31,3 +61,22 @@
       padding: 0
       margin-top: 1px
       border: 0
+
+  .article-member
+    > .vcard-member
+      float: right
+      min-width: 14em
+
+    > .wysiwyg
+      font-size: $fs--m
+      padding-top: 0
+      padding-right: 2%
+
+  .header-member
+    padding-top: $pd--ml
+
+    .title
+      font-size: $fs--xl
+
+    .subtitle
+      font-size: $fs--m

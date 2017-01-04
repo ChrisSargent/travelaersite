@@ -1,54 +1,43 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import css from '../../lib/css';
-import Member from '../member';
-import TeamStore from '../../stores/TeamStore';
+import ArticleHeader from '../article-header';
+import RespImageCover from '../resp-image-cover';
+import MemberVcard from '../member-vcard';
+import Wysiwyg from '../wysiwyg';
 
 require('./_team.sass');
 
-export default class Team extends Component {
-  constructor() {
-    super();
-    this.requestTeam = this.requestTeam.bind(this);
-    this.state = {};
-  }
+function Team(props) {
+  const {members, compName} = props;
 
-  componentWillMount() {
-    this.requestTeam();
-    TeamStore.on('change', this.requestTeam);
-  }
+  if (!members)
+    return null
 
-  componentWillUnmount() {
-    TeamStore.removeListener('change', this.requestTeam);
-  }
-
-  requestTeam() {
-    const team = TeamStore.getTeam();
-    team && (this.setState({team: team}));
-  }
-
-  render() {
-    if (!this.state.team)
-      return null
-
-    const {team} = this.state;
-    const {compName} = this.props;
-
-    const teamMap = team.map((member) => {
-      return (
-        <li key={member.id} className={css.item}>
-          <Member {...member}/>
-        </li>
-      );
-    });
+  const membersMap = members.map((member) => {
+    const {post_title, post_content, acf} = member;
+    const compName = 'member'
 
     return (
-      <div className={css.block + compName}>
-        <h1 className={css.title}>Our Team</h1>
-        <ul className={css.list + compName}>
-          {teamMap}
-        </ul>
-      </div>
+      <li key={member.ID} className={css.item}>
+        <article className={css.article + compName}>
+          <RespImageCover alt={post_title.rendered} className={css.avatar} image={acf.avatar} respSizes="320px" srcVersion="medium"/>
+          <ArticleHeader title={post_title} subtitle={acf.job_title} modifier={compName} />
+          <MemberVcard name={post_title.rendered} contacts={acf.contact_details}/>
+          <Wysiwyg content={post_content} />
+        </article>
+      </li>
     );
-  }
+  });
+
+  return (
+    <div className={css.block + compName}>
+      <h1 className={css.title}>Our Team</h1>
+      <ul className={css.list + compName}>
+        {membersMap}
+      </ul>
+    </div>
+  );
 }
+
+export default Team;
