@@ -23,7 +23,7 @@ function Links(props) {
   });
 
   return (
-    <div className={css.block + compName}>
+    <div className={css.main + compName}>
       <h2 className={css.title}>Awards</h2>
       <ul className={css.list + compName}>
         {linkMap}

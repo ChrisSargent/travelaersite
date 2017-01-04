@@ -26,7 +26,7 @@ function Controls(props) {
     );
   });
   return (
-    <div onClick={onClick} className={css.block + compName}>
+    <div onClick={onClick} className={css.main + compName}>
       <button data-modtarget="dec" className={css.control + ' -dec'}>
         <span>Prev</span>
       </button>

@@ -65,7 +65,7 @@ function Menu(props) {
   } else {
     const compName = 'subnav';
     return (
-      <div className={css.block + compName}>
+      <div className={css.main + compName}>
         <div className={css.container}>
           <ul className={css.list + compName}>{itemsMap}</ul>
         </div>
@@ -136,7 +136,7 @@ export default class NavBlock extends Component {
     menu.base = globals.homeUrl;
 
     return (
-      <nav className={css.block + compName}>
+      <nav className={css.main + compName}>
         <input type="checkbox" ref={this.refMenu} id={css.toggle + compName}/>
         <MenuToggle controls={css.toggle + compName}/>
         <Menu items={menu} onClick={this.closeMenu}/>

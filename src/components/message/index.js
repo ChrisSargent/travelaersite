@@ -37,7 +37,7 @@ export default class Message extends Component {
       return null;
 
     const compName = 'message';
-    var compClass = css.block + compName
+    var compClass = css.main + compName
 
     switch (messageType) {
       case 'error':

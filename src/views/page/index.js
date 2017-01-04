@@ -107,7 +107,9 @@ export default class Page extends Component {
         default:
       }
       return (
-        <Section key={index} compName={name} image={image} wait={waitForHeroLoad} respSizes={respSizes} skew={skew} overlaps={overlaps}>{content}</Section>
+        <Section key={index} compName={name} image={image} wait={waitForHeroLoad} respSizes={respSizes} skew={skew} overlaps={overlaps}>
+          {content}
+        </Section>
       )
     })
 

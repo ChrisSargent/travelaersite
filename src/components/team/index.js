@@ -31,7 +31,7 @@ function Team(props) {
   });
 
   return (
-    <div className={css.block + compName}>
+    <div className={css.main + compName}>
       <h1 className={css.title}>Our Team</h1>
       <ul className={css.list + compName}>
         {membersMap}

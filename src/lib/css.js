@@ -4,7 +4,6 @@ module.exports = {
   footer: 'footer-',
   section: 'section-',
   main: 'main-',
-  block: 'block-',
   article: 'article-',
   list: 'list-',
   form: 'form-',

@@ -30,7 +30,7 @@ function PostInfo(props) {
   }
 
   return (
-    <aside className={css.block + compName}>
+    <aside className={css.main + compName}>
       <span className="author"><SVG type="time"/>{dateString} by {author}</span>
       {views &&
         <span className="info">

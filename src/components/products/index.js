@@ -22,7 +22,7 @@ function Products(props) {
   position && (articleClass += ' -' + position);
 
   return (
-    <div className={css.block + compName}>
+    <div className={css.main + compName}>
       <div className={articleClass}>
         <ArticleHeader title={title} modifier={compName}/>
         <Wysiwyg content={content}/>

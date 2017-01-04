@@ -93,7 +93,7 @@ export default class Submit extends Component {
     ]
 
     return (
-      <section className={css.block + compName}>
+      <section className={css.main + compName}>
         <ArticleHeader title={this.title} subtitle={this.subtitle} modifier={compName}/>
         <form className={css.form + compName} onSubmit={this.handleSubmit}>
           <span className="name"><input type="text" placeholder="Name" name="name" value={name} onChange={this.handleChange} onBlur={this.handleBlur}/></span>

@@ -8,7 +8,7 @@ require('./_social.sass');
 function Social(props) {
   const compName = 'social';
   const {socialNetworks, modifier} = props;
-  var compClass = css.block + compName;
+  var compClass = css.main + compName;
 
   if (!socialNetworks)
     return null;

@@ -14,7 +14,7 @@ function Contact(props) {
     return null;
 
   return (
-    <div className={css.block + compName}>
+    <div className={css.main + compName}>
       <Social socialNetworks={options.socialNetworks}/>
       <div className={css.wrap}>
         <Message />
