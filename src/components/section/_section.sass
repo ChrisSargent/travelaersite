@@ -1,74 +1,119 @@
 @import _tools
 
-// main > section,
-// main + footer
-//   opacity: 0.5
-//   outline: 1px solid blue
-//   outline-offset: -1px
-//
-// ._skew
-//   outline: 50px solid rgba(255,255,255,0.5)
-//   outline-offset: -1px
+%overlap
+  content: ' '
+  position: absolute
+  z-index: $z--mid
+  left: 0
+  display: block
+  width: 100%
+  border-color: transparent
+
+=olcolor($color)
+  background-color: transparentize($color, 0.5)
+  border-color: transparentize($color, 0.5)
+
+section
+  position: relative
+  z-index: $z--base
+
+main > section,
+main + footer
+  // opacity: 0.5
+  // outline: 1px solid blue
+  // outline-offset: -1px
 
 ._skew
   position: absolute
   z-index: $z--under
   left: 0
+  overflow: hidden
+  box-sizing: content-box
   width: 100%
   height: 100%
-  overflow: hidden
   transform: skewY($angle--ban) scaleZ(1)
-  box-sizing: content-box
   // box-shadow: inset 0px -60px 0px 0px rgba(255, 255, 255, 0.5)
-  border-top: 50px solid transparent
-  background-color: red
+  // border-top: 50px solid transparent
+  // background-color: red
 
-  > ._unskew
+  > ._skewcorrect
     position: absolute
     left: 0
-    transform: skewY($angle--ban / -1)
-    height: 100%
     width: 100%
+    height: 100%
+    transform: skewY($angle--ban / -1)
 
-  // &::before
-  //   content: ' '
-  //   display: block
-  //   width: 100%
-  //   height: 50px
-  //   position: absolute
-  //   left: 0
-  //   bottom: 100%
-  //   background-color: #ffffff
-  //   opacity: 0.5
+  &.-oltop,
+  &.-olbottom
+    &::after
+      @extend %overlap
 
-section
-  position: relative
-  z-index: $z--base
+  &.-oltop
+    &::after
+      top: 0
+
+    &.-oldouble
+      &::after
+        border-top-width: $overlap-size
+        border-top-style: solid
+
+  &.-olbottom
+    &::after
+      bottom: 0
+
+    &.-oldouble
+      &::after
+        border-bottom-width: $overlap-size
+        border-top-style: solid
+
+  &.-olsmall
+    &::after
+      height: $overlap-size / 2
+
+  &.-olsingle
+    &::after
+      height: $overlap-size
+
+  &.-oldouble
+    &::after
+      height: $overlap-size * 2
+
+  &.-olblue
+    &::after
+      +olcolor($co--blue--md)
+
+  &.-olbluedk
+    &::after
+      +olcolor($co--blue--dk)
+
+  &.-olwhite
+    &::after
+      +olcolor($co--wt)
 
 .-skewbottom
   > ._skew
     top: $angle_h_ratio / -2
     padding-bottom: $angle_h_ratio / 2
 
-    > ._unskew
+    > ._skewcorrect
       top: $angle_h_ratio / 2
 
 .-skewtop
   > ._skew
-    top: -50px
+    top: 0
     padding-top: $angle_h_ratio / 2
 
-    > ._unskew
+    > ._skewcorrect
       top: $angle_h_ratio / -2
 
 .-skewboth
   > ._skew
-    top: -50px
+    top: 0
 
-    > ._unskew
+    > ._skewcorrect
       top: $angle_h_ratio / -2
       height: calc(100% + #{$angle_h_ratio})
 
 .-skewnone + .-skewtop,
-.-skewnone + .-skewboth,
+.-skewnone + .-skewboth
   margin-top: calc(#{$angle_h_ratio / -2} - 1px)

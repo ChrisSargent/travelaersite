@@ -55,7 +55,7 @@ export default class Page extends Component {
       var name,
         content,
         respSizes;
-        const {acf_fc_layout, image, waitForHeroLoad, skew} = block;
+      const {acf_fc_layout, image, waitForHeroLoad, skew, overlaps} = block;
 
       switch (acf_fc_layout) {
         case 'hero':
@@ -107,7 +107,7 @@ export default class Page extends Component {
         default:
       }
       return (
-        <Section key={index} compName={name} image={image} wait={waitForHeroLoad} respSizes={respSizes} skew={skew}>{content}</Section>
+        <Section key={index} compName={name} image={image} wait={waitForHeroLoad} respSizes={respSizes} skew={skew} overlaps={overlaps}>{content}</Section>
       )
     })
 

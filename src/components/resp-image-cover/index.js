@@ -5,7 +5,7 @@ import RespImage from '../resp-image';
 
 require('./_resp-image-cover.sass');
 
-export default class ImageCover extends Component {
+export default class RespImageCover extends Component {
 
   /*
    * User Experience Notes:
@@ -58,17 +58,16 @@ export default class ImageCover extends Component {
     var fullBgStyle,
       fullBgClass,
       tagClass;
-    const {className, modifier, image} = this.props;
+    const {avatar, image} = this.props;
 
-    if (!image && className !== css.avatar)
+    if (!image && !avatar)
       // Only return if there is no image and this is NOT an avatar
       return null
 
-    className
-      ? tagClass = className
-      : tagClass = css.replImg;
+    avatar
+      ? tagClass = css.avatar
+      : tagClass = '_bgimg';
 
-    modifier && (tagClass += ' -' + modifier)
     fullBgClass = '_bgimgfull';
 
     const previewBgStyle = this.getPreviewBgStyle();

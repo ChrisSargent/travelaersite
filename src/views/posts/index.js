@@ -46,6 +46,11 @@ export default class Posts extends Component {
     var modifier;
     const {postsObj} = this.state;
     const compName = 'posts';
+    const overlaps = [{
+      type: 'single',
+      position: 'bottom',
+      colour: 'white'
+    }];
 
     if (!postsObj)
       return null;
@@ -70,7 +75,7 @@ export default class Posts extends Component {
 
     return (
       <main>
-        <Section compName={'hero' + modifier} image={postsObj.image} skew="bottom"/>
+        <Section compName={'hero' + modifier} image={postsObj.image} skew="bottom" overlaps={overlaps}/>
         <Section compName={compName}>
           <ul className={css.list + compName}>
             {postsMap}

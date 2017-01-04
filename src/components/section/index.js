@@ -5,29 +5,39 @@ import RespImageCover from '../resp-image-cover';
 require('./_section.sass');
 
 function Section(props) {
-  var modifier1 = ' -skewnone',
-    modifier2 = '',
-    modifier3 = '_bg';
+  var sectionModifier = '',
+    skewClass = '',
+    skewCorrectionClass;
+    
   const {
     compName,
     image,
     wait,
     respSizes,
     skew,
+    overlaps,
     children
   } = props;
+
   if (skew) {
-    modifier1 = ' -skew' + skew;
-    modifier2 = '_skew';
-    modifier3 += ' _unskew';
+    sectionModifier = ' -skew' + skew;
+    skewClass = ' _skew';
+    skewCorrectionClass = '_skewcorrect';
+  } else {
+    sectionModifier = ' -skewnone';
   }
-  skew && (modifier1 = ' -skew' + skew);
+
+  if (overlaps) {
+    skewClass += ' -ol' + overlaps[0].position;
+    skewClass += ' -ol' + overlaps[0].type;
+    skewClass += ' -ol' + overlaps[0].colour;
+  }
 
   return (
-    <section className={css.section + compName + modifier1}>
+    <section className={css.section + compName + sectionModifier}>
       {children && <div className={css.container}>{children}</div>}
-      <div className={modifier2}>
-        <div className={modifier3}>
+      <div className={'_sectionbg' + skewClass}>
+        <div className={skewCorrectionClass}>
           <RespImageCover image={image} wait={wait} respSizes={respSizes}/>
         </div>
       </div>

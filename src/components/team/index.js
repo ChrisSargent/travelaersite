@@ -21,7 +21,7 @@ function Team(props) {
     return (
       <li key={member.ID} className={css.item}>
         <article className={css.article + compName}>
-          <RespImageCover alt={post_title.rendered} className={css.avatar} image={acf.avatar} respSizes="320px" srcVersion="medium"/>
+          <RespImageCover avatar alt={post_title.rendered} image={acf.avatar} respSizes="320px" srcVersion="medium"/>
           <ArticleHeader title={post_title} subtitle={acf.job_title} modifier={compName} />
           <MemberVcard name={post_title.rendered} contacts={acf.contact_details}/>
           <Wysiwyg content={post_content} />

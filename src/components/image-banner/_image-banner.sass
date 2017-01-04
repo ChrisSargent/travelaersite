@@ -4,7 +4,7 @@ $dashboardImageRatio: 60.5vw
 
 .section-imagebanner
   > .container
-    +cont--xxl--nopad
+    +cont--xxl(false)
 
 .content-imagebanner
   position: relative
@@ -12,7 +12,7 @@ $dashboardImageRatio: 60.5vw
   padding: 0
 
   > ._bgimg
-    position: static
+    position: relative
     height: $dashboardImageRatio / 2
 
     &:first-child
@@ -45,12 +45,11 @@ $dashboardImageRatio: 60.5vw
     > ._bgimg
       height: auto
 
-      &:first-child
-
       &:last-child
         display: none
 
       img
+        opacity: 0
         position: static
         clip: auto
         width: 100%

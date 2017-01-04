@@ -8,17 +8,18 @@
   > .image
     +sr-only
 
-._bgimg
+._bgimg,
+._bgimgfull
   +stretch
   +bg-cover
-  z-index: $z--under
 
   > .image
     +sr-only
 
+._bgimg
+  z-index: $z--under
+
 ._bgimgfull
-  +stretch
-  +bg-cover
   opacity: 0
 
   &.-loaded

@@ -31,7 +31,7 @@ function Comment(props) {
 
   return (
     <div className={css.article + compName}>
-      <RespImageCover className={css.avatar} image={comment_author_avatar} alt={comment_author}/>
+      <RespImageCover avatar image={comment_author_avatar} alt={comment_author}/>
       <div className={css.main + compName}>
         <ArticleHeader title={comment_author} subtitle={dateString} modifier={compName}/>
         <Wysiwyg content={comment_content}/>

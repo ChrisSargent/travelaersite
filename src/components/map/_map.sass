@@ -1,8 +1,11 @@
 @import _tools
 
 .section-map
-  +cont--xl
+  z-index: $z--sub
+  margin: $angle_h_ratio / -2 0
+
   > .container
+    +cont--xl(false)
     position: relative
 
 .content-map
@@ -20,3 +23,7 @@
 
     .column + .column
       padding: $pd--m 0 0
+
+  > .map
+    position: relative
+    flex-grow: 1

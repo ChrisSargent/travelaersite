@@ -1,8 +1,11 @@
 @import _tools
 
 .section-contact
+  > ._sectionbg
+    background-color: $co--tint
+
   > .container
-    +cont--xl
+    +cont--xl(false)
 
 .block-contact
   display: flex
@@ -18,3 +21,7 @@
   .list-social
     padding-left: $pd--ll
     // To align more centrally
+
+  .block-submit
+    .title
+      font-size: $fs--ml

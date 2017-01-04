@@ -40,5 +40,4 @@ module.exports = {
 
   // Helpers
   centered: ' _centered',
-  replImg: '_bgimg',
 };

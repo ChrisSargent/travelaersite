@@ -66,8 +66,8 @@ export default class Footer extends Component {
           </div>
           <Legal legalName={props.legalName} credit={footerAppend} />
         </div>
-        <div className="_skew">
-          <div className="_bg _unskew"></div>
+        <div className="_sectionbg _skew">
+          <div className="_skewcorrect"></div>
         </div>
       </footer>
     );

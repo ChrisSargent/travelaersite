@@ -62,37 +62,36 @@
 
 // ******************************* Layout Mixins *******************************
 
-=cont($maxw)
+=cont($maxw, $pad)
   width: 100%
   max-width: $sz--s + (2 * $pd--h--mb)
   margin: 0 auto
-  padding-left: $pd--h--mb
-  padding-right: $pd--h--mb
+
+  @if $pad
+    padding-left: $pd--h--mb
+    padding-right: $pd--h--mb
 
   @media screen and (min-width: $bp--nv)
     max-width: $maxw + (2 * $pd--h--dt)
-    padding-left: $pd--h--dt
-    padding-right: $pd--h--dt
 
-=cont--s
-  +cont($sz--s)
+    @if $pad
+      padding-left: $pd--h--dt
+      padding-right: $pd--h--dt
 
-=cont--m
-  +cont($sz--m)
+=cont--s($pad: true)
+  +cont($sz--s, $pad)
 
-=cont--l
-  +cont($sz--l)
+=cont--m($pad: true)
+  +cont($sz--m, $pad)
 
-=cont--xl
-  +cont($sz--xl)
+=cont--l($pad: true)
+  +cont($sz--l, $pad)
 
-=cont--xxl
-  +cont($sz--xxl)
+=cont--xl($pad: true)
+  +cont($sz--xl, $pad)
 
-=cont--xxl--nopad
-  width: 100%
-  max-width: $sz--xxl
-  margin: 0 auto
+=cont--xxl($pad: true)
+  +cont($sz--xxl, $pad)
 
 =center-box
   display: flex

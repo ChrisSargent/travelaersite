@@ -12,7 +12,9 @@ function Gmap(props) {
   return (
     <div className={css.content + compName}>
       <Vcard {...options}/>
-      <RespImageCover image={map} />
+      <div className="map">
+        <RespImageCover image={map} />
+      </div>
     </div>
   )
 }
