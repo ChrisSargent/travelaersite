@@ -16,7 +16,7 @@ function Contact(props) {
   return (
     <div className={css.main + compName}>
       <Social socialNetworks={options.socialNetworks}/>
-      <div className={css.wrap}>
+      <div className={css.container}>
         <Message />
         <Submit postType="enquiries" postID={pageID}/>
       </div>

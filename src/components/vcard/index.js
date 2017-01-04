@@ -13,7 +13,7 @@ function Vcard(props) {
   return (
     <div className={vcardClass}>
       {pin && <SVG type="pin"/>}
-      <div className={css.column}>
+      <div className={css.container}>
         <a className="fn org url" href="{site.url}"><span className="organization-name">site.name</span></a>
         <div className="adr">
           {props.streetAddress1 && <span className="street-address">{props.streetAddress1}{props.streetAddress2 && <span>{props.streetAddress2}</span>}</span>}
@@ -24,7 +24,7 @@ function Vcard(props) {
           <span className="stop">.</span>
         </div>
       </div>
-      <div className={css.column}>
+      <div className={css.container}>
         {props.contactPerson && <span className="fn">{props.contactPerson}</span> }
         {props.contactTelephone && <span className={css.item}><span className={css.label}>Tel:&nbsp;</span><a href="tel:{props.contactTelephone}" className="tel" rel="nofollow">{props.contactTelephone}</a></span> }
         {props.contactFax && <span className={css.item}><span className={css.label}>Fax:&nbsp;</span><a href="fax:{props.contactFax}" className="fax" rel="nofollow">{props.contactFax}</a></span> }

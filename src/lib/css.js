@@ -19,11 +19,9 @@ module.exports = {
   title: 'title',
   subtitle: 'subtitle',
   loader: 'loader',
-  column: 'column',
   item: 'item',
   btn: 'btn',
   label: 'label',
-  wrap: 'wrap',
   icon: 'i',
   avatar: 'avatar',
   control: 'control',
@@ -31,11 +29,8 @@ module.exports = {
 
   // Modifiers
   loading: ' -loading',
-  active: '-active',
-  error: '-error',
-  warning: '-warning',
-  success: '-success',
-
-  // Helpers
-  centered: ' _centered',
+  active: ' -active',
+  error: ' -error',
+  warning: ' -warning',
+  success: ' -success',
 };

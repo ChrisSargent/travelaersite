@@ -41,13 +41,13 @@ export default class Message extends Component {
 
     switch (messageType) {
       case 'error':
-        compClass += ' ' + css.error;
+        compClass += css.error;
         break;
       case 'warning':
-        compClass += ' ' + css.warning;
+        compClass += css.warning;
         break;
       case 'success':
-        compClass += ' ' + css.success;
+        compClass += css.success;
         break;
       default:
 

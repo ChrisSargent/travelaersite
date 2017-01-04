@@ -30,9 +30,9 @@ function Comment(props) {
   ];
 
   return (
-    <div className={css.article + compName}>
+    <div className={css.main + compName}>
       <RespImageCover avatar image={comment_author_avatar} alt={comment_author}/>
-      <div className={css.main + compName}>
+      <div className={css.article + compName}>
         <ArticleHeader title={comment_author} subtitle={dateString} modifier={compName}/>
         <Wysiwyg content={comment_content}/>
         <Actions actions={actions} />

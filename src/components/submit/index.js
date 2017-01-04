@@ -77,7 +77,7 @@ export default class Submit extends Component {
     const {showLoader, name, email, comment} = this.state;
 
     showLoader
-      ? loadingClass = ' -loading'
+      ? loadingClass = css.loading
       : loadingClass = '';
 
     const submitActions = [

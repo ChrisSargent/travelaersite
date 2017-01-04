@@ -11,7 +11,7 @@
   .street-address span
     display: block
 
-  > .column > .item
+  > .container > .item
     display: block
 
     &.-co
@@ -31,7 +31,7 @@
     text-decoration: none
     color: $co--blue--md
 
-  > .column + .column
+  > .container + .container
     padding-top: $pd--xxs
 
   &.-compact
@@ -45,7 +45,7 @@
     .email
       display: none
 
-    .column + .column
+    .container + .container
       padding: $pd--m 0 0
 
 @media (min-width: $bp--mn)
@@ -53,7 +53,7 @@
     font-size: $fs--s
     display: flex
 
-    > .column + .column
+    > .container + .container
       padding-top: 0
       padding-left: $pd--l
 

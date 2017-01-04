@@ -17,7 +17,7 @@ function Controls(props) {
   const controlsMap = controls.map((control, index) => {
     var titleClass = css.control + ' -text';
 
-    (index === activeIndex) && (titleClass += ' -active');
+    (index === activeIndex) && (titleClass += css.active);
 
     return (
       <li key={index} className={css.item}>
@@ -30,7 +30,7 @@ function Controls(props) {
       <button data-modtarget="dec" className={css.control + ' -dec'}>
         <span>Prev</span>
       </button>
-      <div className={css.wrap}>
+      <div className={css.container}>
         <ul className={css.list + compName} style={slideStyles}>
           {controlsMap}
         </ul>
@@ -52,7 +52,7 @@ function Modules(props) {
     const {module_title, module_content} = module;
 
     itemClass = css.item;
-    (index === activeIndex) && (itemClass += ' -active');
+    (index === activeIndex) && (itemClass += css.active);
 
     // Effectily move each module on top of each other
     itemStyle = {
