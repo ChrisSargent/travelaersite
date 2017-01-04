@@ -17,7 +17,7 @@ function Banner(props) {
   });
 
   return (
-    <div className={css.content + compName}>
+    <div className={css.main + compName}>
       <h1 className={css.title}>{title}</h1>
       <ul className={css.list + compName}>
         {logoMap}

@@ -2,8 +2,8 @@
 
 .vcard
   font-size: $fs--xxs
-  white-space: nowrap
   font-weight: 300
+  white-space: nowrap
 
   .fn:not(org)
     +sr-only
@@ -20,18 +20,42 @@
     > .label
       +sr-only
 
+
+  > .i.-pin
+    width: 2em
+    height: 2em
+    margin-bottom: 0.5em
+    margin-left: -0.4em
+
   a
-    color: $co--blue--md
     text-decoration: none
+    color: $co--blue--md
 
   > .column + .column
     padding-top: $pd--xxs
 
+  &.-compact
+    line-height: $lh--lg
+    display: block
+    min-width: 320px
+    padding: ($pd--block + 1rem) $pd--ll
+    color: $co--wt
+    background-color: $co--blue--lt
+
+    .email
+      display: none
+
+    .column + .column
+      padding: $pd--m 0 0
+
 @media (min-width: $bp--mn)
   .vcard
-    display: flex
     font-size: $fs--s
+    display: flex
 
     > .column + .column
       padding-top: 0
       padding-left: $pd--l
+
+    &.-compact
+      font-size: inherit

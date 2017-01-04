@@ -1,12 +1,18 @@
 import React from 'react';
 import css from '../../lib/css';
+import SVG from '../svg';
 
 require('./_vcard.sass');
 
 function Vcard(props) {
+  var vcardClass;
+  const {modifier, pin} = props;
+  vcardClass = 'vcard';
+  modifier && (vcardClass += ' -' + modifier);
 
   return (
-    <div className="vcard">
+    <div className={vcardClass}>
+      {pin && <SVG type="pin"/>}
       <div className={css.column}>
         <a className="fn org url" href="{site.url}"><span className="organization-name">site.name</span></a>
         <div className="adr">

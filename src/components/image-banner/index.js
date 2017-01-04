@@ -24,7 +24,7 @@ function ImageBanner(props) {
   const {compName} = props;
 
   return (
-    <div className={css.content + compName}>
+    <div className={css.main + compName}>
       <RespImageCover image={props.image_fixed} />
       <Strip {...props}/>
       <RespImageCover image={props.image_fixed} />

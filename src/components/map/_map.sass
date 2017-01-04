@@ -1,29 +1,17 @@
 @import _tools
 
 .section-map
-  z-index: $z--sub
+  z-index: $z--under
   margin: $angle_h_ratio / -2 0
 
   > .container
     +cont--xl(false)
     position: relative
 
-.content-map
+.main-map
   display: flex
 
-  > .vcard
-    padding: $pd--block $pd--ll
-    display: block
-    background-color: $co--blue--lt
-    color: $co--wt
-    min-width: 320px
-
-    .email
-      display: none
-
-    .column + .column
-      padding: $pd--m 0 0
-
   > .map
+    display: block
     position: relative
     flex-grow: 1

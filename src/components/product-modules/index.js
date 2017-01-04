@@ -61,7 +61,7 @@ function Modules(props) {
 
     return (
       <li key={index} className={itemClass} style={itemStyle}>
-        <article className={css.content + compName}>
+        <article className={css.main + compName}>
           <span className={css.title}>{module_title}</span>
           <Wysiwyg content={module_content} modifier={compName}/>
         </article>
@@ -139,7 +139,7 @@ export default class ProductModules extends Component {
     }
 
     return (
-      <div className={css.content + compName}>
+      <div className={css.main + compName}>
         <div className={'side-' + compName}>
           <h1 className={css.title}>{title}</h1>
           <Controls controls={product_module} activeIndex={activeModule} onClick={this.handleClick} modifier={compName}/>

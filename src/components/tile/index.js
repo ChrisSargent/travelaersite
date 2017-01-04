@@ -46,7 +46,7 @@ function MosaicTile(props) {
 
   return (
     <li className={css.item + tileClass}>
-      <TagName href={link} target="_blank" className={css.content + compName}>
+      <TagName href={link} target="_blank" className={css.main + compName}>
         <SVG type={type}/>
         <Wysiwyg content={content}/>
         {footer}

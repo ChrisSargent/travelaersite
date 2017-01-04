@@ -39,7 +39,7 @@ export default class Footer extends Component {
     return (
       <footer className={css.footer + compName + ' -skewtop'}>
         <div className={css.container}>
-          <div className={css.content + compName}>
+          <div className={css.main + compName}>
             <div className={css.item}>
               <Logo />
             </div>

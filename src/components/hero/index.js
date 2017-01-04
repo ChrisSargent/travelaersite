@@ -28,7 +28,7 @@ function Hero(props) {
     hasHeadline = true;
 
   return (
-    <div className={css.content + compName + modifier}>
+    <div className={css.main + compName + modifier}>
       {hasHeadline && <h1 className={css.title}>
         {headlinePre}
         {headline && <strong>{headline}</strong>}

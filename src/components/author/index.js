@@ -14,7 +14,7 @@ function Author(props) {
   return (
     <aside className={css.article + compName}>
       <RespImageCover avatar image={author.avatar} respSizes="100px" srcVersion="medium" alt={author.name} />
-      <div className={css.content + compName}>
+      <div className={css.main + compName}>
         <ArticleHeader title={'Written by ' + author.name} modifier={compName} />
         <Wysiwyg content={author.description} />
       </div>

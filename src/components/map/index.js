@@ -7,14 +7,14 @@ import Vcard from '../vcard';
 require('./_map.sass');
 
 function Gmap(props) {
-  const {compName, options, map} = props;
+  const {compName, options, map, map_link} = props;
 
   return (
-    <div className={css.content + compName}>
-      <Vcard {...options}/>
-      <div className="map">
+    <div className={css.main + compName}>
+      <Vcard {...options} modifier='compact' pin/>
+      <a href={map_link} className="map" target="_blank">
         <RespImageCover image={map} />
-      </div>
+      </a>
     </div>
   )
 }
