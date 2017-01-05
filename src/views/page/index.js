@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Helmet from "react-helmet";
 
 // Stores & Actions
 import PageStore from '../../stores/PageStore';
@@ -115,6 +116,7 @@ export default class Page extends Component {
 
     return (
       <main id={page.slug}>
+        <Helmet title={page.title.rendered} />
         {blocksMap}
       </main>
     );

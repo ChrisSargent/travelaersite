@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import css from '../../lib/css'
+import css from '../../lib/css';
+import Helmet from "react-helmet";
 import Insta from '../../components/insta';
 import Post from '../../components/post';
 import PostsStore from '../../stores/PostsStore';
@@ -43,7 +44,7 @@ export default class Posts extends Component {
   }
 
   render() {
-    var modifier;
+    var heroModifier, pageTitle;
     const {postsObj} = this.state;
     const compName = 'posts';
     const overlaps = [{
@@ -55,9 +56,13 @@ export default class Posts extends Component {
     if (!postsObj)
       return null;
 
-    postsObj.posts.length > 1
-      ? modifier = ' -small'
-      : modifier = '';
+    if (postsObj.posts.length > 1) {
+      heroModifier = ' -small';
+      pageTitle = 'Blog';
+    } else {
+      heroModifier = '';
+      pageTitle = postsObj.posts[0].title.rendered;
+    }
 
     const postsMap = postsObj.posts.map((post, index) => {
       var isMain;
@@ -75,7 +80,8 @@ export default class Posts extends Component {
 
     return (
       <main>
-        <Section compName={'hero' + modifier} image={postsObj.image} skew="bottom" overlaps={overlaps}/>
+        <Helmet title={pageTitle} />
+        <Section compName={'hero' + heroModifier} image={postsObj.image} skew="bottom" overlaps={overlaps}/>
         <Section compName={compName}>
           <ul className={css.list + compName}>
             {postsMap}

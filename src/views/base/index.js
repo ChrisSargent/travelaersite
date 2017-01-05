@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Helmet from "react-helmet";
 
 // Stores & Actions
 import * as SiteActions from '../../actions/SiteActions';
@@ -30,16 +31,28 @@ export default class Base extends Component {
   }
 
   render() {
+    var site;
     const {options} = this.state;
+    options && (site = options.t_site_info);
 
     return (
       <div>
+        {options &&
+          <Helmet
+            htmlAttributes={
+              {lang: site.language}
+            }
+            title={site.description}
+            titleTemplate={'%s | ' + site.name}
+            meta={
+              []
+            }
+          />
+        }
         <Header/>
-
-          {React.cloneElement(this.props.children, {options: options})}
-
+        {React.cloneElement(this.props.children, {options: options})}
         <Footer {...options}/>
-        <Loader />
+        <Loader/>
       </div>
 
     );
