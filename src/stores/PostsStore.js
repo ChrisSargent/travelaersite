@@ -102,16 +102,10 @@ class PostsStore extends EventEmitter {
     switch (action.type) {
       case 'RECEIVE_POSTS':
         // console.log('PostsStore | handleActions | Receive Posts');
-        var self = this;
         action.allPosts && (this.gotAllPosts = true);
         this.posts = action.posts;
         this.updateLookup();
-        // TODO: Find a way to take this out of the timeout
-        // Needs to be in a setTimeout to prevent error: Invariant Violation: Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.
-        // Tried for several hours using dispatcher.waitFor but no dice
-        setTimeout(function() {
-          self.emit('change');
-        });
+        this.emit('change');
         break;
 
       case 'RECEIVE_POST':
@@ -122,9 +116,7 @@ class PostsStore extends EventEmitter {
 
       default:
     }
-
   }
-
 }
 
 const postsStore = new PostsStore();

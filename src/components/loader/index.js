@@ -31,7 +31,7 @@ export default class Loader extends Component {
       ? this.setState({displayLoader: LoaderStore.getLoading()})
       : setTimeout(function () {
         self.setState({displayLoader: LoaderStore.getLoading()});
-      }, 250);
+      });
   }
 
   render() {
