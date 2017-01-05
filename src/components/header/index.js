@@ -4,7 +4,7 @@ import css from '../../lib/css';
 import Logo from '../logo';
 import Nav from '../nav';
 
-require('./_header.sass');
+import './_header.sass';
 
 function SiteHeader() {
   const compName = 'siteheader';

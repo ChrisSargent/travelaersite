@@ -1,6 +1,5 @@
 import React from 'react';
-
-require('./_diagram.sass');
+import './_diagram.sass';
 
 function ComDiag(props) {
 

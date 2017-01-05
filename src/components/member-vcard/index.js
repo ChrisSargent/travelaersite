@@ -1,7 +1,7 @@
 import React from 'react';
 import SVG from '../svg';
 
-require('./_member-vcard.sass');
+import './_member-vcard.sass';
 
 function MemberVcard(props) {
   const {name, contacts} = props;

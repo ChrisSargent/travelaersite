@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import css from '../../lib/css';
 import MessageStore from '../../stores/MessageStore'
 
-require('./_message.sass');
+import './_message.sass';
 
 export default class Message extends Component {
   constructor() {

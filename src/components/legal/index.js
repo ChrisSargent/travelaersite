@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../../lib/css';
 
-require('./_legal.sass');
+import './_legal.sass';
 
 function Legal(props) {
   const {legalName, credit} = props;

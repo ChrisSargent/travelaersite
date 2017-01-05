@@ -9,7 +9,7 @@ import Message from '../message';
 import RespImageCover from '../resp-image-cover';
 import Wysiwyg from '../wysiwyg';
 
-require('./_comment-list.sass');
+import './_comment-list.sass';
 
 function Comment(props) {
   const {

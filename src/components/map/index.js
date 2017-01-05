@@ -4,7 +4,7 @@ import css from '../../lib/css';
 import RespImageCover from '../resp-image-cover';
 import Vcard from '../vcard';
 
-require('./_map.sass');
+import './_map.sass';
 
 function Gmap(props) {
   const {compName, options, map, map_link} = props;

@@ -4,7 +4,7 @@ import css from '../../lib/css';
 import SVG from '../svg';
 import Wysiwyg from '../wysiwyg';
 
-require('./_hero.sass');
+import './_hero.sass';
 
 function Hero(props) {
   var modifier = '';

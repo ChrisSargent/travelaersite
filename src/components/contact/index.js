@@ -5,7 +5,7 @@ import Message from '../message';
 import Submit from '../submit';
 import Social from '../social';
 
-require('./_contact.sass');
+import './_contact.sass';
 
 function Contact(props) {
   const {compName, options, pageID} = props;

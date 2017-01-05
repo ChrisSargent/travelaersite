@@ -6,7 +6,7 @@ import MenuToggle from '../menu-toggle';
 import NavStore from '../../stores/NavStore';
 import {IndexLink, Link} from 'react-router';
 
-require('./_nav.sass');
+import './_nav.sass';
 
 function MenuItem(props) {
   const {item} = props;

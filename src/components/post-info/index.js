@@ -3,7 +3,7 @@ import css from '../../lib/css';
 import dateFormat from '../../lib/date'
 import SVG from '../svg'
 
-require('./_post-info.sass');
+import './_post-info.sass';
 
 function PostInfo(props) {
   var dateString, categoryMap;

@@ -4,7 +4,7 @@ import css from '../../lib/css';
 import RespImageCover from '../resp-image-cover';
 import Wysiwyg from '../wysiwyg';
 
-require('./_image-banner.sass');
+import './_image-banner.sass';
 
 function Strip(props) {
   const {title, content} = props;

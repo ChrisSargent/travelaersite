@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 import RespImageCover from '../resp-image-cover';
 
-require('./_section.sass');
+import './_section.sass';
 
 function Section(props) {
   var sectionModifier = '',

@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../../lib/css';
 
-require('./_image.sass');
+import './_image.sass';
 
 function RespImage(props) {
   var respSizes,

@@ -3,7 +3,7 @@ import css from '../../lib/css';
 
 import SVG from '../svg'
 
-require('./_social.sass');
+import './_social.sass';
 
 function Social(props) {
   const compName = 'social';

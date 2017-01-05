@@ -9,7 +9,7 @@ import * as CommentsActions from '../../actions/CommentsActions';
 import * as SiteActions from '../../actions/SiteActions';
 import SubmitStore from '../../stores/SubmitStore';
 
-require('./_submit.sass');
+import './_submit.sass';
 
 export default class Submit extends Component {
   constructor(props) {

@@ -5,7 +5,7 @@ import ArticleHeader from '../article-header';
 import RespImageCover from '../resp-image-cover';
 import Wysiwyg from '../wysiwyg';
 
-require('./_author.sass');
+import './_author.sass';
 
 function Author(props) {
   const {author} = props;

@@ -7,7 +7,7 @@ import * as SiteActions from '../../actions/SiteActions';
 import SubmitStore from '../../stores/SubmitStore';
 import Section from '../section';
 
-require('./_comments.sass');
+import './_comments.sass';
 
 export default class Comments extends Component {
   constructor(props) {

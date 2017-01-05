@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 import RespImage from '../resp-image';
 
-require('./_banner.sass');
+import './_banner.sass';
 
 function Banner(props) {
   const {logos, title, compName} = props;

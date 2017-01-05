@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../lib/css'
 import {Link} from 'react-router';
 
-require('./_wysiwyg.sass');
+import './_wysiwyg.sass';
 
 function Wysiwyg(props) {
   const {size, more} = props;

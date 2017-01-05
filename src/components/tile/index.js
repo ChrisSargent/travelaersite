@@ -5,7 +5,7 @@ import Wysiwyg from '../wysiwyg';
 
 import SVG from '../svg';
 
-require('./_tile.sass');
+import './_tile.sass';
 
 function MosaicTile(props) {
   var {content, image} = props.acf

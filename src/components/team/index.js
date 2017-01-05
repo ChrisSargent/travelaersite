@@ -6,7 +6,7 @@ import RespImageCover from '../resp-image-cover';
 import MemberVcard from '../member-vcard';
 import Wysiwyg from '../wysiwyg';
 
-require('./_team.sass');
+import './_team.sass';
 
 function Team(props) {
   const {members, compName} = props;

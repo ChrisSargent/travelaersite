@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
 import SVG from '../svg';
-require('./_loader.sass');
+import './_loader.sass';
 
 // Stores
 import LoaderStore from '../../stores/LoaderStore';

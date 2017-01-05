@@ -3,7 +3,7 @@ import css from '../../lib/css';
 import stripDomain from '../../lib/strip-domain';
 import {Link} from 'react-router';
 
-require('./_actions.sass');
+import './_actions.sass';
 
 function Actions(props) {
   const {actions} = props;

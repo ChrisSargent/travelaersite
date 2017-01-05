@@ -7,6 +7,8 @@ import Base from './views/base';
 import Page from './views/page';
 import Posts from './views/posts';
 
+import './lib/sass/index.sass'
+
 const app = document.getElementById('root');
 
 function handleUpdate(a, b) {

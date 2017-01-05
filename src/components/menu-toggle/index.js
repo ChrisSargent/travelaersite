@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../../lib/css';
 
-require('./_menu-toggle.sass');
+import './_menu-toggle.sass';
 
 function MenuButton(props) {
   const {controls} = props;

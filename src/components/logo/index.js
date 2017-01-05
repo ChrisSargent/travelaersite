@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-require('./_logo.sass');
+import './_logo.sass';
 
 function Logo() {
   return (

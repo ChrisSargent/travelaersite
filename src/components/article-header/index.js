@@ -3,7 +3,7 @@ import css from '../../lib/css';
 import RespImageCover from '../resp-image-cover'
 import SVG from '../svg';
 
-require('./_article-header.sass');
+import './_article-header.sass';
 
 function ArticleHeader(props) {
   const {modifier, subtitle, icon, image} = props;

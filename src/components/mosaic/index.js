@@ -1,9 +1,8 @@
 import React from 'react';
 import css from '../../lib/css';
-
 import Tile from '../tile';
 
-require('./_mosaic.sass');
+import './_mosaic.sass';
 
 function Mosaic(props) {
   const {tiles, compName} = props;

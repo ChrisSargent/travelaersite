@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 import RespImage from '../resp-image';
 
-require('./_links.sass');
+import './_links.sass';
 
 function Links(props) {
   const compName = 'links';

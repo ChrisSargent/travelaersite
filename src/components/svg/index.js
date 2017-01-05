@@ -3,7 +3,7 @@ import css from '../../lib/css';
 
 import ComDiag from '../comversational-diagram';
 
-require('./_svgs.sass');
+import './_svgs.sass';
 
 function SVG(props) {
   const {type} = props;

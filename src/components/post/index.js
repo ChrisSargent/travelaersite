@@ -8,7 +8,7 @@ import Comments from '../comments';
 import PostInfo from '../post-info';
 import Wysiwyg from '../wysiwyg';
 
-require('./_post.sass');
+import './_post.sass';
 
 function trimContent(content, main) {
   var paras;

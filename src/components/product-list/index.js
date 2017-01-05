@@ -6,7 +6,7 @@ import ArticleHeader from '../article-header';
 import Screenshots from '../screenshots';
 import Wysiwyg from '../wysiwyg';
 
-require('./_product-list.sass');
+import './_product-list.sass';
 
 function ProductList(props) {
   const {products} = props;

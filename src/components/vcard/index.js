@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 import SVG from '../svg';
 
-require('./_vcard.sass');
+import './_vcard.sass';
 
 function Vcard(props) {
   var vcardClass;

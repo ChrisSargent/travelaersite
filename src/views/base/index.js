@@ -9,9 +9,6 @@ import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Loader from '../../components/loader/';
 
-// Library
-import '../../lib/sass/index.sass'
-
 export default class Base extends Component {
   constructor() {
     super();

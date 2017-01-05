@@ -6,7 +6,7 @@ import PostsStore from '../../stores/PostsStore';
 import RecentPosts from '../../components/recent-posts';
 import Section from '../../components/section';
 
-require('./_posts.sass')
+import './_posts.sass';
 
 export default class Posts extends Component {
   constructor(props) {

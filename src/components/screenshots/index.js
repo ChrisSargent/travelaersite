@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 import RespImage from '../resp-image';
 
-require('./_screenshots.sass');
+import './_screenshots.sass';
 
 function ScreenShots(props) {
   const {screenshots, modifier, activeIndex} = props;

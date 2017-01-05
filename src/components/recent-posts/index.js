@@ -4,7 +4,7 @@ import css from '../../lib/css';
 import dateFormat from '../../lib/date';
 import globals from '../../lib/globals';
 
-require('./_recent-posts.sass');
+import './_recent-posts.sass';
 
 import ArticleHeader from '../article-header';
 import RespImageCover from '../resp-image-cover';

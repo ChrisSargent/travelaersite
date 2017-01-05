@@ -5,7 +5,7 @@ import ArticleHeader from '../article-header';
 import ProductList from '../product-list';
 import Wysiwyg from '../wysiwyg';
 
-require('./_products.sass');
+import './_products.sass';
 
 function Products(props) {
   var articleClass;

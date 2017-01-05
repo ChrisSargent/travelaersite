@@ -5,7 +5,7 @@ import OptionsStore from '../../stores/OptionsStore'
 import RespImageCover from '../resp-image-cover'
 import SVG from '../svg'
 
-require('./_insta.sass');
+import './_insta.sass';
 
 export default class Insta extends Component {
   constructor() {

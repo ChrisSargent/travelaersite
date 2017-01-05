@@ -3,7 +3,7 @@ import css from '../../lib/css';
 import Screenshots from '../screenshots';
 import Wysiwyg from '../wysiwyg';
 
-require('./_product-modules.sass');
+import './_product-modules.sass';
 
 function Controls(props) {
   const {controls, activeIndex, onClick} = props;

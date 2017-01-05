@@ -3,7 +3,7 @@ import css from '../../lib/css';
 
 import RespImage from '../resp-image';
 
-require('./_resp-image-cover.sass');
+import './_resp-image-cover.sass';
 
 export default class RespImageCover extends Component {
 
