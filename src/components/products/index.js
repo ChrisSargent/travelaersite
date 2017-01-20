@@ -14,7 +14,8 @@ function Products(props) {
     content,
     products,
     position,
-    compName
+    compName,
+    alignment
   } = props;
 
   // Setup the positioning classes
@@ -23,11 +24,13 @@ function Products(props) {
 
   return (
     <div className={css.main + compName}>
-      <div className={articleClass}>
-        <ArticleHeader title={title} modifier={compName}/>
-        <Wysiwyg content={content}/>
-      </div>
-      <ProductList products={products}/>
+      {(title || content) &&
+        <div className={articleClass}>
+          <ArticleHeader title={title} modifier={compName}/>
+          <Wysiwyg content={content}/>
+        </div>
+      }
+      <ProductList products={products} alignment={alignment}/>
     </div>
   );
 }

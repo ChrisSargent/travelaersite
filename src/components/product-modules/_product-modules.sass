@@ -6,8 +6,9 @@ $ctrlwidth: 27.78%
 .section-prodmods
   +block-pad
 
-  ._sectionbg
-    background-color: $co--blue--md
+  > .section-background
+    ._bgcol
+      background-color: $co--blue--md
 
   > .container
     +cont--xl
@@ -139,7 +140,8 @@ $ctrlwidth: 27.78%
     display: none
 
   > .wysiwyg
-    +wysiwyg-default(inherit, inherit)
+    font-size: inherit
+    font-family: inherit
     line-height: $lh--xl
 
 @media screen and (min-width: $bp--mn)

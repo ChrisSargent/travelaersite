@@ -12,7 +12,6 @@ class PageStore extends EventEmitter {
   }
 
   getPage(slug) {
-    slug = slug || 'home';
     if (this.pagesCache[slug]) {
       return this.pagesCache[slug];
     } else {

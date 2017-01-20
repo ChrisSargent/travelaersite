@@ -22,7 +22,6 @@ function Hero(props) {
   } = props;
 
   fullscreen && (modifier = ' -fullscreen');
-  contentImage && (modifier = ' -fullwidth');
 
   if (headlinePre || headline || headlinePost || headlineImage)
     hasHeadline = true;

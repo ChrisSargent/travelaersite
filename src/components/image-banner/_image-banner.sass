@@ -16,10 +16,14 @@ $dashboardImageRatio: 60.5vw
     height: $dashboardImageRatio / 2
 
     &:first-child
-      background-position: left top
+      ._bgimgfull,
+      ._bgimgpreview
+        background-position: left top
 
     &:last-child
-      background-position: left bottom
+      ._bgimgfull,
+      ._bgimgpreview
+        background-position: left bottom
 
 .main-strip
   background-color: #ccccd8
@@ -36,7 +40,8 @@ $dashboardImageRatio: 60.5vw
     color: $co--bk
 
   > .wysiwyg
-    +wysiwyg-default($ff: inherit)
+    font-size: inherit
+    font-family: inherit
     line-height: $lh--xl
     color: $co--logo--blue-dk
 
@@ -44,18 +49,18 @@ $dashboardImageRatio: 60.5vw
   .main-imagebanner
     > ._bgimg
       height: auto
+      box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, 0.5)
 
       &:last-child
         display: none
 
-      img
+      > .image
         opacity: 0
         position: static
         clip: auto
         width: 100%
         height: auto
         margin: 0
-        box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, 0.5)
 
   .main-strip
     position: absolute

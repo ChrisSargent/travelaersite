@@ -1,25 +1,31 @@
 @import _tools
 
 .list-product
-  +columns(2, $pd--xl)
-
   > .item
     position: relative
 
     + .item
       padding-top: $pd--l
 
+  &.-row
+    +columns(2, $pd--xl)
+
+    .article-product
+      background-color: transparentize($co--wt, 0.15)
+
+  &.-column
+    width: 50%
+    margin-left: 50%
+
 .article-product
   +article-default
-  background-color: transparentize($co--wt, 0.15)
 
   > .wysiwyg
-    +wysiwyg-default($fs: $fs--mms)
+    font-size: $fs--mms
     color: $co--blue--md
 
   > .footer-actions
     padding-top: $pd--ml
-
 
 .header-product
   +header-default
@@ -35,15 +41,14 @@
     > .item + .item
       padding-top: 0
 
-  .header-product
+    &.-row
+      > .item:nth-child(even) .article-product
+        background-color: transparent
 
+  .header-product
     .title
       font-size: $fs--xxh
 
   .article-product
-
-    &:not(.-boxed)
-      background-color: transparent
-
     > .wysiwyg
       font-size: $fs--l

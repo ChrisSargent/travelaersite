@@ -57,6 +57,7 @@ export default class RespImageCover extends Component {
   render() {
     var fullBgStyle,
       fullBgClass,
+      previewBgClass,
       tagClass;
     const {avatar, image} = this.props;
 
@@ -69,17 +70,20 @@ export default class RespImageCover extends Component {
       : tagClass = '_bgimg';
 
     fullBgClass = '_bgimgfull';
+    previewBgClass = '_bgimgpreview';
 
     const previewBgStyle = this.getPreviewBgStyle();
 
     if (this.state.fullBgSrc) {
       fullBgStyle = this.getBgStyle(this.state.fullBgSrc);
       fullBgClass += ' -loaded';
+      previewBgClass += ' -loaded';
     }
 
     return (
-      <div className={tagClass} style={previewBgStyle}>
+      <div className={tagClass}>
         <RespImage {...this.props} onLoadCb={this.handleLoad}/>
+        <div className={previewBgClass} style={previewBgStyle}></div>
         <div className={fullBgClass} style={fullBgStyle}></div>
       </div>
     );

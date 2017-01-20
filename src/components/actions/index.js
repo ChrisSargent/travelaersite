@@ -9,31 +9,31 @@ function Actions(props) {
   const {actions} = props;
   const compName = 'actions';
 
-  if (actions) {
-    const actionsMap = actions.map((action, index) => {
-      var btnClass;
-      const url = stripDomain(action.linkTo);
+  if (!actions)
+    return;
 
-      btnClass = css.btn;
-      action.modifier && (btnClass += ' -' + action.modifier);
+  const actionsMap = actions.map((action, index) => {
+    var btnClass;
+    const url = stripDomain(action.linkTo);
 
-      if (action.param) {
-        return <button key={index} className={btnClass} type="button" data-actionparam={action.param}>{action.linkTitle}</button>
-      } else if (action.submit) {
-        return <button key={index} className={btnClass} type="submit">{action.linkTitle}</button>
-      } else {
-        return <Link key={index} to={url} className={btnClass}>{action.linkTitle}</Link>
-      }
-    });
+    btnClass = css.btn;
+    action.modifier && (btnClass += ' -' + action.modifier);
 
-    return (
-      <footer className={css.footer + compName}>
-        {actionsMap}
-      </footer>
-    )
-  } else {
-    return false;
-  }
+    if (action.param) {
+      return <button key={index} className={btnClass} type="button" data-actionparam={action.param}>{action.linkTitle}</button>
+    } else if (action.submit) {
+      return <button key={index} className={btnClass} type="submit">{action.linkTitle}</button>
+    } else {
+      return <Link key={index} to={url} className={btnClass}>{action.linkTitle}</Link>
+    }
+  });
+
+  return (
+    <footer className={css.footer + compName}>
+      {actionsMap}
+    </footer>
+  )
+
 }
 
 export default Actions;

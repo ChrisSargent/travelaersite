@@ -2,13 +2,14 @@
 
 .section-products
   +block-pad
+  $gradient: linear-gradient(to bottom, $co--blue-grey--tt 40%, #6C6F90 100%)
   min-height: 100vh
   z-index: $z--mid
 
   > .container
     +cont--xl
 
-  > ._sectionbg
+  > .section-background
     $fuseWidth: 132px
     $imageWidth: 1200px
     $margin: 10px
@@ -25,24 +26,34 @@
       position: absolute
       box-shadow: 0 0 $shadow 0 $co--blue-vio
 
-    ._bgimg,
-    ._bgimgfull
+    ._bgcol
       background-color: $co--blue-grey--tt
 
-    ._bgimg
+    ._bgimgpreview
       background-position-x: calc(#{$fuseEdge})
       background-size: auto 100%
+      opacity: 1
+
+      &.-loaded
+        transition: opacity $tr--s
+        opacity: 0
 
     ._bgimgfull
       background-size: $imageWidth auto
       background-position: calc(#{$fuseEdge} + 20vw) $pd--block
+
+  &.-gradient
+    > .section-background
+      ._bgcol
+        background-image: $gradient
 
 .article-products
   +article-default
   width: auto
 
   > .wysiwyg
-    +wysiwyg-default($ff--base, $fs--mml)
+    font-size: $fs--mml
+    font-family: $ff--base
     font-weight: 300
     line-height: $lh--ml
     color: $co--bk
@@ -62,8 +73,8 @@
 
 @media screen and (min-width: $bp--mn)
   .section-products
-    > ._sectionbg
-      ._bgimg,
+    > .section-background
+      ._bgimgpreview,
       ._bgimgfull
         background-position-x: calc(50% - 150px)
 

@@ -55,7 +55,8 @@ function Post(props) {
     <article className={css.article + compName}>
       <ArticleHeader title={post.title} modifier={compName} image={image}/>
       <PostInfo info={postInfo}/>
-      <Wysiwyg content={content} more={more}/> {!excerpt && <Author author={post.t_author}/>}
+      <Wysiwyg content={content} more={more}/>
+      {!excerpt && <Author author={post.t_author}/>}
       {displayComments && <Comments commentsInfo={post.t_comments_info} postTitle={post.title.rendered} postID={post.id}/>}
     </article>
   )

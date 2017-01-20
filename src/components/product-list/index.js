@@ -9,29 +9,22 @@ import Wysiwyg from '../wysiwyg';
 import './_product-list.sass';
 
 function ProductList(props) {
-  const {products} = props;
+  const {products, alignment} = props;
   const compName = 'product';
 
   if (!products)
     return null;
 
-  const productsMap = products.map((product, index) => {
-    var articleClass;
-    var {actions} = product;
-    const {
-      title,
-      content,
-      boxed,
-      screenshots,
-    } = product;
+  const productsMap = products.map((product) => {
+    var {actions} = product.acf;
+    const {screenshots} = product.acf;
+    const {title, content} = product;
 
     actions[0].modifier = 'cta';
-    articleClass = css.article + compName;
-    boxed && (articleClass += ' -boxed');
 
     return (
-      <li key={product.id || index} className={css.item}>
-        <article className={articleClass}>
+      <li key={product.id} className={css.item}>
+        <article className={css.article + compName}>
           <ArticleHeader title={title} modifier={compName}/>
           <Wysiwyg content={content}/>
           <Actions actions={actions}/>
@@ -42,7 +35,7 @@ function ProductList(props) {
   });
 
   return (
-    <ul className={css.list + compName}>{productsMap}</ul>
+    <ul className={css.list + compName + ' -' + alignment}>{productsMap}</ul>
   );
 }
 

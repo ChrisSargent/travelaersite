@@ -9,22 +9,22 @@ import Wysiwyg from '../wysiwyg';
 import './_team.sass';
 
 function Team(props) {
-  const {members, compName} = props;
+  const {title, members, compName} = props;
 
   if (!members)
     return null
 
   const membersMap = members.map((member) => {
-    const {post_title, post_content, acf} = member;
+    const {title, content, acf} = member;
     const compName = 'member'
 
     return (
-      <li key={member.ID} className={css.item}>
+      <li key={member.id} className={css.item}>
         <article className={css.article + compName}>
-          <RespImageCover avatar alt={post_title.rendered} image={acf.avatar} respSizes="320px" srcVersion="medium"/>
-          <ArticleHeader title={post_title} subtitle={acf.job_title} modifier={compName} />
-          <MemberVcard name={post_title.rendered} contacts={acf.contact_details}/>
-          <Wysiwyg content={post_content} />
+          <RespImageCover avatar alt={title} image={acf.avatar} respSizes="320px" srcVersion="medium"/>
+          <ArticleHeader title={title} subtitle={acf.job_title} modifier={compName} />
+          <MemberVcard name={title} contacts={acf.contact_details}/>
+          <Wysiwyg content={content} />
         </article>
       </li>
     );
@@ -32,7 +32,7 @@ function Team(props) {
 
   return (
     <div className={css.main + compName}>
-      <h1 className={css.title}>Our Team</h1>
+      {title && <h1 className={css.title}>{title}</h1>}
       <ul className={css.list + compName}>
         {membersMap}
       </ul>

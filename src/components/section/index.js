@@ -6,23 +6,25 @@ import './_section.sass';
 
 function Section(props) {
   var sectionModifier = '',
+    contModifier = '',
     skewClass = '',
     skewCorrectionClass;
-    
+
   const {
     compName,
     image,
-    wait,
     respSizes,
     skew,
     overlaps,
-    children
+    children,
+    background,
+    contSize
   } = props;
 
   if (skew) {
     sectionModifier = ' -skew' + skew;
     skewClass = ' _skew';
-    skewCorrectionClass = '_skewcorrect';
+    skewCorrectionClass = ' _skewcorrect';
   } else {
     sectionModifier = ' -skewnone';
   }
@@ -33,12 +35,20 @@ function Section(props) {
     skewClass += ' -ol' + overlaps[0].colour;
   }
 
+  if (background) {
+    sectionModifier += ' -' + background;
+  }
+
+  if (contSize) {
+    contModifier += ' -' + contSize;
+  }
+
   return (
     <section className={css.section + compName + sectionModifier}>
-      {children && <div className={css.container}>{children}</div>}
-      <div className={'_sectionbg' + skewClass}>
-        <div className={skewCorrectionClass}>
-          <RespImageCover image={image} wait={wait} respSizes={respSizes}/>
+      {children && <div className={css.container + contModifier}>{children}</div>}
+      <div className={'section-background' + skewClass}>
+        <div className={'_bgcol' + skewCorrectionClass}>
+          <RespImageCover image={image} respSizes={respSizes}/>
         </div>
       </div>
     </section>

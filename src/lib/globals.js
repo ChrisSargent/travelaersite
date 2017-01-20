@@ -6,6 +6,7 @@ module.exports = {
   companyUrl: '/company',
   productsUrl: '/products',
   contactUrl: '/contact-us',
+  flagsUrl: '/assets/flags/',
 };
 
 

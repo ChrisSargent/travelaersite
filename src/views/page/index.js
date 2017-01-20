@@ -6,20 +6,23 @@ import PageStore from '../../stores/PageStore';
 
 // Components
 import Banner from '../../components/banner';
+import Countries from '../../components/countries';
 import Contact from '../../components/contact';
 import Hero from '../../components/hero';
 import ImageBanner from '../../components/image-banner';
 import Gmap from '../../components/map';
 import Mosaic from '../../components/mosaic';
+import Positions from '../../components/positions';
 import ProductModules from '../../components/product-modules';
 import Products from '../../components/products';
 import Team from '../../components/team';
 import Section from '../../components/section';
 
 export default class Page extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.requestPage = this.requestPage.bind(this);
+    this.getRequestedSlug = this.getRequestedSlug.bind(this);
     this.state = {};
   }
 
@@ -29,9 +32,8 @@ export default class Page extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.params.slug !== newProps.params.slug) {
-      const page = PageStore.getPage(newProps.params.slug);
-      page && (this.setState({page: page}));
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      this.requestPage(newProps);
     }
   }
 
@@ -39,9 +41,18 @@ export default class Page extends Component {
     PageStore.removeListener('change', this.requestPage);
   }
 
-  requestPage() {
-    const page = PageStore.getPage(this.props.params.slug);
+  requestPage(props) {
+    props = props || this.props;
+    const slug = this.getRequestedSlug(props.location.pathname);
+    const page = PageStore.getPage(slug);
     page && (this.setState({page: page}));
+  }
+
+  getRequestedSlug(path) {
+    const pathArray = path.split('/');
+    var slug = pathArray[pathArray.length - 1];
+    slug === '' && (slug = 'home');
+    return slug;
   }
 
   render() {
@@ -55,13 +66,15 @@ export default class Page extends Component {
     const blocksMap = page.acf.contentBlocks.map((block, index) => {
       var name,
         content,
-        respSizes;
-      const {acf_fc_layout, image, waitForHeroLoad, skew, overlaps} = block;
+        respSizes,
+        contSize;
+      const {acf_fc_layout, image, skew, overlaps, background, contentImage} = block;
 
       switch (acf_fc_layout) {
         case 'hero':
           name = 'hero';
           content = <Hero {...block} compName={name}/>;
+          contentImage && (contSize = 'fullwidth');
           break;
 
         case 'banner':
@@ -105,10 +118,20 @@ export default class Page extends Component {
           content = <Contact pageID={page.id} compName={name} options={options}/>
           break;
 
+        case 'countries':
+          name = 'countries';
+          content = <Countries {...block} compName={name}/>
+          break;
+
+        case 'positions':
+          name = 'positions';
+          content = <Positions {...block} compName={name}/>
+          break;
+
         default:
       }
       return (
-        <Section key={index} compName={name} image={image} wait={waitForHeroLoad} respSizes={respSizes} skew={skew} overlaps={overlaps}>
+        <Section key={index} compName={name} image={image} respSizes={respSizes} skew={skew} overlaps={overlaps} background={background} contSize={contSize}>
           {content}
         </Section>
       )
@@ -116,8 +139,7 @@ export default class Page extends Component {
 
     return (
       <main id={page.slug}>
-        <Helmet title={page.title.rendered} />
-        {blocksMap}
+        <Helmet title={page.title.rendered}/> {blocksMap}
       </main>
     );
   }
