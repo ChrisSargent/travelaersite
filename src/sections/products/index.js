@@ -1,9 +1,9 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import ArticleHeader from '../article-header';
-import ProductList from '../product-list';
-import Wysiwyg from '../wysiwyg';
+import ArticleHeader from '../../components/article-header';
+import ProductList from '../../components/product-list';
+import Wysiwyg from '../../components/wysiwyg';
 
 import './_products.sass';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import SVG from '../svg';
-import Wysiwyg from '../wysiwyg';
+import SVG from '../../components/svg';
+import Wysiwyg from '../../components/wysiwyg';
 
 import './_hero.sass';
 

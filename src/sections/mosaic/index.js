@@ -1,6 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
-import Tile from '../tile';
+import Tile from '../../components/tile';
 
 import './_mosaic.sass';
 

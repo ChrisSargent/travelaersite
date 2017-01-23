@@ -28,6 +28,7 @@ ReactDOM.render(
   <Route path={globals.productsUrl} component={Base}>
     <IndexRoute component={Page}/>
     <Route path="comversational" component={Page}/>
+    <Route path="travel-paas" component={Page}/>
   </Route>
   <Route path={globals.blogUrl} component={Base}>
     <IndexRoute component={Posts}/>

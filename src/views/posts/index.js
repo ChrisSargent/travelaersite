@@ -5,7 +5,7 @@ import Insta from '../../components/insta';
 import Post from '../../components/post';
 import PostsStore from '../../stores/PostsStore';
 import RecentPosts from '../../components/recent-posts';
-import Section from '../../components/section';
+import Section from '../../sections/section';
 
 import './_posts.sass';
 

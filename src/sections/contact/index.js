@@ -1,9 +1,9 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import Message from '../message';
-import Submit from '../submit';
-import Social from '../social';
+import Message from '../../components/message';
+import Submit from '../../components/submit';
+import Social from '../../components/social';
 
 import './_contact.sass';
 

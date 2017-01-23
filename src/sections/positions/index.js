@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../../lib/css';
-import Actions from '../actions';
-import Wysiwyg from '../wysiwyg';
+import Actions from '../../components/actions';
+import Wysiwyg from '../../components/wysiwyg';
 
 import './_positions.sass';
 

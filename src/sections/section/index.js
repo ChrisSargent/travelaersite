@@ -1,6 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
-import RespImageCover from '../resp-image-cover';
+import RespImageCover from '../../components/resp-image-cover';
 
 import './_section.sass';
 

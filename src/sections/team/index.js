@@ -1,10 +1,10 @@
 import React from 'react';
 
 import css from '../../lib/css';
-import ArticleHeader from '../article-header';
-import RespImageCover from '../resp-image-cover';
-import MemberVcard from '../member-vcard';
-import Wysiwyg from '../wysiwyg';
+import ArticleHeader from '../../components/article-header';
+import RespImageCover from '../../components/resp-image-cover';
+import MemberVcard from '../../components/member-vcard';
+import Wysiwyg from '../../components/wysiwyg';
 
 import './_team.sass';
 

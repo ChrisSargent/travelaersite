@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import css from '../../lib/css';
-import Screenshots from '../screenshots';
-import Wysiwyg from '../wysiwyg';
+import Screenshots from '../../components/screenshots';
+import Wysiwyg from '../../components/wysiwyg';
 
 import './_product-modules.sass';
 

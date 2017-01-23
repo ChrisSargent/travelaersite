@@ -5,7 +5,7 @@ import CommentList from '../comment-list';
 import Message from '../message';
 import * as SiteActions from '../../actions/SiteActions';
 import SubmitStore from '../../stores/SubmitStore';
-import Section from '../section';
+import Section from '../../sections/section';
 
 import './_comments.sass';
 

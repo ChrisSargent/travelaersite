@@ -1,8 +1,8 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import RespImageCover from '../resp-image-cover';
-import Vcard from '../vcard';
+import RespImageCover from '../../components/resp-image-cover';
+import Vcard from '../../components/vcard';
 
 import './_map.sass';
 

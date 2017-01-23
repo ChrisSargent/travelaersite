@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../../lib/css';
 import globals from '../../lib/globals';
-import RespImage from '../resp-image';
+import RespImage from '../../components/resp-image';
 
 import './_countries.sass';
 

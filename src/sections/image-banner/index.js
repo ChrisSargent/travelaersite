@@ -1,8 +1,8 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import RespImageCover from '../resp-image-cover';
-import Wysiwyg from '../wysiwyg';
+import RespImageCover from '../../components/resp-image-cover';
+import Wysiwyg from '../../components/wysiwyg';
 
 import './_image-banner.sass';
 

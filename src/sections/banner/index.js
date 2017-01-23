@@ -1,6 +1,6 @@
 import React from 'react';
 import css from '../../lib/css';
-import RespImage from '../resp-image';
+import RespImage from '../../components/resp-image';
 
 import './_banner.sass';
 
