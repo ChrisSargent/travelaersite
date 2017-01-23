@@ -1,0 +1,159 @@
+@import tools
+
+.section-tpaas
+  > .container
+    +cont--xl
+    +block-pad
+
+  .i
+    width: 48px
+    height: 48px
+    color: $co--wt
+
+  &.-architecture,
+  &.-features
+    > .section-background ._bgcol
+      background-color: $co--blue--md
+
+  &.-searchshop,
+  &.-award
+    > .section-background ._bgcol
+      background-color: $co--green
+
+  &.-instapricer
+    > .section-background ._bgcol
+      background-color: $co--blue-grey--tt
+
+  &.-searchshop
+    z-index: $z--mid
+
+.main-tpaas
+  .wysiwyg
+    font-family: $ff--base
+    line-height: $lh--xl
+    color: $co--wt
+
+    h2
+      color: $co--brightyellow
+      font-weight: 400
+      font-size: $fs--lm
+      margin-bottom: 0
+      line-height: $lh--ml
+
+      + p
+        margin-top: 0
+
+    p
+      margin: $pd--xs 0
+
+  .title
+    +heading-spaced
+    margin-bottom: $pd--xl
+    text-align: center
+    color: $co--wt
+    font-size: $fs--xl
+
+  .image
+    width: 100%
+    border: 10px solid transparentize($co--wt, 0.5)
+
+  &.-instapricer
+    .wysiwyg
+      color: $co--blue-grey--md
+
+      h2
+        color: $co--blue--md
+
+    > .title
+      color: $co--blue--dk
+
+  &.-features
+    .title
+      text-align: left
+      margin: $pd--xxs 0
+
+@media screen and (min-width: $bp--mn)
+  .main-tpaas
+    &.-searchshop
+      position: relative
+
+      .wysiwyg
+        width: 50%
+        padding-right: $pd--s
+
+      .screenshot-block
+        margin-top: $pd--xl
+
+        .image
+          &:nth-of-type(1)
+            max-width: 480px
+            margin-left: $pd--h--dt / -1
+            z-index: $z--top
+
+          &:nth-of-type(2)
+            position: absolute
+            max-width: 380px
+            bottom: $pd--block / -0.65
+            left: 330px
+            z-index: $z--mid
+
+          &:nth-of-type(3)
+            position: absolute
+            max-width: 50%
+            margin-right: $pd--h--dt / -1
+            right: 0
+            top: 2rem
+            z-index: $z--base
+
+    &.-instapricer
+      +clearfix
+
+      .wysiwyg
+        float: right
+        width: 50%
+
+      .screenshot-block
+        float: left
+        width: 50%
+        max-width: 500px
+
+    &.-award
+      +clearfix
+
+      .wysiwyg
+        width: 38%
+        float: left
+
+      .screenshot-block
+        position: relative
+        width: 62%
+        float: right
+        margin-right: $pd--h--dt / -1
+
+        .image
+          &:nth-of-type(1),
+          &:nth-of-type(2)
+            max-width: calc(60% - #{$pd--h--dt})
+
+          &:nth-of-type(2)
+            margin-top: $pd--h--dt
+
+          &:nth-of-type(3)
+            position: absolute
+            max-width: 40%
+            right: 0
+            top: $pd--block / -0.75
+
+  .list-tpaas
+    $spc-v: $pd--s
+
+    &.-features
+      column-count: 2
+      column-gap: $pd--xxl
+      margin: $spc-v / -1 0
+
+      > .item
+        overflow: hidden
+        // Prevent alignment 'bug'
+        padding: $spc-v 0
+        break-inside: avoid

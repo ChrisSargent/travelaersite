@@ -19,6 +19,8 @@ import Team from '../../sections/team';
 import Section from '../../sections/section';
 
 import TPArchitecture from '../../sections/travel-paas/architecture'
+import TPContentScreenshots from '../../sections/travel-paas/content-screenshots'
+import TPFeatures from '../../sections/travel-paas/features'
 
 export default class Page extends Component {
   constructor(props) {
@@ -150,12 +152,22 @@ export default class Page extends Component {
       var travelPaasBlocks = page.acf.travelPaasContent.map((block, index) => {
         var name,
           content;
-        const {acf_fc_layout, skew, overlaps} = block;
+        const {acf_fc_layout, skew, overlaps, section_id} = block;
 
         switch (acf_fc_layout) {
           case 'architecture':
-            name = 'architecture';
+            name = 'tpaas -architecture';
             content = <TPArchitecture {...block} compName={name}/>;
+            break;
+
+          case 'content_screenshots':
+            name = 'tpaas -' + section_id;
+            content = <TPContentScreenshots {...block} compName={name} />;
+            break;
+
+          case 'features':
+            name = 'tpaas -features';
+            content = <TPFeatures {...block} compName={name}/>;
             break;
 
           default:

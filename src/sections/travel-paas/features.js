@@ -1,17 +1,18 @@
 import React from 'react';
 import css from '../../lib/css';
 
-import RespImage from '../../components/resp-image';
+import SVG from '../../components/svg';
 import Wysiwyg from '../../components/wysiwyg';
 
-function Architecture(props) {
-  const {compName, items, title} = props;
+function Features(props) {
+  const {compName, feature} = props;
 
-  const itemMap = items.map((item, index) => {
+  const featureMap = feature.map((item, index) => {
 
     return (
       <li key={index} className={css.item}>
-        <RespImage image={item.image} respSizes="50vw"/>
+        <SVG type={item.icon} />
+        <h2 className={css.title}>{item.title}</h2>
         <Wysiwyg content={item.content}/>
       </li>
     );
@@ -19,12 +20,11 @@ function Architecture(props) {
 
   return (
     <div className={css.main + compName}>
-      <h2 className={css.title}>{title}</h2>
       <ul className={css.list + compName}>
-        {itemMap}
+        {featureMap}
       </ul>
     </div>
   );
 }
 
-export default Architecture;
+export default Features;

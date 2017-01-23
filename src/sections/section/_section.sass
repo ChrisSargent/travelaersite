@@ -17,12 +17,6 @@ section
   position: relative
   z-index: $z--base
 
-main > section,
-main + footer
-  // opacity: 0.5
-  // outline: 1px solid blue
-  // outline-offset: -1px
-
 ._skew
   position: absolute
   z-index: $z--under
@@ -32,9 +26,6 @@ main + footer
   width: 100%
   height: 100%
   transform: skewY($angle--ban) scaleZ(1)
-  // box-shadow: inset 0px -60px 0px 0px rgba(255, 255, 255, 0.5)
-  // border-top: 50px solid transparent
-  // background-color: red
 
   > ._skewcorrect
     position: absolute
@@ -89,6 +80,10 @@ main + footer
   &.-olwhite
     &::after
       +olcolor($co--wt)
+
+  &.-olgreen
+    &::after
+      +olcolor($co--green)
 
 .-skewbottom
   > ._skew
