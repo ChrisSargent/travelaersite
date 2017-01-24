@@ -1,16 +1,30 @@
-import axios from 'axios';
-import dispatcher from '../dispatcher';
+import axios from 'axios'
+import dispatcher from '../dispatcher'
+
+if (process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = 'http://travelaersite.dev/wordpress/wp-json'
+} else {
+  axios.defaults.baseURL = 'http://travelaer.stickypixel.com/wordpress/wp-json'
+}
 
 // *****************************************************************************
 
 export function loading(id) {
-  dispatcher.dispatch({type: 'LOADER', loading: true, id: 'loading_' + id});
-  // console.log('Loading:' + id);
+  dispatcher.dispatch({
+    type: 'LOADER',
+    loading: true,
+    id: 'loading_' + id
+  })
+  // console.log('Loading:' + id)
 }
 
 export function finished(id) {
-  dispatcher.dispatch({type: 'LOADER', loading: false, id: 'loading_' + id});
-  // console.log('Finished:' + id);
+  dispatcher.dispatch({
+    type: 'LOADER',
+    loading: false,
+    id: 'loading_' + id
+  })
+  // console.log('Finished:' + id)
 }
 
 // *****************************************************************************
@@ -19,33 +33,32 @@ export function fetchMenu(location) {
   return {
     type: 'FETCH_MENU',
     payload: axios.get('/wp-api-menus/v2/menu-locations/' + location),
-    meta: {location : location},
+    meta: {
+      location: location
+    }
   }
 }
 
 // *****************************************************************************
 
 export function resetMessages() {
-  dispatcher.dispatch({type: 'RESET_MESSAGE'});
+  dispatcher.dispatch({type: 'RESET_MESSAGE'})
 }
 
 // *****************************************************************************
 
 // export function fetchOptions() {
-//   dispatcher.dispatch({type: 'FETCH_OPTIONS', id: 'fetchOptions', loading: true});
+//   dispatcher.dispatch({type: 'FETCH_OPTIONS', id: 'fetchOptions', loading: true})
 //   axios.get('/acf/v2/options').then(function(response) {
-//     dispatcher.dispatch({type: 'RECEIVE_OPTIONS', options: response.data.acf, id: 'fetchOptions', loading: false});
-//     // console.log(response.data);
+//     dispatcher.dispatch({type: 'RECEIVE_OPTIONS', options: response.data.acf, id: 'fetchOptions', loading: false})
+//     // console.log(response.data)
 //   }).catch(function(error) {
-//     console.log(error);
-//   });
+//     console.log(error)
+//   })
 // }
 
 export function fetchOptions() {
-  return {
-    type: 'FETCH_OPTIONS',
-    payload: axios.get('/acf/v2/options')
-  }
+  return {type: 'FETCH_OPTIONS', payload: axios.get('/acf/v2/options')}
 }
 
 // *****************************************************************************
@@ -55,14 +68,14 @@ export function fetchPage(slug) {
     slug: slug,
     fields: 'acf,slug,id,title'
   }
-  dispatcher.dispatch({type: 'FETCH_PAGE', id: 'fetchPage', loading: true});
+  dispatcher.dispatch({type: 'FETCH_PAGE', id: 'fetchPage', loading: true})
 
   axios.get('/wp/v2/pages', {params}).then(function(response) {
-    dispatcher.dispatch({type: 'RECEIVE_PAGE', page: response.data[0], id: 'fetchPage', loading: false});
-    // console.log(response.data);
+    dispatcher.dispatch({type: 'RECEIVE_PAGE', page: response.data[0], id: 'fetchPage', loading: false})
+    // console.log(response.data)
   }).catch(function(error) {
-    console.log(error);
-  });
+    console.log(error)
+  })
 }
 
 // For all pages 40.6kb before field removal, 28kb after all fields except acf

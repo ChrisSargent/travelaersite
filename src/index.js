@@ -7,7 +7,7 @@ import promise from "redux-promise-middleware"
 import reducers from "./reducers"
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 
-import globals from './lib/globals'
+import {globals} from './lib/utils'
 import BaseContainer from './views/base'
 import Page from './views/page'
 import Posts from './views/posts'

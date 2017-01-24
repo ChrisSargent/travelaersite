@@ -3,15 +3,15 @@ import {connect} from 'react-redux'
 import {IndexLink, Link} from 'react-router'
 import {fetchMenu} from '../../actions/SiteActions'
 import css from '../../lib/css'
-import globals from '../../lib/globals'
-import stripDomain from '../../lib/strip-domain'
+import {globals, stripDomain} from '../../lib/utils'
 
 import MenuToggle from '../menu-toggle'
 
 import './_menu.sass'
 
 function MenuItem(props) {
-  var LinkType, linkClass
+  var LinkType,
+    linkClass
   const {item} = props
   const compName = 'menu'
   const itemLink = stripDomain(item.url)
