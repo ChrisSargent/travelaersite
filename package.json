@@ -58,7 +58,11 @@
     "react": "*",
     "react-dom": "*",
     "react-helmet": "^3.3.0",
+    "react-redux": "^5.0.2",
     "react-router": "*",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-promise-middleware": "^4.2.0",
     "reset-css": "*"
   },
   "scripts": {

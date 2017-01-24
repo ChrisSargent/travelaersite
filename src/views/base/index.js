@@ -1,60 +1,44 @@
-import React, {Component} from 'react';
-import Helmet from "react-helmet";
-
-// Stores & Actions
-import * as SiteActions from '../../actions/SiteActions';
-import OptionsStore from '../../stores/OptionsStore';
+import React from 'react'
+import {connect} from 'react-redux'
+import Helmet from 'react-helmet'
 
 // Components
-import Footer from '../../components/footer';
-import Header from '../../components/header';
-import Loader from '../../components/loader/';
+import Footer from '../../components/footer'
+import Header from '../../components/header'
+import Loader from '../../components/loader/'
 
-export default class Base extends Component {
-  constructor() {
-    super();
-    this.requestOptions = this.requestOptions.bind(this);
-    this.state = {};
+const Page = (props) => {
+  var metaInfo, footerAppend
+  const {options} = props
+
+  footerAppend = 'PHOTOCREDIT: TO ADD BACK IN'
+
+  if (options) {
+    metaInfo = {
+      htmlAttributes: {
+        lang: options.t_site_info.language
+      },
+      title: options.t_site_info.description,
+      titleTemplate: '%s | ' + options.t_site_info.name,
+      meta: []
+    }
   }
 
-  componentWillMount() {
-    SiteActions.fetchOptions();
-    OptionsStore.on('change', this.requestOptions);
-  }
-
-  componentWillUnmount() {
-    OptionsStore.removeListener('change', this.requestOptions);
-  }
-
-  requestOptions() {
-    this.setState({options: OptionsStore.getOptions()});
-  }
-
-  render() {
-    var site;
-    const {options} = this.state;
-    options && (site = options.t_site_info);
-
-    return (
-      <div>
-        {options &&
-          <Helmet
-            htmlAttributes={
-              {lang: site.language}
-            }
-            title={site.description}
-            titleTemplate={'%s | ' + site.name}
-            meta={
-              []
-            }
-          />
-        }
-        <Header/>
-        {React.cloneElement(this.props.children, {options: options})}
-        <Footer {...options}/>
-        <Loader/>
-      </div>
-
-    );
-  }
+  return (
+    <div>
+      {metaInfo && <Helmet {...metaInfo}/>}
+      <Header/>
+      {React.cloneElement(props.children, {options: options})}
+      <Footer options={options} footerAppend={footerAppend}/>
+      <Loader/>
+    </div>
+  )
 }
+
+const mapStateToProps = (state) => {
+  return {options: state.site.options}
+}
+
+const Base = connect(mapStateToProps)(Page)
+
+export default Base

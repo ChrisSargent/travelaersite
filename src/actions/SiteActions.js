@@ -25,6 +25,7 @@ export function fetchMenu(location) {
   });
 }
 
+
 // *****************************************************************************
 
 export function resetMessages() {
@@ -33,14 +34,21 @@ export function resetMessages() {
 
 // *****************************************************************************
 
+// export function fetchOptions() {
+//   dispatcher.dispatch({type: 'FETCH_OPTIONS', id: 'fetchOptions', loading: true});
+//   axios.get('/acf/v2/options').then(function(response) {
+//     dispatcher.dispatch({type: 'RECEIVE_OPTIONS', options: response.data.acf, id: 'fetchOptions', loading: false});
+//     // console.log(response.data);
+//   }).catch(function(error) {
+//     console.log(error);
+//   });
+// }
+
 export function fetchOptions() {
-  dispatcher.dispatch({type: 'FETCH_OPTIONS', id: 'fetchOptions', loading: true});
-  axios.get('/acf/v2/options').then(function(response) {
-    dispatcher.dispatch({type: 'RECEIVE_OPTIONS', options: response.data.acf, id: 'fetchOptions', loading: false});
-    // console.log(response.data);
-  }).catch(function(error) {
-    console.log(error);
-  });
+  return {
+    type: 'FETCH_OPTIONS',
+    payload: axios.get('/acf/v2/options')
+  }
 }
 
 // *****************************************************************************
