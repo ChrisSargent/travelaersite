@@ -2,7 +2,6 @@
 
 .section-products
   +block-pad
-  $gradient: linear-gradient(to bottom, $co--blue-grey--tt 40%, #6C6F90 100%)
   min-height: 100vh
   z-index: $z--mid
 
@@ -45,7 +44,7 @@
   &.-gradient
     > .section-background
       ._bgcol
-        background-image: $gradient
+        background-image: linear-gradient(to bottom, transparentize($co--blue-vio, 1) 40%, transparentize($co--blue-vio, 0.6) 100%)
 
 .article-products
   +article-default

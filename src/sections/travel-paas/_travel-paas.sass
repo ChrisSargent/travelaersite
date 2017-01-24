@@ -1,4 +1,5 @@
 @import tools
+$mg-defeat: $pd--h--dt / -1
 
 .section-tpaas
   > .container
@@ -21,8 +22,10 @@
       background-color: $co--green
 
   &.-instapricer
+
     > .section-background ._bgcol
       background-color: $co--blue-grey--tt
+      background-image: linear-gradient(to bottom, transparentize($co--blue-vio, 1) 0%, transparentize($co--blue-vio, 0.8) 100%)
 
   &.-searchshop
     z-index: $z--mid
@@ -53,10 +56,6 @@
     color: $co--wt
     font-size: $fs--xl
 
-  .image
-    width: 100%
-    border: 10px solid transparentize($co--wt, 0.5)
-
   &.-instapricer
     .wysiwyg
       color: $co--blue-grey--md
@@ -71,6 +70,11 @@
     .title
       text-align: left
       margin: $pd--xxs 0
+
+.screenshot-block
+  .image
+    width: 100%
+    border: 10px solid transparentize($co--wt, 0.5)
 
 @media screen and (min-width: $bp--mn)
   .main-tpaas
@@ -87,7 +91,7 @@
         .image
           &:nth-of-type(1)
             max-width: 480px
-            margin-left: $pd--h--dt / -1
+            margin-left: $mg-defeat
             z-index: $z--top
 
           &:nth-of-type(2)
@@ -100,7 +104,7 @@
           &:nth-of-type(3)
             position: absolute
             max-width: 50%
-            margin-right: $pd--h--dt / -1
+            margin-right: $mg-defeat
             right: 0
             top: 2rem
             z-index: $z--base
@@ -116,6 +120,7 @@
         float: left
         width: 50%
         max-width: 500px
+        margin-left: $mg-defeat
 
     &.-award
       +clearfix
@@ -128,7 +133,7 @@
         position: relative
         width: 62%
         float: right
-        margin-right: $pd--h--dt / -1
+        margin-right: $mg-defeat
 
         .image
           &:nth-of-type(1),
@@ -157,3 +162,16 @@
         // Prevent alignment 'bug'
         padding: $spc-v 0
         break-inside: avoid
+
+    &.-architecture
+      > .item
+        display: flex
+        align-items: center
+
+      .image
+        position: relative
+        left: $mg-defeat
+        width: 50%
+
+      .wysiwyg
+        width: 50%
