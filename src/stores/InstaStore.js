@@ -43,5 +43,5 @@ class InstaStore extends EventEmitter {
   }
 }
 
-const navStore = new InstaStore();
-export default navStore;
+const instaStore = new InstaStore();
+export default instaStore;

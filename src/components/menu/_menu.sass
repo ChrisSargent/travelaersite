@@ -1,6 +1,6 @@
 @import _tools
 
-=link-nav
+=link-menu
   +heading-spaced
   font-family: $ff--nav
   font-size: $fs--xs
@@ -14,10 +14,10 @@
     padding: 0
     border: 0
 
-.main-nav
+.main-menu
   align-self: stretch
 
-.list-nav
+.list-menu
   position: fixed
   top: $ht-header--mb
   left: 0
@@ -28,8 +28,8 @@
   transform: translate3d(100%, 0, 0)
   background-color: $co--blue-grey--tt
 
-.link-nav
-  +link-nav
+.link-menu
+  +link-menu
   color: $co--blue--dk
 
   &.-active
@@ -39,28 +39,28 @@
       &::after
         +caret($co--green)
 
-.main-subnav
+.main-submenu
   display: none
   background-color: $co--green
 
   > .container
     +clearfix
 
-  .link-nav.-active + &
+  .link-menu.-active + &
     display: block
 
-.list-subnav
-  .link-nav
+.list-submenu
+  .link-menu
     color: $co--wt
 
     &.-active
       color: $co--brightyellow
 
-#toggle-nav:checked ~ .list-nav
+#toggle-menu:checked ~ .list-menu
   transform: translate3d(0, 0, 0)
 
 @media screen and (min-width: $bp--nv)
-  .list-nav
+  .list-menu
     +inline-children-item(0)
     position: relative
     top: auto
@@ -74,7 +74,7 @@
       align-items: center
       height: 100%
 
-  .main-subnav
+  .main-submenu
     +shadowborder($co--green)
     padding: $pd--s
     position: fixed
@@ -85,6 +85,6 @@
     > .container
       +cont--xl
 
-  .list-subnav
+  .list-submenu
     +inline-children-item
     float: right

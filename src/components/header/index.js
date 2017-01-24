@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../../lib/css';
 
 import Logo from '../logo';
-import Nav from '../nav';
+import MenuContainer from '../menu';
 
 import './_header.sass';
 
@@ -13,7 +13,7 @@ function SiteHeader() {
     <header className={css.header + compName}>
       <div className={css.container}>
         <Logo/>
-        <Nav location="primary"/>
+        <MenuContainer location="primary"/>
       </div>
     </header>
   );

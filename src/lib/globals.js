@@ -7,6 +7,7 @@ module.exports = {
   productsUrl: '/products',
   contactUrl: '/contact-us',
   flagsUrl: '/assets/flags/',
+  homeID: 5
 };
 
 

@@ -7,7 +7,7 @@ import Footer from '../../components/footer'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
 
-const Page = (props) => {
+const Base = (props) => {
   var metaInfo, footerAppend
   const {options} = props
 
@@ -39,6 +39,5 @@ const mapStateToProps = (state) => {
   return {options: state.site.options}
 }
 
-const Base = connect(mapStateToProps)(Page)
-
-export default Base
+const BaseContainer = connect(mapStateToProps)(Base)
+export default BaseContainer
