@@ -1,42 +1,42 @@
-import React, {Component} from 'react';
-import css from '../../lib/css';
+import React, {Component} from 'react'
+import css from '../../lib/css'
 
-import Actions from '../actions';
-import ArticleHeader from '../article-header';
-import SVG from '../svg';
+import Actions from '../actions'
+import ArticleHeader from '../article-header'
+import SVG from '../svg'
 
-import * as CommentsActions from '../../actions/CommentsActions';
-import * as SiteActions from '../../actions/SiteActions';
-import SubmitStore from '../../stores/SubmitStore';
+import {postComment, resetMessages} from '../../actions/CommentsActions'
+import SubmitStore from '../../stores/SubmitStore'
+import store from '../../store'
 
-import './_submit.sass';
+import './_submit.sass'
 
 export default class Submit extends Component {
   constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.state = SubmitStore.getCachedState();
-  };
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.state = SubmitStore.getCachedState()
+  }
 
   componentWillMount() {
-    SubmitStore.on('change', this.handleUpdate);
-    this.mounted = true;
+    SubmitStore.on('change', this.handleUpdate)
+    this.mounted = true
 
     // Setup some defaults base on the type
     switch (this.props.postType) {
       case 'comments':
-        this.title = 'Leave a Comment';
-        this.subtitle = 'Your email address will not be published';
-        this.updateComments = true;
-        break;
+        this.title = 'Leave a Comment'
+        this.subtitle = 'Your email address will not be published'
+        this.updateComments = true
+        break
 
       case 'enquiries':
-        this.title = 'Get in Touch Now';
-        this.updateComments = false;
-        break;
+        this.title = 'Get in Touch Now'
+        this.updateComments = false
+        break
 
       default:
     }
@@ -44,41 +44,41 @@ export default class Submit extends Component {
   }
 
   componentWillUnmount() {
-    SubmitStore.removeListener('change', this.handleUpdate);
-    this.mounted = false;
+    SubmitStore.removeListener('change', this.handleUpdate)
+    this.mounted = false
   }
 
   handleUpdate() {
     // Put in this guard because as the form is reset the component gets unMounted
     // but the setState has already been called otherwise. Have checked for memory leaks but there are none.
-    this.mounted && this.setState(SubmitStore.getCachedState());
+    this.mounted && this.setState(SubmitStore.getCachedState())
   }
 
   handleChange(ev) {
-    const key = ev.target.name;
-    this.setState({[key]: ev.target.value});
+    const key = ev.target.name
+    this.setState({[key]: ev.target.value})
   }
 
   handleBlur() {
-    CommentsActions.cacheState(this.state);
+    // CommentsActions.cacheState(this.state)
   }
 
   handleSubmit(ev) {
-    ev.preventDefault();
-    const commentData = '?author_name=' + encodeURIComponent(this.state.name) + '&author_email=' + encodeURIComponent(this.state.email) + '&content=' + encodeURIComponent(this.state.comment) + '&parent=' + encodeURIComponent((this.props.parentCommentID || '0')) + '&post=' + encodeURIComponent(this.props.postID);
-    CommentsActions.addComment(commentData, this.updateComments);
-    SiteActions.resetMessages();
+    ev.preventDefault()
+    resetMessages()
+    const commentData = '?author_name=' + encodeURIComponent(this.state.name) + '&author_email=' + encodeURIComponent(this.state.email) + '&content=' + encodeURIComponent(this.state.comment) + '&parent=' + encodeURIComponent((this.props.parentCommentID || '0')) + '&post=' + encodeURIComponent(this.props.postID)
+    store.dispatch(postComment(commentData, this.updateComments)).catch(error => {})
   }
 
   render() {
-    var loadingClass;
+    var loadingClass
 
-    const compName = 'submit';
-    const {showLoader, name, email, comment} = this.state;
+    const compName = 'submit'
+    const {showLoader, name, email, comment} = this.state
 
     showLoader
       ? loadingClass = css.loading
-      : loadingClass = '';
+      : loadingClass = ''
 
     const submitActions = [
       {

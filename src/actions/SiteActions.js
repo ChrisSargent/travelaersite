@@ -1,31 +1,11 @@
 import axios from 'axios'
-import dispatcher from '../dispatcher'
+import store from '../store'
 import {getRequesedSlug} from '../lib/utils'
 
 if (process.env.NODE_ENV === 'development') {
   axios.defaults.baseURL = 'http://travelaersite.dev/wordpress/wp-json'
 } else {
   axios.defaults.baseURL = 'http://travelaer.stickypixel.com/wordpress/wp-json'
-}
-
-// *****************************************************************************
-
-export function loading(id) {
-  dispatcher.dispatch({
-    type: 'LOADER',
-    loading: true,
-    id: 'loading_' + id
-  })
-  // console.log('Loading:' + id)
-}
-
-export function finished(id) {
-  dispatcher.dispatch({
-    type: 'LOADER',
-    loading: false,
-    id: 'loading_' + id
-  })
-  // console.log('Finished:' + id)
 }
 
 // *****************************************************************************
@@ -90,7 +70,3 @@ export const fetchPage = (pathname) => (dispatch, getState) => {
 }
 
 // *****************************************************************************
-
-export function resetMessages() {
-  dispatcher.dispatch({type: 'RESET_MESSAGE'})
-}

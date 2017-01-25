@@ -16,10 +16,10 @@ export const fetchInsta = (user) => (dispatch, getState) => {
   if (!lastFetched || nextUpdate < Date.now()) {
     const feed = new Instafeed({
       get: 'user',
-      tagName: 'travelaer',
+      // tagName: 'travelaer',
       userId: user.instUserNameID,
       accessToken: user.instAuthToken,
-      resolution: 'standard_resolution',
+      // resolution: 'standard_resolution',
       limit: 6,
       success: _getInstaSuccess,
       mock: true
