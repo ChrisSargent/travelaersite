@@ -3,8 +3,6 @@ import ArticleHeader from '../article-header'
 import Submit from '../submit'
 import CommentList from '../comment-list'
 import Message from '../message'
-import {resetMessages} from '../../actions/CommentsActions'
-import SubmitStore from '../../stores/SubmitStore'
 import Section from '../../sections/section'
 
 import './_comments.sass'
@@ -20,17 +18,10 @@ export default class Comments extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  componentWillMount() {
-    SubmitStore.on('change', this.handleChange)
-  }
-
-  componentWillUnmount() {
-    SubmitStore.removeListener('change', this.handleChange)
-  }
-
   handleChange() {
     const target = this.state.replyCommentID
-    const submitted = SubmitStore.getSubmitted()
+    // const submitted = SubmitStore.getSubmitted()
+    const submitted = true
 
     if(submitted) {
       this.setState({replyCommentID: false})
@@ -44,7 +35,6 @@ export default class Comments extends Component {
 
     switch (replyOn) {
       case 'close':
-        resetMessages()
         this.replyOn = replyOn
         this.setState({replyCommentID: false, messageCommentID: false})
         break
@@ -54,7 +44,6 @@ export default class Comments extends Component {
         break
 
       default:
-        resetMessages()
         this.replyOn = replyOn
         this.setState({replyCommentID: replyOn, messageCommentID: replyOn})
     }

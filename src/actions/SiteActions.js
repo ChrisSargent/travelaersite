@@ -1,5 +1,4 @@
 import axios from 'axios'
-import store from '../store'
 import {getRequesedSlug} from '../lib/utils'
 
 if (process.env.NODE_ENV === 'development') {

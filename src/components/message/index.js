@@ -12,11 +12,11 @@ class Message extends Component {
   }
 
   componentWillMount() {
-    resetMessages()
+    this.props.resetMessages()
   }
 
   handleClose() {
-    resetMessages()
+    this.props.resetMessages()
   }
 
   render() {
@@ -45,7 +45,9 @@ class Message extends Component {
       <div className={compClass}>
         {content}
         {error && <span className="error" dangerouslySetInnerHTML={{__html: error}}></span>}
-        <span className="close" onClick={this.handleClose}>&times</span>
+        <span className="close" onClick={this.handleClose}>
+          <span>Close</span>
+        </span>
       </div>
     )
   }
@@ -55,4 +57,12 @@ const mapStateToProps = (state) => {
   return {messages: state.messages}
 }
 
-export default connect(mapStateToProps)(Message)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    resetMessages: () => {
+      dispatch(resetMessages())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Message)

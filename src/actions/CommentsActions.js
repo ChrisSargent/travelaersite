@@ -1,10 +1,4 @@
 import axios from 'axios'
-import dispatcher from '../dispatcher'
-import store from '../store'
-
-export function cacheState(state) {
-  dispatcher.dispatch({type: 'STORE_INPUTS', cachedState: state})
-}
 
 export const postComment = (paramsString, updateComments) => {
   return {
@@ -13,6 +7,10 @@ export const postComment = (paramsString, updateComments) => {
   }
 }
 
+export const cacheComment = (state) => {
+  return {type: 'COMMENT_CACHE', payload: state}
+}
+
 export const resetMessages = () => {
-  store.dispatch({type: 'RESET_MESSAGE'})
+  return {type: 'RESET_MESSAGE'}
 }
