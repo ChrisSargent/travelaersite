@@ -58,7 +58,7 @@ export const fetchOptions = () => {
 // *****************************************************************************
 
 // Gets a single page object from the WP API
-const apiGetPage = (slug) => {
+const _getPage = (slug) => {
   const params = {
     slug: slug,
     fields: 'acf,slug,id,title'
@@ -73,7 +73,7 @@ const apiGetPage = (slug) => {
 }
 
 // Updates the current slug in the state
-const updateCurrentSlug = (slug) => {
+const _updateCurrentSlug = (slug) => {
   return {type: 'UPDATE_CURRENT_PAGE', payload: slug}
 }
 
@@ -83,9 +83,9 @@ export const fetchPage = (pathname) => (dispatch, getState) => {
   const page = getState().pages[requestedSlug]
 
   if (page) {
-    return dispatch(updateCurrentSlug(requestedSlug))
+    return dispatch(_updateCurrentSlug(requestedSlug))
   } else {
-    return dispatch(apiGetPage(requestedSlug))
+    return dispatch(_getPage(requestedSlug))
   }
 }
 
