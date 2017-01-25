@@ -6,5 +6,6 @@ import reducers from "./reducers"
 
 // Create and populate the Redux store and middleware
 const middleware = applyMiddleware(promise(), thunk, logger())
+// const middleware = applyMiddleware(promise(), thunk)
 
 export default createStore(reducers, middleware);

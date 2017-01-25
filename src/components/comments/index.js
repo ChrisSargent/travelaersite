@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import ArticleHeader from '../article-header'
 import Submit from '../submit'
 import CommentList from '../comment-list'
@@ -7,27 +8,21 @@ import Section from '../../sections/section'
 
 import './_comments.sass'
 
-export default class Comments extends Component {
+class Comments extends Component {
   constructor(props) {
     super(props)
+    // Which reply has the comment on and which has the message on,
     this.state = {
-      replyCommentID: false,
+      replyCommentID: this.props.submitted,
       messageCommentID: false,
     }
-    this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+
   }
 
-  handleChange() {
-    const target = this.state.replyCommentID
-    // const submitted = SubmitStore.getSubmitted()
-    const submitted = true
-
-    if(submitted) {
-      this.setState({replyCommentID: false})
-    } else {
-      this.setState({messageCommentID: target})
-    }
+  componentWillReceiveProps(newProps) {
+    // Puts the form back to the end if it is submitted successfully
+    newProps.submitted && this.setState({replyCommentID: false})
   }
 
   handleClick(ev) {
@@ -35,7 +30,6 @@ export default class Comments extends Component {
 
     switch (replyOn) {
       case 'close':
-        this.replyOn = replyOn
         this.setState({replyCommentID: false, messageCommentID: false})
         break
 
@@ -44,7 +38,6 @@ export default class Comments extends Component {
         break
 
       default:
-        this.replyOn = replyOn
         this.setState({replyCommentID: replyOn, messageCommentID: replyOn})
     }
   }
@@ -53,7 +46,7 @@ export default class Comments extends Component {
     var titleText
     const {total, comments} = this.props.commentsInfo
     const {postTitle, postID} = this.props
-    const {replyCommentID, messageCommentID, resetMessage} = this.state
+    const {replyCommentID, messageCommentID} = this.state
     const compName = 'comments'
 
     total > 0
@@ -67,10 +60,16 @@ export default class Comments extends Component {
         <div onClick={this.handleClick}>
           <ArticleHeader title={titleText} modifier={compName}/>
           <CommentList comments={comments} postID={postID} replyCommentID={replyCommentID} messageCommentID={messageCommentID} compName={compName}/>
-          {!messageCommentID && <Message reset={resetMessage} />}
+          {!messageCommentID && <Message />}
           {!replyCommentID && <Submit postType="comments" postID={postID} parentCommentID="0" />}
         </div>
       </Section>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {submitted: state.submit.submitted}
+}
+
+export default connect(mapStateToProps)(Comments)

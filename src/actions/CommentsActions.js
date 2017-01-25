@@ -5,6 +5,9 @@ export const postComment = (paramsString, updateComments) => {
     type: 'POST_COMMENT',
     payload: axios.post('/wp/v2/comments' + paramsString)
   }
+
+  // If requested, also update the comments
+  // updateComments && PostsActions.fetchPost(response.data.post);
 }
 
 export const cacheComment = (state) => {

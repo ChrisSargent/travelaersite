@@ -36,8 +36,7 @@ function Comment(props) {
 }
 
 function CommentList(props) {
-  const {comments} = props
-  const {postID, replyCommentID, messageCommentID, compName} = props
+  const {postID, replyCommentID, messageCommentID, compName, comments} = props
 
   if (!comments)
     return null
