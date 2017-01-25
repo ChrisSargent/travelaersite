@@ -5,8 +5,8 @@ import Helmet from 'react-helmet'
 // Components
 import Footer from '../../components/footer'
 import Header from '../../components/header'
-// import Loader from '../../components/loader/'
-// <Loader/>
+import Loader from '../../components/loader/'
+
 
 const Base = (props) => {
   var metaInfo, footerAppend
@@ -31,6 +31,7 @@ const Base = (props) => {
       <Header/>
       {React.cloneElement(props.children, {options: options})}
       <Footer options={options} footerAppend={footerAppend}/>
+      <Loader/>
     </div>
   )
 }
@@ -39,5 +40,4 @@ const mapStateToProps = (state) => {
   return {options: state.site.options}
 }
 
-const BaseContainer = connect(mapStateToProps)(Base)
-export default BaseContainer
+export default connect(mapStateToProps)(Base)

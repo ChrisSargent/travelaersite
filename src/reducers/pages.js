@@ -1,19 +1,18 @@
-export default function reducer(pages = {
+const pages = (state = {
   currentPageSlug: null
-}, action) {
+}, action) => {
 
   switch (action.type) {
     case 'UPDATE_CURRENT_PAGE':
-      console.log(pages);
       return {
-        ...pages,
+        ...state,
         currentPageSlug: action.payload
       }
 
     case 'FETCH_PAGE_FULFILLED':
       const page = action.payload.data[0]
       return {
-        ...pages,
+        ...state,
         [page.slug]: page,
         currentPageSlug: page.slug
       }
@@ -22,5 +21,7 @@ export default function reducer(pages = {
       break
   }
 
-  return pages
+  return state
 }
+
+export default pages

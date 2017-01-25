@@ -1,18 +1,18 @@
-export default function reducer(site = {
+const site = (state = {
   options: null,
   menu: null,
-}, action) {
+}, action)  =>{
 
   switch (action.type) {
     case 'FETCH_OPTIONS_FULFILLED':
       return {
-        ...site,
+        ...state,
         options: action.payload.data.acf
       }
 
     case 'FETCH_MENU_FULFILLED':
       return {
-        ...site,
+        ...state,
         menu: action.payload.data
       }
 
@@ -20,5 +20,7 @@ export default function reducer(site = {
       break
   }
 
-  return site
+  return state
 }
+
+export default site

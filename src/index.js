@@ -9,7 +9,7 @@ import reducers from "./reducers"
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 
 import {globals} from './lib/utils'
-import BaseContainer from './views/base'
+import Base from './views/base'
 import Page from './views/page'
 import Posts from './views/posts'
 
@@ -33,20 +33,20 @@ function handleUpdate() {
 render(
   <Provider store={store}>
     <Router history={browserHistory} onUpdate={handleUpdate}>
-      <Route path={globals.companyUrl} component={BaseContainer}>
+      <Route path={globals.companyUrl} component={Base}>
         <IndexRoute component={Page}/>
         <Route path="team" component={Page}/>
       </Route>
-      <Route path={globals.productsUrl} component={BaseContainer}>
+      <Route path={globals.productsUrl} component={Base}>
         <IndexRoute component={Page}/>
         <Route path="comversational" component={Page}/>
         <Route path="travel-paas" component={Page}/>
       </Route>
-      <Route path={globals.blogUrl} component={BaseContainer}>
+      <Route path={globals.blogUrl} component={Base}>
         <IndexRoute component={Posts}/>
         <Route path="(:slug)" component={Posts}/>
       </Route>
-      <Route path={globals.homeUrl} component={BaseContainer}>
+      <Route path={globals.homeUrl} component={Base}>
         <IndexRoute component={Page}/>
         <Route path=":slug" component={Page}/>
       </Route>

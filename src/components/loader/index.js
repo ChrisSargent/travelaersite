@@ -1,50 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {connect} from 'react-redux'
 import css from '../../lib/css';
 import SVG from '../svg';
 import './_loader.sass';
 
-// Stores
-import LoaderStore from '../../stores/LoaderStore';
+const Loader = (props) => {
+  var loadingClass;
 
-export default class Loader extends Component {
-  constructor() {
-    super();
-    this.setShowLoader = this.setShowLoader.bind(this);
-    this.state = {
-      displayLoader: true
-    };
-  }
+  props.displayLoader
+    ? loadingClass = css.loading
+    : loadingClass = '';
 
-  componentWillMount() {
-    // Add listeners for changes to loading state
-    LoaderStore.on('change', this.setShowLoader);
-  }
-
-  componentWillUnmount() {
-    // Remove listeners for changes to loading state
-    LoaderStore.removeListener('change', this.setShowLoader);
-  }
-
-  setShowLoader() {
-    const self = this;
-    LoaderStore.getLoading()
-      ? this.setState({displayLoader: LoaderStore.getLoading()})
-      : setTimeout(function () {
-        self.setState({displayLoader: LoaderStore.getLoading()});
-      });
-  }
-
-  render() {
-    var loadingClass;
-
-    this.state.displayLoader
-      ? loadingClass = css.loading
-      : loadingClass = '';
-
-    return (
-      <div className={css.loader + loadingClass}>
-        <SVG type="spinner"/>
-      </div>
-    );
-  }
+  return (
+    <div className={css.loader + loadingClass}>
+      <SVG type="spinner"/>
+    </div>
+  );
 }
+
+const mapStateToProps = (state) => {
+  var displayLoader
+  state.loading.length
+    ? displayLoader = true
+    : displayLoader = false
+
+  return {displayLoader: displayLoader}
+}
+
+export default connect(mapStateToProps)(Loader)
