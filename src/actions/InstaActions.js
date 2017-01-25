@@ -1,21 +1,27 @@
 import Instafeed from 'instafeed.js'
-import dispatcher from '../dispatcher';
+import store from '../store'
 
-export function fetchInsta(user) {
+const _onSuccess = (response) => {
+  store.dispatch({
+    type: 'FETCH_INSTA_FULFILLED',
+    payload: response.data
+  })
+}
+
+export const fetchInsta = (user) => {
   const feed = new Instafeed({
     get: 'user',
     tagName: 'travelaer',
-    userId: user.id,
-    accessToken: user.auth,
+    userId: user.instUserNameID,
+    accessToken: user.instAuthToken,
     resolution: 'standard_resolution',
     limit: 6,
     success: _onSuccess,
     mock: true,
   });
   feed.run();
-}
-
-function _onSuccess(response) {
-  // console.log('Response:', response);
-  dispatcher.dispatch({type: 'RECEIVE_INSTA', insta: response.data});
+  return {
+    type: 'FETCH_INSTA_PENDING',
+    // payload: feed.run()
+  }
 }

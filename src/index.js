@@ -1,13 +1,8 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
-import thunk from 'redux-thunk'
-import {applyMiddleware, createStore} from 'redux'
-import logger from "redux-logger"
-import promise from "redux-promise-middleware"
-import reducers from "./reducers"
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
-
+import store from './store'
 import {globals} from './lib/utils'
 import Base from './views/base'
 import Page from './views/page'
@@ -20,9 +15,7 @@ import './lib/sass/index.sass'
 // Define where to render the app
 const app = document.getElementById('root')
 
-// Create and populate the Redux store and middleware
-const middleware = applyMiddleware(promise(), thunk, logger())
-let store = createStore(reducers, middleware)
+// Populate the Redux store with site options
 store.dispatch(fetchOptions())
 
 function handleUpdate() {

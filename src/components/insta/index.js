@@ -1,47 +1,15 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {fetchInsta} from '../../actions/InstaActions'
 import css from '../../lib/css'
-import InstaStore from '../../stores/InstaStore'
-import OptionsStore from '../../stores/OptionsStore'
 import RespImageCover from '../resp-image-cover'
 import SVG from '../svg'
 
 import './_insta.sass';
 
-export default class Insta extends Component {
-  constructor() {
-    super();
-    this.state = {};
-    this.user = {};
-    this.requestOptions = this.requestOptions.bind(this);
-    this.requestInsta = this.requestInsta.bind(this);
-  }
-
-  componentWillMount() {
-    this.requestOptions();
-    OptionsStore.on('change', this.requestOptions);
-    InstaStore.on('change', this.requestInsta);
-  }
-
-  componentWillUnmount() {
-    OptionsStore.removeListener('change', this.requestOptions);
-    InstaStore.removeListener('change', this.requestInsta);
-  }
-
-  requestOptions() {
-    const options = OptionsStore.getOptions();
-    if (!options.instUserNameID || !options.instAuthToken)
-      return;
-
-    this.user = {
-      id: options.instUserNameID,
-      auth: options.instAuthToken
-    }
-    this.requestInsta();
-  }
-
-  requestInsta() {
-    // const insta = InstaStore.getInsta(this.user);
-    // insta && (this.setState({insta: insta}));
+class Insta extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchInsta(this.props))
   }
 
   imageAdaptor(images) {
@@ -63,13 +31,13 @@ export default class Insta extends Component {
   }
 
   render() {
-    const {insta} = this.state;
+    const {feed} = this.props;
     const compName = 'insta';
 
-    if(!insta)
+    if(!feed)
       return null;
 
-    const instaMap = insta.map((item) => {
+    const instaMap = feed.map((item) => {
       var image = this.imageAdaptor(item.images);
 
       item.caption
@@ -85,6 +53,7 @@ export default class Insta extends Component {
         </li>
       )
     })
+
     return (
       <ul className={css.list + compName}>
         {instaMap}
@@ -92,3 +61,16 @@ export default class Insta extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  const {instAuthToken, instUserName, instUserNameID} = state.site.options
+  const {feed} = state.insta;
+  return ({
+    instAuthToken: instAuthToken,
+    instUserName: instUserName,
+    instUserNameID: instUserNameID,
+    feed: feed
+  })
+}
+
+export default connect(mapStateToProps)(Insta)
