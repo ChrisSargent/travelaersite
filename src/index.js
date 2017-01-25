@@ -1,6 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
+import thunk from 'redux-thunk'
 import {applyMiddleware, createStore} from 'redux'
 import logger from "redux-logger"
 import promise from "redux-promise-middleware"
@@ -20,16 +21,13 @@ import './lib/sass/index.sass'
 const app = document.getElementById('root')
 
 // Create and populate the Redux store and middleware
-const middleware = applyMiddleware(promise(), logger())
+const middleware = applyMiddleware(promise(), thunk, logger())
 let store = createStore(reducers, middleware)
 store.dispatch(fetchOptions())
 
-function handleUpdate(a, b) {
+function handleUpdate() {
   const {action} = this.state.location
-
-  if (action === 'PUSH') {
-    window.scrollTo(0, 0)
-  }
+  action === 'PUSH' && (window.scrollTo(0, 0))
 }
 
 render(

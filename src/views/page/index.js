@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
 import Helmet from "react-helmet";
-
-// Stores & Actions
-import PageStore from '../../stores/PageStore';
+import {fetchPage} from '../../actions/SiteActions'
 
 // Components
 import Banner from '../../sections/banner';
@@ -22,45 +21,21 @@ import TPArchitecture from '../../sections/travel-paas/architecture'
 import TPContentScreenshots from '../../sections/travel-paas/content-screenshots'
 import TPFeatures from '../../sections/travel-paas/features'
 
-export default class Page extends Component {
-  constructor(props) {
-    super(props);
-    this.requestPage = this.requestPage.bind(this);
-    this.getRequestedSlug = this.getRequestedSlug.bind(this);
-    this.state = {};
-  }
+class Page extends Component {
 
-  componentWillMount() {
-    this.requestPage();
-    PageStore.on('change', this.requestPage);
+  componentDidMount() {
+    const {pathname} = this.props.location
+    this.props.dispatch(fetchPage(pathname))
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
-      this.requestPage(newProps);
-    }
-  }
-
-  componentWillUnmount() {
-    PageStore.removeListener('change', this.requestPage);
-  }
-
-  requestPage(props = this.props) {
-    const slug = this.getRequestedSlug(props.location.pathname);
-    const page = PageStore.getPage(slug);
-    page && (this.setState({page: page}));
-  }
-
-  getRequestedSlug(path) {
-    const pathArray = path.split('/');
-    var slug = pathArray[pathArray.length - 1];
-    slug === '' && (slug = 'home');
-    return slug;
+    const currentPathname = this.props.location.pathname
+    const newPathname = newProps.location.pathname
+    currentPathname !== newPathname && (this.props.dispatch(fetchPage(newPathname)))
   }
 
   render() {
-    const {page} = this.state;
-    const {options} = this.props;
+    const {page, options} = this.props;
 
     if (!page)
       return null;
@@ -139,6 +114,7 @@ export default class Page extends Component {
             break;
 
           default:
+            break;
         }
         return (
           <Section key={index} compName={name} image={image} respSizes={respSizes} skew={skew} overlaps={overlaps} background={background} contSize={contSize}>
@@ -162,7 +138,7 @@ export default class Page extends Component {
 
           case 'content_screenshots':
             name = 'tpaas -' + section_id;
-            content = <TPContentScreenshots {...block} compName={name} />;
+            content = <TPContentScreenshots {...block} compName={name}/>;
             break;
 
           case 'features':
@@ -171,9 +147,10 @@ export default class Page extends Component {
             break;
 
           default:
+            break;
         }
         return (
-          <Section key={index} compName={name} skew={skew} overlaps={overlaps} >
+          <Section key={index} compName={name} skew={skew} overlaps={overlaps}>
             {content}
           </Section>
         )
@@ -182,9 +159,17 @@ export default class Page extends Component {
 
     return (
       <main id={page.slug}>
-        <Helmet title={page.title.rendered}/> {blocksMap}
+        <Helmet title={page.title.rendered}/>
+        {blocksMap}
         {travelPaasBlocks}
       </main>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const {currentPageSlug} = state.pages
+  return ({page: state.pages[currentPageSlug]})
+}
+
+export default connect(mapStateToProps)(Page)

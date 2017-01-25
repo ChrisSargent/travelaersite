@@ -5,7 +5,8 @@ import Helmet from 'react-helmet'
 // Components
 import Footer from '../../components/footer'
 import Header from '../../components/header'
-import Loader from '../../components/loader/'
+// import Loader from '../../components/loader/'
+// <Loader/>
 
 const Base = (props) => {
   var metaInfo, footerAppend
@@ -30,7 +31,6 @@ const Base = (props) => {
       <Header/>
       {React.cloneElement(props.children, {options: options})}
       <Footer options={options} footerAppend={footerAppend}/>
-      <Loader/>
     </div>
   )
 }

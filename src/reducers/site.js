@@ -1,6 +1,6 @@
 export default function reducer(site = {
   options: null,
-  menu: null
+  menu: null,
 }, action) {
 
   switch (action.type) {

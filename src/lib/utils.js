@@ -1,4 +1,4 @@
-export function stripDomain(url) {
+export const stripDomain = (url) => {
   if (url && url.indexOf('http') >= 0) {
     url = url.replace(/^.*\/\/[^/]+/, '').replace('/wordpress', '')
   }
@@ -8,7 +8,14 @@ export function stripDomain(url) {
   return url
 }
 
-export function dateFormat(date, includeTime) {
+export const getRequesedSlug = (pathname) => {
+  var requestedSlug
+  const pathnameArray = pathname.split('/')
+  requestedSlug = pathnameArray[pathnameArray.length - 1] || 'home'
+  return requestedSlug
+}
+
+export const dateFormat = (date, includeTime) => {
   var dateString,
     dateOptions,
     timeOptions
