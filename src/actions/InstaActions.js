@@ -5,9 +5,7 @@ const _getInstaSuccess = (response) => {
   store.dispatch({type: 'FETCH_INSTA_FULFILLED', payload: response.data})
 }
 
-const _getInsta = (feed) => {
-  return {type: 'FETCH_INSTA_PENDING', payload: feed.run()}
-}
+const _getInsta = (feed) => ({type: 'FETCH_INSTA_PENDING', payload: feed.run()})
 
 export const fetchInsta = (user) => (dispatch, getState) => {
   const {lastFetched} = getState().insta

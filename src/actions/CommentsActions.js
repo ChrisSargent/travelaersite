@@ -1,19 +1,11 @@
 import axios from 'axios'
 
-export const postComment = (paramsString, updateComments) => {
-  return {
-    type: 'POST_COMMENT',
-    payload: axios.post('/wp/v2/comments' + paramsString)
-  }
+export const postComment = (paramsString, updateComments) => ({
+  type: 'POST_COMMENT',
+  payload: axios.post('/wp/v2/comments' + paramsString)
+})
 
-  // If requested, also update the comments
-  // updateComments && PostsActions.fetchPost(response.data.post);
-}
+// TODO: updateComments && PostsActions.fetchPost(response.data.post)
 
-export const cacheComment = (state) => {
-  return {type: 'COMMENT_CACHE', payload: state}
-}
-
-export const resetMessages = () => {
-  return {type: 'RESET_MESSAGE'}
-}
+export const cacheComment = (uiState) => ({type: 'COMMENT_CACHE', payload: uiState})
+export const resetMessages = () => ({type: 'RESET_MESSAGE'})

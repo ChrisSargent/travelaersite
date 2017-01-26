@@ -25,13 +25,13 @@ class Page extends Component {
 
   componentDidMount() {
     const {pathname} = this.props.location
-    this.props.dispatch(fetchPage(pathname))
+    this.props.fetchPage(pathname)
   }
 
   componentWillReceiveProps(newProps) {
     const currentPathname = this.props.location.pathname
     const newPathname = newProps.location.pathname
-    currentPathname !== newPathname && (this.props.dispatch(fetchPage(newPathname)))
+    currentPathname !== newPathname && (this.props.fetchPage(newPathname))
   }
 
   render() {
@@ -172,4 +172,12 @@ const mapStateToProps = (state) => {
   return ({page: state.pages[currentPageSlug]})
 }
 
-export default connect(mapStateToProps)(Page)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPage: (pathname) => {
+      dispatch(fetchPage(pathname))
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Page)

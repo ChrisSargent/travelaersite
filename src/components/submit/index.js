@@ -105,8 +105,8 @@ const mapDispatchToProps = (dispatch) => {
     postComment: (commentData, updateComments) => {
       dispatch(postComment(commentData, updateComments)).catch(error => {})
     },
-    cacheComment: (state) => {
-      dispatch(cacheComment(state))
+    cacheComment: (uiState) => {
+      dispatch(cacheComment(uiState))
     },
     resetMessages: () => {
       dispatch(resetMessages())

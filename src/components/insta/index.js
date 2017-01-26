@@ -9,7 +9,10 @@ import './_insta.sass';
 
 class Insta extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchInsta(this.props))
+    const {instAuthToken, instUserNameID} = this.props
+    if (instAuthToken && instUserNameID) {
+      this.props.dispatch(fetchInsta(this.props))
+    }
   }
 
   imageAdaptor(images) {
