@@ -1,13 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import css from '../../lib/css'
-
+import {postComment, resetMessages, cacheComment} from '../../actions/CommentsActions'
 import Actions from '../actions'
 import ArticleHeader from '../article-header'
+import css from '../../lib/css'
 import SVG from '../svg'
-
-import {postComment, resetMessages, cacheComment} from '../../actions/CommentsActions'
-
 import './_submit.sass'
 
 class Submit extends Component {

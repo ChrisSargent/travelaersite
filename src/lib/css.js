@@ -33,4 +33,4 @@ module.exports = {
   error: ' -error',
   warning: ' -warning',
   success: ' -success',
-};
+}

@@ -1,13 +1,11 @@
-import React from 'react';
-import css from '../../lib/css';
+import React from 'react'
+import css from '../../lib/css'
+import Logo from '../logo'
+import MenuContainer from '../menu'
+import './_header.sass'
 
-import Logo from '../logo';
-import MenuContainer from '../menu';
-
-import './_header.sass';
-
-function SiteHeader() {
-  const compName = 'siteheader';
+const Header = () => {
+  const compName = 'siteheader'
 
   return (
     <header className={css.header + compName}>
@@ -16,7 +14,7 @@ function SiteHeader() {
         <MenuContainer location="primary"/>
       </div>
     </header>
-  );
+  )
 }
 
-export default SiteHeader;
+export default Header

@@ -1,12 +1,9 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import Helmet from 'react-helmet'
-
-// Components
+import {connect} from 'react-redux'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
-
 
 const Base = (props) => {
   var metaInfo, footerAppend

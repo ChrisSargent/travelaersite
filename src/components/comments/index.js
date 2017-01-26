@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import ArticleHeader from '../article-header'
-import Submit from '../submit'
 import CommentList from '../comment-list'
+import Submit from '../submit'
 import Message from '../message'
 import Section from '../../sections/section'
-
 import './_comments.sass'
 
 class Comments extends Component {
@@ -21,7 +20,7 @@ class Comments extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // Puts the form back to the end if it is submitted successfully
+    // Puts the form back to the bottom of the page if it is submitted successfully
     newProps.submitted && this.setState({replyCommentID: false})
   }
 

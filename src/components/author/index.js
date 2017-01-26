@@ -1,15 +1,12 @@
-import React from 'react';
-import css from '../../lib/css';
+import React from 'react'
+import ArticleHeader from '../article-header'
+import css from '../../lib/css'
+import RespImageCover from '../resp-image-cover'
+import Wysiwyg from '../wysiwyg'
+import './_author.sass'
 
-import ArticleHeader from '../article-header';
-import RespImageCover from '../resp-image-cover';
-import Wysiwyg from '../wysiwyg';
-
-import './_author.sass';
-
-function Author(props) {
-  const {author} = props;
-  const compName = 'author';
+const Author = ({author}) => {
+  const compName = 'author'
 
   return (
     <aside className={css.main + compName}>
@@ -19,7 +16,7 @@ function Author(props) {
         <Wysiwyg content={author.description} />
       </div>
     </aside>
-  );
+  )
 }
 
-export default Author;
+export default Author

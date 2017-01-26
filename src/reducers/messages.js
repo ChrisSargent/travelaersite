@@ -18,7 +18,7 @@ const messages = (state = {
       }
 
     // If requested, also update the comments
-    // updateComments && PostsActions.fetchPost(response.data.post);
+    // updateComments && PostsActions.fetchPost(response.data.post)
 
     case 'POST_COMMENT_REJECTED':
       const {message} = action.payload.response.data

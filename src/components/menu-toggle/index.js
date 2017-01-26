@@ -1,11 +1,8 @@
-import React from 'react';
-import css from '../../lib/css';
+import React from 'react'
+import css from '../../lib/css'
+import './_menu-toggle.sass'
 
-import './_menu-toggle.sass';
-
-function MenuButton(props) {
-  const {controls} = props;
-
+const MenuButton = ({controls}) => {
   return (
     <label htmlFor={controls} className={css.toggle + 'menu'}>
       <button className="button">
@@ -15,7 +12,7 @@ function MenuButton(props) {
         <span className="text">Menu Toggle</span>
       </button>
     </label>
-  );
+  )
 }
 
-export default MenuButton;
+export default MenuButton

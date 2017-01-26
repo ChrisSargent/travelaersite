@@ -1,23 +1,22 @@
-import React from 'react';
-import css from '../../lib/css';
-import RespImage from '../resp-image';
+import React from 'react'
+import css from '../../lib/css'
+import RespImage from '../resp-image'
 
-import './_screenshots.sass';
+import './_screenshots.sass'
 
-function ScreenShots(props) {
-  const {screenshots, modifier, activeIndex} = props;
-  const compName = 'screenshot';
-  var screenshotListClass;
+const ScreenShots = ({screenshots, modifier, activeIndex}) => {
+  var screenshotListClass
 
   if (!screenshots)
-    return null;
+    return null
 
-  screenshotListClass = css.list + compName;
-  modifier && (screenshotListClass += ' -' + modifier);
+  const compName = 'screenshot'
+  screenshotListClass = css.list + compName
+  modifier && (screenshotListClass += ' -' + modifier)
 
   const screenshotsMap = screenshots.map((screenshot, index) => {
     var imageMap,
-      screenStyles;
+      screenStyles
 
     // If we only get one image per 'screenshot', just put it in to an array so we can handle it the same
     !screenshot.images && (screenshot.images = [screenshot])
@@ -53,14 +52,14 @@ function ScreenShots(props) {
           </div>
         </div>
       </li>
-    );
-  });
+    )
+  })
 
   return (
     <ul className={screenshotListClass}>
       {screenshotsMap}
     </ul>
-  );
+  )
 }
 
-export default ScreenShots;
+export default ScreenShots

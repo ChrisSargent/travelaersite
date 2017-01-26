@@ -1,18 +1,15 @@
 import React from 'react'
-import css from '../../lib/css'
 import {globals} from '../../lib/utils'
-
 import ArticleHeader from '../article-header'
 import Author from '../author'
 import Comments from '../comments'
+import css from '../../lib/css'
 import PostInfo from '../post-info'
 import Wysiwyg from '../wysiwyg'
-
 import './_post.sass'
 
-function trimContent(content, main) {
+const trimContent = (content, main) => {
   var paras
-  // Set how many paragraphs we should cut to
   main
     ? paras = 3
     : paras = 1
@@ -21,15 +18,14 @@ function trimContent(content, main) {
   return excerpt.join('')
 }
 
-function Post(props) {
-  const {post, excerpt, main} = props;
-  const compName = 'post';
+const Post = ({post, excerpt, main}) => {
+  const compName = 'post'
   var content,
     image,
     more,
     displayComments
 
-  var postInfo = {
+  const postInfo = {
     views: '',
     comments: post.t_comments_info.total,
     shares: '',
@@ -47,6 +43,7 @@ function Post(props) {
     more = false
     displayComments = true
   }
+
   main
     ? image = false
     : image = post.t_featured_image
@@ -54,7 +51,7 @@ function Post(props) {
   return (
     <article className={css.article + compName}>
       <ArticleHeader title={post.title} modifier={compName} image={image}/>
-      <PostInfo info={postInfo}/>
+      <PostInfo {...postInfo}/>
       <Wysiwyg content={content} more={more}/> {!excerpt && <Author author={post.t_author}/>}
       {displayComments && <Comments commentsInfo={post.t_comments_info} postTitle={post.title.rendered} postID={post.id}/>}
     </article>

@@ -1,14 +1,11 @@
-import React from 'react';
-import css from '../../lib/css';
+import React from 'react'
+import css from '../../lib/css'
+import RespImageCover from '../../components/resp-image-cover'
+import Wysiwyg from '../../components/wysiwyg'
+import './_image-banner.sass'
 
-import RespImageCover from '../../components/resp-image-cover';
-import Wysiwyg from '../../components/wysiwyg';
-
-import './_image-banner.sass';
-
-function Strip(props) {
-  const {title, content} = props;
-  const compName = 'strip';
+const Strip = ({title, content}) => {
+  const compName = 'strip'
 
   return (
     <div className={css.main + compName}>
@@ -20,16 +17,16 @@ function Strip(props) {
   )
 }
 
-function ImageBanner(props) {
-  const {compName} = props;
+const ImageBanner = (props) => {
+  const {compName, image_fixed} = props
 
   return (
     <div className={css.main + compName}>
-      <RespImageCover image={props.image_fixed} />
+      <RespImageCover image={image_fixed} />
       <Strip {...props}/>
-      <RespImageCover image={props.image_fixed} />
+      <RespImageCover image={image_fixed} />
     </div>
   )
 }
 
-export default ImageBanner;
+export default ImageBanner

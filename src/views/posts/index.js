@@ -8,7 +8,6 @@ import Insta from '../../components/insta'
 import Post from '../../components/post'
 import RecentPosts from '../../components/recent-posts'
 import Section from '../../sections/section'
-
 import './_posts.sass'
 
 class Posts extends Component {

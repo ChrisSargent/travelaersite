@@ -1,21 +1,18 @@
-import React from 'react';
+import React from 'react'
+import ArticleHeader from '../../components/article-header'
+import css from '../../lib/css'
+import RespImageCover from '../../components/resp-image-cover'
+import MemberVcard from '../../components/member-vcard'
+import Wysiwyg from '../../components/wysiwyg'
 
-import css from '../../lib/css';
-import ArticleHeader from '../../components/article-header';
-import RespImageCover from '../../components/resp-image-cover';
-import MemberVcard from '../../components/member-vcard';
-import Wysiwyg from '../../components/wysiwyg';
+import './_team.sass'
 
-import './_team.sass';
-
-function Team(props) {
-  const {title, members, compName} = props;
-
+const Team = ({title, members, compName}) => {
   if (!members)
     return null
 
   const membersMap = members.map((member) => {
-    const {title, content, acf} = member;
+    const {title, content, acf} = member
     const compName = 'member'
 
     return (
@@ -27,8 +24,8 @@ function Team(props) {
           <Wysiwyg content={content} />
         </article>
       </li>
-    );
-  });
+    )
+  })
 
   return (
     <div className={css.main + compName}>
@@ -37,7 +34,7 @@ function Team(props) {
         {membersMap}
       </ul>
     </div>
-  );
+  )
 }
 
-export default Team;
+export default Team

@@ -1,18 +1,15 @@
 import React from 'react'
-import css from '../../lib/css'
 import {dateFormat} from '../../lib/utils'
-
 import Actions from '../actions'
 import ArticleHeader from '../article-header'
+import css from '../../lib/css'
 import Submit from '../submit'
 import Message from '../message'
 import RespImageCover from '../resp-image-cover'
 import Wysiwyg from '../wysiwyg'
-
 import './_comment-list.sass'
 
-function Comment(props) {
-  const {comment_ID, comment_author, comment_content, comment_date_gmt, comment_author_avatar} = props.comment
+const Comment = ({comment_ID, comment_author, comment_content, comment_date_gmt, comment_author_avatar}) => {
   const compName = 'comment'
   const dateString = dateFormat(comment_date_gmt, true)
   const actions = [
@@ -35,7 +32,7 @@ function Comment(props) {
   )
 }
 
-function CommentList(props) {
+const CommentList = (props) => {
   const {postID, replyCommentID, messageCommentID, compName, comments} = props
 
   if (!comments)
@@ -45,7 +42,7 @@ function CommentList(props) {
     const {comment_ID, comment_replies} = comment
     return (
       <li key={comment_ID} className={css.item}>
-        <Comment comment={comment}/> {messageCommentID === comment_ID && <Message/>}
+        <Comment {...comment}/> {messageCommentID === comment_ID && <Message/>}
         {replyCommentID === comment_ID && <Submit postType="comments" postID={postID} parentCommentID={comment_ID}/>}
         {comment_replies && <CommentList {...props} comments={comment_replies}/>}
       </li>

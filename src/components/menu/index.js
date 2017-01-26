@@ -2,17 +2,14 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {IndexLink, Link} from 'react-router'
 import {fetchMenu} from '../../actions/SiteActions'
-import css from '../../lib/css'
 import {globals, stripDomain} from '../../lib/utils'
-
+import css from '../../lib/css'
 import MenuToggle from '../menu-toggle'
-
 import './_menu.sass'
 
-function MenuItem(props) {
+const MenuItem = ({item}) => {
   var LinkType,
     linkClass
-  const {item} = props
   const compName = 'menu'
   const itemLink = stripDomain(item.url)
 
@@ -31,13 +28,11 @@ function MenuItem(props) {
   )
 }
 
-function SubMenuList(props) {
-  const {items} = props
-  const compName = 'submenu'
-
+const SubMenuList = ({items}) => {
   if (!items.length)
     return null
 
+  const compName = 'submenu'
   const itemsMap = items.map((item) => {
     return (<MenuItem key={item.ID} item={item}/>)
   })
@@ -51,13 +46,11 @@ function SubMenuList(props) {
   )
 }
 
-function MenuList(props) {
-  const {items, onClick} = props
-  const compName = 'menu'
-
+const MenuList = ({items, onClick}) => {
   if (!items)
     return null
 
+  const compName = 'menu'
   const itemsMap = items.map((item) => {
     return (<MenuItem key={item.ID} item={item}/>)
   })
@@ -69,8 +62,8 @@ function MenuList(props) {
 
 class Menu extends Component {
 
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.closeMenu = this.closeMenu.bind(this)
     this.refMenu = this.refMenu.bind(this)
     this.state = {

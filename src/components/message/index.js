@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import css from '../../lib/css'
 import {resetMessages} from '../../actions/CommentsActions'
-
+import css from '../../lib/css'
 import './_message.sass'
 
 class Message extends Component {
@@ -21,7 +20,7 @@ class Message extends Component {
 
   render() {
     const {content, type, error} = this.props.messages
-    if(!content)
+    if (!content)
       return null
 
     const compName = 'message'
@@ -55,8 +54,8 @@ class Message extends Component {
 
 const mapStateToProps = (state) => ({messages: state.messages})
 const mapDispatchToProps = (dispatch) => ({
-    resetMessages() {
-      dispatch(resetMessages())
-    }
+  resetMessages() {
+    dispatch(resetMessages())
+  }
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Message)

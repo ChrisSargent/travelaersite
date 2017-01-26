@@ -1,34 +1,29 @@
-import React from 'react';
-import css from '../../lib/css';
-import RespImageCover from '../resp-image-cover';
-import Wysiwyg from '../wysiwyg';
+import React from 'react'
+import css from '../../lib/css'
+import RespImageCover from '../resp-image-cover'
+import Wysiwyg from '../wysiwyg'
+import SVG from '../svg'
+import './_tile.sass'
 
-import SVG from '../svg';
-
-import './_tile.sass';
-
-function MosaicTile(props) {
-  var {content, image} = props.acf
-  const {type, colour, size, link} = props.acf;
-  const alt = content;
-  const compName = 'tile';
+const MosaicTile = ({content, image, type, colour, size, link, name, job_title, company}) => {
+  const alt = content
+  const compName = 'tile'
   var tileClass = '',
-    TagName = 'a',
-    footer = null;
+    TagType = 'a',
+    footer = null
 
-  type && (tileClass += ' -' + type);
-  colour && (tileClass += ' -' + colour);
-  size && (tileClass += ' -' + size);
+  type && (tileClass += ' -' + type)
+  colour && (tileClass += ' -' + colour)
+  size && (tileClass += ' -' + size)
 
   switch (type) {
     case 'instagram':
-      image = link.split('?')[0] + 'media?size=l';
-      content = null;
-      break;
+      image = link.split('?')[0] + 'media?size=l'
+      content = null
+      break
 
     case 'quote':
-      const {name, job_title, company} = props.acf;
-      TagName = 'blockquote';
+      TagType = 'blockquote'
       footer = (
         <footer className={css.footer + compName}>
           <cite>
@@ -38,22 +33,22 @@ function MosaicTile(props) {
           </cite>
         </footer>
       )
-      break;
+      break
 
     default:
-      break;
+      break
   }
 
   return (
     <li className={css.item + tileClass}>
-      <TagName href={link} target="_blank" className={css.main + compName}>
+      <TagType href={link} target="_blank" className={css.main + compName}>
         <SVG type={type}/>
         <Wysiwyg content={content}/>
         {footer}
         <RespImageCover image={image} alt={alt}/>
-      </TagName>
+      </TagType>
     </li>
-  );
+  )
 }
 
-export default MosaicTile;
+export default MosaicTile

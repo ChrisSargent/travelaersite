@@ -1,19 +1,15 @@
-import React from 'react';
-import css from '../../lib/css';
+import React from 'react'
+import css from '../../lib/css'
+import RespImage from '../../components/resp-image'
+import Wysiwyg from '../../components/wysiwyg'
+import './_travel-paas.sass'
 
-import RespImage from '../../components/resp-image';
-import Wysiwyg from '../../components/wysiwyg';
-
-import './_travel-paas.sass';
-
-function ContentScreenshots(props) {
-  const {compName, title, content, screenshots} = props;
-
+const ContentScreenshots = ({compName, title, content, screenshots}) => {
   const images = screenshots.map((screenshot, index) => {
     return (
       <RespImage key={index} image={screenshot} respSizes="50vw"/>
-    );
-  });
+    )
+  })
 
   return (
     <div className={css.main + compName}>
@@ -23,7 +19,7 @@ function ContentScreenshots(props) {
         {images}
       </div>
     </div>
-  );
+  )
 }
 
-export default ContentScreenshots;
+export default ContentScreenshots

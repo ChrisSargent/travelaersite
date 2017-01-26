@@ -1,20 +1,17 @@
 import React from 'react'
 import css from '../../lib/css'
-
 import Legal from '../legal'
 import Links from '../links'
 import Logo from '../logo'
 import Social from '../social'
 import Vcard from '../vcard'
-
 import './_footer.sass'
 
-const Footer = (props) => {
-  const {options, footerAppend} = props
-  const compName = 'sitefooter'
-
+const Footer = ({options, footerAppend}) => {
   if(!options)
     return null
+
+  const compName = 'sitefooter'
 
   return (
     <footer className={css.footer + compName + ' -skewtop'}>

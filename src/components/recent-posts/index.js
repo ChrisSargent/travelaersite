@@ -1,20 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router'
-import css from '../../lib/css'
 import {dateFormat, globals} from '../../lib/utils'
-
+import ArticleHeader from '../article-header'
+import css from '../../lib/css'
+import RespImageCover from '../resp-image-cover'
 import './_recent-posts.sass'
 
-import ArticleHeader from '../article-header'
-import RespImageCover from '../resp-image-cover'
-
-function RecentPosts(props) {
-  const {posts} = props
-  const compName = 'recentposts'
-
+const RecentPosts = ({posts}) => {
   if (!posts)
     return null
 
+  const compName = 'recentposts'
   const postsMap = posts.map((post, index) => {
     var modifier,
       icon

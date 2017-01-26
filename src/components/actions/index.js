@@ -1,17 +1,14 @@
 import React from 'react'
-import css from '../../lib/css'
-import {stripDomain} from '../../lib/utils'
 import {Link} from 'react-router'
-
+import {stripDomain} from '../../lib/utils'
+import css from '../../lib/css'
 import './_actions.sass'
 
-function Actions(props) {
-  const {actions} = props
-  const compName = 'actions'
-
+const Actions = ({actions}) => {
   if (!actions)
     return
 
+  const compName = 'actions'
   const actionsMap = actions.map((action, index) => {
     var btnClass
     const url = stripDomain(action.linkTo)

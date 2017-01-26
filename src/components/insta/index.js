@@ -4,8 +4,7 @@ import {fetchInsta} from '../../actions/InstaActions'
 import css from '../../lib/css'
 import RespImageCover from '../resp-image-cover'
 import SVG from '../svg'
-
-import './_insta.sass';
+import './_insta.sass'
 
 class Insta extends Component {
   componentDidMount() {
@@ -16,8 +15,7 @@ class Insta extends Component {
   }
 
   imageAdaptor(images) {
-    var image = {};
-
+    var image = {}
     image.sizes = {
       'large': images.standard_resolution.url,
       'large-width': images.standard_resolution.width,
@@ -27,31 +25,30 @@ class Insta extends Component {
       'medium-height': images.low_resolution.height,
       'thumbnail': images.thumbnail.url,
       'thumbnail-width': images.thumbnail.width,
-      'thumbnail-height': images.thumbnail.height,
+      'thumbnail-height': images.thumbnail.height
     }
-
-    return image;
+    return image
   }
 
   render() {
-    const {feed} = this.props;
-    const compName = 'insta';
+    const {feed} = this.props
 
-    if(!feed)
-      return null;
+    if (!feed)
+      return null
 
+    const compName = 'insta'
     const instaMap = feed.map((item) => {
-      var image = this.imageAdaptor(item.images);
+      var image = this.imageAdaptor(item.images)
 
       item.caption
         ? image.alt = item.caption.text
-        : image.alt = 'An instagram image by #' + item.user.username;
+        : image.alt = 'An instagram image by #' + item.user.username
 
       return (
         <li key={item.id} className={css.item}>
           <a href={item.link} target="_blank" className={css.link + compName}>
             <SVG type="instagram"/>
-            <RespImageCover image={image} />
+            <RespImageCover image={image}/>
           </a>
         </li>
       )
@@ -67,13 +64,8 @@ class Insta extends Component {
 
 const mapStateToProps = (state) => {
   const {instAuthToken, instUserName, instUserNameID} = state.site.options
-  const {feed} = state.insta;
-  return ({
-    instAuthToken,
-    instUserName,
-    instUserNameID,
-    feed
-  })
+  const {feed} = state.insta
+  return ({instAuthToken, instUserName, instUserNameID, feed})
 }
 
 export default connect(mapStateToProps)(Insta)

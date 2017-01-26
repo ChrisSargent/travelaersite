@@ -1,28 +1,26 @@
-import React from 'react';
+import React from 'react'
 import css from '../../lib/css'
-import {Link} from 'react-router';
+import {Link} from 'react-router'
+import './_wysiwyg.sass'
 
-import './_wysiwyg.sass';
-
-function Wysiwyg(props) {
-  const {size, more} = props;
-  const compName = 'wysiwyg';
-  var {content} = props, wysClass;
+const Wysiwyg = ({size, more, content}) => {
+  var wysClass
 
   if(!content)
-    return false;
+    return false
 
-  wysClass = compName;
-  size && (wysClass += ' -' + size);
+  const compName = 'wysiwyg'
+  wysClass = compName
+  size && (wysClass += ' -' + size)
 
-  typeof content === 'object' && (content = content.rendered);
+  content.rendered && (content = content.rendered)
 
   return (
     <div className={wysClass}>
       <div dangerouslySetInnerHTML={{__html: content}}></div>
       {more && <Link to={more} className={css.more}>&raquo;&nbsp;Read More</Link>}
     </div>
-  );
+  )
 }
 
-export default Wysiwyg;
+export default Wysiwyg

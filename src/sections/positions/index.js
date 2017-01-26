@@ -1,21 +1,19 @@
-import React from 'react';
-import css from '../../lib/css';
-import Actions from '../../components/actions';
-import Wysiwyg from '../../components/wysiwyg';
+import React from 'react'
+import css from '../../lib/css'
+import Actions from '../../components/actions'
+import Wysiwyg from '../../components/wysiwyg'
+import './_positions.sass'
 
-import './_positions.sass';
-
-function Positions(props) {
-  const {title, content, positions, actions, compName} = props;
-  actions[0].modifier = 'cta';
+const Positions = ({title, content, positions, actions, compName}) => {
+  actions[0].modifier = 'cta'
 
   const positionMap = positions.map((position, index) => {
     return (
       <li key={index} className={css.item}>
         {position.position}
       </li>
-    );
-  });
+    )
+  })
 
   return (
     <div className={css.main + compName}>
@@ -26,7 +24,7 @@ function Positions(props) {
       </ul>
       <Actions actions={actions} class/>
     </div>
-  );
+  )
 }
 
-export default Positions;
+export default Positions

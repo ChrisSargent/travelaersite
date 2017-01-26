@@ -1,21 +1,21 @@
-import React from 'react';
+import React from 'react'
 import {connect} from 'react-redux'
-import css from '../../lib/css';
-import SVG from '../svg';
-import './_loader.sass';
+import css from '../../lib/css'
+import SVG from '../svg'
+import './_loader.sass'
 
-const Loader = (props) => {
-  var loadingClass;
+const Loader = ({displayLoader}) => {
+  var loadingClass
 
-  props.displayLoader
+  displayLoader
     ? loadingClass = css.loading
-    : loadingClass = '';
+    : loadingClass = ''
 
   return (
     <div className={css.loader + loadingClass}>
       <SVG type="spinner"/>
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => ({displayLoader: state.loading.length})

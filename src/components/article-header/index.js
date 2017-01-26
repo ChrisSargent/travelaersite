@@ -1,21 +1,18 @@
-import React from 'react';
-import css from '../../lib/css';
+import React from 'react'
+import css from '../../lib/css'
 import RespImageCover from '../resp-image-cover'
-import SVG from '../svg';
+import SVG from '../svg'
+import './_article-header.sass'
 
-import './_article-header.sass';
-
-function ArticleHeader(props) {
-  const {modifier, subtitle, icon, image} = props;
-  var {title} = props,
-    headClass;
+const ArticleHeader = ({modifier, subtitle, icon, image, title}) => {
+  var headClass
 
   modifier
     ? headClass = css.header + modifier
-    : headClass = css.header + css.default;
+    : headClass = css.header + css.default
 
-  image && (headClass += ' -bg');
-  typeof title === 'object' && (title = title.rendered);
+  image && (headClass += ' -bg')
+  title.rendered && (title = title.rendered)
 
   return (
     <header className={headClass}>
@@ -26,7 +23,7 @@ function ArticleHeader(props) {
       </div>
       <RespImageCover image={image} />
     </header>
-  );
+  )
 }
 
-export default ArticleHeader;
+export default ArticleHeader
