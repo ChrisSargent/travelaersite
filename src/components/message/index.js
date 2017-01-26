@@ -38,7 +38,7 @@ class Message extends Component {
         compClass += css.success
         break
       default:
-
+        break
     }
 
     return (
@@ -53,16 +53,10 @@ class Message extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {messages: state.messages}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    resetMessages: () => {
+const mapStateToProps = (state) => ({messages: state.messages})
+const mapDispatchToProps = (dispatch) => ({
+    resetMessages() {
       dispatch(resetMessages())
     }
-  }
-}
-
+})
 export default connect(mapStateToProps, mapDispatchToProps)(Message)

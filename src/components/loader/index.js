@@ -18,13 +18,5 @@ const Loader = (props) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  var displayLoader
-  state.loading.length
-    ? displayLoader = true
-    : displayLoader = false
-
-  return {displayLoader: displayLoader}
-}
-
+const mapStateToProps = (state) => ({displayLoader: state.loading.length})
 export default connect(mapStateToProps)(Loader)

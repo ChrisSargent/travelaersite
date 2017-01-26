@@ -41,7 +41,9 @@ class Submit extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({...newProps.submit})
+    this.setState({
+      ...newProps.submit
+    })
   }
 
   handleTyping(ev) {
@@ -96,22 +98,16 @@ class Submit extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {submit: state.submit}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    postComment: (commentData, updateComments) => {
-      dispatch(postComment(commentData, updateComments)).catch(error => {})
-    },
-    cacheComment: (uiState) => {
-      dispatch(cacheComment(uiState))
-    },
-    resetMessages: () => {
-      dispatch(resetMessages())
-    },
+const mapStateToProps = (state) => ({submit: state.submit})
+const mapDispatchToProps = (dispatch) => ({
+  postComment(commentData, updateComments) {
+    dispatch(postComment(commentData, updateComments)).catch(error => {})
+  },
+  cacheComment(uiState) {
+    dispatch(cacheComment(uiState))
+  },
+  resetMessages() {
+    dispatch(resetMessages())
   }
-}
-
+})
 export default connect(mapStateToProps, mapDispatchToProps)(Submit)

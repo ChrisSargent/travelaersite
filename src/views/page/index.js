@@ -159,25 +159,21 @@ class Page extends Component {
 
     return (
       <main id={page.slug}>
-        <Helmet title={page.title.rendered}/>
-        {blocksMap}
+        <Helmet title={page.title.rendered}/> {blocksMap}
         {travelPaasBlocks}
       </main>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  const {currentPageSlug} = state.pages
-  return ({page: state.pages[currentPageSlug]})
-}
+const mapStateToProps = (state) => ({
+  page: state.pages[state.pages.currentPageSlug]
+})
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchPage: (pathname) => {
-      dispatch(fetchPage(pathname))
-    },
+const mapDispatchToProps = (dispatch) => ({
+  fetchPage(pathname) {
+    dispatch(fetchPage(pathname))
   }
-}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page)

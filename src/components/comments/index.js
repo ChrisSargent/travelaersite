@@ -14,7 +14,7 @@ class Comments extends Component {
     // Which reply has the comment on and which has the message on,
     this.state = {
       replyCommentID: this.props.submitted,
-      messageCommentID: false,
+      messageCommentID: false
     }
     this.handleClick = this.handleClick.bind(this)
 
@@ -59,17 +59,13 @@ class Comments extends Component {
       <Section compName={compName}>
         <div onClick={this.handleClick}>
           <ArticleHeader title={titleText} modifier={compName}/>
-          <CommentList comments={comments} postID={postID} replyCommentID={replyCommentID} messageCommentID={messageCommentID} compName={compName}/>
-          {!messageCommentID && <Message />}
-          {!replyCommentID && <Submit postType="comments" postID={postID} parentCommentID="0" />}
+          <CommentList comments={comments} postID={postID} replyCommentID={replyCommentID} messageCommentID={messageCommentID} compName={compName}/> {!messageCommentID && <Message/>}
+          {!replyCommentID && <Submit postType="comments" postID={postID} parentCommentID="0"/>}
         </div>
       </Section>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {submitted: state.submit.submitted}
-}
-
+const mapStateToProps = (state) => ({submitted: state.submit.submitted})
 export default connect(mapStateToProps)(Comments)

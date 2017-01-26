@@ -126,15 +126,8 @@ class Menu extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {menu: state.site.menu}
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    init: dispatch(fetchMenu(ownProps.location))
-  }
-}
-
-const MenuContainer = connect(mapStateToProps, mapDispatchToProps)(Menu)
-export default MenuContainer
+const mapStateToProps = (state, ownProps) => ({menu: state.site.menu})
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  init: dispatch(fetchMenu(ownProps.location))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)

@@ -36,8 +36,5 @@ const Base = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {options: state.site.options}
-}
-
+const mapStateToProps = (state) => ({options: state.site.options})
 export default connect(mapStateToProps)(Base)

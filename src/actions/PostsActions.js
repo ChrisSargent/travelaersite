@@ -40,7 +40,7 @@ const _getPosts = (slug) => {
 
 export const fetchLatestPosts = () => (dispatch, getState) => {
   const {latestPosts} = getState().posts
-
+  // Check if the latest posts have already been fetched and call the api if not
   if (!latestPosts.length) {
     return dispatch(_getPosts())
   } else {
@@ -49,21 +49,22 @@ export const fetchLatestPosts = () => (dispatch, getState) => {
 }
 
 export const fetchCurrentPost = (slug) => (dispatch, getState) => {
-  // Check if the post has already been loaded by checking the allPosts array from the store
+  // Check if the post has already been fetched and call the api if not
   const {allPosts} = getState().posts
   const index = allPosts[slug];
-  if (!index)
+  if (!index) {
     return dispatch(_getPosts(slug))
+  } else {
+    return null
+  }
 }
 
-export const fetchInitPosts = (slug) => {
-  return dispatch => {
-    return dispatch({
-      type: 'FETCH_INIT_POSTS',
-      payload: Promise.all([
-        dispatch(_getPosts(slug)),
-        dispatch(_getPosts())
-      ])
-    })
-  }
+export const fetchInitPosts = (slug) => (dispatch) => {
+  return dispatch({
+    type: 'FETCH_INIT_POSTS',
+    payload: Promise.all([
+      dispatch(_getPosts(slug)),
+      dispatch(_getPosts())
+    ])
+  })
 }

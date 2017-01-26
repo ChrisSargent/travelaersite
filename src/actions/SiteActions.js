@@ -11,26 +11,22 @@ if (process.env.NODE_ENV === 'development') {
 // ******************************* SITE ACTIONS ********************************
 // *****************************************************************************
 
-export const fetchMenu = (location) => {
-  return {
-    type: 'FETCH_MENU',
-    payload: axios.get('/wp-api-menus/v2/menu-locations/' + location),
-    meta: {
-      location: location,
-      id: 'menu'
-    }
+export const fetchMenu = (location) => ({
+  type: 'FETCH_MENU',
+  payload: axios.get('/wp-api-menus/v2/menu-locations/' + location),
+  meta: {
+    location: location,
+    id: 'menu'
   }
-}
+})
 
-export const fetchOptions = () => {
-  return {
-    type: 'FETCH_OPTIONS',
-    payload: axios.get('/acf/v2/options'),
-    meta: {
-      id: 'options'
-    }
+export const fetchOptions = () => ({
+  type: 'FETCH_OPTIONS',
+  payload: axios.get('/acf/v2/options'),
+  meta: {
+    id: 'options'
   }
-}
+})
 
 // *****************************************************************************
 // ******************************* PAGE ACTIONS ********************************
@@ -52,9 +48,7 @@ const _getPage = (slug) => {
 }
 
 // Updates the current slug in the state
-const _updateCurrentSlug = (slug) => {
-  return {type: 'UPDATE_CURRENT_PAGE', payload: slug}
-}
+const _updateCurrentSlug = (slug) => ({type: 'UPDATE_CURRENT_PAGE', payload: slug})
 
 // Checks if a page exists in the cache and then calls the WP API if not
 export const fetchPage = (pathname) => (dispatch, getState) => {

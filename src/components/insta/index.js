@@ -69,10 +69,10 @@ const mapStateToProps = (state) => {
   const {instAuthToken, instUserName, instUserNameID} = state.site.options
   const {feed} = state.insta;
   return ({
-    instAuthToken: instAuthToken,
-    instUserName: instUserName,
-    instUserNameID: instUserNameID,
-    feed: feed
+    instAuthToken,
+    instUserName,
+    instUserNameID,
+    feed
   })
 }
 
