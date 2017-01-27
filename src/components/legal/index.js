@@ -7,7 +7,7 @@ const Legal = ({legalName, credit}) => {
 
   return (
     <div className={css.main + compName}>
-      <span className="credit">{credit}</span>
+      {credit && <span className="credit">{credit}</span>}
       <span className="copy">&copy; 2016 {legalName}. All rights reserved.</span>
     </div>
   )

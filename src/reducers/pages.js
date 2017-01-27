@@ -2,6 +2,12 @@ export const getPage = ({pages}) => {
   return pages[pages.currentPageSlug]
 }
 
+export const getPageAppend = ({pages}) => {
+  return pages.currentPageSlug
+    ? pages[pages.currentPageSlug].acf.footerAppend
+    : false
+}
+
 const pages = (state = {
   currentPageSlug: null
 }, action) => {

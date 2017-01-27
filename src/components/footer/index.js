@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getOptions} from '../../reducers/site'
+import {getPageAppend} from '../../reducers/pages'
 import css from '../../lib/css'
 import Legal from '../legal'
 import Links from '../links'
@@ -52,5 +53,8 @@ const Footer = ({options, footerAppend}) => {
   )
 }
 
-const mapStateToProps = (state) => ({options: getOptions(state)})
+const mapStateToProps = (state) => ({
+  options: getOptions(state),
+  footerAppend: getPageAppend(state)
+})
 export default connect(mapStateToProps)(Footer)
