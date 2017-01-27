@@ -160,6 +160,7 @@ function travelaer_add_acf($items) {
       'content' => get_the_content_by_id($item_id),
     );
   }
+  wlog($items);
   return $items;
 }
 

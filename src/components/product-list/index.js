@@ -13,7 +13,7 @@ const ProductList = ({products, alignment}) => {
   const compName = 'product'
   const productsMap = products.map((product) => {
     var {actions} = product.acf
-    const {screenshots} = product.acf
+    const {product_screenshots} = product.acf
     const {title, content} = product
 
     actions[0].modifier = 'cta'
@@ -25,7 +25,7 @@ const ProductList = ({products, alignment}) => {
           <Wysiwyg content={content}/>
           <Actions actions={actions}/>
         </article>
-        <Screenshots screenshots={screenshots} modifier="home"/>
+        <Screenshots screenshots={product_screenshots} modifier="home"/>
       </li>
     )
   })

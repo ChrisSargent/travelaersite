@@ -15,14 +15,15 @@ const ScreenShots = ({screenshots, modifier, activeIndex}) => {
   modifier && (screenshotListClass += ' -' + modifier)
 
   const screenshotsMap = screenshots.map((screenshot, index) => {
+    console.log(screenshot);
     var imageMap,
       screenStyles
 
     // If we only get one image per 'screenshot', just put it in to an array so we can handle it the same
-    !screenshot.images && (screenshot.images = [screenshot])
+    const images = screenshot.images || [screenshot]
 
     // Create the image map
-    imageMap = screenshot.images.map((image, index) => {
+    imageMap = images.map((image, index) => {
       return <RespImage key={index} image={image} respSizes="(min-width: 840px) 320px, 175px"/>
     })
 
