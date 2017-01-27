@@ -32,6 +32,9 @@ export const fetchOptions = () => ({
 // ******************************* PAGE ACTIONS ********************************
 // *****************************************************************************
 
+// Updates the current slug in the state
+const _updateCurrentSlug = (slug) => ({type: 'UPDATE_CURRENT_PAGE', payload: slug})
+
 // Gets a single page object from the WP API
 const _getPage = (slug) => {
   const params = {
@@ -46,9 +49,6 @@ const _getPage = (slug) => {
     }
   }
 }
-
-// Updates the current slug in the state
-const _updateCurrentSlug = (slug) => ({type: 'UPDATE_CURRENT_PAGE', payload: slug})
 
 // Checks if a page exists in the cache and then calls the WP API if not
 export const fetchPage = (pathname) => (dispatch, getState) => {
