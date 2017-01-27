@@ -1,3 +1,5 @@
+import types from '../actions'
+
 export const getSubmitted = ({submit}) => {
   return submit.submitted
 }
@@ -15,13 +17,13 @@ const submit = (state = {
 }, action) => {
 
   switch (action.type) {
-    case 'POST_COMMENT_PENDING':
+    case types.POST_COMMENT + '_PENDING':
       return {
         ...state,
         showLoader: true,
       }
 
-    case 'POST_COMMENT_FULFILLED':
+    case types.POST_COMMENT + '_FULFILLED':
       return {
         ...state,
         showLoader: false,
@@ -29,13 +31,13 @@ const submit = (state = {
         comment: '',
       }
 
-    case 'POST_COMMENT_REJECTED':
+    case types.POST_COMMENT + '_REJECTED':
       return {
         ...state,
         showLoader: false
       }
 
-    case 'COMMENT_CACHE':
+    case types.CACHE_COMMENT:
       const {name, comment, email} = action.payload
       return {
         ...state,

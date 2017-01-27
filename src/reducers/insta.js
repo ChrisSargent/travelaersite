@@ -1,3 +1,5 @@
+import types from '../actions'
+
 export const getInsta = ({insta}) => {
   return insta.feed
 }
@@ -7,7 +9,7 @@ const insta = (state = {
   feed: []
 }, action) => {
   switch (action.type) {
-    case 'FETCH_INSTA_FULFILLED':
+    case types.FETCH_INSTA + '_FULFILLED':
       return {
         ...state,
         feed: action.payload,

@@ -1,3 +1,5 @@
+import types from '../actions'
+
 export const getMessages = ({messages}) => {
   return messages
 }
@@ -8,7 +10,7 @@ const messages = (state = {
   error: ''
 }, action) => {
   switch (action.type) {
-    case 'POST_COMMENT_FULFILLED':
+    case types.POST_COMMENT + '_FULFILLED':
       var content
 
       action.payload.data.status === 'hold'
@@ -21,7 +23,7 @@ const messages = (state = {
         type: 'success'
       }
 
-    case 'POST_COMMENT_REJECTED':
+    case types.POST_COMMENT + '_REJECTED':
       const {message} = action.payload.response.data
       return {
         ...state,
@@ -30,7 +32,7 @@ const messages = (state = {
         error: message
       }
 
-    case 'RESET_MESSAGE':
+    case types.RESET_MESSAGE:
       return {
         ...state,
         content: '',

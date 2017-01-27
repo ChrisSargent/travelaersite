@@ -15,7 +15,6 @@ const ScreenShots = ({screenshots, modifier, activeIndex}) => {
   modifier && (screenshotListClass += ' -' + modifier)
 
   const screenshotsMap = screenshots.map((screenshot, index) => {
-    console.log(screenshot);
     var imageMap,
       screenStyles
 

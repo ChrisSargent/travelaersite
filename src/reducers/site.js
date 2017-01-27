@@ -1,3 +1,5 @@
+import types from '../actions'
+
 export const getOptions = ({site}) => {
   return site.options
 }
@@ -12,13 +14,13 @@ const site = (state = {
 }, action)  =>{
 
   switch (action.type) {
-    case 'FETCH_OPTIONS_FULFILLED':
+    case types.FETCH_OPTIONS + '_FULFILLED':
       return {
         ...state,
         options: action.payload.data.acf
       }
 
-    case 'FETCH_MENU_FULFILLED':
+    case types.FETCH_MENU + '_FULFILLED':
       return {
         ...state,
         menu: action.payload.data

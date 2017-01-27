@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {getRequesedSlug} from '../lib/utils'
+import types from '.'
 
 if (process.env.NODE_ENV === 'development') {
   axios.defaults.baseURL = 'http://travelaersite.dev/wordpress/wp-json'
@@ -12,7 +13,7 @@ if (process.env.NODE_ENV === 'development') {
 // *****************************************************************************
 
 export const fetchMenu = (location) => ({
-  type: 'FETCH_MENU',
+  type: types.FETCH_MENU,
   payload: axios.get('/wp-api-menus/v2/menu-locations/' + location),
   meta: {
     location: location,
@@ -21,7 +22,7 @@ export const fetchMenu = (location) => ({
 })
 
 export const fetchOptions = () => ({
-  type: 'FETCH_OPTIONS',
+  type: types.FETCH_OPTIONS,
   payload: axios.get('/acf/v2/options'),
   meta: {
     id: 'options'
@@ -33,7 +34,7 @@ export const fetchOptions = () => ({
 // *****************************************************************************
 
 // Updates the current slug in the state
-const _updateCurrentSlug = (slug) => ({type: 'UPDATE_CURRENT_PAGE', payload: slug})
+const _updateCurrentSlug = (slug) => ({type: types.UPDATE_CURRENT_PAGE, payload: slug})
 
 // Gets a single page object from the WP API
 const _getPage = (slug) => {
@@ -42,7 +43,7 @@ const _getPage = (slug) => {
     fields: 'acf,slug,id,title'
   }
   return {
-    type: 'FETCH_PAGE',
+    type: types.FETCH_PAGE,
     payload: axios.get('/wp/v2/pages', {params}),
     meta: {
       id: 'page'

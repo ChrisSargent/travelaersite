@@ -1,3 +1,5 @@
+import types from '../actions'
+
 export const getPage = ({pages}) => {
   return pages[pages.currentPageSlug]
 }
@@ -13,13 +15,13 @@ const pages = (state = {
 }, action) => {
 
   switch (action.type) {
-    case 'UPDATE_CURRENT_PAGE':
+    case types.UPDATE_CURRENT_PAGE:
       return {
         ...state,
         currentPageSlug: action.payload
       }
 
-    case 'FETCH_PAGE_FULFILLED':
+    case types.FETCH_PAGE + '_FULFILLED':
       const page = action.payload.data[0]
       return {
         ...state,

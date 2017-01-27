@@ -1,3 +1,5 @@
+import types from '../actions'
+
 export const getLoading = (state) => {
   return state.loading.length
 }
@@ -5,18 +7,18 @@ export const getLoading = (state) => {
 const loading = (state = [], action) => {
 
   switch (action.type) {
-    case 'FETCH_OPTIONS_PENDING':
-    case 'FETCH_MENU_PENDING':
-    case 'FETCH_PAGE_PENDING':
-    case 'FETCH_CURRENT_POST_PENDING':
-    case 'FETCH_LATEST_POSTS_PENDING':
+    case types.FETCH_OPTIONS + '_PENDING':
+    case types.FETCH_MENU + '_PENDING':
+    case types.FETCH_PAGE + '_PENDING':
+    case types.FETCH_CURRENT_POST + '_PENDING':
+    case types.FETCH_LATEST_POSTS + '_PENDING':
       return [...state, action.meta.id]
 
-    case 'FETCH_OPTIONS_FULFILLED':
-    case 'FETCH_MENU_FULFILLED':
-    case 'FETCH_PAGE_FULFILLED':
-    case 'FETCH_CURRENT_POST_FULFILLED':
-    case 'FETCH_LATEST_POSTS_FULFILLED':
+    case types.FETCH_OPTIONS + '_FULFILLED':
+    case types.FETCH_MENU + '_FULFILLED':
+    case types.FETCH_PAGE + '_FULFILLED':
+    case types.FETCH_CURRENT_POST + '_FULFILLED':
+    case types.FETCH_LATEST_POSTS + '_FULFILLED':
       const index = state.indexOf(action.meta.id)
       return [
         ...state.slice(0, index),

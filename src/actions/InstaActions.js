@@ -1,11 +1,12 @@
 import Instafeed from 'instafeed.js'
 import store from '../store'
+import types from '.'
 
 const _getInstaSuccess = (response) => {
-  store.dispatch({type: 'FETCH_INSTA_FULFILLED', payload: response.data})
+  store.dispatch({type: types.FETCH_INSTA + '_FULFILLED', payload: response.data})
 }
 
-const _getInsta = (feed) => ({type: 'FETCH_INSTA_PENDING', payload: feed.run()})
+const _getInsta = (feed) => ({type: types.FETCH_INSTA + '_PENDING', payload: feed.run()})
 
 export const fetchInsta = (user) => (dispatch, getState) => {
   const {lastFetched} = getState().insta

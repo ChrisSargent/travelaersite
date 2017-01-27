@@ -1,14 +1,15 @@
 import axios from 'axios'
+import types from '.'
 
 const _getPosts = (slug) => {
   var type,
     id
 
   if (slug) {
-    type = 'FETCH_CURRENT_POST'
+    type = types.FETCH_CURRENT_POST
     id = 'currentPost'
   } else {
-    type = 'FETCH_LATEST_POSTS'
+    type = types.FETCH_LATEST_POSTS
     id = 'posts'
   }
 
@@ -49,7 +50,7 @@ export const fetchCurrentPost = (slug) => (dispatch, getState) => {
 
 export const fetchInitPosts = (slug) => (dispatch) => {
   return dispatch({
-    type: 'FETCH_INIT_POSTS',
+    type: types.FETCH_INIT_POSTS,
     payload: Promise.all([
       dispatch(_getPosts(slug)),
       dispatch(_getPosts())

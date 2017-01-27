@@ -1,3 +1,5 @@
+import types from '../actions'
+
 const generateSide = (latestPosts, slug) => {
   var count = 0,
     filteredPosts = []
@@ -57,7 +59,7 @@ const PostsReducer = (state = {
 }, action) => {
 
   switch (action.type) {
-    case 'FETCH_LATEST_POSTS_FULFILLED':
+    case types.FETCH_LATEST_POSTS + '_FULFILLED':
       const latestPosts = action.payload.data
       return {
         ...state,
@@ -65,17 +67,17 @@ const PostsReducer = (state = {
         latestPosts
       }
 
-    case 'FETCH_CURRENT_POST_FULFILLED':
+    case types.FETCH_CURRENT_POST + '_FULFILLED':
       const currentPost = action.payload.data
       return {
         ...state,
         allPosts: updateLookup(currentPost, state.allPosts)
       }
 
-    case 'FETCH_INIT_POSTS_FULFILLED':
+    case types.FETCH_INIT_POSTS + '_FULFILLED':
       return state
 
-    case 'REFRESH_COMMENTS_FULFILLED':
+    case types.REFRESH_COMMENTS + '_FULFILLED':
       const {slug, t_comments_info} = action.payload.data
       return {
         ...state,
