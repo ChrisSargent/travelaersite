@@ -9,10 +9,8 @@ const generateSide = (latestPosts, slug) => {
   return filteredPosts
 }
 
-export const getPostsObj = ({
-  latestPosts,
-  allPosts
-}, slug) => {
+export const getPostsObj = ({posts}, slug) => {
+  const {latestPosts, allPosts} = posts
   var postsObj
 
   if (!latestPosts || !allPosts)
@@ -88,8 +86,6 @@ const PostsReducer = (state = {
           }
         }
       }
-      break
-
     default:
       break
   }

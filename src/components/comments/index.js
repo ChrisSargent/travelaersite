@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {getSubmitted} from '../../reducers/submit'
 import ArticleHeader from '../article-header'
 import CommentList from '../comment-list'
 import Submit from '../submit'
@@ -16,7 +17,6 @@ class Comments extends Component {
       messageCommentID: false
     }
     this.handleClick = this.handleClick.bind(this)
-
   }
 
   componentWillReceiveProps(newProps) {
@@ -66,5 +66,5 @@ class Comments extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({submitted: state.submit.submitted})
+const mapStateToProps = (state) => ({submitted: getSubmitted(state)})
 export default connect(mapStateToProps)(Comments)

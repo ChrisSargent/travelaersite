@@ -1,3 +1,11 @@
+export const getSubmitted = ({submit}) => {
+  return submit.submitted
+}
+
+export const getSubmit = ({submit}) => {
+  return submit
+}
+
 const submit = (state = {
   showLoader: false,
   submitted: false,

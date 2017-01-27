@@ -1,3 +1,7 @@
+export const getMessages = ({messages}) => {
+  return messages
+}
+
 const messages = (state = {
   content: '',
   type: '',
@@ -16,9 +20,6 @@ const messages = (state = {
         content: content,
         type: 'success'
       }
-
-    // If requested, also update the comments
-    // updateComments && PostsActions.fetchPost(response.data.post)
 
     case 'POST_COMMENT_REJECTED':
       const {message} = action.payload.response.data

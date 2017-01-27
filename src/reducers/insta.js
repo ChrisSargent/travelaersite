@@ -1,3 +1,7 @@
+export const getInsta = ({insta}) => {
+  return insta.feed
+}
+
 const insta = (state = {
   lastFetched: false,
   feed: []

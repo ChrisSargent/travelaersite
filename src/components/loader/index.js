@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {getLoading} from '../../reducers/loading'
 import css from '../../lib/css'
 import SVG from '../svg'
 import './_loader.sass'
@@ -18,5 +19,5 @@ const Loader = ({displayLoader}) => {
   )
 }
 
-const mapStateToProps = (state) => ({displayLoader: state.loading.length})
+const mapStateToProps = (state) => ({displayLoader: getLoading(state)})
 export default connect(mapStateToProps)(Loader)

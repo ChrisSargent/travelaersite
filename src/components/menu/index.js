@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {IndexLink, Link} from 'react-router'
 import {fetchMenu} from '../../actions/SiteActions'
+import {getMenu} from '../../reducers/site'
 import {globals, stripDomain} from '../../lib/utils'
 import css from '../../lib/css'
 import MenuToggle from '../menu-toggle'
@@ -119,7 +120,7 @@ class Menu extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({menu: state.site.menu})
+const mapStateToProps = (state, ownProps) => ({menu: getMenu(state)})
 const mapDispatchToProps = (dispatch, ownProps) => ({
   init: dispatch(fetchMenu(ownProps.location))
 })

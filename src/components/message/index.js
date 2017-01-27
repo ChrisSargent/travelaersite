@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {resetMessages} from '../../actions/CommentsActions'
+import {getMessages} from '../../reducers/messages'
 import css from '../../lib/css'
 import './_message.sass'
 
@@ -52,7 +53,7 @@ class Message extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({messages: state.messages})
+const mapStateToProps = (state) => ({messages: getMessages(state)})
 const mapDispatchToProps = (dispatch) => ({
   resetMessages() {
     dispatch(resetMessages())

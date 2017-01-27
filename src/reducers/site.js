@@ -1,3 +1,11 @@
+export const getOptions = ({site}) => {
+  return site.options
+}
+
+export const getMenu = ({site}) => {
+  return site.menu
+}
+
 const site = (state = {
   options: null,
   menu: null,

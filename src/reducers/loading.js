@@ -1,3 +1,7 @@
+export const getLoading = (state) => {
+  return state.loading.length
+}
+
 const loading = (state = [], action) => {
 
   switch (action.type) {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {postComment, resetMessages, cacheComment} from '../../actions/CommentsActions'
+import {getSubmit} from '../../reducers/submit'
 import Actions from '../actions'
 import ArticleHeader from '../article-header'
 import css from '../../lib/css'
@@ -95,7 +96,7 @@ class Submit extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({submit: state.submit})
+const mapStateToProps = (state) => ({submit: getSubmit(state)})
 const mapDispatchToProps = (dispatch) => ({
   postComment(commentData, updateComments) {
     dispatch(postComment(commentData, updateComments)).catch(error => {})

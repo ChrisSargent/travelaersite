@@ -1,15 +1,14 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import {connect} from 'react-redux'
+import {getOptions} from '../../reducers/site'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
 
 const Base = (props) => {
-  var metaInfo, footerAppend
+  var metaInfo
   const {options} = props
-
-  footerAppend = 'PHOTOCREDIT: TO ADD BACK IN'
 
   if (options) {
     metaInfo = {
@@ -26,12 +25,12 @@ const Base = (props) => {
     <div>
       {metaInfo && <Helmet {...metaInfo}/>}
       <Header/>
-      {React.cloneElement(props.children, {options: options})}
-      <Footer options={options} footerAppend={footerAppend}/>
+      {props.children}
+      <Footer/>
       <Loader/>
     </div>
   )
 }
 
-const mapStateToProps = (state) => ({options: state.site.options})
+const mapStateToProps = (state) => ({options: getOptions(state)})
 export default connect(mapStateToProps)(Base)

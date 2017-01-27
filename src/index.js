@@ -3,13 +3,11 @@ import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 import store from './store'
+import {fetchOptions} from './actions/SiteActions'
 import {globals} from './lib/utils'
 import Base from './views/base'
 import Page from './views/page'
 import Posts from './views/posts'
-
-import {fetchOptions} from './actions/SiteActions'
-
 import './lib/sass/index.sass'
 
 // Define where to render the app

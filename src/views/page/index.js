@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Helmet from "react-helmet"
 import {connect} from 'react-redux'
 import {fetchPage} from '../../actions/SiteActions'
+import {getOptions} from '../../reducers/site'
+import {getPage} from '../../reducers/pages'
 import Banner from '../../sections/banner'
 import Countries from '../../sections/countries'
 import Contact from '../../sections/contact'
@@ -163,7 +165,8 @@ class Page extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  page: state.pages[state.pages.currentPageSlug]
+  page: getPage(state),
+  options: getOptions(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

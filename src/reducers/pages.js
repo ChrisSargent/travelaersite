@@ -1,3 +1,7 @@
+export const getPage = ({pages}) => {
+  return pages[pages.currentPageSlug]
+}
+
 const pages = (state = {
   currentPageSlug: null
 }, action) => {

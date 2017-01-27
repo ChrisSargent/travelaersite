@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchInsta} from '../../actions/InstaActions'
+import {getOptions} from '../../reducers/site'
+import {getInsta} from '../../reducers/insta'
 import css from '../../lib/css'
 import RespImageCover from '../resp-image-cover'
 import SVG from '../svg'
@@ -63,8 +65,8 @@ class Insta extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const {instAuthToken, instUserName, instUserNameID} = state.site.options
-  const {feed} = state.insta
+  const {instAuthToken, instUserName, instUserNameID} = getOptions(state)
+  const feed = getInsta(state)
   return ({instAuthToken, instUserName, instUserNameID, feed})
 }
 
