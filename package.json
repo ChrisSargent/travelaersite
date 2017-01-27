@@ -52,7 +52,6 @@
     "whatwg-fetch": "*"
   },
   "dependencies": {
-    "flux": "*",
     "history": "*",
     "instafeed.js": "^1.4.1",
     "react": "*",

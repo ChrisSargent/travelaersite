@@ -77,9 +77,17 @@ const PostsReducer = (state = {
     case 'FETCH_INIT_POSTS_FULFILLED':
       return state
 
-    case 'FETCH_POST_FULFILLED':
-      // const {id, t_comments_info} = action.post
-      // this.updatePostComments(id, t_comments_info)
+    case 'REFRESH_COMMENTS_FULFILLED':
+      const {slug, t_comments_info} = action.payload.data
+      return {
+        ...state,
+        allPosts: {...state.allPosts,
+          [slug]: {
+            ...state.allPosts[slug],
+            t_comments_info: t_comments_info
+          }
+        }
+      }
       break
 
     default:

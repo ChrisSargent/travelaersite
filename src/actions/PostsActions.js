@@ -1,17 +1,5 @@
 import axios from 'axios'
 
-// export const fetchPost = (postID) => {
-//   const params = {
-//     fields: 'id,t_comments_info'
-//   }
-//   axios.get('/wp/v2/posts/' + postID, {params}).then(function(response) {
-//     // console.log('fetchPost: ', response.data);
-//     dispatcher.dispatch({type: 'RECEIVE_POST', post: response.data});
-//   }).catch(function(error) {
-//     console.log(error);
-//   });
-// }
-
 const _getPosts = (slug) => {
   var type,
     id
