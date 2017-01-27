@@ -27,6 +27,7 @@ render(
       <Route path={globals.companyUrl} component={Base}>
         <IndexRoute component={Page}/>
         <Route path="team" component={Page}/>
+        <Route path="story" component={Page}/>
       </Route>
       <Route path={globals.productsUrl} component={Base}>
         <IndexRoute component={Page}/>

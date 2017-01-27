@@ -28,6 +28,9 @@ $mg-defeat: $pd--h--dt / -1
       background-image: linear-gradient(to bottom, transparentize($co--blue-vio, 1) 0%, transparentize($co--blue-vio, 0.8) 100%)
 
   &.-searchshop
+    z-index: $z--top
+
+  &.-instapricer
     z-index: $z--mid
 
 .main-tpaas
@@ -90,6 +93,7 @@ $mg-defeat: $pd--h--dt / -1
 
         .image
           &:nth-of-type(1)
+            position: relative
             max-width: 480px
             margin-left: $mg-defeat
             z-index: $z--top
@@ -121,6 +125,7 @@ $mg-defeat: $pd--h--dt / -1
         width: 50%
         max-width: 500px
         margin-left: $mg-defeat
+        margin-bottom: -70px
 
     &.-award
       +clearfix
