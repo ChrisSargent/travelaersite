@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {resetMessages} from '../../actions/CommentsActions'
+import {resetMessages} from '../../actions/comments'
 import {getMessages} from '../../reducers/messages'
 import css from '../../lib/css'
 import './_message.sass'

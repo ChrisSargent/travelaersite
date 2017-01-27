@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchLatestPosts, fetchInitPosts} from '../../actions/PostsActions'
+import {fetchLatestPosts, fetchInitPosts} from '../../actions/posts'
 import {getPostsObj} from '../../reducers/posts'
 import css from '../../lib/css'
 import Helmet from "react-helmet"

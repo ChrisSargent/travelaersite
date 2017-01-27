@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchInsta} from '../../actions/InstaActions'
+import {fetchInsta} from '../../actions/insta'
 import {getOptions} from '../../reducers/site'
 import {getInsta} from '../../reducers/insta'
 import css from '../../lib/css'

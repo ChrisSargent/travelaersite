@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {postComment, resetMessages, cacheComment} from '../../actions/CommentsActions'
+import {postComment, resetMessages, cacheComment} from '../../actions/comments'
 import {getSubmit} from '../../reducers/submit'
 import Actions from '../actions'
 import ArticleHeader from '../article-header'
