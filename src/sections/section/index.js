@@ -3,7 +3,7 @@ import css from '../../lib/css'
 import RespImageCover from '../../components/resp-image-cover'
 import './_section.sass'
 
-const Section = ({compName, image, respSizes, skew, overlaps, children, background, contSize}) => {
+const Section = ({compName, image, respSizes, allowFullsize, skew, overlaps, children, background, contSize}) => {
   var sectionModifier = '',
     contModifier = '',
     skewClass = '',
@@ -36,7 +36,7 @@ const Section = ({compName, image, respSizes, skew, overlaps, children, backgrou
       {children && <div className={css.container + contModifier}>{children}</div>}
       <div className={'section-background' + skewClass}>
         <div className={'_bgcol' + skewCorrectionClass}>
-          <RespImageCover image={image} respSizes={respSizes}/>
+          <RespImageCover image={image} respSizes={respSizes} allowFullsize={allowFullsize}/>
         </div>
       </div>
     </section>

@@ -43,7 +43,8 @@ class Page extends Component {
         var name,
           content,
           respSizes,
-          contSize
+          contSize,
+          allowFullsize
         const {
           acf_fc_layout,
           image,
@@ -72,6 +73,7 @@ class Page extends Component {
 
           case 'products':
             name = 'products'
+            allowFullsize = true
             respSizes = "(min-width: 840px) 150vw, 100vw"
             content = <Products {...block} compName={name}/>
             break
@@ -115,7 +117,7 @@ class Page extends Component {
             break
         }
         return (
-          <Section key={index} compName={name} image={image} respSizes={respSizes} skew={skew} overlaps={overlaps} background={background} contSize={contSize}>
+          <Section key={index} compName={name} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background} contSize={contSize}>
             {content}
           </Section>
         )

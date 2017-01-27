@@ -45,7 +45,7 @@ const MosaicTile = ({content, image, type, colour, size, link, name, job_title, 
         <SVG type={type}/>
         <Wysiwyg content={content}/>
         {footer}
-        <RespImageCover image={image} alt={alt}/>
+        <RespImageCover image={image} alt={alt} srcVersion="medium_large" respSizes="(min-width: 840px) 600px, 50vw"/>
       </TagType>
     </li>
   )

@@ -1,0 +1,861 @@
+{
+    "key": "group_56fbb531d06f8",
+    "title": "Theme Settings",
+    "fields": [
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_56fbc37c92453",
+            "label": "Basic Information",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": 80,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_5752f44cd9cf8",
+            "label": "Contact Person",
+            "name": "contactPerson",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": 20,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_56fbc3a4c17c2",
+            "label": "Contact Telephone",
+            "name": "contactTelephone",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_5704e5b18f77e",
+            "label": "Contact Fax",
+            "name": "contactFax",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_56fc1ccb524ce",
+            "label": "Contact Email",
+            "name": "contactEmail",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": 100,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_56fbc57a22eb9",
+            "label": "Legal Name",
+            "name": "legalName",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": 40,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_56fbc58822eba",
+            "label": "Company Registration Number",
+            "name": "coRegNumber",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_57ed7f926a849",
+            "label": "Company Tax Number",
+            "name": "coTaxNumber",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "height": "",
+            "center_lat": "43.6149829",
+            "center_lng": "7.0723463",
+            "zoom": "",
+            "key": "field_57bdb08b66503",
+            "label": "Location",
+            "name": "location",
+            "type": "google_map",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_56fbc55d22eb8",
+            "label": "Street Address 1",
+            "name": "streetAddress1",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_57ed06d0c5171",
+            "label": "Street Address 2",
+            "name": "streetAddress2",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579b2b6c651c3",
+            "label": "Department",
+            "name": "region",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579b2b92651c4",
+            "label": "Postal Code",
+            "name": "postalCode",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579b2b51651c2",
+            "label": "City",
+            "name": "locality",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579b2baf651c5",
+            "label": "Country",
+            "name": "country",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_579efc46f0192",
+            "label": "Social & Sharing",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "key": "field_57d29e67a99fd",
+                    "label": "Social Network Link",
+                    "name": "link",
+                    "type": "url",
+                    "instructions": "Enter the link your social network page as required. e.g. https:\/\/www.instagram.com\/XXXX\/",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "choices": {
+                        "facebook": "Facebook",
+                        "twitter": "Twitter",
+                        "instagram": "Instagram",
+                        "google": "Google +",
+                        "linkedin": "LinkedIn"
+                    },
+                    "default_value": [],
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "array",
+                    "key": "field_579efcc2f0196",
+                    "label": "Icon Type",
+                    "name": "iconType",
+                    "type": "select",
+                    "instructions": "Enter the type of the icon to display",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Network",
+            "collapsed": "",
+            "key": "field_579efc56f0193",
+            "label": "Social Networks",
+            "name": "socialNetworks",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "placeholder": "",
+                    "key": "field_57ee11d157fd7",
+                    "label": "External Link",
+                    "name": "external_link",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "key": "field_583569bd7974c",
+                    "label": "External Logo",
+                    "name": "external_logo",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Link",
+            "collapsed": "",
+            "key": "field_57ee114ba94de",
+            "label": "External Links",
+            "name": "externalLinks",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": 200,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_56fc16b68eca4",
+            "label": "Fallback Social Description",
+            "name": "fbSocialDesc",
+            "type": "text",
+            "instructions": "Enter a 'fallback' description for when content is shared on social networks. Only used in case there is no specific content for the page being shared (recommended max 140 chars).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 1200,
+            "min_height": 630,
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": 8,
+            "mime_types": ".jpg,.jpeg,.png",
+            "key": "field_56fbc6cb0932d",
+            "label": "Fallback Social Share Image",
+            "name": "fbSocialImg",
+            "type": "image",
+            "instructions": "Enter a 'fallback' image for when content is shared on social networks. Only used in case there is no specific image for the page being shared. Use images that are at least 1200 x 630 pixels for the best display on high resolution devices. At the minimum, you should use images that are 600 x 315 pixels to display link page posts with larger images. Images can be up to 8MB in size.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_56fbc36292452",
+            "label": "Integrations",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "https:\/\/plus.google.com\/+",
+            "append": "",
+            "key": "field_579f0a12dfc46",
+            "label": "Google Plus Page ID",
+            "name": "gPlusID",
+            "type": "text",
+            "instructions": "This is used for SEO purposes and helps with giving structured information to Google.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579f2b8385ce8",
+            "label": "Facebook ID",
+            "name": "fbID",
+            "type": "text",
+            "instructions": "Enter the numeric Facebook ID for your company profile page. To find your ID, enter the link to your Facebook page here: <a href=\"http:\/\/findmyfbid.com\/\" target=\"_blank\">http:\/\/findmyfbid.com\/<\/a>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579f2c267108e",
+            "label": "Facebook App ID",
+            "name": "fbAppID",
+            "type": "text",
+            "instructions": "In order to use <a href=\"https:\/\/developers.facebook.com\/docs\/platforminsights\/domains\" target=\"blank\">Facebook Domain Insights<\/a> you must add the app ID to your page. Domain Insights lets you view analytics for traffic to your site from Facebook. Find the app ID in your <a href=\"https:\/\/developers.facebook.com\/apps\" target=\"blank\">App Dashboard<\/a>.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "key": "field_579f119eb014d",
+                    "label": "Admin ID",
+                    "name": "admin_id",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "readonly": 0,
+                    "disabled": 0
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Admin",
+            "collapsed": "",
+            "key": "field_56fbc794281e8",
+            "label": "Facebook Admins",
+            "name": "fbAdmins",
+            "type": "repeater",
+            "instructions": "Enter the Facebook IDs of the people who you would like to have admin access to your Facebook insights. See here: <a href=\"https:\/\/developers.facebook.com\/docs\/platforminsights\/domains\" target=\"_blank\">https:\/\/developers.facebook.com\/docs\/platforminsights\/domains<\/a>. To find your ID, enter the link to your Facebook page here: <a href=\"http:\/\/findmyfbid.com\/\" target=\"_blank\">http:\/\/findmyfbid.com\/<\/a>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "https:\/\/www.instagram.com\/",
+            "append": "",
+            "key": "field_57d2bc8dc702c",
+            "label": "Instagram User Name",
+            "name": "instUserName",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_5799396182480",
+            "label": "Instagram User ID",
+            "name": "instUserNameID",
+            "type": "number",
+            "instructions": "We need your user ID for Instagram (not your name, this will be a number). Visit: <a target=\"_blank\" href=\"https:\/\/smashballoon.com\/instagram-feed\/find-instagram-user-id\/\">https:\/\/smashballoon.com\/instagram-feed\/find-instagram-user-id\/<\/a> to find yours.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579938f88247f",
+            "label": "Instagram Auth Token",
+            "name": "instAuthToken",
+            "type": "text",
+            "instructions": "We need an auth token for Instagram. Visit: <a target=\"_blank\" href=\"http:\/\/instagram.pixelunion.net\/\">http:\/\/instagram.pixelunion.net\/<\/a> to generate one.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_56fbbf0cc856e",
+            "label": "Pinterest Verification Code",
+            "name": "pinVerifCode",
+            "type": "text",
+            "instructions": "See: <a href=\"https:\/\/help.pinterest.com\/en\/articles\/confirm-your-website\" target=\"_blank\">https:\/\/help.pinterest.com\/en\/articles\/confirm-your-website<\/a>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_57c9728642582",
+            "label": "Mailchimp API Key",
+            "name": "chimpApiKey",
+            "type": "text",
+            "instructions": "Get it from here: <a href=\"https:\/\/us3.admin.mailchimp.com\/account\/api\/\" target=\"_blank\">https:\/\/us3.admin.mailchimp.com\/account\/api\/<\/a>. For more information see:<a href=\"http:\/\/kb.mailchimp.com\/integrations\/api-integrations\/about-api-keys\" target=\"_blank\">http:\/\/kb.mailchimp.com\/integrations\/api-integrations\/about-api-keys<\/a>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_57c972f142583",
+            "label": "Mailchimp List ID",
+            "name": "chimpListID",
+            "type": "text",
+            "instructions": "Go to the list you want (<a href=\"https:\/\/us3.admin.mailchimp.com\/lists\/\" target=\"_blank\">https:\/\/us3.admin.mailchimp.com\/lists\/<\/a>) to add subscribers to. Click on 'Settings -> List name and defaults'. You'll see this: \"Some plugins and integrations may request your List ID. Typically, this is what they want:\". Copy and paste that number below.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_57bda0b775843",
+            "label": "Google Maps API Key",
+            "name": "gMapsApiKey",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579f09b86d2ca",
+            "label": "Bing Verification Code",
+            "name": "bingVerifCode",
+            "type": "text",
+            "instructions": "See <a href=\"https:\/\/www.bing.com\/webmaster\/help\/how-to-verify-ownership-of-your-site-afcfefc6\" target=\"_blank\">https:\/\/www.bing.com\/webmaster\/help\/how-to-verify-ownership-of-your-site-afcfefc6<\/a>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_579b9b8062c45",
+            "label": "Other SEO \/ Meta Information",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579b9bf2fd1f6",
+            "label": "Founder",
+            "name": "founder",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "display_format": "F j, Y",
+            "return_format": "Y\/m\/d",
+            "first_day": 1,
+            "key": "field_579b9bfcfd1f7",
+            "label": "Founding Date",
+            "name": "foundingDate",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
+            "maxlength": 200,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_579a37995dfa8",
+            "label": "Default Keywords",
+            "name": "defaultKeywords",
+            "type": "text",
+            "instructions": "Comma separated keywords (used as meta information to help with some SEO)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "key": "field_579b9ba262c46",
+            "label": "Site Logo",
+            "name": "siteLogo",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-theme-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1485548502
+}
