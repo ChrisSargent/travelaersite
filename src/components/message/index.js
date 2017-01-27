@@ -1,64 +1,62 @@
-import React, {Component} from 'react';
-import css from '../../lib/css';
-import MessageStore from '../../stores/MessageStore'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {resetMessages} from '../../actions/CommentsActions'
+import {getMessages} from '../../reducers/messages'
+import css from '../../lib/css'
+import './_message.sass'
 
-import './_message.sass';
-
-export default class Message extends Component {
+class Message extends Component {
   constructor() {
-    super();
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.state = {
-      messageObj: MessageStore.getMessageObj()
-    }
+    super()
+    this.handleClose = this.handleClose.bind(this)
   }
 
   componentWillMount() {
-    MessageStore.on('change', this.handleUpdate);
-    this.props.reset && MessageStore.resetMessage();
-  }
-
-  componentWillUnmount() {
-    MessageStore.removeListener('change', this.handleUpdate);
-  }
-
-  handleUpdate() {
-    this.setState({messageObj: MessageStore.getMessageObj()});
+    this.props.resetMessages()
   }
 
   handleClose() {
-    this.setState({messageObj: {}})
+    this.props.resetMessages()
   }
 
   render() {
-    const {message, messageType, error} = this.state.messageObj;
-    if(!message)
-      return null;
+    const {content, type, error} = this.props.messages
+    if (!content)
+      return null
 
-    const compName = 'message';
+    const compName = 'message'
     var compClass = css.main + compName
 
-    switch (messageType) {
+    switch (type) {
       case 'error':
-        compClass += css.error;
-        break;
+        compClass += css.error
+        break
       case 'warning':
-        compClass += css.warning;
-        break;
+        compClass += css.warning
+        break
       case 'success':
-        compClass += css.success;
-        break;
+        compClass += css.success
+        break
       default:
-
+        break
     }
 
     return (
       <div className={compClass}>
-        {message}
+        {content}
         {error && <span className="error" dangerouslySetInnerHTML={{__html: error}}></span>}
-        <span className="close" onClick={this.handleClose}>&times;</span>
+        <span className="close" onClick={this.handleClose}>
+          <span>Close</span>
+        </span>
       </div>
-    );
+    )
   }
 }
+
+const mapStateToProps = (state) => ({messages: getMessages(state)})
+const mapDispatchToProps = (dispatch) => ({
+  resetMessages() {
+    dispatch(resetMessages())
+  }
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Message)

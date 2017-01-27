@@ -1,86 +1,65 @@
-import axios from 'axios';
-import dispatcher from '../dispatcher';
+import axios from 'axios'
+import {getRequesedSlug} from '../lib/utils'
 
-// *****************************************************************************
-
-export function loading(id) {
-  dispatcher.dispatch({type: 'LOADER', loading: true, id: 'loading_' + id});
-  // console.log('Loading:' + id);
-}
-
-export function finished(id) {
-  dispatcher.dispatch({type: 'LOADER', loading: false, id: 'loading_' + id});
-  // console.log('Finished:' + id);
+if (process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = 'http://travelaersite.dev/wordpress/wp-json'
+} else {
+  axios.defaults.baseURL = 'http://travelaer.stickypixel.com/wordpress/wp-json'
 }
 
 // *****************************************************************************
-
-export function fetchMenu(location) {
-  dispatcher.dispatch({type: 'FETCH_MENU', id: 'fetchMenu', loading: true});
-  axios.get('/wp-api-menus/v2/menu-locations/' + location).then(function(response) {
-    dispatcher.dispatch({type: 'RECEIVE_MENU', menu: response.data, location: location, id: 'fetchMenu', loading: false});
-    // console.log(response.data);
-  }).catch(function(error) {
-    console.log(error);
-  });
-}
-
+// ******************************* SITE ACTIONS ********************************
 // *****************************************************************************
 
-export function resetMessages() {
-  dispatcher.dispatch({type: 'RESET_MESSAGE'});
-}
+export const fetchMenu = (location) => ({
+  type: 'FETCH_MENU',
+  payload: axios.get('/wp-api-menus/v2/menu-locations/' + location),
+  meta: {
+    location: location,
+    id: 'menu'
+  }
+})
+
+export const fetchOptions = () => ({
+  type: 'FETCH_OPTIONS',
+  payload: axios.get('/acf/v2/options'),
+  meta: {
+    id: 'options'
+  }
+})
 
 // *****************************************************************************
-
-export function fetchOptions() {
-  dispatcher.dispatch({type: 'FETCH_OPTIONS', id: 'fetchOptions', loading: true});
-  axios.get('/acf/v2/options').then(function(response) {
-    dispatcher.dispatch({type: 'RECEIVE_OPTIONS', options: response.data.acf, id: 'fetchOptions', loading: false});
-    // console.log(response.data);
-  }).catch(function(error) {
-    console.log(error);
-  });
-}
-
+// ******************************* PAGE ACTIONS ********************************
 // *****************************************************************************
 
-export function fetchPage(slug) {
+// Updates the current slug in the state
+const _updateCurrentSlug = (slug) => ({type: 'UPDATE_CURRENT_PAGE', payload: slug})
+
+// Gets a single page object from the WP API
+const _getPage = (slug) => {
   const params = {
     slug: slug,
     fields: 'acf,slug,id,title'
   }
-  dispatcher.dispatch({type: 'FETCH_PAGE', id: 'fetchPage', loading: true});
-
-  axios.get('/wp/v2/pages', {params}).then(function(response) {
-    dispatcher.dispatch({type: 'RECEIVE_PAGE', page: response.data[0], id: 'fetchPage', loading: false});
-    // console.log(response.data);
-  }).catch(function(error) {
-    console.log(error);
-  });
+  return {
+    type: 'FETCH_PAGE',
+    payload: axios.get('/wp/v2/pages', {params}),
+    meta: {
+      id: 'page'
+    }
+  }
 }
 
-// For all pages 40.6kb before field removal, 28kb after all fields except acf
-// Available Fields
-// _links: Object
-// acf: Object
-// author: 1
-// comment_status: "closed"
-// content: Object
-// date: "2016-09-28T07:32:53"
-// date_gmt: "2016-09-28T07:32:53"
-// excerpt: Object
-// featured_media: 0
-// guid: Object
-// id: 14
-// link: "http://travelaersite.dev/wordpress/company/team/"
-// menu_order: 0
-// meta: Array[0]
-// modified: "2016-11-29T19:34:56"
-// modified_gmt: "2016-11-29T18:34:56"
-// parent: 221
-// ping_status: "closed"
-// slug: "team"
-// template: ""
-// title: Object
-// type: "page"
+// Checks if a page exists in the cache and then calls the WP API if not
+export const fetchPage = (pathname) => (dispatch, getState) => {
+  const requestedSlug = getRequesedSlug(pathname)
+  const page = getState().pages[requestedSlug]
+
+  if (page) {
+    return dispatch(_updateCurrentSlug(requestedSlug))
+  } else {
+    return dispatch(_getPage(requestedSlug))
+  }
+}
+
+// *****************************************************************************

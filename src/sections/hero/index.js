@@ -1,30 +1,19 @@
-import React from 'react';
-import css from '../../lib/css';
+import React from 'react'
+import css from '../../lib/css'
+import SVG from '../../components/svg'
+import Wysiwyg from '../../components/wysiwyg'
+import './_hero.sass'
 
-import SVG from '../../components/svg';
-import Wysiwyg from '../../components/wysiwyg';
+const Hero = ({compName, headlinePre, headline, headlinePost, headlineImage, content, fullscreen, paragraphWidth, contentImage}) => {
+  var modifier, hasHeadline
 
-import './_hero.sass';
+  fullscreen
+   ? modifier = ' -fullscreen'
+   : modifier = ''
 
-function Hero(props) {
-  var modifier = '';
-  var hasHeadline = false;
-  const {
-    compName,
-    headlinePre,
-    headline,
-    headlinePost,
-    headlineImage,
-    content,
-    fullscreen,
-    paragraphWidth,
-    contentImage,
-  } = props;
-
-  fullscreen && (modifier = ' -fullscreen');
-
-  if (headlinePre || headline || headlinePost || headlineImage)
-    hasHeadline = true;
+  headlinePre || headline || headlinePost || headlineImage
+    ? hasHeadline = true
+    : hasHeadline = false
 
   return (
     <div className={css.main + compName + modifier}>
@@ -37,7 +26,7 @@ function Hero(props) {
       <Wysiwyg content={content} size={paragraphWidth}/>
       <SVG type={contentImage}/>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

@@ -21,14 +21,19 @@
     font-weight: 700
 
   > .close
-    display: block
     font-size: 3em
     position: absolute
     top: 50%
     right: $pd--s
-    transform: translateY(-50%) scaleX(1) rotate(0deg)
+    transform: translateY(-50%) rotate(0deg)
     cursor: pointer
     transition: transform $tr--m
 
+    &::after
+      content: '\00d7'
+
+    span
+      +sr-only
+
     &:hover
-      transform: translateY(-50%) scale(1.1) rotate(540deg)
+      transform: translateY(-55%) rotate(540deg)

@@ -1,12 +1,9 @@
-import React from 'react';
-import css from '../../lib/css';
+import React from 'react'
+import css from '../../lib/css'
+import SVG from '../../components/svg'
+import Wysiwyg from '../../components/wysiwyg'
 
-import SVG from '../../components/svg';
-import Wysiwyg from '../../components/wysiwyg';
-
-function Features(props) {
-  const {compName, feature} = props;
-
+const Features = ({compName, feature}) => {
   const featureMap = feature.map((item, index) => {
 
     return (
@@ -15,8 +12,8 @@ function Features(props) {
         <h2 className={css.title}>{item.title}</h2>
         <Wysiwyg content={item.content}/>
       </li>
-    );
-  });
+    )
+  })
 
   return (
     <div className={css.main + compName}>
@@ -24,7 +21,7 @@ function Features(props) {
         {featureMap}
       </ul>
     </div>
-  );
+  )
 }
 
-export default Features;
+export default Features

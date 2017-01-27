@@ -1,27 +1,28 @@
-import axios from 'axios';
-import dispatcher from '../dispatcher';
+import axios from 'axios'
 
-import * as PostsActions from '../actions/PostsActions';
-
-export function addComment(paramsString, updateComments) {
-  dispatcher.dispatch({type: 'ADDING_COMMENT'});
-  axios.post('/wp/v2/comments' + paramsString).then(function(response) {
-    switch (response.data.status) {
-      case 'hold':
-        dispatcher.dispatch({type: 'PENDING_COMMENT'});
-        break;
-      default:
-        dispatcher.dispatch({type: 'APPROVED_COMMENT'});
-        // If requested, also update the comments
-        updateComments && PostsActions.fetchPost(response.data.post);
-    }
-
-  }).catch(function(error) {
-    // console.log(error);
-    dispatcher.dispatch({type: 'ERROR_COMMENT', message: error.response.data.message});
-  });
+export const refreshComments = (postID) => {
+  const params = {
+    fields: 'id,slug,t_comments_info'
+  }
+  return {
+    type: 'REFRESH_COMMENTS',
+    payload: axios.get('/wp/v2/posts/' + postID, {params})
+  }
 }
 
-export function cacheState(state) {
-  dispatcher.dispatch({type: 'STORE_INPUTS', cachedState: state});
+export const postComment = (paramsString, updateComments) => (dispatch) => {
+  return updateComments
+    ? dispatch({
+      type: 'POST_COMMENT',
+      payload: axios.post('/wp/v2/comments' + paramsString)
+    }).then((response) => dispatch(refreshComments(response.value.data.post)))
+    : dispatch({
+      type: 'POST_COMMENT',
+      payload: axios.post('/wp/v2/comments' + paramsString)
+    })
 }
+
+// TODO: updateComments && PostsActions.fetchPost(response.data.post)
+
+export const cacheComment = (uiState) => ({type: 'COMMENT_CACHE', payload: uiState})
+export const resetMessages = () => ({type: 'RESET_MESSAGE'})

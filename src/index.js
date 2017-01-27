@@ -1,41 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-
-import globals from './lib/globals';
-import Base from './views/base';
-import Page from './views/page';
-import Posts from './views/posts';
-
+import React from 'react'
+import {render} from 'react-dom'
+import {Provider} from 'react-redux'
+import {Router, Route, IndexRoute, browserHistory} from 'react-router'
+import store from './store'
+import {fetchOptions} from './actions/SiteActions'
+import {globals} from './lib/utils'
+import Base from './views/base'
+import Page from './views/page'
+import Posts from './views/posts'
 import './lib/sass/index.sass'
 
-const app = document.getElementById('root');
+// Define where to render the app
+const app = document.getElementById('root')
 
-function handleUpdate(a, b) {
-  const {action} = this.state.location;
+// Populate the Redux store with site options
+store.dispatch(fetchOptions())
 
-  if (action === 'PUSH') {
-    window.scrollTo(0, 0);
-  }
+function handleUpdate() {
+  const {action} = this.state.location
+  action === 'PUSH' && (window.scrollTo(0, 0))
 }
 
-ReactDOM.render(
-  <Router history={browserHistory} onUpdate={handleUpdate}>
-  <Route path={globals.companyUrl} component={Base}>
-    <IndexRoute component={Page}/>
-    <Route path="team" component={Page}/>
-  </Route>
-  <Route path={globals.productsUrl} component={Base}>
-    <IndexRoute component={Page}/>
-    <Route path="comversational" component={Page}/>
-    <Route path="travel-paas" component={Page}/>
-  </Route>
-  <Route path={globals.blogUrl} component={Base}>
-    <IndexRoute component={Posts}/>
-    <Route path="(:slug)" component={Posts}/>
-  </Route>
-  <Route path={globals.homeUrl} component={Base}>
-    <IndexRoute component={Page}/>
-    <Route path=":slug" component={Page}/>
-  </Route>
-</Router>, app);
+render(
+  <Provider store={store}>
+    <Router history={browserHistory} onUpdate={handleUpdate}>
+      <Route path={globals.companyUrl} component={Base}>
+        <IndexRoute component={Page}/>
+        <Route path="team" component={Page}/>
+      </Route>
+      <Route path={globals.productsUrl} component={Base}>
+        <IndexRoute component={Page}/>
+        <Route path="comversational" component={Page}/>
+        <Route path="travel-paas" component={Page}/>
+      </Route>
+      <Route path={globals.blogUrl} component={Base}>
+        <IndexRoute component={Posts}/>
+        <Route path="(:slug)" component={Posts}/>
+      </Route>
+      <Route path={globals.homeUrl} component={Base}>
+        <IndexRoute component={Page}/>
+        <Route path=":slug" component={Page}/>
+      </Route>
+    </Router>
+</Provider>,
+app)

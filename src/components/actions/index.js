@@ -1,23 +1,20 @@
-import React from 'react';
-import css from '../../lib/css';
-import stripDomain from '../../lib/strip-domain';
-import {Link} from 'react-router';
+import React from 'react'
+import {Link} from 'react-router'
+import {stripDomain} from '../../lib/utils'
+import css from '../../lib/css'
+import './_actions.sass'
 
-import './_actions.sass';
-
-function Actions(props) {
-  const {actions} = props;
-  const compName = 'actions';
-
+const Actions = ({actions}) => {
   if (!actions)
-    return;
+    return
 
+  const compName = 'actions'
   const actionsMap = actions.map((action, index) => {
-    var btnClass;
-    const url = stripDomain(action.linkTo);
+    var btnClass
+    const url = stripDomain(action.linkTo)
 
-    btnClass = css.btn;
-    action.modifier && (btnClass += ' -' + action.modifier);
+    btnClass = css.btn
+    action.modifier && (btnClass += ' -' + action.modifier)
 
     if (action.param) {
       return <button key={index} className={btnClass} type="button" data-actionparam={action.param}>{action.linkTitle}</button>
@@ -26,7 +23,7 @@ function Actions(props) {
     } else {
       return <Link key={index} to={url} className={btnClass}>{action.linkTitle}</Link>
     }
-  });
+  })
 
   return (
     <footer className={css.footer + compName}>
@@ -36,4 +33,4 @@ function Actions(props) {
 
 }
 
-export default Actions;
+export default Actions

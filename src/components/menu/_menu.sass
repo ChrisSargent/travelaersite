@@ -1,0 +1,90 @@
+@import _tools
+
+=link-menu
+  +heading-spaced
+  font-family: $ff--nav
+  font-size: $fs--xs
+  display: block
+  padding: $pd--l
+  text-align: center
+  text-decoration: none
+  border-bottom: 1px solid transparentize($co--wt, 0.7)
+
+  @media screen and (min-width: $bp--nv)
+    padding: 0
+    border: 0
+
+.main-menu
+  align-self: stretch
+
+.list-menu
+  position: fixed
+  top: $ht-header--mb
+  left: 0
+  align-items: stretch
+  width: 100vw
+  height: 100%
+  transition: transform $tr--f
+  transform: translate3d(100%, 0, 0)
+  background-color: $co--blue-grey--tt
+
+.link-menu
+  +link-menu
+  color: $co--blue--dk
+
+  &.-active
+    color: $co--green
+
+    &.-hassub
+      &::after
+        +caret($co--green)
+
+.main-submenu
+  display: none
+  background-color: $co--green
+
+  > .container
+    +clearfix
+
+  .link-menu.-active + &
+    display: block
+
+.list-submenu
+  .link-menu
+    color: $co--wt
+
+    &.-active
+      color: $co--brightyellow
+
+#toggle-menu:checked ~ .list-menu
+  transform: translate3d(0, 0, 0)
+
+@media screen and (min-width: $bp--nv)
+  .list-menu
+    +inline-children-item(0)
+    position: relative
+    top: auto
+    width: auto
+    transform: none
+    background: none
+
+    > .item
+      position: relative
+      display: flex
+      align-items: center
+      height: 100%
+
+  .main-submenu
+    +shadowborder($co--green)
+    padding: $pd--s
+    position: fixed
+    top: $ht-header--dt
+    left: 0
+    width: 100%
+
+    > .container
+      +cont--xl
+
+  .list-submenu
+    +inline-children-item
+    float: right

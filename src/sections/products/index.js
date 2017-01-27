@@ -1,26 +1,15 @@
-import React from 'react';
-import css from '../../lib/css';
+import React from 'react'
+import ArticleHeader from '../../components/article-header'
+import css from '../../lib/css'
+import ProductList from '../../components/product-list'
+import Wysiwyg from '../../components/wysiwyg'
+import './_products.sass'
 
-import ArticleHeader from '../../components/article-header';
-import ProductList from '../../components/product-list';
-import Wysiwyg from '../../components/wysiwyg';
+const Products = ({title, content, products, position, compName, alignment}) => {
+  var articleClass
 
-import './_products.sass';
-
-function Products(props) {
-  var articleClass;
-  const {
-    title,
-    content,
-    products,
-    position,
-    compName,
-    alignment
-  } = props;
-
-  // Setup the positioning classes
-  articleClass = css.article + compName;
-  position && (articleClass += ' -' + position);
+  articleClass = css.article + compName
+  position && (articleClass += ' -' + position)
 
   return (
     <div className={css.main + compName}>
@@ -32,7 +21,7 @@ function Products(props) {
       }
       <ProductList products={products} alignment={alignment}/>
     </div>
-  );
+  )
 }
 
-export default Products;
+export default Products

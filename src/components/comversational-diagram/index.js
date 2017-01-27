@@ -1,8 +1,7 @@
-import React from 'react';
-import './_diagram.sass';
+import React from 'react'
+import './_diagram.sass'
 
-function ComDiag(props) {
-
+const ComDiag = () => {
   return (
     <g fill="none" fillRule="evenodd">
       <g className="white">
@@ -214,4 +213,4 @@ function ComDiag(props) {
   )
 }
 
-export default ComDiag;
+export default ComDiag

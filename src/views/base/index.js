@@ -1,60 +1,36 @@
-import React, {Component} from 'react';
-import Helmet from "react-helmet";
+import React from 'react'
+import Helmet from 'react-helmet'
+import {connect} from 'react-redux'
+import {getOptions} from '../../reducers/site'
+import Footer from '../../components/footer'
+import Header from '../../components/header'
+import Loader from '../../components/loader/'
 
-// Stores & Actions
-import * as SiteActions from '../../actions/SiteActions';
-import OptionsStore from '../../stores/OptionsStore';
+const Base = (props) => {
+  var metaInfo
+  const {options} = props
 
-// Components
-import Footer from '../../components/footer';
-import Header from '../../components/header';
-import Loader from '../../components/loader/';
-
-export default class Base extends Component {
-  constructor() {
-    super();
-    this.requestOptions = this.requestOptions.bind(this);
-    this.state = {};
+  if (options) {
+    metaInfo = {
+      htmlAttributes: {
+        lang: options.t_site_info.language
+      },
+      title: options.t_site_info.description,
+      titleTemplate: '%s | ' + options.t_site_info.name,
+      meta: []
+    }
   }
 
-  componentWillMount() {
-    SiteActions.fetchOptions();
-    OptionsStore.on('change', this.requestOptions);
-  }
-
-  componentWillUnmount() {
-    OptionsStore.removeListener('change', this.requestOptions);
-  }
-
-  requestOptions() {
-    this.setState({options: OptionsStore.getOptions()});
-  }
-
-  render() {
-    var site;
-    const {options} = this.state;
-    options && (site = options.t_site_info);
-
-    return (
-      <div>
-        {options &&
-          <Helmet
-            htmlAttributes={
-              {lang: site.language}
-            }
-            title={site.description}
-            titleTemplate={'%s | ' + site.name}
-            meta={
-              []
-            }
-          />
-        }
-        <Header/>
-        {React.cloneElement(this.props.children, {options: options})}
-        <Footer {...options}/>
-        <Loader/>
-      </div>
-
-    );
-  }
+  return (
+    <div>
+      {metaInfo && <Helmet {...metaInfo}/>}
+      <Header/>
+      {props.children}
+      <Footer/>
+      <Loader/>
+    </div>
+  )
 }
+
+const mapStateToProps = (state) => ({options: getOptions(state)})
+export default connect(mapStateToProps)(Base)

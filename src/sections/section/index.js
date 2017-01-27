@@ -1,46 +1,34 @@
-import React from 'react';
-import css from '../../lib/css';
-import RespImageCover from '../../components/resp-image-cover';
+import React from 'react'
+import css from '../../lib/css'
+import RespImageCover from '../../components/resp-image-cover'
+import './_section.sass'
 
-import './_section.sass';
-
-function Section(props) {
+const Section = ({compName, image, respSizes, skew, overlaps, children, background, contSize}) => {
   var sectionModifier = '',
     contModifier = '',
     skewClass = '',
-    skewCorrectionClass;
-
-  const {
-    compName,
-    image,
-    respSizes,
-    skew,
-    overlaps,
-    children,
-    background,
-    contSize
-  } = props;
+    skewCorrectionClass
 
   if (skew) {
-    sectionModifier = ' -skew' + skew;
-    skewClass = ' _skew';
-    skewCorrectionClass = ' _skewcorrect';
+    sectionModifier = ' -skew' + skew
+    skewClass = ' _skew'
+    skewCorrectionClass = ' _skewcorrect'
   } else {
-    sectionModifier = ' -skewnone';
+    sectionModifier = ' -skewnone'
   }
 
   if (overlaps) {
-    skewClass += ' -ol' + overlaps[0].position;
-    skewClass += ' -ol' + overlaps[0].type;
-    skewClass += ' -ol' + overlaps[0].colour;
+    skewClass += ' -ol' + overlaps[0].position
+    skewClass += ' -ol' + overlaps[0].type
+    skewClass += ' -ol' + overlaps[0].colour
   }
 
   if (background) {
-    sectionModifier += ' -' + background;
+    sectionModifier += ' -' + background
   }
 
   if (contSize) {
-    contModifier += ' -' + contSize;
+    contModifier += ' -' + contSize
   }
 
   return (
@@ -52,7 +40,7 @@ function Section(props) {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default Section;
+export default Section

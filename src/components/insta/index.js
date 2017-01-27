@@ -1,52 +1,23 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {fetchInsta} from '../../actions/InstaActions'
+import {getOptions} from '../../reducers/site'
+import {getInsta} from '../../reducers/insta'
 import css from '../../lib/css'
-import InstaStore from '../../stores/InstaStore'
-import OptionsStore from '../../stores/OptionsStore'
 import RespImageCover from '../resp-image-cover'
 import SVG from '../svg'
+import './_insta.sass'
 
-import './_insta.sass';
-
-export default class Insta extends Component {
-  constructor() {
-    super();
-    this.state = {};
-    this.user = {};
-    this.requestOptions = this.requestOptions.bind(this);
-    this.requestInsta = this.requestInsta.bind(this);
-  }
-
-  componentWillMount() {
-    this.requestOptions();
-    OptionsStore.on('change', this.requestOptions);
-    InstaStore.on('change', this.requestInsta);
-  }
-
-  componentWillUnmount() {
-    OptionsStore.removeListener('change', this.requestOptions);
-    InstaStore.removeListener('change', this.requestInsta);
-  }
-
-  requestOptions() {
-    const options = OptionsStore.getOptions();
-    if (!options.instUserNameID || !options.instAuthToken)
-      return;
-
-    this.user = {
-      id: options.instUserNameID,
-      auth: options.instAuthToken
+class Insta extends Component {
+  componentDidMount() {
+    const {instAuthToken, instUserNameID} = this.props
+    if (instAuthToken && instUserNameID) {
+      this.props.dispatch(fetchInsta(this.props))
     }
-    this.requestInsta();
-  }
-
-  requestInsta() {
-    // const insta = InstaStore.getInsta(this.user);
-    // insta && (this.setState({insta: insta}));
   }
 
   imageAdaptor(images) {
-    var image = {};
-
+    var image = {}
     image.sizes = {
       'large': images.standard_resolution.url,
       'large-width': images.standard_resolution.width,
@@ -56,35 +27,35 @@ export default class Insta extends Component {
       'medium-height': images.low_resolution.height,
       'thumbnail': images.thumbnail.url,
       'thumbnail-width': images.thumbnail.width,
-      'thumbnail-height': images.thumbnail.height,
+      'thumbnail-height': images.thumbnail.height
     }
-
-    return image;
+    return image
   }
 
   render() {
-    const {insta} = this.state;
-    const compName = 'insta';
+    const {feed} = this.props
 
-    if(!insta)
-      return null;
+    if (!feed)
+      return null
 
-    const instaMap = insta.map((item) => {
-      var image = this.imageAdaptor(item.images);
+    const compName = 'insta'
+    const instaMap = feed.map((item) => {
+      var image = this.imageAdaptor(item.images)
 
       item.caption
         ? image.alt = item.caption.text
-        : image.alt = 'An instagram image by #' + item.user.username;
+        : image.alt = 'An instagram image by #' + item.user.username
 
       return (
         <li key={item.id} className={css.item}>
           <a href={item.link} target="_blank" className={css.link + compName}>
             <SVG type="instagram"/>
-            <RespImageCover image={image} />
+            <RespImageCover image={image}/>
           </a>
         </li>
       )
     })
+
     return (
       <ul className={css.list + compName}>
         {instaMap}
@@ -92,3 +63,11 @@ export default class Insta extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  const {instAuthToken, instUserName, instUserNameID} = getOptions(state)
+  const feed = getInsta(state)
+  return ({instAuthToken, instUserName, instUserNameID, feed})
+}
+
+export default connect(mapStateToProps)(Insta)

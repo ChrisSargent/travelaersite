@@ -1,76 +1,49 @@
-import React, {Component} from 'react';
-import Helmet from "react-helmet";
-
-// Stores & Actions
-import PageStore from '../../stores/PageStore';
-
-// Components
-import Banner from '../../sections/banner';
-import Countries from '../../sections/countries';
-import Contact from '../../sections/contact';
-import Hero from '../../sections/hero';
-import ImageBanner from '../../sections/image-banner';
-import Gmap from '../../sections/map';
-import Mosaic from '../../sections/mosaic';
-import Positions from '../../sections/positions';
-import ProductModules from '../../sections/product-modules';
-import Products from '../../sections/products';
-import Team from '../../sections/team';
-import Section from '../../sections/section';
-
+import React, {Component} from 'react'
+import Helmet from "react-helmet"
+import {connect} from 'react-redux'
+import {fetchPage} from '../../actions/SiteActions'
+import {getOptions} from '../../reducers/site'
+import {getPage} from '../../reducers/pages'
+import Banner from '../../sections/banner'
+import Countries from '../../sections/countries'
+import Contact from '../../sections/contact'
+import Hero from '../../sections/hero'
+import ImageBanner from '../../sections/image-banner'
+import Gmap from '../../sections/map'
+import Mosaic from '../../sections/mosaic'
+import Positions from '../../sections/positions'
+import ProductModules from '../../sections/product-modules'
+import Products from '../../sections/products'
+import Team from '../../sections/team'
 import TPArchitecture from '../../sections/travel-paas/architecture'
 import TPContentScreenshots from '../../sections/travel-paas/content-screenshots'
 import TPFeatures from '../../sections/travel-paas/features'
+import Section from '../../sections/section'
 
-export default class Page extends Component {
-  constructor(props) {
-    super(props);
-    this.requestPage = this.requestPage.bind(this);
-    this.getRequestedSlug = this.getRequestedSlug.bind(this);
-    this.state = {};
-  }
-
-  componentWillMount() {
-    this.requestPage();
-    PageStore.on('change', this.requestPage);
+class Page extends Component {
+  componentDidMount() {
+    const {pathname} = this.props.location
+    this.props.fetchPage(pathname)
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
-      this.requestPage(newProps);
-    }
-  }
-
-  componentWillUnmount() {
-    PageStore.removeListener('change', this.requestPage);
-  }
-
-  requestPage(props = this.props) {
-    const slug = this.getRequestedSlug(props.location.pathname);
-    const page = PageStore.getPage(slug);
-    page && (this.setState({page: page}));
-  }
-
-  getRequestedSlug(path) {
-    const pathArray = path.split('/');
-    var slug = pathArray[pathArray.length - 1];
-    slug === '' && (slug = 'home');
-    return slug;
+    const currentPathname = this.props.location.pathname
+    const newPathname = newProps.location.pathname
+    currentPathname !== newPathname && (this.props.fetchPage(newPathname))
   }
 
   render() {
-    const {page} = this.state;
-    const {options} = this.props;
+    const {page, options} = this.props
 
     if (!page)
-      return null;
+      return null
 
     if (page.acf.contentBlocks) {
       var blocksMap = page.acf.contentBlocks.map((block, index) => {
         var name,
           content,
           respSizes,
-          contSize;
+          contSize
         const {
           acf_fc_layout,
           image,
@@ -78,67 +51,68 @@ export default class Page extends Component {
           overlaps,
           background,
           contentImage
-        } = block;
+        } = block
 
         switch (acf_fc_layout) {
           case 'hero':
-            name = 'hero';
-            content = <Hero {...block} compName={name}/>;
-            contentImage && (contSize = 'fullwidth');
-            break;
+            name = 'hero'
+            content = <Hero {...block} compName={name}/>
+            contentImage && (contSize = 'fullwidth')
+            break
 
           case 'banner':
-            name = 'banner';
-            content = <Banner {...block} compName={name}/>;
-            break;
+            name = 'banner'
+            content = <Banner {...block} compName={name}/>
+            break
 
           case 'mosaic':
-            name = 'mosaic';
-            content = <Mosaic tiles={block.tiles} compName={name}/>;
-            break;
+            name = 'mosaic'
+            content = <Mosaic tiles={block.tiles} compName={name}/>
+            break
 
           case 'products':
-            name = 'products';
+            name = 'products'
             respSizes = "(min-width: 840px) 150vw, 100vw"
-            content = <Products {...block} compName={name}/>;
-            break;
+            content = <Products {...block} compName={name}/>
+            break
 
           case 'team':
-            name = 'team';
-            content = <Team {...block} compName={name}/>;
-            break;
+            name = 'team'
+            content = <Team {...block} compName={name}/>
+            break
 
           case 'product_modules':
-            name = 'prodmods';
+            name = 'prodmods'
             content = <ProductModules {...block} compName={name}/>
-            break;
+            break
 
           case 'image_banner':
-            name = 'imagebanner';
+            name = 'imagebanner'
             content = <ImageBanner {...block} compName={name}/>
-            break;
+            break
 
           case 'map':
-            name = 'map';
+            name = 'map'
             content = <Gmap {...block} compName={name} options={options}/>
-            break;
+            break
 
           case 'contact_form':
-            name = 'contact';
+            name = 'contact'
             content = <Contact pageID={page.id} compName={name} options={options}/>
-            break;
+            break
 
           case 'countries':
-            name = 'countries';
+            name = 'countries'
             content = <Countries {...block} compName={name}/>
-            break;
+            break
 
           case 'positions':
-            name = 'positions';
+            name = 'positions'
             content = <Positions {...block} compName={name}/>
-            break;
+            break
 
           default:
+            break
         }
         return (
           <Section key={index} compName={name} image={image} respSizes={respSizes} skew={skew} overlaps={overlaps} background={background} contSize={contSize}>
@@ -151,29 +125,30 @@ export default class Page extends Component {
     if (page.acf.travelPaasContent) {
       var travelPaasBlocks = page.acf.travelPaasContent.map((block, index) => {
         var name,
-          content;
-        const {acf_fc_layout, skew, overlaps, section_id} = block;
+          content
+        const {acf_fc_layout, skew, overlaps, section_id} = block
 
         switch (acf_fc_layout) {
           case 'architecture':
-            name = 'tpaas -architecture';
-            content = <TPArchitecture {...block} compName={name}/>;
-            break;
+            name = 'tpaas -architecture'
+            content = <TPArchitecture {...block} compName={name}/>
+            break
 
           case 'content_screenshots':
-            name = 'tpaas -' + section_id;
-            content = <TPContentScreenshots {...block} compName={name} />;
-            break;
+            name = 'tpaas -' + section_id
+            content = <TPContentScreenshots {...block} compName={name}/>
+            break
 
           case 'features':
-            name = 'tpaas -features';
-            content = <TPFeatures {...block} compName={name}/>;
-            break;
+            name = 'tpaas -features'
+            content = <TPFeatures {...block} compName={name}/>
+            break
 
           default:
+            break
         }
         return (
-          <Section key={index} compName={name} skew={skew} overlaps={overlaps} >
+          <Section key={index} compName={name} skew={skew} overlaps={overlaps}>
             {content}
           </Section>
         )
@@ -185,6 +160,19 @@ export default class Page extends Component {
         <Helmet title={page.title.rendered}/> {blocksMap}
         {travelPaasBlocks}
       </main>
-    );
+    )
   }
 }
+
+const mapStateToProps = (state) => ({
+  page: getPage(state),
+  options: getOptions(state)
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchPage(pathname) {
+    dispatch(fetchPage(pathname))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Page)

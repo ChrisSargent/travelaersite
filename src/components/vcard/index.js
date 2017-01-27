@@ -1,14 +1,13 @@
-import React from 'react';
-import css from '../../lib/css';
-import SVG from '../svg';
+import React from 'react'
+import css from '../../lib/css'
+import SVG from '../svg'
+import './_vcard.sass'
 
-import './_vcard.sass';
-
-function Vcard(props) {
-  var vcardClass;
-  const {modifier, pin} = props;
-  vcardClass = 'vcard';
-  modifier && (vcardClass += ' -' + modifier);
+const Vcard = (props) => {
+  var vcardClass
+  const {modifier, pin} = props
+  vcardClass = 'vcard'
+  modifier && (vcardClass += ' -' + modifier)
 
   return (
     <div className={vcardClass}>
@@ -33,7 +32,7 @@ function Vcard(props) {
         {props.coTaxNumber && <span className={css.item + ' -co'}><span className={css.label}>Company Tax Number:&nbsp;</span>{props.coTaxNumber}</span> }
       </div>
     </div>
-  );
+  )
 }
 
-export default Vcard;
+export default Vcard

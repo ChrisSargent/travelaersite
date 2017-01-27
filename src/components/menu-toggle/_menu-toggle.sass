@@ -1,6 +1,6 @@
 @import _tools
 
-#toggle-nav
+#toggle-menu
   +sr-only
 
 .toggle-menu
@@ -47,7 +47,7 @@
         transform: rotate(0deg)
 
 
-#toggle-nav:checked ~ .toggle-menu
+#toggle-menu:checked ~ .toggle-menu
   .bar
     $width: 26px
     $size: 3px
@@ -64,6 +64,6 @@
       transform: rotate(-405deg)
 
 @media screen and (min-width: $bp--nv)
-  #toggle-nav
+  #toggle-menu
   .toggle-menu
     display: none

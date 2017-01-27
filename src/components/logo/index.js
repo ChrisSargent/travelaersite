@@ -1,9 +1,8 @@
-import React from 'react';
-import {Link} from 'react-router';
+import React from 'react'
+import {Link} from 'react-router'
+import './_logo.sass'
 
-import './_logo.sass';
-
-function Logo() {
+const Logo = () => {
   return (
     <Link to="/" className="brandlogo">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 222 35">
@@ -15,7 +14,7 @@ function Logo() {
         </g>
       </svg>
     </Link>
-  );
+  )
 }
 
-export default Logo;
+export default Logo
