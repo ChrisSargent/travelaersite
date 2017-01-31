@@ -19,7 +19,7 @@ const messages = (state = {
 
       return {
         ...state,
-        content: content,
+        content,
         type: 'success'
       }
 

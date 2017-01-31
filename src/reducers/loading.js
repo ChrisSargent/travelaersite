@@ -1,7 +1,7 @@
 import types from '../actions'
 
-export const getLoading = (state) => {
-  return state.loading.length
+export const getLoading = ({loading}) => {
+  return loading.length
 }
 
 const loading = (state = [], action) => {

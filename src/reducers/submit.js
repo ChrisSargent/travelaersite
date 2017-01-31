@@ -41,9 +41,9 @@ const submit = (state = {
       const {name, comment, email} = action.payload
       return {
         ...state,
-        name: name,
-        comment: comment,
-        email: email,
+        name,
+        comment,
+        email
       }
 
     default:

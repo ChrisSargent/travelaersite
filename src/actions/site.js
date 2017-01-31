@@ -16,7 +16,7 @@ export const fetchMenu = (location) => ({
   type: types.FETCH_MENU,
   payload: axios.get('/wp-api-menus/v2/menu-locations/' + location),
   meta: {
-    location: location,
+    location,
     id: 'menu'
   }
 })
@@ -39,7 +39,7 @@ const _updateCurrentSlug = (slug) => ({type: types.UPDATE_CURRENT_PAGE, payload:
 // Gets a single page object from the WP API
 const _getPage = (slug) => {
   const params = {
-    slug: slug,
+    slug,
     fields: 'acf,slug,id,title'
   }
   return {

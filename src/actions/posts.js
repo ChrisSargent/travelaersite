@@ -15,14 +15,14 @@ const _getPosts = (slug) => {
 
   const params = {
     fields: 'content,date_gmt,id,title,slug,t_author,t_categories,t_comments_info,t_featured_image',
-    slug: slug
+    slug
   };
 
   return {
-    type: type,
+    type,
     payload: axios.get('/wp/v2/posts', {params}),
     meta: {
-      id: id
+      id
     }
   }
 }
