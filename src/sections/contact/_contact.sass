@@ -6,23 +6,16 @@
       background-color: $co--tint
 
   > .container
-    +cont--xl(false)
+    +cont--xl
 
-.main-contact
-  display: flex
+@media screen and (min-width: $bp--mn)
+  .section-contact
+    > .container
+      padding: 0
 
-  > .container
-    padding: $pd--ll
-    flex-grow: 1
+  .main-contact
+    display: flex
 
-  .main-social
-    padding: $pd--ll
-    min-width: 320px
-
-  .list-social
-    padding-left: $pd--ll
-    // To align more centrally
-
-  .main-submit
-    .title
-      font-size: $fs--ml
+    > .container
+      padding: $pd--ll
+      flex-grow: 1

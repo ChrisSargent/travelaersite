@@ -1,15 +1,11 @@
 @import tools
+
 $mg-defeat: $pd--h--dt / -1
 
 .section-tpaas
   > .container
     +cont--xl
     +block-pad
-
-  .i
-    width: 48px
-    height: 48px
-    color: $co--wt
 
   &.-architecture,
   &.-features
@@ -22,65 +18,122 @@ $mg-defeat: $pd--h--dt / -1
       background-color: $co--green
 
   &.-instapricer
+    z-index: $z--mid
 
     > .section-background ._bgcol
       background-color: $co--blue-grey--tt
-      background-image: linear-gradient(to bottom, transparentize($co--blue-vio, 1) 0%, transparentize($co--blue-vio, 0.8) 100%)
+      background-image: linear-gradient(to bottom, transparentize($co--blue-vio, 1) 0%, transparentize($co--blue-vio, 0.9) 100%)
 
   &.-searchshop
     z-index: $z--top
 
-  &.-instapricer
-    z-index: $z--mid
-
 .main-tpaas
-  .wysiwyg
-    font-family: $ff--base
-    line-height: $lh--xl
+  display: flex
+  flex-direction: column
+  align-items: stretch
+  justify-content: flex-start
+
+  .title
+    +heading-spaced
+    font-size: $fs--mml
+    order: 1
+    margin-bottom: $pd--ml
+    text-align: center
     color: $co--wt
 
-    h2
-      color: $co--brightyellow
-      font-weight: 400
-      font-size: $fs--lm
-      margin-bottom: 0
-      line-height: $lh--ml
+  > .screenshot-block
+    order: 2
 
-      + p
-        margin-top: 0
+  > .wysiwyg,
+  > .list-tpaas
+    order: 3
+
+  .wysiwyg
+    font-family: $ff--base
+    line-height: $lh--ml
+    color: $co--wt
+
+    h1, h2
+      font-size: $fs--mms
+      font-weight: 400
+      line-height: $lh--base
+      color: $co--brightyellow
+
+      &:nth-child(n + 2)
+        margin-bottom: 0
+
+        + p
+          margin-top: 0
 
     p
       margin: $pd--xs 0
 
-  .title
-    +heading-spaced
-    margin-bottom: $pd--xl
-    text-align: center
-    color: $co--wt
-    font-size: $fs--xl
-
   &.-instapricer
-    .wysiwyg
-      color: $co--blue-grey--md
-
-      h2
-        color: $co--blue--md
-
     > .title
       color: $co--blue--dk
 
+    .wysiwyg
+      color: $co--blue-grey--md
+
+      h1, h2
+        color: $co--blue--md
+
   &.-features
     .title
-      text-align: left
       margin: $pd--xxs 0
+      text-align: left
 
 .screenshot-block
-  .image
+  margin-bottom: $pd--ml
+
+  > .image
     width: 100%
-    border: 10px solid transparentize($co--wt, 0.5)
+    border: 5px solid transparentize($co--wt, 0.5)
+
+    &:nth-child(n + 2)
+      display: none
+
+.list-tpaas
+  &.-architecture
+    > .item
+      margin: 0.75rem 0
+
+      &:first-child
+        margin-top: 0!important
+
+      &:last-child
+        margin-bottom: 0!important
+
+    .image
+      display: none
+
+  &.-features
+    $spc-v: $pd--s
+    margin: ($spc-v / -1) 0
+
+    > .item
+      padding: $spc-v 0
+
+    .i
+      width: 2.5em
+      height: 2.5em
+      color: $co--wt
 
 @media screen and (min-width: $bp--mn)
   .main-tpaas
+    display: block
+
+    > .title
+      font-size: $fs--xl
+      margin-bottom: $pd--xl
+
+    .wysiwyg
+      line-height: $lh--xl
+
+      h1, h2
+        font-size: $fs--lm
+        line-height: $lh--ml
+
     &.-searchshop
       position: relative
 
@@ -94,24 +147,24 @@ $mg-defeat: $pd--h--dt / -1
         .image
           &:nth-of-type(1)
             position: relative
+            z-index: $z--top
             max-width: 480px
             margin-left: $mg-defeat
-            z-index: $z--top
 
           &:nth-of-type(2)
             position: absolute
-            max-width: 380px
+            z-index: $z--mid
             bottom: $pd--block / -0.65
             left: 330px
-            z-index: $z--mid
+            max-width: 380px
 
           &:nth-of-type(3)
             position: absolute
+            z-index: $z--base
+            top: 4rem
+            right: 0
             max-width: 50%
             margin-right: $mg-defeat
-            right: 0
-            top: 2rem
-            z-index: $z--base
 
     &.-instapricer
       +clearfix
@@ -124,23 +177,23 @@ $mg-defeat: $pd--h--dt / -1
         float: left
         width: 50%
         max-width: 500px
-        margin-left: $mg-defeat
         margin-bottom: -70px
+        margin-left: $mg-defeat
 
     &.-award
       +clearfix
 
       .wysiwyg
-        width: 38%
         float: left
+        width: 38%
 
       .screenshot-block
         position: relative
-        width: 62%
         float: right
+        width: 62%
         margin-right: $mg-defeat
 
-        .image
+        > .image
           &:nth-of-type(1),
           &:nth-of-type(2)
             max-width: calc(60% - #{$pd--h--dt})
@@ -150,22 +203,29 @@ $mg-defeat: $pd--h--dt / -1
 
           &:nth-of-type(3)
             position: absolute
-            max-width: 40%
-            right: 0
             top: $pd--block / -0.75
+            right: 0
+            max-width: 40%
+
+    &.-architecture
+      .screenshot-block
+        display: none
+
+  .screenshot-block
+    margin-bottom: 0
+
+    > .image:nth-child(n + 2)
+      display: block
+      border-width: 10px
 
   .list-tpaas
-    $spc-v: $pd--s
-
     &.-features
       column-count: 2
       column-gap: $pd--xxl
-      margin: $spc-v / -1 0
 
       > .item
         overflow: hidden
         // Prevent alignment 'bug'
-        padding: $spc-v 0
         break-inside: avoid
 
     &.-architecture
@@ -174,6 +234,7 @@ $mg-defeat: $pd--h--dt / -1
         align-items: center
 
       .image
+        display: block
         position: relative
         left: $mg-defeat
         width: 50%

@@ -45,7 +45,7 @@ section
 
     &.-oldouble
       &::after
-        border-top-width: $overlap-size
+        border-top-width: $overlap-size / 2
         border-top-style: solid
 
   &.-olbottom
@@ -54,8 +54,8 @@ section
 
     &.-oldouble
       &::after
-        border-bottom-width: $overlap-size
-        border-top-style: solid
+        border-bottom-width: $overlap-size / 2
+        border-bottom-style: solid
 
   &.-olsmall
     &::after
@@ -63,11 +63,11 @@ section
 
   &.-olsingle
     &::after
-      height: $overlap-size
+      height: $overlap-size / 2
 
   &.-oldouble
     &::after
-      height: $overlap-size * 2
+      height: $overlap-size
 
   &.-olblue
     &::after
@@ -112,3 +112,24 @@ section
 .-skewnone + .-skewtop,
 .-skewnone + .-skewboth
   margin-top: calc(#{$angle_h_ratio / -2} - 1px)
+
+
+@media screen and (min-width: $bp--mn)
+  ._skew
+    &.-olsingle
+      &::after
+        height: $overlap-size
+
+    &.-oldouble
+      &::after
+        height: $overlap-size * 2
+
+    &.-oltop
+      &.-oldouble
+        &::after
+          border-top-width: $overlap-size
+
+    &.-olbottom
+      &.-oldouble
+        &::after
+          border-bottom-width: $overlap-size

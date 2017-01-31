@@ -5,33 +5,25 @@
     +header-default
     +heading-light
     +heading-spaced
-    font-size: $fs--xxt
     text-align: center
 
   &.-condensed
     > .title
       +sr-only
 
-    .list-social
-      +inline-children-item(4px, 4px)
-
-    .link-social
-      display: block
-      margin-bottom: 0
-
-      > .label
-        +sr-only
+.list-social
+  +inline-children-item(4px, 4px)
 
 .link-social
   display: flex
   align-items: center
+  justify-content: center
   min-width: $ia-min-size
   min-height: $ia-min-size
   text-align: center
   text-decoration: none
   color: $co--blue--md
   font-weight: 400
-  margin-bottom: 0.25em
 
   > .label
     font-size: $fs--m
@@ -41,3 +33,34 @@
   > .i
     width: 1.425em
     height: 1.425em
+
+@media screen and (min-width: $bp--mn)
+  .main-social
+    min-width: 320px
+    padding: $pd--ll
+
+    &.-condensed
+      padding: 0
+      min-width: 0
+
+
+  .list-social
+    display: block
+
+    &.-condensed
+      display: flex
+
+      .link-social > .label
+        +sr-only
+
+    .main-contact &
+      padding-left: $pd--ll
+      // To align more centrally
+
+  .link-social
+    justify-content: flex-start
+
+@media screen and (max-width: $bp--mn - 1)
+  .link-social
+    > .label
+      +sr-only

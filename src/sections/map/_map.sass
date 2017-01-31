@@ -9,9 +9,17 @@
     position: relative
 
 .main-map
-  display: flex
+
 
   > .map
+    height: 400px
     display: block
     position: relative
-    flex-grow: 1
+
+
+@media screen and (min-width: $bp--mn)
+  .main-map
+    display: flex
+
+    > .map
+      flex-grow: 1

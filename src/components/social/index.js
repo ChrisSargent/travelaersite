@@ -4,7 +4,7 @@ import SVG from '../svg'
 import './_social.sass'
 
 const Social = ({socialNetworks, modifier}) => {
-  var compClass
+  var compClass, listClass
 
   if (!socialNetworks)
     return null
@@ -12,7 +12,13 @@ const Social = ({socialNetworks, modifier}) => {
   const compName = 'social'
 
   compClass = css.main + compName
-  modifier && (compClass += ' -' + modifier)
+  listClass = css.list + compName
+
+  if (modifier) {
+    compClass += ' -' + modifier
+    listClass += ' -' + modifier
+
+  }
 
   const networkMap = socialNetworks.map((network, index) => {
 
@@ -29,7 +35,7 @@ const Social = ({socialNetworks, modifier}) => {
   return (
     <div className={compClass}>
       <h2 className={css.title}>Connect with us on</h2>
-      <ul className={css.list + compName}>
+      <ul className={listClass}>
         {networkMap}
       </ul>
     </div>

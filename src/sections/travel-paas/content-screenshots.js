@@ -7,7 +7,7 @@ import './_travel-paas.sass'
 const ContentScreenshots = ({compName, title, content, screenshots}) => {
   const images = screenshots.map((screenshot, index) => {
     return (
-      <RespImage key={index} image={screenshot} respSizes="50vw"/>
+      <RespImage key={index} image={screenshot} respSizes="(min-width: 840px) 50vw, 100vw"/>
     )
   })
 

@@ -20,7 +20,6 @@
     > .label
       +sr-only
 
-
   > .i.-pin
     width: 2em
     height: 2em
@@ -36,6 +35,7 @@
 
   &.-compact
     line-height: $lh--lg
+    position: relative
     display: block
     min-width: 320px
     padding: ($pd--block + 1rem) $pd--ll
@@ -48,14 +48,41 @@
     .container + .container
       padding: $pd--m 0 0
 
-@media (min-width: $bp--mn)
+    &::after
+      content: ' '
+      z-index: -1
+      position: absolute
+      bottom: 0
+      left: 0
+      display: block
+      width: 100%
+      height: $angle_h_ratio * 2
+      background-color: $co--blue--lt
+      transform: skewY($angle--ban)
+      transform-origin: bottom right
+
+@media screen and (min-width: $bp--xs) and (max-width: $bp--mn - 1)
   .vcard
-    font-size: $fs--s
     display: flex
 
     > .container + .container
       padding-top: 0
       padding-left: $pd--l
 
+@media screen and (min-width: $bp--mn)
+  .vcard
+    font-size: $fs--s
+
     &.-compact
       font-size: inherit
+
+      &::after
+        display: none
+
+@media screen and (min-width: $bp--lg)
+  .vcard
+    display: flex
+
+    > .container + .container
+      padding-top: 0
+      padding-left: $pd--l

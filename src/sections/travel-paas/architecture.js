@@ -7,8 +7,16 @@ const Architecture = ({compName, items, title}) => {
   const itemMap = items.map((item, index) => {
     return (
       <li key={index} className={css.item}>
-        <RespImage image={item.image} respSizes="50vw"/>
+        <RespImage image={item.image} respSizes="(min-width: 840px) 50vw, 100vw"/>
         <Wysiwyg content={item.content}/>
+      </li>
+    )
+  })
+
+  const imageMap = items.map((item, index) => {
+    return (
+      <li key={index} className={css.item}>
+        <RespImage image={item.image} respSizes="(min-width: 840px) 50vw, 100vw"/>
       </li>
     )
   })
@@ -16,6 +24,9 @@ const Architecture = ({compName, items, title}) => {
   return (
     <div className={css.main + compName}>
       <h2 className={css.title}>{title}</h2>
+      <ul className="screenshot-block">
+        {imageMap}
+      </ul>
       <ul className={css.list + compName}>
         {itemMap}
       </ul>

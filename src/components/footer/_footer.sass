@@ -28,6 +28,12 @@
   > .item
     margin-bottom: $pd--xl
 
+@media screen and (min-width: $bp--xs) and (max-width: $bp--mn - 1)
+  .main-sitefooter
+    > .item:last-child
+      display: flex
+      justify-content: space-between
+
 @media screen and (min-width: $bp--mn)
   .main-sitefooter
     flex-direction: row
