@@ -25,7 +25,7 @@ const ProductList = ({products, alignment}) => {
           <Wysiwyg content={content}/>
           <Actions actions={actions}/>
         </article>
-        <Screenshots screenshots={product_screenshots} modifier="home"/>
+        <Screenshots screenshots={product_screenshots} modifier={compName}/>
       </li>
     )
   })

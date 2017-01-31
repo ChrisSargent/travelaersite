@@ -74,7 +74,7 @@ class Page extends Component {
           case 'products':
             name = 'products'
             allowFullsize = true
-            respSizes = "(min-width: 840px) 150vw, 100vw"
+            respSizes = "(min-width: 840px) 150vw, 1200px"
             content = <Products {...block} compName={name}/>
             break
 

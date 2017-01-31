@@ -5,20 +5,16 @@
     position: relative
 
     + .item
-      padding-top: $pd--l
+      padding-top: $pd--xl
+
+  .article-product
+    background-color: transparentize($co--wt, 0.15)
 
   &.-row
     +columns(2, $pd--xl)
 
-    .article-product
-      background-color: transparentize($co--wt, 0.15)
-
-  &.-column
-    width: 50%
-    margin-left: 50%
-
 .article-product
-  +article-default
+  +article-default($pd--s)
 
   > .wysiwyg
     font-size: $fs--mms
@@ -45,10 +41,20 @@
       > .item:nth-child(even) .article-product
         background-color: transparent
 
+    &.-column
+      width: 50%
+      margin-left: 50%
+
+      > .item .article-product
+        background-color: transparent
+
+
   .header-product
     .title
       font-size: $fs--xxh
 
   .article-product
+    padding: $pd--l
+
     > .wysiwyg
       font-size: $fs--l
