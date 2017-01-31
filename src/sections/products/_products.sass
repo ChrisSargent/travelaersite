@@ -1,5 +1,12 @@
 @import _tools
 
+$fuseWidth: 132px
+$imageWidth: 1200px
+$margin: 10px
+$fuseEdge: ((($imageWidth / 2) + ($fuseWidth / 2)) / -1) - $margin
+$inset: 30vw
+
+
 .section-products
   +block-pad
   min-height: 100vh
@@ -9,11 +16,6 @@
     +cont--xl
 
   > .section-background
-    $fuseWidth: 132px
-    $imageWidth: 1200px
-    $margin: 10px
-    $fuseEdge: ((($imageWidth / 2) + ($fuseWidth / 2)) / -1) - $margin
-
     &::after
       $shadow: 60px
       content: ' '
@@ -29,7 +31,7 @@
       background-color: $co--blue-grey--tt
 
     ._bgimgpreview
-      background-position-x: calc(#{$fuseEdge})
+      background-position-x: $fuseEdge
       background-size: auto 100%
       opacity: 1
 
@@ -39,7 +41,7 @@
 
     ._bgimgfull
       background-size: $imageWidth auto
-      background-position: calc(#{$fuseEdge} + 20vw) $pd--block
+      background-position: calc(#{$fuseEdge} + #{$inset}) $pd--block
 
   &.-gradient
     > .section-background
@@ -58,7 +60,7 @@
     color: $co--bk
 
   &.-pushright
-    margin-left: 20vw
+    margin-left: $inset
     padding-left: 0
     padding-right: 0
 
