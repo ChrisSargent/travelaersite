@@ -10,8 +10,30 @@ export const getPageAppend = ({pages}) => {
     : false
 }
 
+export const getFetchedAllPages = ({pages}) => {
+  return pages.fetchedAllPages
+}
+
+const addAllPages = (pages, state) => {
+  // Puts each page in to an array, indexed by its slug
+  for (var i = 0; i < pages.length; i++) {
+    const page = pages[i]
+    if (!state[page.slug]) {
+      state = {
+        ...state,
+        [page.slug]: page,
+        fetchedAllPages: true,
+        fetchingAllPages: false
+      }
+    }
+  }
+  return state
+}
+
 const pages = (state = {
-  currentPageSlug: null
+  currentPageSlug: null,
+  fetchedAllPages: false,
+  fetchingAllPages: false,
 }, action) => {
 
   switch (action.type) {
@@ -26,8 +48,18 @@ const pages = (state = {
       return {
         ...state,
         [page.slug]: page,
-        currentPageSlug: page.slug
+        currentPageSlug: page.slug,
       }
+
+    case types.BACKGROUND_FETCH_PAGES + '_PENDING':
+      return {
+        ...state,
+        fetchingAllPages: true
+      }
+
+    case types.BACKGROUND_FETCH_PAGES + '_FULFILLED':
+      const pages = action.payload.data
+      return addAllPages(pages, state)
 
     default:
       break

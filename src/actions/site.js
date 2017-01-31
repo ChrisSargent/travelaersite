@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {getRequesedSlug} from '../lib/utils'
 import types from '.'
 
 if (process.env.NODE_ENV === 'development') {
@@ -28,39 +27,3 @@ export const fetchOptions = () => ({
     id: 'options'
   }
 })
-
-// *****************************************************************************
-// ******************************* PAGE ACTIONS ********************************
-// *****************************************************************************
-
-// Updates the current slug in the state
-const _updateCurrentSlug = (slug) => ({type: types.UPDATE_CURRENT_PAGE, payload: slug})
-
-// Gets a single page object from the WP API
-const _getPage = (slug) => {
-  const params = {
-    slug,
-    fields: 'acf,slug,id,title'
-  }
-  return {
-    type: types.FETCH_PAGE,
-    payload: axios.get('/wp/v2/pages', {params}),
-    meta: {
-      id: 'page'
-    }
-  }
-}
-
-// Checks if a page exists in the cache and then calls the WP API if not
-export const fetchPage = (pathname) => (dispatch, getState) => {
-  const requestedSlug = getRequesedSlug(pathname)
-  const page = getState().pages[requestedSlug]
-
-  if (page) {
-    return dispatch(_updateCurrentSlug(requestedSlug))
-  } else {
-    return dispatch(_getPage(requestedSlug))
-  }
-}
-
-// *****************************************************************************

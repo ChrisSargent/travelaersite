@@ -8,7 +8,7 @@ export const stripDomain = (url) => {
   return url
 }
 
-export const getRequesedSlug = (pathname) => {
+export const getRequestedSlug = (pathname) => {
   var requestedSlug
   const pathnameArray = pathname.split('/')
   requestedSlug = pathnameArray[pathnameArray.length - 1] || 'home'

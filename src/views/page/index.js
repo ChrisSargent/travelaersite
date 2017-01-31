@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Helmet from "react-helmet"
 import {connect} from 'react-redux'
-import {fetchPage} from '../../actions/site'
+import {fetchPage} from '../../actions/pages'
 import {getOptions} from '../../reducers/site'
 import {getPage} from '../../reducers/pages'
 import Banner from '../../sections/banner'

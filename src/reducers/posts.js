@@ -1,7 +1,6 @@
 import types from '../actions'
 
 const generateSide = (latestPosts, slug) => {
-  console.log('LatestHere:', latestPosts);
   var count = 0,
     filteredPosts = []
 
