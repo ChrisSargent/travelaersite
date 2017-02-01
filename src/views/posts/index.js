@@ -83,15 +83,17 @@ class Posts extends Component {
         <Helmet title={pageTitle}/>
         <Section compName={'hero' + heroModifier} image={postsObj.heroImage} skew="bottom" overlaps={overlap}/>
         <Section compName={compName}>
-          <ul className={css.list + compName}>
-            {postsMap}
-          </ul>
-          <aside className={css.sidebar + compName}>
-            <RecentPosts posts={postsObj.side}/>
-            <Insta/>
-          </aside>
-        </Section>
+          <div className={css.main + compName}>
+            <ul className={css.list + compName}>
+              {postsMap}
+            </ul>
+            <aside className={css.sidebar + compName}>
+              <RecentPosts posts={postsObj.side}/>
+              <Insta/>
+            </aside>
+          </div>
         {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
+        </Section>
       </main>
     )
   }

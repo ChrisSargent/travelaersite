@@ -2,12 +2,18 @@
 
 .section-posts
   padding-bottom: $pd--block
+
   > .container
     +cont--xl
-    +columns
-    align-items: flex-start
-    padding-right: 0
-    padding-left: 0
+
+.main-posts
+  +columns
+  align-items: flex-start
+  padding-right: 0
+  padding-left: 0
+
+  + .footer-actions
+    margin-top: $pd--l
 
 .list-posts
   width: 100%
