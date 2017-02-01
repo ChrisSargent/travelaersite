@@ -4,7 +4,7 @@ import {stripDomain} from '../../lib/utils'
 import css from '../../lib/css'
 import './_actions.sass'
 
-const Actions = ({actions}) => {
+const Actions = ({actions, onClick}) => {
   if (!actions)
     return
 
@@ -26,7 +26,7 @@ const Actions = ({actions}) => {
   })
 
   return (
-    <footer className={css.footer + compName}>
+    <footer className={css.footer + compName} onClick={onClick}>
       {actionsMap}
     </footer>
   )

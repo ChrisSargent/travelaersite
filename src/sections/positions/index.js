@@ -22,7 +22,7 @@ const Positions = ({title, content, positions, actions, compName}) => {
       <ul className={css.list + compName}>
         {positionMap}
       </ul>
-      <Actions actions={actions} class/>
+      <Actions actions={actions} />
     </div>
   )
 }

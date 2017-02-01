@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchLatestPosts, fetchInitPosts} from '../../actions/posts'
-import {getPostsObj} from '../../reducers/posts'
+import {fetchLatestPosts, fetchInitPosts, fetchMorePosts} from '../../actions/posts'
+import {getPostsObj, gotAllPosts} from '../../reducers/posts'
 import css from '../../lib/css'
-import Helmet from "react-helmet"
+import Actions from '../../components/actions'
+import Helmet from 'react-helmet'
 import Insta from '../../components/insta'
 import Post from '../../components/post'
 import RecentPosts from '../../components/recent-posts'
@@ -11,6 +12,26 @@ import Section from '../../sections/section'
 import './_posts.sass'
 
 class Posts extends Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this)
+    this.compName = 'posts'
+    this.overlap = [
+      {
+        type: 'single',
+        position: 'bottom',
+        colour: 'white'
+      }
+    ]
+    this.actions = [
+      {
+        linkTitle: 'Load More',
+        param: 'loadmore',
+        modifier: "cta"
+      }
+    ]
+  }
+
   componentDidMount() {
     const slug = this.props.params.slug
     slug
@@ -18,51 +39,41 @@ class Posts extends Component {
       : this.props.fetchLatestPosts()
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   const currentSlug = this.props.params.slug
-  //   const newSlug = newProps.params.slug
-  //   currentSlug !== newSlug && (this.props.fetchCurrentPost(newSlug))
-  // }
-
   componentDidUpdate() {
     window.twttr && window.twttr.widgets.load()
   }
 
+  handleClick(ev) {
+    if (!ev.target.dataset.actionparam)
+      return
+    ev.preventDefault()
+    this.props.fetchMorePosts()
+  }
+
   render() {
-    var heroModifier,
-      pageTitle
-    const {postsObj} = this.props
+    var heroModifier = ' -small',
+      pageTitle = 'Blog',
+      showMore = true
+
+    const {postsObj, gotAllPosts} = this.props
 
     if (!postsObj)
       return null
 
-    const compName = 'posts'
-    const overlap = [
-      {
-        type: 'single',
-        position: 'bottom',
-        colour: 'white'
-      }
-    ]
+    const {compName, overlap, actions} = this
+    const singlePost = postsObj.main.length <= 1
 
-    if (postsObj.main.length > 1) {
-      heroModifier = ' -small'
-      pageTitle = 'Blog'
-    } else {
+    if (singlePost) {
       heroModifier = ''
       pageTitle = postsObj.main[0].title.rendered
     }
 
+    showMore = !gotAllPosts && !singlePost
+
     const postsMap = postsObj.main.map((post, index) => {
-      var isMainPost
-
-      index === 0
-        ? isMainPost = true
-        : isMainPost = false
-
       return (
         <li key={post.id} className={css.item}>
-          <Post post={post} excerpt={postsObj.excerpts} main={isMainPost}/>
+          <Post post={post} excerpt={postsObj.excerpts} main={index === 0}/>
         </li>
       )
     })
@@ -80,18 +91,23 @@ class Posts extends Component {
             <Insta/>
           </aside>
         </Section>
+        {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
       </main>
     )
   }
 }
 
 const mapStateToProps = (state, {params}) => ({
-  postsObj: getPostsObj(state, params.slug)
+  postsObj: getPostsObj(state, params.slug),
+  gotAllPosts: gotAllPosts(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchLatestPosts() {
     dispatch(fetchLatestPosts())
+  },
+  fetchMorePosts() {
+    dispatch(fetchMorePosts())
   },
   fetchInitPosts(slug) {
     dispatch(fetchInitPosts(slug))
