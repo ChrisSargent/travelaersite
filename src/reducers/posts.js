@@ -51,6 +51,10 @@ export const gotAllPosts = ({posts}) => {
   return posts.gotAllPosts
 }
 
+export const getLoadingMore = ({posts}) => {
+  return posts.fetchingMore
+}
+
 const _addFetchedPosts = (posts, fetchedPosts) => {
   // Puts each post in to an object, indexed by its slug (if it's not already present)
   var addPosts = {}
@@ -73,31 +77,40 @@ const PostsReducer = (state = {
   fetchedPosts: false,
   slugsByDate: false,
   gotAllPosts: false,
+  fetchingMore: false,
   nextPage: 1,
 }, action) => {
 
+  var posts, fetchedPosts, slugsByDate, totalPosts, gotAllPosts, nextPage
   switch (action.type) {
+    case types.FETCH_MORE_POSTS + '_PENDING':
+      return {
+        ...state,
+        fetchingMore: true
+      }
     case types.FETCH_MORE_POSTS + '_FULFILLED':
     case types.FETCH_LATEST_POSTS + '_FULFILLED':
-      const posts = action.payload.data
-      const slugsByDate = _addToPostsByDate(posts, state.slugsByDate)
-      const totalPosts = parseFloat(action.payload.headers['x-wp-total'])
-      const fetchedPosts = _addFetchedPosts(posts, state.fetchedPosts)
-      const gotAllPosts = slugsByDate.length === totalPosts
-      const nextPage = state.nextPage + 1
+      posts = action.payload.data
+      slugsByDate = _addToPostsByDate(posts, state.slugsByDate)
+      totalPosts = parseFloat(action.payload.headers['x-wp-total'])
+      fetchedPosts = _addFetchedPosts(posts, state.fetchedPosts)
+      gotAllPosts = slugsByDate.length === totalPosts
+      nextPage = state.nextPage + 1
       return {
         ...state,
         slugsByDate,
         fetchedPosts,
         gotAllPosts,
-        nextPage
+        nextPage,
+        fetchingMore: false
       }
 
     case types.FETCH_CURRENT_POST + '_FULFILLED':
-      const currentPost = action.payload.data
+      posts = action.payload.data
+      fetchedPosts = _addFetchedPosts(posts, state.fetchedPosts)
       return {
         ...state,
-        fetchedPosts: _addFetchedPosts(currentPost, state.fetchedPosts)
+        fetchedPosts
       }
 
     case types.FETCH_INIT_POSTS + '_FULFILLED':

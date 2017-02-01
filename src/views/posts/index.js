@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchLatestPosts, fetchInitPosts, fetchMorePosts} from '../../actions/posts'
-import {getPostsObj, gotAllPosts} from '../../reducers/posts'
+import {getPostsObj, gotAllPosts, getLoadingMore} from '../../reducers/posts'
 import css from '../../lib/css'
 import Actions from '../../components/actions'
 import Helmet from 'react-helmet'
@@ -27,7 +27,8 @@ class Posts extends Component {
       {
         linkTitle: 'Load More',
         param: 'loadmore',
-        modifier: "cta"
+        modifier: 'cta',
+        loading: false,
       }
     ]
   }
@@ -55,7 +56,7 @@ class Posts extends Component {
       pageTitle = 'Blog',
       showMore = true
 
-    const {postsObj, gotAllPosts} = this.props
+    const {postsObj, gotAllPosts, getLoadingMore} = this.props
 
     if (!postsObj)
       return null
@@ -69,6 +70,9 @@ class Posts extends Component {
     }
 
     showMore = !gotAllPosts && !singlePost
+    getLoadingMore
+      ? actions[0].loading = true
+      : actions[0].loading = false
 
     const postsMap = postsObj.main.map((post, index) => {
       return (
@@ -101,7 +105,8 @@ class Posts extends Component {
 
 const mapStateToProps = (state, {params}) => ({
   postsObj: getPostsObj(state, params.slug),
-  gotAllPosts: gotAllPosts(state)
+  gotAllPosts: gotAllPosts(state),
+  getLoadingMore: getLoadingMore(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,11 +2,38 @@
 
 .footer-actions
   display: flex
-  margin-top: auto
   clear: both
+  margin-top: auto
 
   .btn
     +focus
+    position: relative
+    perspective: 50px
+    perspective-origin: right
 
     + .btn
       margin-left: 2px
+
+.actions-icon
+  position: absolute
+  top: 0
+  left: 100%
+  display: flex
+  visibility: hidden
+  align-items: center
+  height: 100%
+  padding-right: 0.515em
+  background-color: inherit
+  transform: rotateY(90deg)
+  transform-origin: left
+  z-index: -1
+  transition: all $tr--f
+
+  .-loading &
+    visibility: visible
+    transform: rotateY(0deg)
+
+  .i
+    margin-top: -1px
+    width: auto
+    height: 1.1em
