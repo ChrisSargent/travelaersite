@@ -76,6 +76,15 @@
         &::before
           content: '•'
 
+  > div
+    ul:first-child
+      li:first-child
+        padding-top: 0
+
+    ul:last-child
+      li:last-child
+        padding-bottom: 0
+
   > .more
     display: block
     margin-top: $pd--s

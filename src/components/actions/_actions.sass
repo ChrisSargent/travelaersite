@@ -16,6 +16,7 @@
 
 .actions-icon
   position: absolute
+  z-index: -1
   top: 0
   left: 100%
   display: flex
@@ -23,17 +24,16 @@
   align-items: center
   height: 100%
   padding-right: 0.515em
-  background-color: inherit
+  transition: all $tr--f
   transform: rotateY(90deg)
   transform-origin: left
-  z-index: -1
-  transition: all $tr--f
+  background-color: inherit
 
   .-loading &
     visibility: visible
     transform: rotateY(0deg)
 
   .i
-    margin-top: -1px
     width: auto
     height: 1.1em
+    margin-top: -1px

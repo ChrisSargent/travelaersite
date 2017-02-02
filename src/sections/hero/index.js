@@ -4,19 +4,15 @@ import SVG from '../../components/svg'
 import Wysiwyg from '../../components/wysiwyg'
 import './_hero.sass'
 
-const Hero = ({compName, headlinePre, headline, headlinePost, headlineImage, content, fullscreen, paragraphWidth, contentImage}) => {
-  var modifier, hasHeadline
-
-  fullscreen
-   ? modifier = ' -fullscreen'
-   : modifier = ''
+const Hero = ({compName, headlinePre, headline, headlinePost, headlineImage, content, paragraphWidth, contentImage}) => {
+  var hasHeadline
 
   headlinePre || headline || headlinePost || headlineImage
     ? hasHeadline = true
     : hasHeadline = false
 
   return (
-    <div className={css.main + compName + modifier}>
+    <div className={css.main + compName}>
       {hasHeadline && <h1 className={css.title}>
         {headlinePre}
         {headline && <strong>{headline}</strong>}

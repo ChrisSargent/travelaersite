@@ -4,7 +4,6 @@ $ctrlminwidth: 200px
 $ctrlwidth: 27.78%
 
 .section-prodmods
-  +block-pad
 
   > .section-background
     ._bgcol
@@ -12,6 +11,7 @@ $ctrlwidth: 27.78%
 
   > .container
     +cont--xl
+    +block-pad
 
 .main-prodmods
   display: flex
@@ -22,7 +22,7 @@ $ctrlwidth: 27.78%
     order: 1
     flex: none
     width: 34%
-    margin: (-100px) 0 0
+    margin-top: ($pd--v / -1) - 1rem
 
   > .side-prodmods
     order: 2
@@ -32,10 +32,11 @@ $ctrlwidth: 27.78%
 
 .side-prodmods
   width: 100%
+  margin-top: $pd--s
 
   > .title
-    padding: $pd--m 0
     font-size: $fs--ml
+    padding: $pd--m 0
     text-align: center
     word-wrap: break-word
     color: $co--bk
@@ -49,19 +50,19 @@ $ctrlwidth: 27.78%
 
   > .control
     +focus
-    background-color: $co--green
-    flex: none
     display: flex
-    justify-content: center
     align-items: center
+    justify-content: center
+    flex: none
     cursor: pointer
+    background-color: $co--green
 
     &::after
       content: ' '
-      pointer-events: none
       display: block
       width: 0
       height: 0
+      pointer-events: none
       border-top: 9px solid transparent
       border-bottom: 9px solid transparent
 
@@ -87,8 +88,8 @@ $ctrlwidth: 27.78%
   transition: transform $tr--m
 
   > .item
-    width: 100%
     flex: none
+    width: 100%
 
   .control.-text
     +heading-spaced
@@ -100,10 +101,10 @@ $ctrlwidth: 27.78%
     flex: none
     width: 100%
     height: 100%
+    padding: 0 $pd--xxs
     text-align: center
     color: $co--blue-grey--tt
     background-color: transparent
-    padding: 0 $pd--xxs
 
     &.-active,
     &:focus
@@ -140,8 +141,8 @@ $ctrlwidth: 27.78%
     display: none
 
   > .wysiwyg
-    font-size: inherit
     font-family: inherit
+    font-size: inherit
     line-height: $lh--xl
 
 @media screen and (min-width: $bp--mn)
@@ -162,6 +163,7 @@ $ctrlwidth: 27.78%
     align-self: flex-start
     width: $ctrlwidth
     min-width: $ctrlminwidth
+    margin-top: 0
 
     > .title
       padding-right: $pd--ml
@@ -170,16 +172,16 @@ $ctrlwidth: 27.78%
 
   .list-ctrls
     display: block
-    width: auto
     overflow: auto
+    width: auto
     transform: none!important
 
     .control.-text
-      line-height: $lh--lg
       font-size: $fs--xs
+      line-height: $lh--lg
+      padding: 0.42rem $pd--xl 0.42rem $pd--m
       cursor: pointer
       text-align: left
-      padding: 0.42rem $pd--xl 0.42rem $pd--m
 
       &::before
         +stretch
@@ -195,8 +197,8 @@ $ctrlwidth: 27.78%
 
   .list-prodmod
     align-items: center
-    padding-left: $pd--ml
     padding-top: 0
+    padding-left: $pd--ml
 
   .main-ctrls
     > .control
@@ -204,6 +206,6 @@ $ctrlwidth: 27.78%
 
   .main-prodmod
     > .title
-      +header-default
+      +header-default($pd--m)
       +heading-spaced
       display: block

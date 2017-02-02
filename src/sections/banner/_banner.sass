@@ -9,10 +9,10 @@
 
   > .container
     +cont--xl
+    +block-pad
+    border-bottom: 1rem solid transparent
 
 .main-banner
-  padding-top: $pd--block
-  padding-bottom: $pd--block + 2rem
   text-align: center
 
   > .title
@@ -36,6 +36,10 @@
       margin: 0 auto
 
 @media screen and (min-width: $bp--mn)
+  .section-banner
+    > .container
+      border-bottom-width: 2rem
+
   .list-banner
     flex-wrap: nowrap
 

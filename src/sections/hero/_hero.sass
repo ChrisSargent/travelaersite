@@ -4,18 +4,27 @@
   display: flex
   flex-direction: row
   // To fix IE flex bug on min-height / flex direction column
-  min-height: 64vh
 
   > .container
     +cont--m
+    +block-pad
+    min-height: 64vh
 
   &.-small
-    min-height: 45vh
+    > .container
+      min-height: 45vh
+
+  &.-fullscreen
+    > .container
+      min-height: 100vh
+
+  .section-products + &
+    padding-top: $pd--v
+    // Allow some extra from for the overlapping phones
 
 .main-hero
   +center-box
-  +block-pad
-  min-height: 64vh
+  height: 100%
   color: $co--wt
 
   > .title
@@ -39,17 +48,14 @@
         font-size: $fs--xj
 
     > .i
-      margin: $pd--xs auto 0
       max-width: 100%
+      margin: $pd--xs auto 0
 
   > .wysiwyg
     font-size: $fs--mms
 
     a
       color: $co--brightyellow
-
-  &.-fullscreen
-    min-height: 100vh
 
 @media screen and (min-width: $bp--mn)
   .main-hero

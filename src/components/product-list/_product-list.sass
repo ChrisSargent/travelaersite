@@ -1,20 +1,26 @@
 @import _tools
 
 .list-product
+
+  main#home &
+    margin-bottom: -10rem
+
+  main#products &
+    margin-top: $pd--v
+    margin-bottom: $pd--v / -2
+
   > .item
     position: relative
 
     + .item
       padding-top: $pd--xl
 
-  .article-product
-    background-color: transparentize($co--wt, 0.15)
-
   &.-row
     +columns(2, $pd--xl)
 
 .article-product
   +article-default($pd--s)
+  background-color: transparentize($co--wt, 0.15)
 
   > .wysiwyg
     font-size: $fs--mms
@@ -32,7 +38,12 @@
 
 @media screen and (min-width: $bp--mn)
   .list-product
-    margin-bottom: 350px
+
+    main#home &
+      margin-bottom: 16rem
+
+    main#products &
+      margin-bottom: 24rem
 
     > .item + .item
       padding-top: 0

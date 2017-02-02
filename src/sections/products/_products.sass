@@ -1,19 +1,17 @@
 @import _tools
 
 $fuseWidth: 132px
-$imageWidth: 1200px
+$imageWidth: 1150px
 $margin: 10px
 $fuseEdge: ((($imageWidth / 2) + ($fuseWidth / 2)) / -1) - $margin
-$inset: 30vw
-
+$inset: 35vw
 
 .section-products
-  +block-pad
-  min-height: 100vh
   z-index: $z--mid
 
   > .container
     +cont--xl
+    +block-pad
 
   > .section-background
     &::after
@@ -41,7 +39,7 @@ $inset: 30vw
 
     ._bgimgfull
       background-size: $imageWidth auto
-      background-position: calc(#{$fuseEdge} + #{$inset}) $pd--block
+      background-position: calc(#{$fuseEdge} + #{$inset}) $pd--v / 2.5
 
   &.-gradient
     > .section-background
@@ -50,6 +48,7 @@ $inset: 30vw
 
 .article-products
   +article-default
+  padding-top: 0
   width: auto
 
   > .wysiwyg
@@ -81,7 +80,7 @@ $inset: 30vw
 
       ._bgimgfull
         background-size: auto 175%
-        background-position-y: $pd--block + 3rem
+        background-position-y: $pd--v + 3rem
 
   .article-products
     > .wysiwyg

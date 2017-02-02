@@ -7,10 +7,6 @@ $dashboardImageRatio: 60.5vw
     +cont--xxl(false)
 
 .main-imagebanner
-  position: relative
-  z-index: $z--under
-  padding: 0
-
   > ._bgimg
     position: relative
     height: $dashboardImageRatio / 2
@@ -30,7 +26,7 @@ $dashboardImageRatio: 60.5vw
 
 .article-strip
   +cont--l
-  +article-default
+  +block-pad($pd--xl)
   background-color: #ccccd8
 
   > .title
@@ -70,6 +66,7 @@ $dashboardImageRatio: 60.5vw
     transform: translateY(-50%)
 
   .article-strip
+    display: flex
     flex-direction: row
 
     > .title

@@ -1,12 +1,15 @@
 @import _tools
 
 .footer-sitefooter
-  +block-pad
   font-weight: 300
   position: relative
   z-index: $z--mid
   color: $co--blue--dk
-  line-height: 1.334rem
+  line-height: 1rem * $lh--ml
+
+  > .container
+    +cont--xl
+    +block-pad
 
   ._skew
     margin-bottom: $angle_h_ratio / -1
@@ -18,9 +21,6 @@
   &::after
     content: ' '
     background-color: $co--blue-grey--tt
-
-  > .container
-    +cont--xl
 
 .main-sitefooter
   +columns(auto, $pd--s)

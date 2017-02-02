@@ -3,7 +3,7 @@ import css from '../../lib/css'
 import RespImageCover from '../../components/resp-image-cover'
 import './_section.sass'
 
-const Section = ({compName, image, respSizes, allowFullsize, skew, overlaps, children, background, contSize}) => {
+const Section = ({compName, image, respSizes, allowFullsize, skew, overlaps, children, background, contSize, fullscreen}) => {
   var sectionModifier = '',
     contModifier = '',
     skewClass = '',
@@ -25,6 +25,10 @@ const Section = ({compName, image, respSizes, allowFullsize, skew, overlaps, chi
 
   if (background) {
     sectionModifier += ' -' + background
+  }
+
+  if (fullscreen) {
+    sectionModifier += ' -fullscreen'
   }
 
   if (contSize) {

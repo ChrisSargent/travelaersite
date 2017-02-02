@@ -51,7 +51,8 @@ class Page extends Component {
           skew,
           overlaps,
           background,
-          contentImage
+          contentImage,
+          fullscreen
         } = block
 
         switch (acf_fc_layout) {
@@ -117,7 +118,7 @@ class Page extends Component {
             break
         }
         return (
-          <Section key={index} compName={name} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background} contSize={contSize}>
+          <Section key={index} compName={name} fullscreen={fullscreen} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background} contSize={contSize}>
             {content}
           </Section>
         )
