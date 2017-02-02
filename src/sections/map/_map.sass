@@ -1,25 +1,62 @@
 @import _tools
+$map-height: 200px
 
 .section-map
+  border-bottom: $map-height solid transparent
   z-index: $z--under
-  margin: $angle_h_ratio / -2 0
 
   > .container
-    +cont--xl(false)
+    +cont--xl
+    +block-pad
     position: relative
+
+  .section-background
+    > ._bgcol
+      background-color: $co--blue--lt
 
 .main-map
+  display: flex
+  justify-content: center
 
+  > .vcard
+    padding-left: $pd--s
+    line-height: $lh--lg
+    display: block
+    color: $co--wt
+
+    .email
+      display: none
+
+    .container + .container
+      padding: $pd--m 0 0
 
   > .map
-    height: 400px
+    position: absolute
+    top: calc(100% - #{$angle_h_ratio / 2})
     display: block
-    position: relative
-
+    width: 100%
+    height: calc(#{$map-height} + #{$angle_h_ratio})
 
 @media screen and (min-width: $bp--mn)
-  .main-map
-    display: flex
+  .section-map
+    border-bottom: 0
+    margin: ($angle_h_ratio / -2) 0!important
 
+    > .container
+      padding-left: 0
+      padding-right: 0
+
+  .main-map
     > .map
-      flex-grow: 1
+      position: relative
+      height: auto
+      top: auto
+      z-index: $z--mid
+      margin: ($pd--v / -1) 0
+
+    > .vcard
+      +contact-block
+      font-size: inherit
+
+      &::after
+        display: none

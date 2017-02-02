@@ -7,15 +7,30 @@
 
   > .container
     +cont--xl
+    +block-pad($pd--xxl)
+
+.main-contact
+  .main-submit
+    margin-top: $pd--v / 2
+
 
 @media screen and (min-width: $bp--mn)
   .section-contact
     > .container
-      padding: 0
+      padding-left: 0
+      padding-right: 0
 
   .main-contact
     display: flex
 
     > .container
-      padding: $pd--ll
       flex-grow: 1
+
+    .main-submit
+      +contact-block
+      margin-top: 0
+      width: auto
+      flex-grow: 1
+
+    .main-social
+      +contact-block
