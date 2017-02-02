@@ -15,10 +15,14 @@
         background-color: $co--green
 
     &:nth-child(2)
-      margin: $pd--s 0
+      margin: $pd--xs 0
 
       .header-recentpost.-large
         background-color: $co--blue--md
+
+  + .footer-actions
+    justify-content: center
+    margin-top: $pd--l
 
 .article-recentpost
   +hover-scale
@@ -98,6 +102,10 @@
 
       > ._bgimg
         width: 100%
+
+  .list-recentposts
+    + .footer-actions
+      display: none
 
   .header-recentpost
     .subtitle

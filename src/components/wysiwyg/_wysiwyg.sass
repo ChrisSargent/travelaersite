@@ -37,6 +37,7 @@
 
   figure,
   img
+    display: block
     max-width: 100%
     height: auto
     margin: 0 auto
@@ -48,6 +49,7 @@
 
   figure
     border: 1px solid $co--tint
+    width: 100%!important
 
   figcaption
     font-family: $ff--base
@@ -75,6 +77,10 @@
 
         &::before
           content: '•'
+
+  ol
+    list-style: decimal
+    padding-left: 1.5em
 
   > div
     ul:first-child
@@ -115,6 +121,15 @@
   &.-narrow
     max-width: $sz--s
 
-  @media screen and (min-width: $bp--mn)
+@media screen and (max-width: $bp--mn - 1)
+  .wysiwyg
+    iframe
+      max-width: none
+      margin: 0 ($pd--h--mb / -1)
+      width: calc(100% + #{$pd--h--mb * 2})
+      height: 65vw
+
+@media screen and (min-width: $bp--mn)
+  .wysiwyg
     blockquote
       margin: $pd--xl

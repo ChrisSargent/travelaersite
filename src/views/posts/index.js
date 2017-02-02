@@ -83,7 +83,7 @@ class Posts extends Component {
     })
 
     return (
-      <main>
+      <main id={compName}>
         <Helmet title={pageTitle}/>
         <Section compName={'hero' + heroModifier} image={postsObj.heroImage} skew="bottom" overlaps={overlap}/>
         <Section compName={compName}>
@@ -93,6 +93,7 @@ class Posts extends Component {
             </ul>
             <aside className={css.sidebar + compName}>
               <RecentPosts posts={postsObj.side}/>
+              {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
               <Insta/>
             </aside>
           </div>

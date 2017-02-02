@@ -1,11 +1,22 @@
 @import _tools
 
+@media screen and (max-width: $bp--mn - 1)
+  main#posts
+    .section-hero
+      .section-background
+        &::after
+          content: none
+
+        &._skew,
+        ._skewcorrect
+          transform: none
+
 .section-posts
   +block-pad
   padding-top: 0
 
   > .container
-    +cont--xl
+    +cont--xl(false)
 
 .main-posts
   +columns
@@ -14,7 +25,7 @@
   padding-left: 0
 
   + .footer-actions
-    margin-top: $pd--l
+    display: none
 
 .list-posts
   width: 100%
@@ -26,9 +37,19 @@
   width: 100%
 
 @media screen and (min-width: $bp--mn)
+  .main-posts
+    + .footer-actions
+      display: flex
+      margin-top: $pd--l
+
   .section-posts
     .section-hero + &
       margin-top: -18vh
+
+    > .container
+      padding-left: $pd--h--dt
+      padding-right: $pd--h--dt
+
 
   .list-posts
     width: auto

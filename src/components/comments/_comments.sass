@@ -1,10 +1,10 @@
 @import _tools
 
 .section-comments
-  // +block-pad($pd--l)
-
   > .container
     +post-padding
+    padding-top: $pd--ll
+    padding-bottom: $pd--ll
 
 .header-comments
   +header-default(0)
@@ -14,9 +14,6 @@
     padding-bottom: $pd--s
 
 @media screen and (min-width: $bp--mn)
-  .section-comments
-    // +block-pad($pd--xl)
-
   .header-comments
     .title
       font-size: $fs--m
