@@ -11,6 +11,17 @@
   letter-spacing: $ls--w
   text-transform: uppercase
 
+=heading-section
+  +heading-spaced
+  text-align: center
+  font-size: $fs--mml
+  margin-bottom: $pd--l
+
+  @media screen and (min-width: $bp--mn)
+    font-size: $fs--xl
+    margin-bottom: $pd--xl
+
+
 // ***************************** Component Mixins ******************************
 
 =article-default($pad: $pd--l, $dir: column)

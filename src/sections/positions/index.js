@@ -18,10 +18,10 @@ const Positions = ({title, content, positions, actions, compName}) => {
   return (
     <div className={css.main + compName}>
       <h1 className={css.title}>{title}</h1>
-      <Wysiwyg content={content} />
       <ul className={css.list + compName}>
         {positionMap}
       </ul>
+      <Wysiwyg content={content} />
       <Actions actions={actions} />
     </div>
   )

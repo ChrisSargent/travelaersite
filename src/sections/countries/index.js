@@ -19,7 +19,7 @@ const Countries = ({countries, map, title, compName}) => {
       <ul className={css.list + compName}>
         {countryMap}
       </ul>
-      <RespImage image={map} class="europe"/>
+      <RespImage image={map} />
     </div>
   )
 }
