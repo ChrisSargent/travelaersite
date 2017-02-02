@@ -46,6 +46,10 @@ $inset: 35vw
       ._bgcol
         background-image: linear-gradient(to bottom, transparentize($co--blue-vio, 1) 40%, transparentize($co--blue-vio, 0.6) 100%)
 
+  + section
+    padding-top: $pd--v / 2
+    // Allow some extra from for the overlapping phones
+
 .article-products
   +article-default
   padding-top: 0
@@ -81,6 +85,10 @@ $inset: 35vw
       ._bgimgfull
         background-size: auto 175%
         background-position-y: $pd--v + 3rem
+
+    + section
+      padding-top: $pd--v
+      // Allow some extra from for the overlapping phones
 
   .article-products
     > .wysiwyg

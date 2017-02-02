@@ -5,7 +5,7 @@ $mg-defeat: $pd--h--dt / -1
 .section-tpaas
   > .container
     +cont--xl
-    // +block-pad
+    +block-pad
 
   &.-architecture,
   &.-features
@@ -120,6 +120,12 @@ $mg-defeat: $pd--h--dt / -1
       color: $co--wt
 
 @media screen and (min-width: $bp--mn)
+  .section-tpaas
+    &.-searchshop
+      + section
+        padding-top: $pd--v / 2
+        // Allow some extra from for the overlapping screenshots
+
   .main-tpaas
     display: block
 
@@ -134,11 +140,17 @@ $mg-defeat: $pd--h--dt / -1
         font-size: $fs--lm
         line-height: $lh--ml
 
+    &.-searchshop,
+    &.-instapricer,
+    &.-award
+      .wysiwyg
+        padding-top: $pd--ml
+        width: 50%
+
     &.-searchshop
       position: relative
 
       .wysiwyg
-        width: 50%
         padding-right: $pd--s
 
       .screenshot-block
@@ -171,13 +183,12 @@ $mg-defeat: $pd--h--dt / -1
 
       .wysiwyg
         float: right
-        width: 50%
 
       .screenshot-block
         float: left
         width: 50%
         max-width: 500px
-        margin-bottom: -70px
+        margin-bottom: $pd--v / -1
         margin-left: $mg-defeat
 
     &.-award

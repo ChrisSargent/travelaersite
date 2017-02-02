@@ -10,8 +10,8 @@
   border-color: transparent
 
 =olcolor($color)
-  background-color: transparentize($color, 0.5)
   border-color: transparentize($color, 0.5)
+  background-color: transparentize($color, 0.5)
 
 section
   position: relative
@@ -23,6 +23,9 @@ section
   overflow: hidden
   box-sizing: content-box
   transform: skewY($angle--ban) scaleZ(1)
+  // Having the scaleZ gives a nicer render
+  border-bottom: 1px solid transparent
+  // Prevents a rendering artefact
 
   > ._skewcorrect
     +stretch
@@ -79,6 +82,22 @@ section
     &::after
       +olcolor($co--green)
 
+.-skewbottom,
+.-skewtop,
+.-skewboth
+    // -1px bottom margins prevent any whitespace / jagged edges appearing as an artefact
+    margin-top: -1px
+    margin-bottom: -1px
+
+.-skewnone
+  // Ensures straight line without artefacts
+  z-index: $z--mid
+
+  + .-skewtop,
+  + .-skewboth
+    z-index: $z--top
+    margin-top: calc(#{$angle_h_ratio / -2} - 1px)
+
 .-skewbottom
   > ._skew
     top: $angle_h_ratio / -2
@@ -97,15 +116,9 @@ section
 
 .-skewboth
   > ._skew
-
     > ._skewcorrect
       top: $angle_h_ratio / -2
       height: calc(100% + #{$angle_h_ratio})
-
-.-skewnone + .-skewtop,
-.-skewnone + .-skewboth
-  margin-top: calc(#{$angle_h_ratio / -2} - 1px)
-
 
 @media screen and (min-width: $bp--mn)
   ._skew
