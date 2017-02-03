@@ -14,8 +14,8 @@ body
 
 html,
 body
+  +ff--base
   max-width: 100vw
-  font-family: $ff--base
   font-size: $fs--mob
   -webkit-text-size-adjust: none
   font-weight: 400
@@ -42,14 +42,15 @@ h3,
 h4,
 h5,
 h6
-  font-family: $ff--hdgs
+  +ff--hdgs
   font-weight: 700
 
 strong
   font-weight: 700
 
 .btn
-  +input-reset($ff--base)
+  +input-reset
+  +ff--base
   +btn
 
   &.-cta,

@@ -14,9 +14,9 @@
     opacity: 0.5
 
   .label
+    +ff--feature
     stroke: none!important
-    font-family: $ff--feature
-    font-size: $fs-m
+    font-size: $fs-s
     letter-spacing: $ls
     text-transform: uppercase
     -webkit-font-smoothing: antialiased
@@ -24,10 +24,14 @@
     &.-large
       font-size: $fs-l
 
+    body.ff--feature &
+      font-size: $fs-m
+
+
   .sublabel
+    +ff--base
     stroke: none!important
     -webkit-font-smoothing: antialiased
-    font-family: $ff--base
     font-size: $fs-s
     font-weight: 300
     letter-spacing: $ls

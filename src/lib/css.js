@@ -35,13 +35,13 @@ module.exports = {
   success: ' -success',
   observableFonts: [
     {
-      id: 'font-feature',
+      id: 'ff--feature',
       family: 'Alternate Gothic'
     }, {
-      id: 'font-heading',
+      id: 'ff--base',
       family: 'Montserrat'
     }, {
-      id: 'font-body',
+      id: 'ff--p',
       family: 'Neuton'
     }
   ]
