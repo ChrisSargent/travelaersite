@@ -326,6 +326,7 @@
                     "multiple": 0,
                     "allow_null": 0,
                     "choices": {
+                        "messenger": "Messenger",
                         "facebook": "Facebook",
                         "twitter": "Twitter",
                         "instagram": "Instagram",
@@ -857,5 +858,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1485548502
+    "modified": 1486121878
 }

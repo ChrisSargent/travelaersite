@@ -1,14 +1,14 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import {connect} from 'react-redux'
-import {getOptions} from '../../reducers/site'
+import {getOptions, getHasSubMenu} from '../../reducers/site'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
 
 const Base = (props) => {
   var metaInfo
-  const {options} = props
+  const {options, getHasSubMenu} = props
 
   if (options) {
     metaInfo = {
@@ -24,7 +24,7 @@ const Base = (props) => {
   return (
     <div>
       {metaInfo && <Helmet {...metaInfo}/>}
-      <Header/>
+      <Header hasSubMenu={getHasSubMenu}/>
       {props.children}
       <Footer/>
       <Loader/>
@@ -32,5 +32,8 @@ const Base = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({options: getOptions(state)})
+const mapStateToProps = (state, ownProps) => ({
+  options: getOptions(state),
+  getHasSubMenu: getHasSubMenu(state, ownProps.location.pathname),
+})
 export default connect(mapStateToProps)(Base)

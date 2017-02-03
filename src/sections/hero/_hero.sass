@@ -24,7 +24,6 @@
     &:last-of-type
       display: none
 
-
 .main-hero
   +center-box
   height: 100%
@@ -64,6 +63,10 @@
     main#comversational &
       &:last-of-type
         display: flex
+
+    .-hassubmenu + main &
+      .main-hero
+        margin-top: $ht-subheader
 
   .main-hero
     > .title
