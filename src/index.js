@@ -40,13 +40,11 @@ render(
     <Router history={browserHistory} onUpdate={handleUpdate}>
       <Route path={globals.companyUrl} component={Base}>
         <IndexRoute component={Page}/>
-        <Route path="team" component={Page}/>
-        <Route path="story" component={Page}/>
+        <Route path="*" component={Page}/>
       </Route>
       <Route path={globals.productsUrl} component={Base}>
         <IndexRoute component={Page}/>
-        <Route path="comversational" component={Page}/>
-        <Route path="travel-paas" component={Page}/>
+        <Route path="*" component={Page}/>
       </Route>
       <Route path={globals.blogUrl} component={Base}>
         <IndexRoute component={Posts}/>
@@ -54,7 +52,7 @@ render(
       </Route>
       <Route path={globals.homeUrl} component={Base}>
         <IndexRoute component={Page}/>
-        <Route path=":slug" component={Page}/>
+        <Route path="*" component={Page}/>
       </Route>
     </Router>
 </Provider>,

@@ -1,20 +1,19 @@
 import packageJson from '../../package.json'
 
 export const globals = {
-  siteURL: process.env.NODE_ENV === `development` ? packageJson.proxy + '/wordpress' : packageJson.homepage + '/wordpress',
+  siteUrl: process.env.NODE_ENV === `development` ? packageJson.proxy + '/wordpress' : packageJson.homepage + '/wordpress',
   homeUrl: '/',
   blogUrl: '/blog/',
   companyUrl: '/company/',
   productsUrl: '/products/',
-  contactUrl: '/contact-us/',
   flagsUrl: '/assets/flags/',
   homeID: 5
 }
 
 export const stripDomain = (url) => {
-  const siteURL = globals.siteURL
-  if (url && url.includes(siteURL)) {
-    url = url.replace(siteURL, '')
+  const siteUrl = globals.siteUrl
+  if (url && url.includes(siteUrl)) {
+    url = url.replace(siteUrl, '')
     url === '' && (url = '/')
   }
   return url
@@ -60,6 +59,6 @@ export const trimContent = (content, paras) => {
 }
 
 export const convertLinks = (content) => {
-  content = content.replace(new RegExp('href="' + globals.siteURL, 'g'), 'href="');
+  content = content.replace(new RegExp('href="' + globals.siteUrl, 'g'), 'href="');
   return content
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router'
-import {dateFormat, globals} from '../../lib/utils'
+import {dateFormat, stripDomain} from '../../lib/utils'
 import ArticleHeader from '../article-header'
 import css from '../../lib/css'
 import RespImageCover from '../resp-image-cover'
@@ -17,7 +17,7 @@ const RecentPosts = ({posts}) => {
 
     const compName = 'recentpost'
     const dateString = dateFormat(post.date_gmt, false)
-    const link = globals.blogUrl + '/' + post.slug
+    const link = stripDomain(post.link)
 
     if (index < 2) {
       modifier = compName + ' -large'

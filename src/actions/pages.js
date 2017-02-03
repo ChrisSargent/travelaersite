@@ -7,7 +7,7 @@ import types from '.'
 // *****************************************************************************
 
 // Set the fields we want to fetch for the page
-const fields = 'acf,id,link,title,t_display_sub_menu';
+const fields = 'acf,id,link,slug,title,t_display_sub_menu';
 
 // Gets page objects from the WP API
 const _getPages = (pathname) => {

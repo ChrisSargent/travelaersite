@@ -1,5 +1,5 @@
 import React from 'react'
-import {globals, trimContent} from '../../lib/utils'
+import {trimContent, stripDomain} from '../../lib/utils'
 import ArticleHeader from '../article-header'
 import Author from '../author'
 import Comments from '../comments'
@@ -14,7 +14,7 @@ const Post = ({post, excerpt, main}) => {
     image,
     more,
     displayComments,
-    previewParas
+    previewParas = 1
 
   const postInfo = {
     views: '',
@@ -26,11 +26,9 @@ const Post = ({post, excerpt, main}) => {
   }
 
   if (excerpt) {
-    main
-      ? previewParas = 3
-      : previewParas = 1
+    main && (previewParas = 3)
     content = trimContent(post.content.rendered, previewParas)
-    more = globals.blogUrl + '/' + post.slug
+    more = stripDomain(post.link)
     displayComments = false
   } else {
     content = post.content

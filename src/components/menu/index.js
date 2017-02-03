@@ -9,7 +9,7 @@ import MenuToggle from '../menu-toggle'
 import './_menu.sass'
 
 const MenuItem = ({item}) => {
-  var LinkType,
+  var LinkType = Link,
     linkClass
   const compName = 'menu'
   const itemLink = stripDomain(item.url)
@@ -17,9 +17,7 @@ const MenuItem = ({item}) => {
   linkClass = css.link + compName
   item.children.length > 0 && (linkClass += " -hassub")
 
-  itemLink === globals.homeUrl
-    ? LinkType = IndexLink
-    : LinkType = Link
+  itemLink === globals.homeUrl && (LinkType = IndexLink)
 
   return (
     <li className={css.item}>
