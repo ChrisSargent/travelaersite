@@ -52,6 +52,7 @@
     "whatwg-fetch": "*"
   },
   "dependencies": {
+    "fontfaceobserver": "^2.0.8",
     "history": "*",
     "instafeed.js": "^1.4.1",
     "react": "*",

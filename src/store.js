@@ -8,7 +8,7 @@ let middleware = [promise(), thunk];
 if (process.env.NODE_ENV === `development`) {
   const createLogger = require(`redux-logger`);
   const logger = createLogger();
-  middleware = [...middleware, logger];
+  // middleware = [...middleware, logger];
 }
 
 const store = createStore(reducers, applyMiddleware(...middleware))

@@ -1,10 +1,12 @@
 import React from 'react'
+import store from './store'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
-import store from './store'
 import {fetchOptions} from './actions/site'
 import {globals} from './lib/utils'
+import {observableFonts} from './lib/css'
+import FontFaceObserver from 'fontfaceobserver'
 import Base from './views/base'
 import Page from './views/page'
 import Posts from './views/posts'
@@ -20,6 +22,18 @@ function handleUpdate() {
   const {action} = this.state.location
   action === 'PUSH' && (window.scrollTo(0, 0))
 }
+
+(function observeFonts() {
+  observableFonts.map((font) => {
+    const observedFont = new FontFaceObserver(font.family);
+    observedFont.load().then(() => {
+      document.body.className += ' ' + font.id;
+    }, () => {
+      console.log(font.family + ' is not available after waiting 5 seconds');
+    });
+    return observedFont
+  })
+})()
 
 render(
   <Provider store={store}>

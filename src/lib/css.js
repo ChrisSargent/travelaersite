@@ -33,4 +33,16 @@ module.exports = {
   error: ' -error',
   warning: ' -warning',
   success: ' -success',
+  observableFonts: [
+    {
+      id: 'font-feature',
+      family: 'Alternate Gothic'
+    }, {
+      id: 'font-heading',
+      family: 'Montserrat'
+    }, {
+      id: 'font-body',
+      family: 'Neuton'
+    }
+  ]
 }
