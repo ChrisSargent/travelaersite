@@ -20,10 +20,6 @@
     > .container
       min-height: 100vh
 
-  main#comversational &
-    &:last-of-type
-      display: none
-
 .main-hero
   +center-box
   height: 100%
@@ -44,9 +40,6 @@
       margin-bottom: 0.2em
       letter-spacing: normal
 
-      #contact-us &
-        font-size: $fs--xj
-
     > .i
       max-width: 100%
       margin: $pd--xs auto 0
@@ -57,13 +50,18 @@
     a
       color: $co--brightyellow
 
+@media screen and (max-width: $bp--mn - 1)
+  main#contact-us .main-hero
+    > .title
+      strong
+        font-size: $fs--xj
+
+  main#comversational .section-hero
+    &:last-of-type
+      display: none
+
 @media screen and (min-width: $bp--mn)
   .section-hero
-
-    main#comversational &
-      &:last-of-type
-        display: flex
-
     .-hassubmenu + main &
       .main-hero
         margin-top: $ht-subheader

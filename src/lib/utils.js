@@ -1,9 +1,22 @@
+import packageJson from '../../package.json'
+
+export const globals = {
+  siteURL: process.env.NODE_ENV === `development` ? packageJson.proxy : packageJson.homepage,
+  homeUrl: '/',
+  blogUrl: '/blog',
+  companyUrl: '/company',
+  productsUrl: '/products',
+  contactUrl: '/contact-us',
+  flagsUrl: '/assets/flags/',
+  homeID: 5
+}
+
 export const stripDomain = (url) => {
-  if (url && url.indexOf('http') >= 0) {
-    url = url.replace(/^.*\/\/[^/]+/, '').replace('/wordpress', '')
-  }
-  if (url && url.length > 1 && url.substr(-1) === '/') {
-    url = url.substr(0, url.length - 1)
+  const {siteURL} = globals
+  if (url && url.includes(siteURL)) {
+    url = url.replace(siteURL, '')
+    url.substr(-1) === '/' && (url = url.substr(0, url.length - 1))
+    url === '' && (url = '/')
   }
   return url
 }
@@ -43,12 +56,12 @@ export const dateFormat = (date, includeTime) => {
   return dateString
 }
 
-export const globals = {
-  homeUrl: '/',
-  blogUrl: '/blog',
-  companyUrl: '/company',
-  productsUrl: '/products',
-  contactUrl: '/contact-us',
-  flagsUrl: '/assets/flags/',
-  homeID: 5
+export const trimContent = (content, paras) => {
+  var excerpt = content.split('</p>', paras)
+  return excerpt.join('')
+}
+
+export const convertAtoLink = (content) => {
+  console.log(content);
+  return content
 }

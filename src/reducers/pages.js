@@ -14,6 +14,12 @@ export const getFetchedAllPages = ({pages}) => {
   return pages.fetchedAllPages
 }
 
+export const getDisplaySubmenu = ({pages}) => {
+  return pages[pages.currentPageSlug]
+    ? pages[pages.currentPageSlug].t_display_sub_menu
+    : false
+}
+
 const addAllPages = (pages, state) => {
   // Puts each page in to an array, indexed by its slug
   for (var i = 0; i < pages.length; i++) {

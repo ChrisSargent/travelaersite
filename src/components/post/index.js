@@ -1,5 +1,5 @@
 import React from 'react'
-import {globals} from '../../lib/utils'
+import {globals, trimContent} from '../../lib/utils'
 import ArticleHeader from '../article-header'
 import Author from '../author'
 import Comments from '../comments'
@@ -8,22 +8,13 @@ import PostInfo from '../post-info'
 import Wysiwyg from '../wysiwyg'
 import './_post.sass'
 
-const trimContent = (content, main) => {
-  var paras
-  main
-    ? paras = 3
-    : paras = 1
-
-  var excerpt = content.split('</p>', paras)
-  return excerpt.join('')
-}
-
 const Post = ({post, excerpt, main}) => {
   const compName = 'post'
   var content,
     image,
     more,
-    displayComments
+    displayComments,
+    previewParas
 
   const postInfo = {
     views: '',
@@ -35,7 +26,10 @@ const Post = ({post, excerpt, main}) => {
   }
 
   if (excerpt) {
-    content = trimContent(post.content.rendered, main)
+    main
+      ? previewParas = 3
+      : previewParas = 1
+    content = trimContent(post.content.rendered, previewParas)
     more = globals.blogUrl + '/' + post.slug
     displayComments = false
   } else {

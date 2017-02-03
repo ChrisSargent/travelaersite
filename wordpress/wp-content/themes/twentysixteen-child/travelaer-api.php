@@ -36,6 +36,23 @@ function travelaer_api_custom_post_fields()
             'schema' => null,
         )
     );
+    register_rest_field('page',
+        't_display_sub_menu',
+        array(
+            'get_callback' => 'travelaer_display_submenu',
+            'update_callback' => null,
+            'schema' => null,
+        )
+    );
+}
+
+function travelaer_display_submenu($object, $field_name, $request) {
+    $children = get_pages( array( 'child_of' => $object['id'] ) );
+    if (count($children) || $object['parent'] > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function travelaer_get_author_info($object, $field_name, $request)
@@ -160,7 +177,6 @@ function travelaer_add_acf($items) {
       'content' => get_the_content_by_id($item_id),
     );
   }
-  wlog($items);
   return $items;
 }
 
@@ -180,6 +196,7 @@ add_filter( 'acf/rest_api/option/get_fields', function($data) {
       'description' => get_bloginfo('description'),
       'charset' => get_bloginfo('charset'),
       'language' => get_bloginfo('language'),
+      'url' => get_bloginfo('url'),
     );
     $data['acf']['t_site_info'] = $t_site_info;
     return $data;

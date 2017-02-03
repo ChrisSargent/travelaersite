@@ -1,7 +1,7 @@
 {
   "name": "travelaersite",
-  "homepage": "http://travelaer.stickypixel.com/",
-  "proxy": "http://travelaersite.dev/",
+  "homepage": "http://travelaer.stickypixel.com",
+  "proxy": "http://travelaersite.dev",
   "version": "0.7.0",
   "private": true,
   "devDependencies": {

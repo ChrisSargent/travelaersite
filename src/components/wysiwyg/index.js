@@ -1,26 +1,52 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {withRouter} from 'react-router'
 import css from '../../lib/css'
+import {globals, convertAtoLink, stripDomain} from '../../lib/utils'
 import {Link} from 'react-router'
 import './_wysiwyg.sass'
 
-const Wysiwyg = ({size, more, content}) => {
-  var wysClass
+class Wysiwyg extends Component {
+  constructor() {
+    super()
+    this.handleClick = this.handleClick.bind(this)
+  }
 
-  if(!content)
-    return false
+  handleClick(ev) {
+    console.log('test');
+    var targetURL = ev.target.href
+    if (!targetURL)
+      return
 
-  const compName = 'wysiwyg'
-  wysClass = compName
-  size && (wysClass += ' -' + size)
+    if (!targetURL.includes(globals.siteURL))
+      return
 
-  content.rendered && (content = content.rendered)
+    ev.preventDefault()
+    this.props.router.push(stripDomain(targetURL))
+  }
 
-  return (
-    <div className={wysClass}>
-      <div dangerouslySetInnerHTML={{__html: content}}></div>
-      {more && <Link to={more} className={css.more}>&raquo;&nbsp;Read More</Link>}
-    </div>
-  )
+  render() {
+    const {more} = this.props
+    var {size, content} = this.props
+    var wysClass
+
+    if (!content)
+      return false
+
+    const compName = 'wysiwyg'
+    wysClass = compName
+    size && (wysClass += ' -' + size)
+
+    content.rendered && (content = content.rendered)
+
+    return (
+      <div className={wysClass}>
+        <div onClick={this.handleClick} dangerouslySetInnerHTML={{
+          __html: content
+        }}></div>
+        {more && <Link to={more} className={css.more}>&raquo;&nbsp;Read More</Link>}
+      </div>
+    )
+  }
 }
 
-export default Wysiwyg
+export default withRouter(Wysiwyg)

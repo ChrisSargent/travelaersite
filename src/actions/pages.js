@@ -6,6 +6,9 @@ import types from '.'
 // ******************************* PAGE ACTIONS ********************************
 // *****************************************************************************
 
+// Set the fields we want to fetch for the page
+const fields = 'acf,slug,id,title,t_display_sub_menu';
+
 // Updates the current slug in the state
 const _updateCurrentSlug = (slug) => ({type: types.UPDATE_CURRENT_PAGE, payload: slug})
 
@@ -14,7 +17,7 @@ const _getPages = (slug) => {
   var fetchedAllPages = false
   const params = {
     slug,
-    fields: 'acf,slug,id,title'
+    fields,
   }
   !slug && (fetchedAllPages = false)
   return {
@@ -30,7 +33,7 @@ const _getPages = (slug) => {
 // Gets all the pages from the API
 export const _backgroundGetPages = () => {
   const params = {
-    fields: 'acf,slug,id,title'
+    fields
   }
   return {
     type: types.BACKGROUND_FETCH_PAGES,
