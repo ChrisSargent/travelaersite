@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router'
 import css from '../../lib/css'
-import {globals, convertAtoLink, stripDomain} from '../../lib/utils'
+import {globals, convertLinks, stripDomain} from '../../lib/utils'
 import {Link} from 'react-router'
 import './_wysiwyg.sass'
 
@@ -12,7 +12,6 @@ class Wysiwyg extends Component {
   }
 
   handleClick(ev) {
-    console.log('test');
     var targetURL = ev.target.href
     if (!targetURL)
       return
@@ -37,6 +36,7 @@ class Wysiwyg extends Component {
     size && (wysClass += ' -' + size)
 
     content.rendered && (content = content.rendered)
+    content = convertLinks(content)
 
     return (
       <div className={wysClass}>

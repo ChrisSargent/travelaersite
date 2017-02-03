@@ -9,8 +9,6 @@ const Header = (props) => {
   const {hasSubMenu} = props
   const compName = 'siteheader'
 
-  console.log(hasSubMenu);
-
   hasSubMenu && (headerClass = ' -hassubmenu')
 
   return (

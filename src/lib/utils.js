@@ -15,8 +15,7 @@ export const stripDomain = (url) => {
   const {siteURL} = globals
   if (url && url.includes(siteURL)) {
     url = url.replace(siteURL, '')
-    url.substr(-1) === '/' && (url = url.substr(0, url.length - 1))
-    url === '' && (url = '/')
+    url.substr(-1) === '/' && url.length > 1 && (url = url.substr(0, url.length - 1))
   }
   return url
 }
@@ -61,7 +60,7 @@ export const trimContent = (content, paras) => {
   return excerpt.join('')
 }
 
-export const convertAtoLink = (content) => {
-  console.log(content);
+export const convertLinks = (content) => {
+  content = content.replace(new RegExp('href="' + globals.siteURL, 'g'), 'href="');
   return content
 }
