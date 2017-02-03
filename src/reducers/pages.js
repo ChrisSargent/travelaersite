@@ -1,12 +1,13 @@
 import types from '../actions'
+import {stripDomain} from '../lib/utils'
 
-export const getPage = ({pages}) => {
-  return pages[pages.currentPageSlug]
+export const getPage = ({pages}, pathname) => {
+  return pages[pathname]
 }
 
-export const getPageAppend = ({pages}) => {
-  return pages.currentPageSlug
-    ? pages[pages.currentPageSlug].acf.footerAppend
+export const getPageAppend = ({pages}, pathname) => {
+  return pages[pathname]
+    ? pages[pathname].acf.footerAppend
     : false
 }
 
@@ -14,47 +15,35 @@ export const getFetchedAllPages = ({pages}) => {
   return pages.fetchedAllPages
 }
 
-export const getDisplaySubmenu = ({pages}) => {
-  return pages[pages.currentPageSlug]
-    ? pages[pages.currentPageSlug].t_display_sub_menu
+export const getDisplaySubmenu = ({pages}, pathname) => {
+  return pages[pathname]
+    ? pages[pathname].t_display_sub_menu
     : false
 }
 
-const addAllPages = (pages, state) => {
+const addPages = (pages, state) => {
+  var pageArray = []
   // Puts each page in to an array, indexed by its slug
   for (var i = 0; i < pages.length; i++) {
     const page = pages[i]
-    if (!state[page.slug]) {
-      state = {
-        ...state,
-        [page.slug]: page,
-        fetchedAllPages: true,
-        fetchingAllPages: false
-      }
-    }
+    const pathname = stripDomain(page.link)
+    !state[pathname] && (pageArray[pathname] = page)
   }
-  return state
+  return pageArray
 }
 
 const pages = (state = {
-  currentPageSlug: null,
   fetchedAllPages: false,
-  fetchingAllPages: false,
+  fetchingAllPages: false
 }, action) => {
 
   switch (action.type) {
-    case types.UPDATE_CURRENT_PAGE:
-      return {
-        ...state,
-        currentPageSlug: action.payload
-      }
-
     case types.FETCH_PAGE + '_FULFILLED':
-      const page = action.payload.data[0]
+      const page = action.payload.data
+      const pageArray = addPages(page, state)
       return {
         ...state,
-        [page.slug]: page,
-        currentPageSlug: page.slug,
+        ...pageArray,
       }
 
     case types.BACKGROUND_FETCH_PAGES + '_PENDING':
@@ -65,7 +54,13 @@ const pages = (state = {
 
     case types.BACKGROUND_FETCH_PAGES + '_FULFILLED':
       const pages = action.payload.data
-      return addAllPages(pages, state)
+      const pagesArray = addPages(pages, state)
+      return {
+        ...state,
+        ...pagesArray,
+        fetchedAllPages: true,
+        fetchingAllPages: false
+      }
 
     default:
       break

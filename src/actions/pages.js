@@ -7,19 +7,16 @@ import types from '.'
 // *****************************************************************************
 
 // Set the fields we want to fetch for the page
-const fields = 'acf,slug,id,title,t_display_sub_menu';
+const fields = 'acf,id,link,title,t_display_sub_menu';
 
-// Updates the current slug in the state
-const _updateCurrentSlug = (slug) => ({type: types.UPDATE_CURRENT_PAGE, payload: slug})
-
-// Gets a single page object from the WP API
-const _getPages = (slug) => {
+// Gets page objects from the WP API
+const _getPages = (pathname) => {
   var fetchedAllPages = false
   const params = {
-    slug,
-    fields,
+    slug: getRequestedSlug(pathname),
+    fields
   }
-  !slug && (fetchedAllPages = false)
+  !pathname && (fetchedAllPages = false)
   return {
     type: types.FETCH_PAGE,
     payload: axios.get('/wp/v2/pages', {params}),
@@ -37,7 +34,7 @@ export const _backgroundGetPages = () => {
   }
   return {
     type: types.BACKGROUND_FETCH_PAGES,
-    payload: axios.get('/wp/v2/pages', {params}),
+    payload: axios.get('/wp/v2/pages', {params})
   }
 }
 
@@ -45,23 +42,16 @@ export const _backgroundGetPages = () => {
 export const backgroundFetchPages = () => (dispatch, getState) => {
   const {fetchingAllPages, fetchedAllPages} = getState().pages
 
-  if (fetchingAllPages || fetchedAllPages) {
-    return null
-  } else {
+  if (!fetchingAllPages && !fetchedAllPages)
     return dispatch(_backgroundGetPages())
-  }
 }
 
 // Checks if a page exists in the cache and then calls the WP API if not
 export const fetchPage = (pathname) => (dispatch, getState) => {
-  const requestedSlug = getRequestedSlug(pathname)
-  const page = getState().pages[requestedSlug]
+  const page = getState().pages[pathname]
 
-  if (page) {
-    return dispatch(_updateCurrentSlug(requestedSlug))
-  } else {
-    return dispatch(_getPages(requestedSlug))
-  }
+  if (!page)
+    return dispatch(_getPages(pathname))
 }
 
 // *****************************************************************************

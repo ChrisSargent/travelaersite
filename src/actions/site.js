@@ -2,7 +2,7 @@ import axios from 'axios'
 import types from '.'
 
 if (process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = 'http://travelaersite.dev/wp-json'
+  axios.defaults.baseURL = 'http://travelaersite.dev/wordpress/wp-json'
 } else {
   axios.defaults.baseURL = 'http://travelaer.stickypixel.com/wordpress/wp-json'
 }

@@ -14,7 +14,7 @@ const Actions = ({actions, onClick}) => {
   const actionsMap = actions.map((action, index) => {
     var btnClass
     const url = stripDomain(action.linkTo)
-    
+
     btnClass = css.btn
     action.modifier && (btnClass += ' -' + action.modifier)
     action.loading && (btnClass += css.loading)

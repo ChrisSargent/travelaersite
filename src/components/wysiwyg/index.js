@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router'
 import css from '../../lib/css'
-import {globals, convertLinks, stripDomain} from '../../lib/utils'
+import {convertLinks} from '../../lib/utils'
 import {Link} from 'react-router'
 import './_wysiwyg.sass'
 
@@ -12,15 +12,15 @@ class Wysiwyg extends Component {
   }
 
   handleClick(ev) {
-    var targetURL = ev.target.href
+    const targetURL = ev.target.href
     if (!targetURL)
       return
 
-    if (!targetURL.includes(globals.siteURL))
-      return
-
-    ev.preventDefault()
-    this.props.router.push(stripDomain(targetURL))
+    if (targetURL.indexOf('http://') === 0 || targetURL.indexOf('https://') === 0) {
+      ev.preventDefault()
+      const pathname = ev.target.pathname
+      this.props.router.push(pathname)
+    }
   }
 
   render() {

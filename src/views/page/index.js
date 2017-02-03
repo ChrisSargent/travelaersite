@@ -167,8 +167,8 @@ class Page extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  page: getPage(state),
+const mapStateToProps = (state, ownProps) => ({
+  page: getPage(state, ownProps.location.pathname),
   options: getOptions(state)
 })
 

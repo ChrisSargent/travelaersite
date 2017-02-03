@@ -33,12 +33,13 @@ const Base = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   const options = getOptions(state)
-  const hasSubMenu = getDisplaySubmenu(state)
+  const hasSubMenu = getDisplaySubmenu(state, ownProps.location.pathname)
   return ({
     options,
-    hasSubMenu})
+    hasSubMenu}
+  )
 }
 
 export default connect(mapStateToProps)(Base)

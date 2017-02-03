@@ -53,7 +53,7 @@ const Footer = ({options, footerAppend}) => {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   options: getOptions(state),
   footerAppend: getPageAppend(state)
 })
