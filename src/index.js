@@ -26,7 +26,7 @@ function handleUpdate() {
 (function observeFonts() {
   observableFonts.map((font) => {
     const observedFont = new FontFaceObserver(font.family);
-    observedFont.load().then(() => {
+    observedFont.load(null, 5000).then(() => {
       document.body.className += ' ' + font.id;
     }, () => {
       console.log(font.family + ' is not available after waiting 5 seconds');
