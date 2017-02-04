@@ -1,11 +1,8 @@
 import axios from 'axios'
 import types from '.'
+import {globals} from '../lib/utils'
 
-if (process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = 'http://travelaersite.dev/wordpress/wp-json'
-} else {
-  axios.defaults.baseURL = 'http://travelaer.stickypixel.com/wordpress/wp-json'
-}
+axios.defaults.baseURL = globals.siteUrl + '/wp-json'
 
 // *****************************************************************************
 // ******************************* SITE ACTIONS ********************************
