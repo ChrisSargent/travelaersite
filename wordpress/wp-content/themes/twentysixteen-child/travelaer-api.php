@@ -1,6 +1,30 @@
 <?php
 
-// Add fields to the api response
+/**
+ * Custom Endpoint Text
+ */
+
+// add_action( 'rest_api_init', function () {
+// 	register_rest_route( 'travelaer/v1', '/page/(?P<pathname>([a-zA-Z-_]+))', array(
+// 		'methods' => 'GET',
+// 		'callback' => 'travelaer_get_page',
+// 	) );
+// } );
+//
+// function travelaer_get_page( $data ) {
+//   $pathname = $data['pathname'];
+//   $page_id = url_to_postid( get_site_url(null, $pathname) );
+//   $page = get_post($page_id);
+//
+// 	if ( empty( $page ) ) {
+// 		return null;
+// 	}
+//
+// 	return $page;
+// }
+
+
+// Add fields to the standard api responses
 add_action('rest_api_init', 'travelaer_api_custom_post_fields');
 function travelaer_api_custom_post_fields()
 {
@@ -46,8 +70,9 @@ function travelaer_api_custom_post_fields()
     );
 }
 
-function travelaer_display_submenu($object, $field_name, $request) {
-    $children = get_pages( array( 'child_of' => $object['id'] ) );
+function travelaer_display_submenu($object, $field_name, $request)
+{
+    $children = get_pages(array( 'child_of' => $object['id'] ));
     if (count($children) || $object['parent'] > 0) {
         return true;
     } else {
@@ -71,14 +96,14 @@ function travelaer_get_category_info($object, $field_name, $request)
     foreach ($object['categories'] as $id) {
         $category = get_the_category_by_ID($id);
         if ('Uncategorized' !== $category) {
-          $categories[] = $category;
+            $categories[] = $category;
         }
     }
 
     if (count($categories) <= 0) {
-      return false;
+        return false;
     } else {
-      return $categories;
+        return $categories;
     }
 }
 
@@ -93,7 +118,7 @@ function travelaer_get_featured_image($object, $field_name, $request)
 
 function travelaer_get_comments_info($object, $field_name, $request)
 {
-    $comments = get_comments( array('status' => 'approve', 'post_id' => $object['id']) );
+    $comments = get_comments(array('status' => 'approve', 'post_id' => $object['id']));
     $t_comments_info['total'] = count($comments);
 
     if (empty($comments)) {
@@ -141,7 +166,7 @@ function travelaer_rest_prepare($response, $post, $request)
         return $response;
     }
     foreach ($content_blocks as &$content_block) {
-      // Note: $content_block is assigned by reference
+        // Note: $content_block is assigned by reference
 
       switch ($content_block['acf_fc_layout']) {
         case 'mosaic':
@@ -166,23 +191,24 @@ function travelaer_rest_prepare($response, $post, $request)
     return $response;
 }
 
-function travelaer_add_acf($items) {
-  foreach ($items as &$item) {
-    // Note: $item is assigned by reference
+function travelaer_add_acf($items)
+{
+    foreach ($items as &$item) {
+        // Note: $item is assigned by reference
     $item_id = $item;
-    $item = array(
+        $item = array(
       'id' => $item_id,
       'acf' => get_fields($item_id),
       'title' => get_the_title($item_id),
       'content' => get_the_content_by_id($item_id),
     );
-  }
-  return $items;
+    }
+    return $items;
 }
 
-add_filter( 'rest_allow_anonymous_comments', '__return_true' );
+add_filter('rest_allow_anonymous_comments', '__return_true');
 
-add_filter( 'acf/rest_api/option/get_fields', function($data) {
+add_filter('acf/rest_api/option/get_fields', function ($data) {
     $t_site_info = array(
       'name' => get_bloginfo('name'),
       'description' => get_bloginfo('description'),
@@ -192,19 +218,21 @@ add_filter( 'acf/rest_api/option/get_fields', function($data) {
     );
     $data['acf']['t_site_info'] = $t_site_info;
     return $data;
-} );
+});
 
-add_filter( 'rest_cache_headers', function( $headers ) {
+add_filter('rest_cache_headers', function ($headers) {
     $headers['Cache-Control'] = 'public, max-age=3600';
     return $headers;
-} );
+});
 
-function get_the_content_by_id($post_id) {
-  $page_data = get_page($post_id);
-  if ($page_data) {
-    return $page_data->post_content;
-  }
-  else return false;
+function get_the_content_by_id($post_id)
+{
+    $page_data = get_page($post_id);
+    if ($page_data) {
+        return $page_data->post_content;
+    } else {
+        return false;
+    }
 }
 
 // add_action('init', 'travelaer_handle_preflight');

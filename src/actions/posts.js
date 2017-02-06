@@ -32,7 +32,8 @@ const _getPost = (slug) => {
     type: types.FETCH_CURRENT_POST,
     payload: axios.get('/wp/v2/posts', {params}),
     meta: {
-      id: 'currentPost'
+      id: 'currentPost',
+      slug
     }
   }
 }

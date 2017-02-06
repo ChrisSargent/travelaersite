@@ -55,18 +55,24 @@ export const getLoadingMore = ({posts}) => {
   return posts.fetchingMore
 }
 
-const _addFetchedPosts = (posts, fetchedPosts) => {
+const _addFetchedPosts = (action, fetchedPosts) => {
   // Puts each post in to an object, indexed by its slug (if it's not already present)
+  const posts = action.payload.data
   var addPosts = {}
-  for (var i = 0; i < posts.length; i++) {
-    const post = posts[i]
-    !fetchedPosts[post.slug] && (addPosts[post.slug] = post)
+  if (posts.length) {
+    for (var i = 0; i < posts.length; i++) {
+      const post = posts[i]
+      !fetchedPosts[post.slug] && (addPosts[post.slug] = post)
+    }
+  } else {
+    addPosts[action.meta.slug] = {invalid: true};
   }
   return {...fetchedPosts, ...addPosts}
 }
 
-const _addToPostsByDate = (posts, slugsByDate) => {
+const _addToPostsByDate = (action, slugsByDate) => {
   // Create an array of post slugs by date
+  const posts = action.payload.data
   const addPosts = posts.map((post) => {
     return post.slug
   })
@@ -81,7 +87,7 @@ const PostsReducer = (state = {
   nextPage: 1,
 }, action) => {
 
-  var posts, fetchedPosts, slugsByDate, totalPosts, gotAllPosts, nextPage
+  var fetchedPosts, slugsByDate, totalPosts, gotAllPosts, nextPage
   switch (action.type) {
     case types.FETCH_MORE_POSTS + '_PENDING':
       return {
@@ -90,10 +96,9 @@ const PostsReducer = (state = {
       }
     case types.FETCH_MORE_POSTS + '_FULFILLED':
     case types.FETCH_LATEST_POSTS + '_FULFILLED':
-      posts = action.payload.data
-      slugsByDate = _addToPostsByDate(posts, state.slugsByDate)
+      slugsByDate = _addToPostsByDate(action, state.slugsByDate)
       totalPosts = parseFloat(action.payload.headers['x-wp-total'])
-      fetchedPosts = _addFetchedPosts(posts, state.fetchedPosts)
+      fetchedPosts = _addFetchedPosts(action, state.fetchedPosts)
       gotAllPosts = slugsByDate.length === totalPosts
       nextPage = state.nextPage + 1
       return {
@@ -106,8 +111,7 @@ const PostsReducer = (state = {
       }
 
     case types.FETCH_CURRENT_POST + '_FULFILLED':
-      posts = action.payload.data
-      fetchedPosts = _addFetchedPosts(posts, state.fetchedPosts)
+      fetchedPosts = _addFetchedPosts(action, state.fetchedPosts)
       return {
         ...state,
         fetchedPosts

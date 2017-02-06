@@ -2,7 +2,8 @@ import types from '../actions'
 import {stripDomain} from '../lib/utils'
 
 export const getPage = ({pages}, pathname) => {
-  return pages[pathname]
+  const page = pages[pathname]
+  return page
 }
 
 export const getPageAppend = ({pages}, pathname) => {
@@ -21,13 +22,18 @@ export const getDisplaySubmenu = ({pages}, pathname) => {
     : false
 }
 
-const addPages = (pages, state) => {
+const _addPages = (action, state) => {
+  const pages = action.payload.data
   var pageArray = []
   // Puts each page in to an array, indexed by its slug
-  for (var i = 0; i < pages.length; i++) {
-    const page = pages[i]
-    const pathname = stripDomain(page.link)
-    !state[pathname] && (pageArray[pathname] = page)
+  if (pages.length) {
+    for (var i = 0; i < pages.length; i++) {
+      const page = pages[i]
+      const pathname = stripDomain(page.link)
+      !state[pathname] && (pageArray[pathname] = page)
+    }
+  } else {
+    pageArray[action.meta.reqPathname] = {invalid: true};
   }
   return pageArray
 }
@@ -35,14 +41,11 @@ const addPages = (pages, state) => {
 const pages = (state = {
   fetchedAllPages: false,
   fetchingAllPages: false,
-  currentPageRouteExists: false,
 }, action) => {
 
   switch (action.type) {
     case types.FETCH_PAGE + '_FULFILLED':
-      const page = action.payload.data
-      page.length > 0 && (state.currentPageRouteExists = true)
-      const pageArray = addPages(page, state)
+      const pageArray = _addPages(action, state)
       return {
         ...state,
         ...pageArray,
@@ -55,8 +58,7 @@ const pages = (state = {
       }
 
     case types.BACKGROUND_FETCH_PAGES + '_FULFILLED':
-      const pages = action.payload.data
-      const pagesArray = addPages(pages, state)
+      const pagesArray = _addPages(action, state)
       return {
         ...state,
         ...pagesArray,

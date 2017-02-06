@@ -6,6 +6,7 @@ import {getPage} from '../../reducers/pages'
 import Banner from '../../sections/banner'
 import Countries from '../../sections/countries'
 import Contact from '../../sections/contact'
+import Error from '../../components/error'
 import Hero from '../../sections/hero'
 import ImageBanner from '../../sections/image-banner'
 import Gmap from '../../sections/map'
@@ -34,10 +35,12 @@ class Page extends Component {
   render() {
     const {page} = this.props
 
-    console.log(page);
-
     if (!page)
       return null
+
+    if (page.invalid)
+      return <Error/>
+
 
     if (page.acf.contentBlocks) {
       var blocksMap = page.acf.contentBlocks.map((block, index) => {

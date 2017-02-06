@@ -5,8 +5,6 @@ import {Provider} from 'react-redux'
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 import {fetchOptions} from './actions/site'
 import {globals} from './lib/utils'
-import {observableFonts} from './lib/css'
-import FontFaceObserver from 'fontfaceobserver'
 import Base from './views/base'
 import Page from './views/page'
 import Posts from './views/posts'
@@ -23,36 +21,40 @@ function handleUpdate() {
   action === 'PUSH' && (window.scrollTo(0, 0))
 }
 
-(function observeFonts() {
-  observableFonts.map((font) => {
-    const observedFont = new FontFaceObserver(font.family);
-    observedFont.load(null, 5000).then(() => {
-      document.body.className += ' ' + font.id;
-    }, () => {
-      console.log(font.family + ' is not available after waiting 5 seconds');
+function forceTrailingSlash(nextState, replace) {
+  const path = nextState.location.pathname;
+  if (path.slice(-1) !== '/') {
+    replace({
+      ...nextState.location,
+      pathname: path + '/'
     });
-    return observedFont
-  })
-})()
+  }
+}
+
+function forceTrailingSlashOnChange(prevState, nextState, replace) {
+  forceTrailingSlash(nextState, replace);
+}
 
 render(
   <Provider store={store}>
     <Router history={browserHistory} onUpdate={handleUpdate}>
-      <Route path={globals.companyUrl} component={Base}>
-        <IndexRoute component={Page}/>
-        <Route path="*" component={Page}/>
-      </Route>
-      <Route path={globals.productsUrl} component={Base}>
-        <IndexRoute component={Page}/>
-        <Route path="*" component={Page}/>
-      </Route>
-      <Route path={globals.blogUrl} component={Base}>
-        <IndexRoute component={Posts}/>
-        <Route path="(:slug)" component={Posts}/>
-      </Route>
-      <Route path={globals.homeUrl} component={Base}>
-        <IndexRoute component={Page}/>
-        <Route path="*" component={Page}/>
+      <Route onEnter={forceTrailingSlash} onChange={forceTrailingSlashOnChange}>
+        <Route path={globals.companyUrl} component={Base}>
+          <IndexRoute component={Page}/>
+          <Route path="*" component={Page}/>
+        </Route>
+        <Route path={globals.productsUrl} component={Base}>
+          <IndexRoute component={Page}/>
+          <Route path="*" component={Page}/>
+        </Route>
+        <Route path={globals.blogUrl} component={Base}>
+          <IndexRoute component={Posts}/>
+          <Route path="(:slug)" component={Posts}/>
+        </Route>
+        <Route path={globals.homeUrl} component={Base}>
+          <IndexRoute component={Page}/>
+          <Route path="*" component={Page}/>
+        </Route>
       </Route>
     </Router>
 </Provider>,

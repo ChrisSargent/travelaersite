@@ -10,19 +10,20 @@ import types from '.'
 const fields = 'acf,id,link,slug,title,t_display_sub_menu';
 
 // Gets page objects from the WP API
-const _getPages = (pathname) => {
+const _getPages = (reqPathname) => {
   var fetchedAllPages = false
   const params = {
-    slug: getRequestedSlug(pathname),
+    slug: getRequestedSlug(reqPathname),
     fields
   }
-  !pathname && (fetchedAllPages = false)
+  !reqPathname && (fetchedAllPages = false)
   return {
     type: types.FETCH_PAGE,
     payload: axios.get('/wp/v2/pages', {params}),
     meta: {
       id: 'page',
-      fetchedAllPages
+      fetchedAllPages,
+      reqPathname
     }
   }
 }
@@ -47,11 +48,11 @@ export const backgroundFetchPages = () => (dispatch, getState) => {
 }
 
 // Checks if a page exists in the cache and then calls the WP API if not
-export const fetchPage = (pathname) => (dispatch, getState) => {
-  const page = getState().pages[pathname]
+export const fetchPage = (reqPathname) => (dispatch, getState) => {
+  const page = getState().pages[reqPathname]
 
   if (!page)
-    return dispatch(_getPages(pathname))
+    return dispatch(_getPages(reqPathname))
 }
 
 // *****************************************************************************

@@ -2,6 +2,7 @@
   "name": "travelaersite",
   "homepage": "http://travelaer.stickypixel.com",
   "proxy": "http://travelaersite.dev",
+  "wpFolder": "/wordpress",
   "version": "0.8.1",
   "private": true,
   "devDependencies": {

@@ -9,13 +9,16 @@ import Wysiwyg from '../wysiwyg'
 import './_post.sass'
 
 const Post = ({post, excerpt, main}) => {
-  const compName = 'post'
   var content,
     image,
     more,
     displayComments,
     previewParas = 1
 
+  if (!post)
+    return null
+
+  const compName = 'post'
   const postInfo = {
     views: '',
     comments: post.t_comments_info.total,
@@ -44,7 +47,8 @@ const Post = ({post, excerpt, main}) => {
     <article className={css.article + compName}>
       <ArticleHeader title={post.title} modifier={compName} image={image}/>
       <PostInfo {...postInfo}/>
-      <Wysiwyg content={content} more={more}/> {!excerpt && <Author author={post.t_author}/>}
+      <Wysiwyg content={content} more={more}/>
+      {!excerpt && <Author author={post.t_author}/>}
       {displayComments && <Comments commentsInfo={post.t_comments_info} postTitle={post.title.rendered} postID={post.id}/>}
     </article>
   )

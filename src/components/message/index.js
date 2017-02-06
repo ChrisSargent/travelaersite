@@ -11,7 +11,7 @@ class Message extends Component {
     this.handleClose = this.handleClose.bind(this)
   }
 
-  componentWillMount() {
+  componentWillUnMount() {
     this.props.resetMessages()
   }
 

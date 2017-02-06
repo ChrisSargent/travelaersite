@@ -1,0 +1,24 @@
+@import _tools
+
+.section-error
+  display: flex
+
+  > .container
+    +cont--m
+    +block-pad
+    height: 70vh
+
+.main-error
+  display: flex
+  justify-content: center
+  flex-direction: column
+  height: 100%
+
+  > .title
+    +ff--feature
+    font-size: $fs--xj
+
+  > .wysiwyg
+    +ff--base
+    font-weight: 300
+    line-height: $lh--lg

@@ -6,21 +6,20 @@
   z-index: $z--mid
   color: $co--blue--dk
   line-height: 1rem * $lh--ml
+  overflow: hidden
+
+  &.-skewtop
+    margin-top: $angle_h_ratio / -2
 
   > .container
     +cont--xl
     +block-pad
-
-  ._skew
-    margin-bottom: $angle_h_ratio / -1
+    margin-top: $angle_h_ratio / 2
 
   > .section-background
-      background-color: $co--blue-grey--tt
-      background-image: $footer-gradient
-
-  &::after
-    content: ' '
     background-color: $co--blue-grey--tt
+    background-image: $footer-gradient
+    margin-top: $angle_h_ratio / 2
 
 .main-sitefooter
   +columns(auto, $pd--s)

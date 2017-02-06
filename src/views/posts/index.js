@@ -3,10 +3,12 @@ import {connect} from 'react-redux'
 import {fetchLatestPosts, fetchInitPosts, fetchMorePosts} from '../../actions/posts'
 import {getPostsObj, gotAllPosts, getLoadingMore} from '../../reducers/posts'
 import css from '../../lib/css'
+import {image404} from '../../lib/utils'
 import Actions from '../../components/actions'
 import Helmet from 'react-helmet'
 import Insta from '../../components/insta'
 import Post from '../../components/post'
+import PostError from '../../components/error-post'
 import RecentPosts from '../../components/recent-posts'
 import Section from '../../sections/section'
 import './_posts.sass'
@@ -63,21 +65,26 @@ class Posts extends Component {
 
     const {compName, overlap, actions} = this
     const singlePost = postsObj.main.length <= 1
+    const {invalid} = postsObj.main[0]
 
-    if (singlePost) {
+    if (singlePost && !invalid) {
       heroModifier = ''
       pageTitle = postsObj.main[0].title.rendered
     }
 
     showMore = !gotAllPosts && !singlePost
+
     getLoadingMore
       ? actions[0].loading = true
       : actions[0].loading = false
 
     const postsMap = postsObj.main.map((post, index) => {
       return (
-        <li key={post.id} className={css.item}>
-          <Post post={post} excerpt={postsObj.excerpts} main={index === 0}/>
+        <li key={post.id || 'invalid'} className={css.item}>
+          {post.invalid
+            ? <PostError />
+            : <Post post={post} excerpt={postsObj.excerpts} main={index === 0}/>
+          }
         </li>
       )
     })
@@ -85,7 +92,7 @@ class Posts extends Component {
     return (
       <main id={compName}>
         <Helmet title={pageTitle}/>
-        <Section compName={'hero' + heroModifier} image={postsObj.heroImage} skew="bottom" overlaps={overlap}/>
+        <Section compName={'hero' + heroModifier} image={postsObj.heroImage || image404} skew="bottom" overlaps={overlap}/>
         <Section compName={compName}>
           <div className={css.main + compName}>
             <ul className={css.list + compName}>
