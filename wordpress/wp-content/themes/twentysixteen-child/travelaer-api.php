@@ -182,14 +182,6 @@ function travelaer_add_acf($items) {
 
 add_filter( 'rest_allow_anonymous_comments', '__return_true' );
 
-// add_action('init', 'travelaer_handle_preflight');
-// function travelaer_handle_preflight()
-// {
-//     header('Access-Control-Allow-Origin: '.get_http_origin());
-//     header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
-//     header('Access-Control-Allow-Credentials: true');
-// }
-
 add_filter( 'acf/rest_api/option/get_fields', function($data) {
     $t_site_info = array(
       'name' => get_bloginfo('name'),
@@ -202,11 +194,10 @@ add_filter( 'acf/rest_api/option/get_fields', function($data) {
     return $data;
 } );
 
-// add_filter( 'rest_cache_headers', function( $headers ) {
-//     $headers['Cache-Control'] = 'public, max-age=3600';
-//     return $headers;
-// } );
-
+add_filter( 'rest_cache_headers', function( $headers ) {
+    $headers['Cache-Control'] = 'public, max-age=3600';
+    return $headers;
+} );
 
 function get_the_content_by_id($post_id) {
   $page_data = get_page($post_id);
@@ -215,3 +206,11 @@ function get_the_content_by_id($post_id) {
   }
   else return false;
 }
+
+// add_action('init', 'travelaer_handle_preflight');
+// function travelaer_handle_preflight()
+// {
+//     header('Access-Control-Allow-Origin: '.get_http_origin());
+//     header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
+//     header('Access-Control-Allow-Credentials: true');
+// }

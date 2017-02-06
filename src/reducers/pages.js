@@ -34,12 +34,14 @@ const addPages = (pages, state) => {
 
 const pages = (state = {
   fetchedAllPages: false,
-  fetchingAllPages: false
+  fetchingAllPages: false,
+  currentPageRouteExists: false,
 }, action) => {
 
   switch (action.type) {
     case types.FETCH_PAGE + '_FULFILLED':
       const page = action.payload.data
+      page.length > 0 && (state.currentPageRouteExists = true)
       const pageArray = addPages(page, state)
       return {
         ...state,

@@ -6,6 +6,7 @@ export const globals = {
   blogUrl: '/blog/',
   companyUrl: '/company/',
   productsUrl: '/products/',
+  contactUrl: '/contact-us/',
   flagsUrl: '/assets/flags/',
   homeID: 5
 }

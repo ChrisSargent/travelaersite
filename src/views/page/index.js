@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import Helmet from "react-helmet"
 import {connect} from 'react-redux'
 import {fetchPage} from '../../actions/pages'
-import {getOptions} from '../../reducers/site'
 import {getPage} from '../../reducers/pages'
 import Banner from '../../sections/banner'
 import Countries from '../../sections/countries'
@@ -33,7 +32,9 @@ class Page extends Component {
   }
 
   render() {
-    const {page, options} = this.props
+    const {page} = this.props
+
+    console.log(page);
 
     if (!page)
       return null
@@ -69,7 +70,7 @@ class Page extends Component {
 
           case 'mosaic':
             name = 'mosaic'
-            content = <Mosaic tiles={block.tiles} compName={name}/>
+            content = <Mosaic {...block} compName={name}/>
             break
 
           case 'products':
@@ -96,12 +97,12 @@ class Page extends Component {
 
           case 'map':
             name = 'map'
-            content = <Gmap {...block} compName={name} options={options}/>
+            content = <Gmap {...block} compName={name}/>
             break
 
           case 'contact_form':
             name = 'contact'
-            content = <Contact pageID={page.id} compName={name} options={options}/>
+            content = <Contact pageID={page.id} compName={name}/>
             break
 
           case 'countries':
@@ -169,7 +170,6 @@ class Page extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   page: getPage(state, ownProps.location.pathname),
-  options: getOptions(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

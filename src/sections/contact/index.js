@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {getOptions} from '../../reducers/site'
 import css from '../../lib/css'
 import Message from '../../components/message'
 import Submit from '../../components/submit'
@@ -21,4 +23,5 @@ const Contact = ({compName, options, pageID}) => {
   )
 }
 
-export default Contact
+const mapStateToProps = (state) => ({options: getOptions(state)})
+export default connect(mapStateToProps)(Contact)
