@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import he from 'he'
 import {fetchLatestPosts, fetchInitPosts, fetchMorePosts} from '../../actions/posts'
 import {getPostsObj, gotAllPosts, getLoadingMore} from '../../reducers/posts'
 import css from '../../lib/css'
@@ -70,7 +69,7 @@ class Posts extends Component {
 
     if (singlePost && !invalid) {
       heroModifier = ''
-      pageTitle = he.decode(postsObj.main[0].title.rendered)
+      pageTitle = postsObj.main[0].title
     }
 
     showMore = !gotAllPosts && !singlePost

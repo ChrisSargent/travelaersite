@@ -22,7 +22,7 @@ const Post = ({post, excerpt, main}) => {
 
   if (excerpt) {
     main && (previewParas = 3)
-    content = trimContent(post.content.rendered, previewParas)
+    content = trimContent(post.content, previewParas)
     readMore = post.link
   }
 
@@ -34,7 +34,7 @@ const Post = ({post, excerpt, main}) => {
       <PostInfo {...post}/>
       <Wysiwyg content={content} more={readMore} />
       {!excerpt && <Author author={post.t_author}/>}
-      {!excerpt && <Comments commentsInfo={post.t_comments_info} postTitle={post.title.rendered} postID={post.id}/>}
+      {!excerpt && <Comments commentsInfo={post.t_comments_info} postTitle={post.title} postID={post.id}/>}
       <PostSchema post={post} />
     </article>
   )

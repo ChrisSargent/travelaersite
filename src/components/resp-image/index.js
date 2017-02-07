@@ -25,7 +25,6 @@ const RespImage = ({
     altText = image.title
   }
 
-  altText.rendered && (altText = altText.rendered)
   allowFullsize && image.url && image.width && (srcsetString = image.url + ' ' + image.width + 'w, ')
 
   if (image.sizes) {

@@ -164,7 +164,7 @@ class Page extends Component {
 
     return (
       <main id={page.slug}>
-        <Helmet title={page.title.rendered}/> {blocksMap}
+        <Helmet title={page.title}/> {blocksMap}
         {travelPaasBlocks}
       </main>
     )

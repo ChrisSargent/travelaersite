@@ -81,7 +81,15 @@ export const trimContent = (content, paras = 1) => {
   return excerpt.join('')
 }
 
+export const whichContent = (content) => {
+  var useContent
+  content.rendered !== undefined && (useContent = content.rendered)
+  return useContent
+}
+
 export const convertLinks = (content) => {
+  if(!content)
+    return
   content = content.replace(new RegExp('href="' + globals.wpFolder, 'g'), 'href="');
   return content
 }

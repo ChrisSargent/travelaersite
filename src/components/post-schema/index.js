@@ -12,9 +12,9 @@ const PostSchema = ({post, options}) => {
   const data = {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": post.title.rendered || post.title,
-    "description": stripTags(trimContent(post.content.rendered)) || "",
-    "articleBody": stripTags(post.content.rendered) || "",
+    "headline": post.title,
+    "description": stripTags(trimContent(post.content)) || "",
+    "articleBody": stripTags(post.content) || "",
     "image": {
       "@type": "ImageObject",
       "url": url || "",
@@ -39,8 +39,6 @@ const PostSchema = ({post, options}) => {
     },
     "commentCount": String(post.t_comments_info.total) || "0",
   }
-
-  console.log(data);
 
   return (
     <script type="application/ld+json">

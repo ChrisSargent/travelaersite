@@ -1,5 +1,6 @@
 import types from '../actions'
-import {globals, stripDomain} from '../lib/utils'
+import {globals, stripDomain, whichContent} from '../lib/utils'
+import he from 'he'
 
 const _getLatestPosts = ({slugsByDate, fetchedPosts}, slug) => {
   // Looks up the slug from the slugsByDate array, grabs the corresponding post from the fetchedPosts array and puts it into the returned object.
@@ -65,11 +66,15 @@ const _addFetchedPosts = (action, fetchedPosts) => {
       const post = posts[i]
       post.link = stripDomain(post.link)
       post.url = globals.baseUrl + post.link
+      // Don't need to 'he decode' content because it's used with dangerouslySetInnerHTML
+      post.content = whichContent(post.content)
+      post.title = he.decode(whichContent(post.title))
       !fetchedPosts[post.slug] && (addPosts[post.slug] = post)
     }
   } else {
     addPosts[action.meta.slug] = {invalid: true};
   }
+  console.log(addPosts);
   return {...fetchedPosts, ...addPosts}
 }
 

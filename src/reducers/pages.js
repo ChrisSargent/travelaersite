@@ -1,5 +1,6 @@
 import types from '../actions'
-import {stripDomain} from '../lib/utils'
+import {stripDomain, whichContent} from '../lib/utils'
+import he from 'he'
 
 export const getPage = ({pages}, pathname) => {
   const page = pages[pathname]
@@ -30,6 +31,7 @@ const _addPages = (action, state) => {
     for (var i = 0; i < pages.length; i++) {
       const page = pages[i]
       const pathname = stripDomain(page.link)
+      page.title = he.decode(whichContent(page.title))
       !state[pathname] && (pageArray[pathname] = page)
     }
   } else {

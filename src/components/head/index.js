@@ -6,8 +6,6 @@ import {getOptions} from '../../reducers/site'
 import Helmet from 'react-helmet'
 
 const Head = ({options, location}) => {
-  console.log(options);
-
   if (!options)
     return null
 

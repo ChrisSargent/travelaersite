@@ -23,18 +23,16 @@ class Wysiwyg extends Component {
   }
 
   render() {
-    var {size, content, more} = this.props
+    const {size, content, more} = this.props
     var wysClass
 
     if (!content)
       return false
 
+    const useContent = convertLinks(useContent)
     const compName = 'wysiwyg'
     wysClass = compName
     size && (wysClass += ' -' + size)
-
-    content.rendered && (content = content.rendered)
-    content = convertLinks(content)
 
     return (
       <div className={wysClass}>
