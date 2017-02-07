@@ -100,20 +100,19 @@ function travelaer_get_category_info($object, $field_name, $request)
         }
     }
 
-    if (count($categories) <= 0) {
-        return false;
-    } else {
-        return $categories;
-    }
+    return $categories;
 }
 
 function travelaer_get_featured_image($object, $field_name, $request)
 {
-    if (!empty($object['featured_media'])) {
-        $image_data = acf_get_attachment($object['featured_media']);
-
-        return $image_data;
+    if (empty($object['featured_media'])) {
+      $default_image = get_field('fabImg', 'options');
+      wlog($default_image);
+      $image_object = $default_image;
+    } else {
+      $image_object = acf_get_attachment($object['featured_media']);
     }
+    return $image_object;
 }
 
 function travelaer_get_comments_info($object, $field_name, $request)

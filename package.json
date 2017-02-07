@@ -55,6 +55,7 @@
     "axios": "*",
     "classnames": "*",
     "fontfaceobserver": "*",
+    "he": "^1.1.1",
     "history": "*",
     "instafeed.js": "*",
     "react": "*",

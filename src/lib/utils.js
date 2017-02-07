@@ -29,6 +29,10 @@ export const image404 = {
   alt: 'Sorry, there was an error'
 }
 
+export const stripTags = (html) => {
+  return html.replace(/<\/?[^>]+(>|$)/g, "");
+}
+
 export const stripDomain = (url) => {
   const {wpFolder} = globals
   if (url && url.includes(wpFolder)) {
@@ -72,7 +76,7 @@ export const dateFormat = (date, includeTime) => {
   return dateString
 }
 
-export const trimContent = (content, paras) => {
+export const trimContent = (content, paras = 1) => {
   var excerpt = content.split('</p>', paras)
   return excerpt.join('')
 }

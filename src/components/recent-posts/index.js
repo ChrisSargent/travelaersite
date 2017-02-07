@@ -3,6 +3,7 @@ import {Link} from 'react-router'
 import {dateFormat} from '../../lib/utils'
 import ArticleHeader from '../article-header'
 import css from '../../lib/css'
+import PostSchema from '../post-schema'
 import RespImageCover from '../resp-image-cover'
 import './_recent-posts.sass'
 
@@ -31,6 +32,7 @@ const RecentPosts = ({posts}) => {
           <article className={css.article + modifier}>
             <RespImageCover image={post.t_featured_image} srcVersion="medium" respSizes="350px" alt={post.title}/>
             <ArticleHeader title={post.title} subtitle={dateString} icon={icon} modifier={modifier}/>
+            <PostSchema post={post} />
           </article>
         </Link>
       </li>

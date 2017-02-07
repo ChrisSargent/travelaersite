@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {getOptions} from '../../reducers/site'
 import {globals} from '../../lib/utils'
 
-const SiteMeta = ({options}) => {
+const SiteSchema = ({options}) => {
   if (!options)
     return null
 
@@ -13,21 +13,28 @@ const SiteMeta = ({options}) => {
 
   const data = {
     "@context": "http://schema.org",
-    "@type": "Organization",
+    "@type": "Corporation",
     "@id": globals.baseUrl,
     "url": globals.baseUrl,
     "name": options.t_site_info.name,
     "legalName": options.legalName,
+    "founder": options.founder,
+    "foundingDate": options.foundingDate,
     "taxID": options.coRegNumber,
     "vatID": options.coTaxNumber,
     "telephone": options.contactTelephone,
-    "logo": options.siteLogo,
+    "logo": {
+      "@type": "ImageObject",
+      "url": options.siteLogo.url,
+      "height": String(options.siteLogo.height),
+      "width": String(options.siteLogo.width),
+    },
     "address": {
       "streetAddress": [options.streetAddress1, options.streetAddress2].join(', '),
       "postalCode": options.postalCode,
       "addressLocality": options.locality,
       "addressRegion": options.region,
-      "addressCountry": options.country
+      "addressCountry": options.country,
     },
     "contactPoint": [
       {
@@ -48,4 +55,4 @@ const SiteMeta = ({options}) => {
   )
 }
 const mapStateToProps = (state) => ({options: getOptions(state)})
-export default connect(mapStateToProps)(SiteMeta)
+export default connect(mapStateToProps)(SiteSchema)

@@ -432,49 +432,6 @@
             }
         },
         {
-            "default_value": "",
-            "maxlength": 200,
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "key": "field_56fc16b68eca4",
-            "label": "Fallback Social Description",
-            "name": "fbSocialDesc",
-            "type": "text",
-            "instructions": "Enter a 'fallback' description for when content is shared on social networks. Only used in case there is no specific content for the page being shared (recommended max 140 chars).",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            }
-        },
-        {
-            "return_format": "url",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 1200,
-            "min_height": 630,
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": 8,
-            "mime_types": ".jpg,.jpeg,.png",
-            "key": "field_56fbc6cb0932d",
-            "label": "Fallback Social Share Image",
-            "name": "fbSocialImg",
-            "type": "image",
-            "instructions": "Enter a 'fallback' image for when content is shared on social networks. Only used in case there is no specific image for the page being shared. Use images that are at least 1200 x 630 pixels for the best display on high resolution devices. At the minimum, you should use images that are 600 x 315 pixels to display link page posts with larger images. Images can be up to 8MB in size.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            }
-        },
-        {
             "placement": "top",
             "endpoint": 0,
             "key": "field_56fbc36292452",
@@ -761,6 +718,49 @@
         },
         {
             "default_value": "",
+            "maxlength": 200,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "key": "field_56fc16b68eca4",
+            "label": "Fallback Description",
+            "name": "fabDesc",
+            "type": "text",
+            "instructions": "Enter a 'fallback' description for when content is shared on social networks. Only used in case there is no specific content for the page being shared (recommended max 140 chars).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 1200,
+            "min_height": 630,
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": 8,
+            "mime_types": ".jpg,.jpeg,.png",
+            "key": "field_56fbc6cb0932d",
+            "label": "Fallback Image",
+            "name": "fabImg",
+            "type": "image",
+            "instructions": "Enter a 'fallback' image for when content is shared on social networks or when a post does not have a featured image. Only used in case there is no specific image for the page being shared. Use images that are at least 1200 x 630 pixels for the best display on high resolution devices. At the minimum, you should use images that are 600 x 315 pixels to display link page posts with larger images. Images can be up to 8MB in size.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "default_value": "",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -817,7 +817,7 @@
             }
         },
         {
-            "return_format": "url",
+            "return_format": "array",
             "preview_size": "medium",
             "library": "all",
             "min_width": "",
@@ -831,7 +831,7 @@
             "label": "Site Logo",
             "name": "siteLogo",
             "type": "image",
-            "instructions": "",
+            "instructions": "See: https:\/\/developers.google.com\/search\/docs\/data-types\/articles#logo-guidelines",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -858,5 +858,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1486460368
+    "modified": 1486479870
 }

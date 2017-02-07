@@ -1,29 +1,32 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getOptions} from '../../reducers/site'
-import {globals} from '../../lib/utils'
+import {globals, stripTags, trimContent} from '../../lib/utils'
 
-const PostMeta = ({post, options}) => {
+const PostSchema = ({post, options}) => {
   if (!post || !options)
     return null
+
+  const {url, height, width} = post.t_featured_image;
 
   const data = {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "TEST",
-    "alternativeHeadline": "",
+    "headline": post.title.rendered || post.title,
+    "description": stripTags(trimContent(post.content.rendered)) || "",
+    "articleBody": stripTags(post.content.rendered) || "",
     "image": {
       "@type": "ImageObject",
-      "url": post.t_featured_image.url,
-      "height": post.t_featured_image.height,
-      "width": post.t_featured_image.width
+      "url": url || "",
+      "height": height ? String(height) : "",
+      "width": width ? String(width) : ""
     },
     "author": {
       "@type": "Person",
-      "name": post.t_author.name
+      "name": post.t_author.name || ""
     },
     "genre": "",
-    "keywords": post.t_categories.join(),
+    "keywords": post.t_categories.join() || "",
     "url": post.url,
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -31,13 +34,13 @@ const PostMeta = ({post, options}) => {
     },
     "datePublished": post.date_gmt,
     "dateModified": post.modified_gmt,
-    "description": "",
-    "articleBody": "TEST",
-    "commentCount": post.t_comments_info.total,
     "publisher": {
       "@id": globals.baseUrl
     },
+    "commentCount": String(post.t_comments_info.total) || "0",
   }
+
+  console.log(data);
 
   return (
     <script type="application/ld+json">
@@ -46,4 +49,4 @@ const PostMeta = ({post, options}) => {
   )
 }
 const mapStateToProps = (state) => ({options: getOptions(state)})
-export default connect(mapStateToProps)(PostMeta)
+export default connect(mapStateToProps)(PostSchema)
