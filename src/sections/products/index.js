@@ -15,7 +15,7 @@ const Products = ({title, content, products, position, compName, alignment}) => 
     <div className={css.main + compName}>
       {(title || content) &&
         <div className={articleClass}>
-          <ArticleHeader title={title} modifier={compName}/>
+          <ArticleHeader title={title} compName={compName}/>
           <Wysiwyg content={content}/>
         </div>
       }

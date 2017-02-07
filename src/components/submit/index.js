@@ -83,7 +83,7 @@ class Submit extends Component {
 
     return (
       <section className={css.main + compName}>
-        <ArticleHeader title={this.title} subtitle={this.subtitle} modifier={compName}/>
+        <ArticleHeader title={this.title} subtitle={this.subtitle} compName={compName}/>
         <form className={css.form + compName} onSubmit={this.handleSubmit}>
           <span className="name"><input type="text" placeholder="Name" name="name" value={name} onChange={this.handleTyping} onBlur={this.handleBlur}/></span>
           <span className="email"><input type="email" placeholder="Email" name="email" value={email} onChange={this.handleTyping} onBlur={this.handleBlur}/></span>

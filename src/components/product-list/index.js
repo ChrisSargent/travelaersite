@@ -21,7 +21,7 @@ const ProductList = ({products, alignment}) => {
     return (
       <li key={product.id} className={css.item}>
         <article className={css.article + compName}>
-          <ArticleHeader title={title} modifier={compName}/>
+          <ArticleHeader title={title} compName={compName}/>
           <Wysiwyg content={content}/>
           <Actions actions={actions}/>
         </article>

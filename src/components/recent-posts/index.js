@@ -31,7 +31,7 @@ const RecentPosts = ({posts}) => {
         <Link to={post.link}>
           <article className={css.article + modifier}>
             <RespImageCover image={post.t_featured_image} srcVersion="medium" respSizes="350px" alt={post.title}/>
-            <ArticleHeader title={post.title} subtitle={dateString} icon={icon} modifier={modifier}/>
+            <ArticleHeader title={post.title} subtitle={dateString} icon={icon} compName={modifier}/>
             <PostSchema post={post} />
           </article>
         </Link>

@@ -15,7 +15,6 @@ module.exports = {
   // Elements
   image: 'image',
   container: 'container',
-  default: 'default',
   title: 'title',
   subtitle: 'subtitle',
   loader: 'loader',

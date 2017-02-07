@@ -3,14 +3,9 @@ import he from 'he'
 import css from '../../lib/css'
 import RespImageCover from '../resp-image-cover'
 import SVG from '../svg'
-import './_article-header.sass'
 
-const ArticleHeader = ({modifier, subtitle, icon, image, title}) => {
-  var headClass
-
-  modifier
-    ? headClass = css.header + modifier
-    : headClass = css.header + css.default
+const ArticleHeader = ({compName, subtitle, icon, image, title}) => {
+  var headClass = css.header + compName
 
   image && (headClass += ' -bg')
   title.rendered && (title = title.rendered)

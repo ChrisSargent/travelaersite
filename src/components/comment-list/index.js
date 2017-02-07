@@ -24,7 +24,7 @@ const Comment = ({comment_ID, comment_author, comment_content, comment_date_gmt,
     <div className={css.main + compName}>
       <RespImageCover avatar image={comment_author_avatar} alt={comment_author}/>
       <div className={css.article + compName}>
-        <ArticleHeader title={comment_author} subtitle={dateString} modifier={compName}/>
+        <ArticleHeader title={comment_author} subtitle={dateString} compName={compName}/>
         <Wysiwyg content={comment_content}/>
         <Actions actions={actions}/>
       </div>

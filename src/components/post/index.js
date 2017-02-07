@@ -30,7 +30,7 @@ const Post = ({post, excerpt, main}) => {
 
   return (
     <article className={css.article + compName} >
-      <ArticleHeader title={post.title} modifier={compName} image={headerImage}/>
+      <ArticleHeader title={post.title} compName={compName} image={headerImage}/>
       <PostInfo {...post}/>
       <Wysiwyg content={content} more={readMore} />
       {!excerpt && <Author author={post.t_author}/>}

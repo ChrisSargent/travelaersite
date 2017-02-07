@@ -57,7 +57,7 @@ class Comments extends Component {
     return (
       <Section compName={compName}>
         <div onClick={this.handleClick}>
-          <ArticleHeader title={titleText} modifier={compName}/>
+          <ArticleHeader title={titleText} compName={compName}/>
           <CommentList comments={comments} postID={postID} replyCommentID={replyCommentID} messageCommentID={messageCommentID} compName={compName}/>
           {!messageCommentID && <Message/>}
           {!replyCommentID && <Submit postType="comments" postID={postID} parentCommentID="0"/>}

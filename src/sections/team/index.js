@@ -19,7 +19,7 @@ const Team = ({title, members, compName}) => {
       <li key={member.id} className={css.item}>
         <article className={css.article + compName}>
           <RespImageCover avatar alt={title} image={acf.avatar} respSizes="320px" srcVersion="medium"/>
-          <ArticleHeader title={title} subtitle={acf.job_title} modifier={compName} />
+          <ArticleHeader title={title} subtitle={acf.job_title} compName={compName} />
           <MemberVcard name={title} contacts={acf.contact_details}/>
           <Wysiwyg content={content} />
         </article>

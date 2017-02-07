@@ -12,7 +12,7 @@ const Author = ({author}) => {
     <aside className={css.main + compName}>
       <RespImageCover avatar image={author.avatar} respSizes="100px" srcVersion="medium" alt={author.name} />
       <div className={css.article + compName}>
-        <ArticleHeader title={'Written by ' + author.name} modifier={compName} />
+        <ArticleHeader title={'Written by ' + author.name} compName={compName} />
         <Wysiwyg content={author.description} />
       </div>
     </aside>

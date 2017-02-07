@@ -9,7 +9,7 @@ const PostError = () => {
   const content = "Uh oh, there was an error and we couldn't find the post you were looking for. Please try one of the links above or chat with us using the green button below"
   return (
     <article className={css.article + compName}>
-      <ArticleHeader title={title} modifier={compName}/>
+      <ArticleHeader title={title} compName={compName}/>
       <Wysiwyg content={content} />
     </article>
   )
