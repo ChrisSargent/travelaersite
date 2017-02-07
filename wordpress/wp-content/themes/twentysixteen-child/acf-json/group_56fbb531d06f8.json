@@ -717,6 +717,30 @@
             }
         },
         {
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 1200,
+            "min_height": 630,
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": 8,
+            "mime_types": ".jpg,.jpeg,.png",
+            "key": "field_56fbc6cb0932d",
+            "label": "Fallback Hero Image",
+            "name": "fabImg",
+            "type": "image",
+            "instructions": "Enter a 'fallback' hero image for when a post does not have a featured image. Only used in case there is no specific image for the page being shared. Use images that are at least 1200 x 630 pixels for the best display on high resolution devices. At the minimum, you should use images that are 600 x 315 pixels to display link page posts with larger images. Images can be up to 8MB in size.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
             "default_value": "",
             "maxlength": 200,
             "placeholder": "",
@@ -746,11 +770,11 @@
             "max_height": "",
             "max_size": 8,
             "mime_types": ".jpg,.jpeg,.png",
-            "key": "field_56fbc6cb0932d",
-            "label": "Fallback Image",
-            "name": "fabImg",
+            "key": "field_5899e934b7711",
+            "label": "Fallback Share Image",
+            "name": "fabSocialImg",
             "type": "image",
-            "instructions": "Enter a 'fallback' image for when content is shared on social networks or when a post does not have a featured image. Only used in case there is no specific image for the page being shared. Use images that are at least 1200 x 630 pixels for the best display on high resolution devices. At the minimum, you should use images that are 600 x 315 pixels to display link page posts with larger images. Images can be up to 8MB in size.",
+            "instructions": "Enter a 'fallback' image for when content is shared on social networks. Only used in case there is no specific image for the page being shared. Use images that are at least 1200 x 630 pixels for the best display on high resolution devices. At the minimum, you should use images that are 600 x 315 pixels to display link page posts with larger images. Images can be up to 8MB in size.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -858,5 +882,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1486479870
+    "modified": 1486482219
 }

@@ -6,6 +6,7 @@ import {getOptions} from '../../reducers/site'
 import Helmet from 'react-helmet'
 
 const Head = ({options, location}) => {
+  console.log(options);
 
   if (!options)
     return null
@@ -45,6 +46,21 @@ const Head = ({options, location}) => {
       }, {
         property: 'og:locale',
         content: 'en_US'
+      }, {
+        property: 'business:contact_data:street_address',
+        content: [options.streetAddress1, options.streetAddress2].join(', ')
+      }, {
+        property: 'business:contact_data:locality',
+        content: options.locality
+      }, {
+        property: 'business:contact_data:region',
+        content: options.region
+      }, {
+        property: 'business:contact_data:postal_code',
+        content: options.postal_code
+      }, {
+        property: 'business:contact_data:country_name',
+        content: options.country
       }
     ],
     link: []
@@ -68,6 +84,22 @@ const Head = ({options, location}) => {
 
   if (options.fbAppID) {
     metaInfo.meta.push({property: 'fb:app_id', content: options.app_id})
+  }
+
+  if (options.fabSocialImg) {
+    metaInfo.meta.push({
+      property: "og:image",
+      content: options.fabSocialImg.url
+    }, {
+      property: "og:image:type",
+      content: options.fabSocialImg.mime_type
+    }, {
+      property: "og:image:width",
+      content: options.fabSocialImg.width
+    }, {
+      property: "og:image:height",
+      content: options.fabSocialImg.height
+    })
   }
 
   if (options.gPlusID) {
