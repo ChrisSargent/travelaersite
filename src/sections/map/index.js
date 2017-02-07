@@ -10,7 +10,7 @@ const Gmap = ({compName, options, map, map_link}) => {
 
   return (
     <div className={css.main + compName}>
-      <Vcard {...options} pin/>
+      <Vcard options={options} pin />
       <a href={map_link} className="map" target="_blank">
         <RespImageCover image={map} />
       </a>

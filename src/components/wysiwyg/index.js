@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router'
-import css from '../../lib/css'
 import {convertLinks} from '../../lib/utils'
-import {Link} from 'react-router'
 import './_wysiwyg.sass'
 
 class Wysiwyg extends Component {
@@ -24,7 +22,7 @@ class Wysiwyg extends Component {
   }
 
   render() {
-    const {more} = this.props
+    const {itemProp} = this.props
     var {size, content} = this.props
     var wysClass
 
@@ -39,11 +37,10 @@ class Wysiwyg extends Component {
     content = convertLinks(content)
 
     return (
-      <div className={wysClass}>
+      <div className={wysClass} itemProp={itemProp}>
         <div onClick={this.handleClick} dangerouslySetInnerHTML={{
           __html: content
         }}></div>
-        {more && <Link to={more} className={css.more}>&raquo;&nbsp;Read More</Link>}
       </div>
     )
   }

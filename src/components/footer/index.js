@@ -24,20 +24,7 @@ const Footer = ({options, footerAppend}) => {
             <Logo />
           </div>
           <div className={css.item}>
-            <Vcard
-              coRegNumber={options.coRegNumber}
-              coTaxNumber={options.coTaxNumber}
-              contactEmail={options.contactEmail}
-              contactFax={options.contactFax}
-              contactPerson={options.contactPerson}
-              contactTelephone={options.contactTelephone}
-              country={options.country}
-              locality={options.locality}
-              postalCode={options.postalCode}
-              region={options.region}
-              streetAddress1={options.streetAddress1}
-              streetAddress2={options.streetAddress2}
-              />
+            <Vcard options={options} />
           </div>
           <div className={css.item}>
             <Social socialNetworks={options.socialNetworks} modifier='condensed' />

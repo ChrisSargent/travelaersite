@@ -18,16 +18,16 @@ $map-height: 200px
   display: flex
   justify-content: center
 
-  > .vcard
+  > .vcard-company
     padding-left: $pd--s
     line-height: $lh--lg
     display: block
     color: $co--wt
 
-    .email
+    .item.-email
       display: none
 
-    .container + .container
+    > .container + .container
       padding: $pd--m 0 0
 
   > .map
@@ -54,7 +54,7 @@ $map-height: 200px
       z-index: $z--mid
       margin: ($pd--v / -1) 0
 
-    > .vcard
+    > .vcard-company
       +contact-block
       font-size: inherit
 

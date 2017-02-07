@@ -1,4 +1,5 @@
 import types from '../actions'
+import {globals, stripDomain} from '../lib/utils'
 
 const _getLatestPosts = ({slugsByDate, fetchedPosts}, slug) => {
   // Looks up the slug from the slugsByDate array, grabs the corresponding post from the fetchedPosts array and puts it into the returned object.
@@ -62,6 +63,8 @@ const _addFetchedPosts = (action, fetchedPosts) => {
   if (posts.length) {
     for (var i = 0; i < posts.length; i++) {
       const post = posts[i]
+      post.link = stripDomain(post.link)
+      post.url = globals.baseUrl + post.link
       !fetchedPosts[post.slug] && (addPosts[post.slug] = post)
     }
   } else {

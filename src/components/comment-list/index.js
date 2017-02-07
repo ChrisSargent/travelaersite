@@ -21,11 +21,11 @@ const Comment = ({comment_ID, comment_author, comment_content, comment_date_gmt,
   ]
 
   return (
-    <div className={css.main + compName}>
+    <div className={css.main + compName} itemProp="Comment" itemScope itemType="http://schema.org/Comment">
       <RespImageCover avatar image={comment_author_avatar} alt={comment_author}/>
       <div className={css.article + compName}>
-        <ArticleHeader title={comment_author} subtitle={dateString} modifier={compName}/>
-        <Wysiwyg content={comment_content}/>
+        <ArticleHeader title={comment_author} subtitle={dateString} modifier={compName} itemProp="author"/>
+        <Wysiwyg content={comment_content} itemProp="text"/>
         <Actions actions={actions}/>
       </div>
     </div>
@@ -42,7 +42,8 @@ const CommentList = (props) => {
     const {comment_ID, comment_replies} = comment
     return (
       <li key={comment_ID} className={css.item}>
-        <Comment {...comment}/> {messageCommentID === comment_ID && <Message/>}
+        <Comment {...comment}/>
+        {messageCommentID === comment_ID && <Message/>}
         {replyCommentID === comment_ID && <Submit postType="comments" postID={postID} parentCommentID={comment_ID}/>}
         {comment_replies && <CommentList {...props} comments={comment_replies}/>}
       </li>

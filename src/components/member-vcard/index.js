@@ -37,7 +37,6 @@ const MemberVcard = ({name, contacts}) => {
 
   return (
     <aside className="vcard-member">
-      {name && <div className="fn">{name}</div> }
       <ul>
         {contactsMap}
       </ul>

@@ -4,7 +4,7 @@ import RespImageCover from '../resp-image-cover'
 import SVG from '../svg'
 import './_article-header.sass'
 
-const ArticleHeader = ({modifier, subtitle, icon, image, title}) => {
+const ArticleHeader = ({modifier, subtitle, icon, image, title, itemProp}) => {
   var headClass
 
   modifier
@@ -18,7 +18,7 @@ const ArticleHeader = ({modifier, subtitle, icon, image, title}) => {
     <header className={headClass}>
       {icon && <SVG type={icon}/>}
       <div className={css.container}>
-        {title && <h1 className={css.title} dangerouslySetInnerHTML={{__html: title}}></h1>}
+        {title && <h1 className={css.title} itemProp={itemProp} dangerouslySetInnerHTML={{__html: title}}></h1>}
         {subtitle && <span className={css.subtitle}>{subtitle}</span>}
       </div>
       <RespImageCover image={image} />

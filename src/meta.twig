@@ -1,15 +1,5 @@
-<!-- Basic Meta Information -->
-<title>{{meta_info.title}}</title>
-<meta name="description" content="{{meta_info.description}}"/>
-<meta name="author" content="{{options.contact_person}}"/>
-<meta name="keywords" content="{{options.default_keywords}}"/>
 
-<!-- Open Graph Information -->
-<meta property="og:title" content="{{meta_info.title}}"/>
-<meta property="og:description" content="{{meta_info.description}}"/>
-<meta property="og:type" content="{{meta_info.type}}"/>
-<meta property="og:url" content="{{meta_info.url}}"/>
-<meta property="og:site_name" content="{{meta_info.name}}"/>
+
 
 {% if meta_info.image %}
   <meta property="og:image" content="{{meta_info.image.src}}"/>
@@ -18,18 +8,6 @@
   <meta property="og:image:height" content="{{meta_info.image.height}}"/>
 {% endif %}
 
-<!-- Facebook Open Graph Info -->
-{% if options.facebook_admins %}
-  <meta property="fb:admins" content="{% for admin in options.facebook_admins %}{{admin.admin_id }}{% if not loop.last %},{% endif %} {% endfor %}"/>
-{% endif %}
-
-{% if options.facebook_id %}
-  <meta property="fb:profile_id" content="{{options.facebook_id}}"/>
-{% endif %}
-
-{% if options.facebook_app_id %}
-  <meta property="fb:app_id" content="{{options.facebook_app_id}}"/>
-{% endif %}
 
 {% if meta_info.type == 'business.business' %}
   <meta property="business:contact_data:street_address" content="{{options.street_address}}"/>
@@ -37,19 +15,4 @@
   <meta property="business:contact_data:region" content="{{options.region}}"/>
   <meta property="business:contact_data:postal_code" content="{{options.postal_code}}"/>
   <meta property="business:contact_data:country_name" content="{{options.country}}"/>
-{% endif %}
-
-{% if options.pinterest_verification_code %}
-  <!-- Pinterest Verification -->
-  <meta name="p:domain_verify" content="{{options.pinterest_verification_code}}"/>
-{% endif %}
-
-{% if options.bing_verification_code %}
-  <!-- Bing Verification -->
-  <meta name="msvalidate.01" content="{{options.bing_verification_code}}"/>
-{% endif %}
-
-{% if options.google_plus_page_id %}
-  <!-- Google+ -->
-  <link rel="publisher" href="https://plus.google.com/+{{options.google_plus_page_id}}"/>
 {% endif %}
