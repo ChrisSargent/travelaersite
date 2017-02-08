@@ -54,6 +54,7 @@
   "dependencies": {
     "axios": "*",
     "classnames": "*",
+    "express": "^4.14.1",
     "fontfaceobserver": "*",
     "he": "^1.1.1",
     "history": "*",
