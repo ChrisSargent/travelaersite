@@ -29,7 +29,6 @@ class Wysiwyg extends Component {
     if (!content)
       return false
 
-    const useContent = convertLinks(useContent)
     const compName = 'wysiwyg'
     wysClass = compName
     size && (wysClass += ' -' + size)
@@ -37,7 +36,7 @@ class Wysiwyg extends Component {
     return (
       <div className={wysClass}>
         <div onClick={this.handleClick} dangerouslySetInnerHTML={{
-          __html: content
+          __html: convertLinks(content)
         }}></div>
       {more && <Link to={more} className={css.more}>&raquo;&nbsp;Read More</Link>}
       </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import css from '../../lib/css'
 import SVG from '../../components/svg'
 import Wysiwyg from '../../components/wysiwyg'
+import './_travel-paas.sass'
 
 const Features = ({compName, feature}) => {
   const featureMap = feature.map((item, index) => {

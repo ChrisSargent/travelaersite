@@ -74,7 +74,6 @@ const _addFetchedPosts = (action, fetchedPosts) => {
   } else {
     addPosts[action.meta.slug] = {invalid: true};
   }
-  console.log(addPosts);
   return {...fetchedPosts, ...addPosts}
 }
 
@@ -124,9 +123,6 @@ const PostsReducer = (state = {
         ...state,
         fetchedPosts
       }
-
-    case types.FETCH_INIT_POSTS + '_FULFILLED':
-      return state
 
     case types.REFRESH_COMMENTS + '_FULFILLED':
       const {slug, t_comments_info} = action.payload.data

@@ -15,7 +15,6 @@ import Positions from '../../sections/positions'
 import ProductModules from '../../sections/product-modules'
 import Products from '../../sections/products'
 import Team from '../../sections/team'
-import TPArchitecture from '../../sections/travel-paas/architecture'
 import TPContentScreenshots from '../../sections/travel-paas/content-screenshots'
 import TPFeatures from '../../sections/travel-paas/features'
 import Section from '../../sections/section'
@@ -136,11 +135,6 @@ class Page extends Component {
         const {acf_fc_layout, skew, overlaps, section_id} = block
 
         switch (acf_fc_layout) {
-          case 'architecture':
-            name = 'tpaas -architecture'
-            content = <TPArchitecture {...block} compName={name}/>
-            break
-
           case 'content_screenshots':
             name = 'tpaas -' + section_id
             content = <TPContentScreenshots {...block} compName={name}/>

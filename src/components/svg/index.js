@@ -1,5 +1,6 @@
 import React from 'react'
 import ComDiag from '../comversational-diagram'
+import TPaasDiag from '../travelpaas-diagram'
 import css from '../../lib/css'
 import './_svgs.sass'
 
@@ -184,9 +185,15 @@ const SVG = ({type}) => {
       break
 
     case 'comversational-diagram':
-      title = 'How Comversational Works'
-      viewbox = "0 0 2030 1101"
+      title = 'Comversational "'
+      viewbox = '0 0 2027 1103'
       path = <ComDiag />
+      break
+
+    case 'travelpaas-diagram':
+      title = 'Travel Paas Architecture'
+      viewbox = '0 0 1015 1178'
+      path = <TPaasDiag />
       break
 
     default:

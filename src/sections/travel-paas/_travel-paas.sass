@@ -28,22 +28,23 @@ $mg-defeat: $pd--h--dt / -1
     z-index: $z--top
 
 .main-tpaas
-  display: flex
-  flex-direction: column
-  align-items: stretch
-  justify-content: flex-start
+  > .container
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: stretch
+    justify-content: flex-start
+
+    .screenshot-block
+      order: 1
+
+    .wysiwyg,
+    .list-tpaas
+      order: 2
 
   .title
     +heading-section
-    order: 1
     color: $co--wt
-
-  > .screenshot-block
-    order: 2
-
-  > .wysiwyg,
-  > .list-tpaas
-    order: 3
 
   .wysiwyg
     +ff--base
@@ -80,6 +81,10 @@ $mg-defeat: $pd--h--dt / -1
       margin: $pd--xxs 0
       text-align: left
 
+  &.-architecture
+    .screenshot-block
+      display: none
+
 .screenshot-block
   margin-bottom: $pd--ml
 
@@ -91,19 +96,6 @@ $mg-defeat: $pd--h--dt / -1
       display: none
 
 .list-tpaas
-  &.-architecture
-    > .item
-      margin: 0.75rem 0
-
-      &:first-child
-        margin-top: 0!important
-
-      &:last-child
-        margin-bottom: 0!important
-
-    .image
-      display: none
-
   &.-features
     $spc-v: $pd--s
     margin: ($spc-v / -1) 0
@@ -117,6 +109,22 @@ $mg-defeat: $pd--h--dt / -1
       color: $co--wt
 
 @media screen and (min-width: $bp--mn)
+  %textonright
+    .wysiwyg
+      flex-grow: 1
+      order: 2
+      width: 50%
+      padding-left: $pd--ll
+
+    .screenshot-block
+      order: 1
+      width: 50%
+      max-width: 500px
+      margin-left: $mg-defeat
+
+  %wysiwygtoppad
+    padding-top: $pd--ml
+
   .section-tpaas
     &.-searchshop
       + section
@@ -124,7 +132,9 @@ $mg-defeat: $pd--h--dt / -1
         // Allow some extra from for the overlapping screenshots
 
   .main-tpaas
-    display: block
+    > .container
+      flex-direction: row
+      justify-content: space-between
 
     .wysiwyg
       line-height: $lh--xl
@@ -133,17 +143,15 @@ $mg-defeat: $pd--h--dt / -1
         font-size: $fs--lm
         line-height: $lh--ml
 
-    &.-searchshop,
-    &.-instapricer,
-    &.-award
-      .wysiwyg
-        padding-top: $pd--ml
-        width: 50%
-
     &.-searchshop
       position: relative
 
+      > .container
+        display: block
+
       .wysiwyg
+        @extend %wysiwygtoppad
+        width: 50%
         padding-right: $pd--s
 
       .screenshot-block
@@ -171,29 +179,41 @@ $mg-defeat: $pd--h--dt / -1
             max-width: 50%
             margin-right: $mg-defeat
 
-    &.-instapricer
-      +clearfix
+    &.-architecture
+      @extend %textonright
 
       .wysiwyg
-        float: right
+        > div
+          display: flex
+          flex-direction: column
+          height: 100%
+
+          > p
+            height: 33.3%
+            display: flex
+            align-items: center
 
       .screenshot-block
-        float: left
-        width: 50%
-        max-width: 500px
-        margin-bottom: $pd--v / -1
-        margin-left: $mg-defeat
+        display: block
 
-    &.-award
-      +clearfix
+    &.-instapricer
+      @extend %textonright
 
       .wysiwyg
-        float: left
+        @extend %wysiwygtoppad
+
+      .screenshot-block
+        margin-bottom: $pd--v / -1
+
+    &.-award
+      .wysiwyg
+        @extend %wysiwygtoppad
+        order: 1
         width: 38%
 
       .screenshot-block
+        order: 2
         position: relative
-        float: right
         width: 62%
         margin-right: $mg-defeat
 
@@ -210,10 +230,6 @@ $mg-defeat: $pd--h--dt / -1
             top: $pd--v / -0.75
             right: 0
             max-width: 40%
-
-    &.-architecture
-      .screenshot-block
-        display: none
 
   .screenshot-block
     margin-bottom: 0

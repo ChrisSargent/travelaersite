@@ -69,15 +69,15 @@ class Menu extends Component {
       atTop: true
     }
     this.checkbox = {}
-    this.debounceScroll = this.debounceScroll.bind(this)
-    this.handleScroll = this.handleScroll.bind(this)
-    this.resizeTOut = null
     // TODO: Remove code for scroll event if not using
+    // this.debounceScroll = this.debounceScroll.bind(this)
+    // this.handleScroll = this.handleScroll.bind(this)
+    // this.resizeTOut = null
   }
 
-  componentWillMount() {
-    window.addEventListener('scroll', this.debounceScroll)
-  }
+  // componentWillMount() {
+  //   window.addEventListener('scroll', this.debounceScroll)
+  // }
 
   refMenu(el) {
     this.checkbox = el
@@ -87,18 +87,18 @@ class Menu extends Component {
     this.checkbox.checked = false
   }
 
-  debounceScroll(ev) {
-    clearTimeout(this.resizeTOut)
-    this.resizeTOut = setTimeout(() => this.handleScroll(ev.srcElement.body.scrollTop), 100)
-  }
-
-  handleScroll(pos) {
-    if (pos >= 200 && this.state.atTop)
-      this.setState({atTop: false})
-
-    if (pos < 200 && !this.state.atTop)
-      this.setState({atTop: true})
-  }
+  // debounceScroll(ev) {
+  //   clearTimeout(this.resizeTOut)
+  //   this.resizeTOut = setTimeout(() => this.handleScroll(ev.srcElement.body.scrollTop), 100)
+  // }
+  //
+  // handleScroll(pos) {
+  //   if (pos >= 200 && this.state.atTop)
+  //     this.setState({atTop: false})
+  //
+  //   if (pos < 200 && !this.state.atTop)
+  //     this.setState({atTop: true})
+  // }
 
   render() {
     const {menu} = this.props

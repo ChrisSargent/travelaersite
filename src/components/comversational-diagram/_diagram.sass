@@ -1,62 +1,72 @@
 @import _tools
 
-.i.-comversational-diagram
-  $ls: 0.05em
-  $fs-l: 46px
-  $fs-m: 35px
-  $fs-s: 25px
+$ls: 0.05em
+$fs-l: 46px
+$fs-m: 35px
+$fs-s: 25px
 
-  width: 100%
+.i.-comversational-diagram,
+.i.-travelpaas-diagram
   height: auto
   text-transform: uppercase
+  -webkit-font-smoothing: antialiased
+  stroke: none
 
   .frame
     opacity: 0.5
+    stroke: $co--wt
+    stroke-width: 2
+    fill: none
+
+    &.-filled
+      fill: $co--wt
+      opacity: 1
+
+  .icons
+    fill: $co--wt
 
   .label
     +ff--feature
-    stroke: none!important
     font-size: $fs-s
     letter-spacing: $ls
-    text-transform: uppercase
-    -webkit-font-smoothing: antialiased
+    fill: $co--wt
 
-    &.-large
+    .-large
       font-size: $fs-l
+
+    &.-inverse
+      text-transform: none
+      fill: $co--blue--md
 
     body.ff--feature &
       font-size: $fs-m
 
-
+  .heading,
   .sublabel
     +ff--base
-    stroke: none!important
-    -webkit-font-smoothing: antialiased
+    letter-spacing: $ls
     font-size: $fs-s
     font-weight: 300
-    letter-spacing: $ls
-    text-transform: uppercase
 
-    &.-large
+  .heading
+    fill: $co--yelgreen--lt
+
+  .sublabel
+    .-large
       font-size: 31px
 
-    &.-main
-      color: $co--yelgreen--lt
-      fill: $co--yelgreen--lt
-
   .blue-dk
-    color: $co--blue--dk
     fill: $co--blue--dk
 
   .blue-md
-    color: $co--blue--md
     fill: $co--blue--md
 
+  .blue-lt
+    fill: #5D89AF
+
   .green
-    color: $co--green
     fill: $co--green
 
-  .white
-    color: $co--wt
-    fill: $co--wt
-    stroke: $co--wt
+.i.-travelpaas-diagram
+  .label
+    font-size: $fs-m
