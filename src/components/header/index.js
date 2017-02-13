@@ -1,7 +1,7 @@
 import React from 'react'
 import css from '../../lib/css'
 import Logo from '../logo'
-import MenuContainer from '../menu'
+import Menu from '../menu'
 import './_header.sass'
 
 const Header = (props) => {
@@ -15,7 +15,7 @@ const Header = (props) => {
     <header className={css.header + compName + headerClass}>
       <div className={css.container}>
         <Logo/>
-        <MenuContainer location="primary"/>
+        <Menu />
       </div>
     </header>
   )

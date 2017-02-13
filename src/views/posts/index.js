@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchLatestPosts, fetchInitPosts, fetchMorePosts} from '../../actions/posts'
+import {fetchMorePosts} from '../../actions/posts'
 import {getPostsObj, gotAllPosts, getLoadingMore} from '../../reducers/posts'
 import css from '../../lib/css'
 import {image404} from '../../lib/utils'
@@ -33,13 +33,6 @@ class Posts extends Component {
         loading: false,
       }
     ]
-  }
-
-  componentDidMount() {
-    const slug = this.props.params.slug
-    slug
-      ? this.props.fetchInitPosts(slug)
-      : this.props.fetchLatestPosts()
   }
 
   componentDidUpdate() {
@@ -118,15 +111,9 @@ const mapStateToProps = (state, {params}) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchLatestPosts() {
-    dispatch(fetchLatestPosts())
-  },
   fetchMorePosts() {
     dispatch(fetchMorePosts())
   },
-  fetchInitPosts(slug) {
-    dispatch(fetchInitPosts(slug))
-  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts)

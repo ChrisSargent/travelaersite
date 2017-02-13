@@ -51,8 +51,9 @@ export const backgroundFetchPages = () => (dispatch, getState) => {
 export const fetchPage = (reqPathname) => (dispatch, getState) => {
   const page = getState().pages[reqPathname]
 
-  if (!page)
-    return dispatch(_getPages(reqPathname))
+  return page
+  ? Promise.resolve()
+  : dispatch(_getPages(reqPathname))
 }
 
 // *****************************************************************************

@@ -1,10 +1,10 @@
 import Instafeed from 'instafeed.js'
-import store from '../store'
+// import {store} from '../client'
 import types from '.'
 
-const _getInstaSuccess = (response) => {
-  store.dispatch({type: types.FETCH_INSTA + '_FULFILLED', payload: response.data})
-}
+// const _getInstaSuccess = (response) => {
+//   store.dispatch({type: types.FETCH_INSTA + '_FULFILLED', payload: response.data})
+// }
 
 const _getInsta = (feed) => ({type: types.FETCH_INSTA + '_PENDING', payload: feed.run()})
 
@@ -21,7 +21,7 @@ export const fetchInsta = (user) => (dispatch, getState) => {
       userId: user.instUserNameID,
       resolution: 'standard_resolution',
       limit: 6,
-      success: _getInstaSuccess,
+      // success: _getInstaSuccess,
       mock: true
     })
     return dispatch(_getInsta(feed))

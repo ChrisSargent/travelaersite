@@ -1,17 +1,20 @@
 {
   "name": "travelaersite",
-  "homepage": "http://travelaer.stickypixel.com",
+  "homepage": "http://travelaersite.dev",
   "proxy": "http://travelaersite.dev",
   "wpFolder": "/wordpress",
   "version": "0.8.1",
   "private": true,
   "devDependencies": {
     "autoprefixer": "*",
+    "babel-cli": "^6.22.2",
     "babel-core": "*",
     "babel-eslint": "*",
     "babel-jest": "*",
     "babel-loader": "*",
+    "babel-preset-es2015": "^6.22.0",
     "babel-preset-react-app": "*",
+    "babel-preset-stage-2": "^6.22.0",
     "case-sensitive-paths-webpack-plugin": "*",
     "chalk": "*",
     "connect-history-api-fallback": "*",
@@ -34,8 +37,10 @@
     "gzip-size": "*",
     "html-webpack-plugin": "*",
     "http-proxy-middleware": "*",
+    "ignore-loader": "^0.1.2",
     "jest": "*",
     "node-sass": "*",
+    "nodemon": "^1.11.0",
     "object-assign": "*",
     "path-exists": "*",
     "postcss-loader": "*",
@@ -76,7 +81,9 @@
     "test": "node scripts/test.js --env=jsdom",
     "deploy_wp": "rsync wordpress/ stgsear1@akascia.com:www/travelaer/wordpress --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
     "deploy_content": "rsync wordpress/wp-content/ stgsear1@akascia.com:www/travelaer/wordpress/wp-content --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
-    "deploy_app": "rsync build/ stgsear1@akascia.com:www/travelaer --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress"
+    "deploy_app": "rsync build/ stgsear1@akascia.com:www/travelaer --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress",
+    "build:server": "NODE_ENV='development' webpack --config config/webpack.server.config.js",
+    "server": "NODE_ENV='production' nodemon build/server.js"
   },
   "jest": {
     "moduleFileExtensions": [

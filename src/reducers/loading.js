@@ -4,7 +4,7 @@ export const getLoading = ({loading}) => {
   return loading.length
 }
 
-const loading = (state = true, action) => {
+const loading = (state = false, action) => {
 
   switch (action.type) {
     case types.FETCH_OPTIONS + '_PENDING':

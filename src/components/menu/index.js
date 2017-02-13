@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {IndexLink, Link} from 'react-router'
-import {fetchMenu} from '../../actions/site'
 import {getMenu} from '../../reducers/site'
 import {globals, stripDomain} from '../../lib/utils'
 import css from '../../lib/css'
@@ -119,7 +118,4 @@ class Menu extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({menu: getMenu(state)})
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  init: dispatch(fetchMenu(ownProps.location))
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Menu)
+export default connect(mapStateToProps)(Menu)

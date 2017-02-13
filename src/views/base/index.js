@@ -1,17 +1,17 @@
 import React, {Component} from 'react'
-import {observableFonts} from '../../lib/css'
-import FontFaceObserver from 'fontfaceobserver'
 import {connect} from 'react-redux'
 import {getDisplaySubmenu} from '../../reducers/pages'
+import {observableFonts} from '../../lib/css'
+import FontFaceObserver from 'fontfaceobserver'
 import Footer from '../../components/footer'
 import Head from '../../components/head'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
 import SiteSchema from '../../components/site-schema/'
+import '../../lib/sass/index.sass'
 
 class Base extends Component {
-  constructor() {
-    super()
+  componentDidMount() {
     this.observeFonts()
   }
 
@@ -28,19 +28,18 @@ class Base extends Component {
   }
 
   render() {
-    const {hasSubMenu} = this.props
-
+    const {hasSubMenu, children} = this.props
     return (
       <div>
         <Head/>
         <Header hasSubMenu={hasSubMenu}/>
-        {this.props.children}
+        {children}
         <Footer/>
         <Loader/>
-        <SiteSchema />
+        <SiteSchema/>
       </div>
-    )
 
+    )
   }
 }
 
