@@ -28,6 +28,7 @@ module.exports = {
 
   // Modifiers
   loading: ' -loading',
+  loaded: ' -loaded',
   active: ' -active',
   error: ' -error',
   warning: ' -warning',

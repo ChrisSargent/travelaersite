@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {IndexLink, Link} from 'react-router'
+import Link from 'react-router/lib/Link'
+import IndexLink from 'react-router/lib/IndexLink'
 import {getMenu} from '../../reducers/site'
 import {globals, stripDomain} from '../../lib/utils'
 import css from '../../lib/css'

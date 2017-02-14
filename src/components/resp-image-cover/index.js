@@ -16,46 +16,56 @@ export default class RespImageCover extends Component {
 
   constructor() {
     super()
-    this.handleLoad = this.handleLoad.bind(this)
     this.getPreviewBgStyle = this.getPreviewBgStyle.bind(this)
     this.getBgStyle = this.getBgStyle.bind(this)
+    this.swapImages = this.swapImages.bind(this)
+    this.handleLoad = this.handleLoad.bind(this)
+    this.handleMount = this.handleMount.bind(this)
     this.state = {
       fullBgSrc: null,
+      loadedClass: ''
     }
-  }
-
-  componentWillReceiveProps(newProps) {
-    (newProps.image !== this.props.image) && this.setState({fullBgSrc: null})
   }
 
   getPreviewBgStyle() {
     var imageBlob
-    if(this.props.image && this.props.image.description) {
+    if (this.props.image && this.props.image.description) {
       imageBlob = this.props.image.description
-      return {backgroundImage: 'url(data:image/jpeg;base64,' + imageBlob + ')'}
+      return {
+        backgroundImage: 'url(data:image/jpeg;base64,' + imageBlob + ')'
+      }
     } else {
       return null
     }
   }
 
   getBgStyle(imageSrc) {
-    return {backgroundImage: 'url(' + imageSrc + ')'}
+    return {
+      backgroundImage: 'url(' + imageSrc + ')'
+    }
   }
 
-  handleLoad(ev) {
+  swapImages(el) {
     // Grab the browser-calculated source of the img and set the state
     // so the background of the hero matches (also fires on resize).
     // Also checks if currentSrc is supported
-    const el = ev.target
     var imgSrc = el.currentSrc || el.src
-    console.log(imgSrc)
-    this.setState({fullBgSrc: imgSrc})
+    this.setState({fullBgSrc: imgSrc, loadedClass: css.loaded})
+  }
+
+  handleLoad(ev) {
+    // Swap the images on load
+    this.swapImages(ev.target)
+  }
+
+  handleMount(el) {
+    // When server rendering, the image loads before the JS takes over to when the
+    // image component mounts, we check if it's already been loaded and then swap the images
+    // el !== null && el.complete && this.swapImages(el);
   }
 
   render() {
     var fullBgStyle,
-      fullBgClass,
-      previewBgClass,
       tagClass
     const {avatar, image} = this.props
 
@@ -67,21 +77,15 @@ export default class RespImageCover extends Component {
       ? tagClass = css.avatar
       : tagClass = '_bgimg'
 
-    fullBgClass = '_bgimgfull'
-    previewBgClass = '_bgimgpreview'
-
-    console.log(this.state.fullBgSrc)
+    const fullBgClass = '_bgimgfull' + this.state.loadedClass
+    const previewBgClass = '_bgimgpreview' + this.state.loadedClass
     const previewBgStyle = this.getPreviewBgStyle()
 
-    if (this.state.fullBgSrc) {
-      fullBgStyle = this.getBgStyle(this.state.fullBgSrc)
-      fullBgClass += ' -loaded'
-      previewBgClass += ' -loaded'
-    }
+    this.state.fullBgSrc && (fullBgStyle = this.getBgStyle(this.state.fullBgSrc))
 
     return (
       <div className={tagClass}>
-        <RespImage {...this.props} onLoadCb={this.handleLoad}/>
+        <RespImage {...this.props} onLoadCb={this.handleLoad} onMountCb={this.handleMount}/>
         <div className={previewBgClass} style={previewBgStyle}></div>
         <div className={fullBgClass} style={fullBgStyle}></div>
       </div>

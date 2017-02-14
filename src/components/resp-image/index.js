@@ -6,6 +6,7 @@ const RespImage = ({
   image,
   alt,
   onLoadCb,
+  onMountCb,
   srcVersion = 'large',
   respSizes = '100vw',
   allowFullsize = false
@@ -33,7 +34,6 @@ const RespImage = ({
     image.sizes['post-thumbnail'] && (srcsetString += image.sizes['post-thumbnail'] + ' ' + image.sizes['post-thumbnail-width'] + 'w, ')
     image.sizes['large'] && (srcsetString += image.sizes['large'] + ' ' + image.sizes['large-width'] + 'w')
 
-
     srcImage = {
       src: image.sizes[srcVersion],
       alt: altText,
@@ -47,7 +47,7 @@ const RespImage = ({
     }
   }
 
-  return (<img width={srcImage.width} height={srcImage.height} src={srcImage.src} alt={srcImage.alt} srcSet={srcsetString} sizes={respSizes} className={css.image} onLoad={onLoadCb}/>)
+  return (<img width={srcImage.width} height={srcImage.height} src={srcImage.src} alt={srcImage.alt} srcSet={srcsetString} sizes={respSizes} className={css.image} onLoad={onLoadCb} ref={onMountCb}/>)
 }
 
 export default RespImage

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router'
+import withRouter from 'react-router/lib/withRouter'
 import {globals} from '../../lib/utils'
 import {getOptions} from '../../reducers/site'
 import Helmet from 'react-helmet'

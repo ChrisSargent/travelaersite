@@ -9,11 +9,6 @@ export default(app, finalHydrate) => {
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="shortcut icon" href="/favicon.ico">
       <title>Customer-centric Software for Airlines | Travelaer</title>
-      <style>
-        body {
-          background-color: #315d91;
-        }
-      </style>
       <link href="/static/css/main.css" rel="stylesheet">
     </head>
     <body>

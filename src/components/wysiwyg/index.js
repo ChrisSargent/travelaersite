@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {Link, withRouter} from 'react-router'
+import Link from 'react-router/lib/Link'
+import withRouter from 'react-router/lib/withRouter'
 import {convertLinks} from '../../lib/utils'
 import css from '../../lib/css'
 import './_wysiwyg.sass'
