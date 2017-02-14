@@ -8,10 +8,17 @@ import SVG from '../svg'
 import './_loader.sass'
 
 class Loader extends Component {
-  render() {
-    var loadingClass
-    const {getLoading, getFetchedAllPages, backgroundFetchPages} = this.props
+  constructor (props) {
+    super(props)
+    this.backgroundFetch = this.backgroundFetch.bind(this)
+  }
 
+  componentDidMount() {
+    this.backgroundFetch()
+  }
+
+  backgroundFetch() {
+    const {getLoading, getFetchedAllPages, backgroundFetchPages} = this.props
     // Put this in a lifecycle function that doesn't get called in the SSR render because window is not available
     !getLoading && !getFetchedAllPages && setTimeout(() => {
       window.requestAnimationFrame(() => {
@@ -19,10 +26,12 @@ class Loader extends Component {
         backgroundFetchPages()
       })
     }, 2000);
+  }
 
-    getLoading
-      ? loadingClass = css.loading
-      : loadingClass = ''
+  render() {
+    var loadingClass = ''
+    const {getLoading} = this.props
+    getLoading && (loadingClass = css.loading)
 
     return (
       <div className={css.loader + loadingClass}>

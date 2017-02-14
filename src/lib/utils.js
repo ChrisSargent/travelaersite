@@ -77,11 +77,15 @@ export const dateFormat = (date, includeTime) => {
 }
 
 export const trimContent = (content, paras = 1) => {
+  if(!content)
+    return
   var excerpt = content.split('</p>', paras)
   return excerpt.join('')
 }
 
 export const whichContent = (content) => {
+  if(!content)
+    return
   var useContent
   content.rendered !== undefined && (useContent = content.rendered)
   return useContent

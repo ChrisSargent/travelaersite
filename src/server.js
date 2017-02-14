@@ -1,11 +1,11 @@
 import express from 'express'
-import path from 'path'
 import React from 'react'
 import {renderToString} from 'react-dom/server'
 import {Provider} from 'react-redux'
 import {match, RouterContext} from 'react-router'
-import configureStore from '../store/configureStore'
-import configureRoutes from '../configureRoutes'
+import configureStore from './store/configureStore'
+import routes from './routes'
+import indexHTML from './indexHTML';
 
 const app = express()
 const PORT = 5000
@@ -15,8 +15,6 @@ app.use('/static', express.static('build/static'))
 app.use(handleRender)
 
 function handleRender(req, res) {
-  const store = configureStore()
-  const routes = configureRoutes(store)
   match({
     routes: routes,
     location: req.url
@@ -24,44 +22,49 @@ function handleRender(req, res) {
     // in here we can make some decisions all at once
     if (err) {
       // there was an error somewhere during route matching
-      res.status(500).send(err.message)
+      res.sendStatus(500)
     } else if (redirect) {
       // we haven't talked about `onEnter` hooks on routes, but before a
       // route is entered, it can redirect. Here we handle on the server.
       res.redirect(redirect.pathname + redirect.search)
     } else if (props) {
       // if we got props then we matched a route and can render
-      const html = renderToString(
-        <Provider store={store}>
-          <RouterContext {...props}/>
-        </Provider>
-      )
-      const finalHydrate = store.getState()
-      res.send(renderFullPage(html, finalHydrate))
+      setGlobals(req)
+      hydrateAndRender(res, props)
     } else {
       // no errors, no redirect, we just didn't match anything
-      res.status(404).send('Not Found')
+      res.sendStatus(404)
     }
   })
 }
 
-function renderFullPage(html, finalHydrate) {
-  return `
-    <!doctype html>
-    <html>
-      <head>
-        <title>FECK'S</title>
-        <link href="/static/css/main.css" rel="stylesheet">
-      </head>
-      <body>
-        <div id="root">${html}</div>
-        <script>
-          window.__HYDRATED_STATE__ = ${JSON.stringify(finalHydrate)}
-        </script>
-        <script src="/static/js/main.js"></script>
-      </body>
-    </html>
-    `
+function setGlobals(req) {
+  global.navigator = {
+    userAgent: req.headers['user-agent'],
+    language: req.headers['accept-language'].split(',')[0]
+  }
+}
+
+function hydrateAndRender(res, props) {
+  const store = configureStore()
+  let filteredComps = props.components.filter(component => component !== undefined)
+  filteredComps = filteredComps.filter(component => component.fetchData)
+
+  const fetchDataArray = filteredComps.map(component => {
+    return component.fetchData(store, props)
+  })
+
+  return Promise.all(fetchDataArray).then(() => {
+    const app = renderToString(
+      <Provider store={store}>
+        <RouterContext {...props}/>
+      </Provider>
+    )
+    const hydrate = store.getState()
+    res.send(indexHTML(app, hydrate))
+  }).catch((error) => {
+    res.sendStatus(404)
+  })
 }
 
 app.listen(PORT, function() {

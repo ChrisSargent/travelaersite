@@ -1,8 +1,7 @@
 import axios from 'axios'
 import types from '.'
 
-const fields = 'content,date_gmt,id,link,modified_gmt,title,slug,t_author,t_categories,t_comments_info,t_featured_image'
-// const fields = false
+const fields = 'content,date_gmt,id,link,modified_gmt,title,slug,t_author,t_categories,t_comments_info,t_content,t_featured_image'
 
 const _getPosts = (page = 1) => {
   var type
@@ -57,13 +56,16 @@ export const fetchMorePosts = () => (dispatch, getState) => {
 
 export const fetchInitPosts = (slug) => (dispatch, getState) => {
   const post = getState().posts.fetchedPosts[slug]
+
   return post
     ? Promise.resolve()
     : dispatch({
       type: types.FETCH_INIT_POSTS,
       payload: Promise.all([
         dispatch(_getSinglePost(slug)),
-        dispatch(fetchLatestPosts())
-      ])
+        dispatch(fetchLatestPosts()),
+      ]).catch((error)=>{
+        console.log('Error: ' + error);
+      })
     })
 }

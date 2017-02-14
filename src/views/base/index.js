@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getDisplaySubmenu} from '../../reducers/pages'
 import {observableFonts} from '../../lib/css'
+import {fetchMenu, fetchOptions} from '../../actions/site'
 import FontFaceObserver from 'fontfaceobserver'
 import Footer from '../../components/footer'
 import Head from '../../components/head'
@@ -13,6 +14,15 @@ import '../../lib/sass/index.sass'
 class Base extends Component {
   componentDidMount() {
     this.observeFonts()
+    this.props.fetchMenu('primary')
+    this.props.fetchOptions()
+  }
+
+  static fetchData(store) {
+    return Promise.all([
+      store.dispatch(fetchMenu('primary')),
+      store.dispatch(fetchOptions()),
+    ])
   }
 
   observeFonts() {
@@ -38,7 +48,6 @@ class Base extends Component {
         <Loader/>
         <SiteSchema/>
       </div>
-
     )
   }
 }
@@ -49,4 +58,13 @@ const mapStateToProps = (state, ownProps) => {
   })
 }
 
-export default connect(mapStateToProps)(Base)
+const mapDispatchToProps = (dispatch) => ({
+  fetchMenu(location) {
+    dispatch(fetchMenu(location))
+  },
+  fetchOptions() {
+    dispatch(fetchOptions())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Base)

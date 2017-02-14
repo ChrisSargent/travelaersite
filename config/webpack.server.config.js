@@ -31,8 +31,22 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.css|sass$/, loader: 'ignore-loader' }
+      // First, run the linter.
+      // It's important to do this before Babel processes the JS.
+      {
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        include: paths.appSrc
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }, {
+        test: /\.css|sass$/,
+        loader: 'ignore-loader'
+      }
     ]
   },
 

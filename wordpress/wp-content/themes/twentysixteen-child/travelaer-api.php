@@ -82,6 +82,7 @@ function travelaer_display_submenu($object, $field_name, $request)
 
 function travelaer_get_author_info($object, $field_name, $request)
 {
+
     $user_id = $object['author'];
     $author['avatar'] = get_field('avatar', 'user_'.$user_id);
     $author['description'] = get_the_author_meta('description');
@@ -107,7 +108,6 @@ function travelaer_get_featured_image($object, $field_name, $request)
 {
     if (empty($object['featured_media'])) {
       $default_image = get_field('fabImg', 'options');
-      wlog($default_image);
       $image_object = $default_image;
     } else {
       $image_object = acf_get_attachment($object['featured_media']);
@@ -219,11 +219,6 @@ add_filter('acf/rest_api/option/get_fields', function ($data) {
     return $data;
 });
 
-add_filter('rest_cache_headers', function ($headers) {
-    $headers['Cache-Control'] = 'public, max-age=3600';
-    return $headers;
-});
-
 function get_the_content_by_id($post_id)
 {
     $page_data = get_page($post_id);
@@ -233,6 +228,11 @@ function get_the_content_by_id($post_id)
         return false;
     }
 }
+
+add_filter('rest_cache_headers', function ($headers) {
+    $headers['Cache-Control'] = 'public, max-age=3600';
+    return $headers;
+});
 
 // add_action('init', 'travelaer_handle_preflight');
 // function travelaer_handle_preflight()

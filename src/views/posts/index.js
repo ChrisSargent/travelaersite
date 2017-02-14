@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchMorePosts} from '../../actions/posts'
+import {fetchMorePosts, fetchInitPosts, fetchLatestPosts} from '../../actions/posts'
 import {getPostsObj, gotAllPosts, getLoadingMore} from '../../reducers/posts'
 import css from '../../lib/css'
 import {image404} from '../../lib/utils'
@@ -14,8 +14,8 @@ import Section from '../../sections/section'
 import './_posts.sass'
 
 class Posts extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleClick = this.handleClick.bind(this)
     this.compName = 'posts'
     this.overlap = [
@@ -30,9 +30,27 @@ class Posts extends Component {
         linkTitle: 'Load More',
         param: 'loadmore',
         modifier: 'cta',
-        loading: false,
+        loading: false
       }
     ]
+  }
+
+  static fetchData(store, props) {
+    const {slug} = props.params
+    if (slug) {
+      return store.dispatch(fetchInitPosts(slug))
+    } else {
+      return store.dispatch(fetchLatestPosts())
+    }
+  }
+
+  componentDidMount() {
+    const {slug} = this.props.params
+    if (slug) {
+      this.props.fetchInitPosts(slug)
+    } else {
+      this.props.fetchLatestPosts()
+    }
   }
 
   componentDidUpdate() {
@@ -75,9 +93,8 @@ class Posts extends Component {
       return (
         <li key={post.id || 'invalid'} className={css.item}>
           {post.invalid
-            ? <PostError />
-            : <Post post={post} excerpt={postsObj.excerpts} main={index === 0}/>
-          }
+            ? <PostError/>
+            : <Post post={post} excerpt={postsObj.excerpts} main={index === 0}/>}
         </li>
       )
     })
@@ -92,12 +109,11 @@ class Posts extends Component {
               {postsMap}
             </ul>
             <aside className={css.sidebar + compName}>
-              <RecentPosts posts={postsObj.side}/>
-              {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
+              <RecentPosts posts={postsObj.side}/> {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
               <Insta/>
             </aside>
           </div>
-        {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
+          {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
         </Section>
       </main>
     )
@@ -111,9 +127,15 @@ const mapStateToProps = (state, {params}) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchLatestPosts() {
+    dispatch(fetchLatestPosts())
+  },
   fetchMorePosts() {
     dispatch(fetchMorePosts())
   },
+  fetchInitPosts(slug) {
+    dispatch(fetchInitPosts(slug))
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts)

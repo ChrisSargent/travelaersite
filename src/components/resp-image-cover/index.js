@@ -48,6 +48,7 @@ export default class RespImageCover extends Component {
     // Also checks if currentSrc is supported
     const el = ev.target
     var imgSrc = el.currentSrc || el.src
+    console.log(imgSrc)
     this.setState({fullBgSrc: imgSrc})
   }
 
@@ -69,6 +70,7 @@ export default class RespImageCover extends Component {
     fullBgClass = '_bgimgfull'
     previewBgClass = '_bgimgpreview'
 
+    console.log(this.state.fullBgSrc)
     const previewBgStyle = this.getPreviewBgStyle()
 
     if (this.state.fullBgSrc) {

@@ -55,5 +55,3 @@ export const fetchPage = (reqPathname) => (dispatch, getState) => {
   ? Promise.resolve()
   : dispatch(_getPages(reqPathname))
 }
-
-// *****************************************************************************
