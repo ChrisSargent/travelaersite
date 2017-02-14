@@ -18,6 +18,9 @@ const Head = ({options, location}) => {
     titleTemplate: '%s | ' + options.t_site_info.name,
     meta: [
       {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      }, {
         name: 'description',
         content: options.t_site_info.description
       }, {
@@ -61,7 +64,15 @@ const Head = ({options, location}) => {
         content: options.country
       }
     ],
-    link: []
+    link: [
+      {
+        rel: 'stylesheet',
+        href: '/static/css/main.css'
+      }, {
+        rel: 'shortcut icon',
+        href: '/favicon.ico'
+      }
+    ],
   }
 
   if (options.pinVerifCode) {
@@ -86,16 +97,16 @@ const Head = ({options, location}) => {
 
   if (options.fabSocialImg) {
     metaInfo.meta.push({
-      property: "og:image",
+      property: 'og:image',
       content: options.fabSocialImg.url
     }, {
-      property: "og:image:type",
+      property: 'og:image:type',
       content: options.fabSocialImg.mime_type
     }, {
-      property: "og:image:width",
+      property: 'og:image:width',
       content: options.fabSocialImg.width
     }, {
-      property: "og:image:height",
+      property: 'og:image:height',
       content: options.fabSocialImg.height
     })
   }

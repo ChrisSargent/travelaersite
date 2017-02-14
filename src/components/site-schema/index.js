@@ -49,9 +49,9 @@ const SiteSchema = ({options}) => {
   }
 
   return (
-    <script type="application/ld+json">
-      {JSON.stringify(data)}
-    </script>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{
+      __html: JSON.stringify(data)
+    }}></script>
   )
 }
 const mapStateToProps = (state) => ({options: getOptions(state)})

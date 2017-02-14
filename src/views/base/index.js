@@ -21,7 +21,7 @@ class Base extends Component {
   static fetchData(store) {
     return Promise.all([
       store.dispatch(fetchMenu('primary')),
-      store.dispatch(fetchOptions()),
+      store.dispatch(fetchOptions())
     ])
   }
 

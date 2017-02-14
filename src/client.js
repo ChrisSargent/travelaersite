@@ -6,7 +6,10 @@ import Router from 'react-router/lib/Router'
 import configureStore from './store/configureStore'
 import routes from './routes'
 
-const hydratedState = window.__HYDRATED_STATE__
+var hydratedState = document.getElementById('hydrated-state')
+hydratedState
+  ? hydratedState = JSON.parse(hydratedState.innerHTML)
+  : hydratedState = undefined
 const store = configureStore(hydratedState)
 const root = document.getElementById('root')
 

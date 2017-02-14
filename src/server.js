@@ -6,7 +6,7 @@ import match from 'react-router/lib/match'
 import RouterContext from 'react-router/lib/RouterContext'
 import configureStore from './store/configureStore'
 import routes from './routes'
-import indexHTML from './indexHTML';
+import AppHTML from './indexHTML';
 
 const app = express()
 const PORT = 5000
@@ -56,15 +56,19 @@ function hydrateAndRender(res, props) {
   })
 
   return Promise.all(fetchDataArray).then(() => {
-    const app = renderToString(
-      <Provider store={store}>
-        <RouterContext {...props}/>
-      </Provider>
-    )
+    const doctype = '<!doctype html>'
     const hydrate = store.getState()
-    res.send(indexHTML(app, hydrate))
+    const testing = renderToString(
+      <AppHTML hydrate={hydrate}>
+        <Provider store={store}>
+          <RouterContext {...props}/>
+        </Provider>
+      </AppHTML>
+    )
+    res.send(doctype + testing)
   }).catch((error) => {
-    res.sendStatus(404)
+    console.log(error);
+    res.sendStatus(500)
   })
 }
 
