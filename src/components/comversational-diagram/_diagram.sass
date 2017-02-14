@@ -26,20 +26,21 @@ $fs-s: 25px
     fill: $co--wt
 
   .label
-    +ff--feature
-    font-size: $fs-s
-    letter-spacing: $ls
+    +ff--feature($fs-m)
     fill: $co--wt
 
     .-large
-      font-size: $fs-l
+      font-size: $fs-m
 
     &.-inverse
       text-transform: none
       fill: $co--blue--md
 
     body.ff--feature &
-      font-size: $fs-m
+      letter-spacing: $ls
+
+      .-large
+        font-size: $fs-l
 
   .heading,
   .sublabel
@@ -66,7 +67,3 @@ $fs-s: 25px
 
   .green
     fill: $co--green
-
-.i.-travelpaas-diagram
-  .label
-    font-size: $fs-m

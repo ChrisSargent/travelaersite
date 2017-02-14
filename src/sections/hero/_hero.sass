@@ -32,13 +32,11 @@
     color: $co--wt
 
     strong
-      +ff--feature
-      font-size: $fs--j
+      +ff--feature($fs--j, $fs--xxj)
       font-weight: 400
       line-height: 0.8
       display: block
       margin-bottom: 0.2em
-      letter-spacing: normal
 
     > .i
       max-width: 100%
@@ -58,7 +56,10 @@
 
   main#comversational .section-hero
     &:last-of-type
-      display: none
+      width: 0
+      height: 0
+      min-height: 0
+      overflow: hidden
 
 @media screen and (min-width: $bp--mn)
   .section-hero
@@ -67,9 +68,5 @@
         margin-top: $ht-subheader
 
   .main-hero
-    > .title
-      strong
-        font-size: $fs--xxj
-
     > .wysiwyg
       font-size: $fs--l

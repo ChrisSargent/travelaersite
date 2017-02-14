@@ -7,21 +7,27 @@ import Page from './views/page'
 import Posts from './views/posts'
 
 const forceTrailingSlash = (nextState, replace) => {
-  const {pathname} = nextState.location;
+  const {pathname} = nextState.location
   if (pathname.slice(-1) !== '/') {
     replace({
       ...nextState.location,
       pathname: pathname + '/'
-    });
+    })
   }
 }
 
+const scrollToTop = (nextState) => {
+  const {action} = nextState.location
+  action === 'PUSH' && (window.scrollTo(0, 0))
+}
+
 const handleSiteChange = (prevState, nextState, replace) => {
-  forceTrailingSlash(nextState, replace);
+  forceTrailingSlash(nextState, replace)
+  scrollToTop(nextState)
 }
 
 const handleSiteEnter = (nextState, replace) => {
-  forceTrailingSlash(nextState, replace);
+  forceTrailingSlash(nextState, replace)
 }
 
 const routes = (

@@ -1,23 +1,47 @@
+// File for adjusting font attributes depending on whether the custom fonts are loaded
+
 =ff--base
+  // Doesn't need adjustment, similar x height and letter spacing
   font-family: Helvetica, Arial, sans-serif
 
   &.ff--base,
   .ff--base &
     font-family: $ff--base
 
-=ff--feature
-  font-family: Tahoma, Helvetica, Arial, sans-serif
-
-  &.ff--feature,
-  .ff--feature &
-    font-family: $ff--feature
-
 =ff--p
+  // Doesn't need adjustment, similar x height and letter spacing
   font-family: Georgia, Times, Courier, serif
 
   &.ff--p,
   .ff--p &
     font-family: $ff--p
+
+=ff--feature($fsmb: false, $fsdt: false)
+  // Needs adjustement; height and letter spacing
+  font-family: Tahoma, Helvetica, Arial, sans-serif
+  letter-spacing: -0.03em
+
+  @if $fsmb
+    font-size: $fsmb * 0.8
+
+  &.ff--feature,
+  .ff--feature &
+    font-family: $ff--feature
+    letter-spacing: normal
+
+    @if $fsmb
+      font-size: $fsmb
+
+  @if $fsdt
+    @media screen and (min-width: $bp--mn)
+      font-size: $fsdt * 0.8
+
+      &.ff--feature,
+      .ff--feature &
+        @if $fsdt
+          font-size: $fsdt
+
+
 
 =ff--hdgs
   +ff--base

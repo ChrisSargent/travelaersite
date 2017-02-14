@@ -61,7 +61,7 @@ export default class RespImageCover extends Component {
   handleMount(el) {
     // When server rendering, the image loads before the JS takes over to when the
     // image component mounts, we check if it's already been loaded and then swap the images
-    // el !== null && el.complete && this.swapImages(el);
+    el !== null && el.complete && this.swapImages(el);
   }
 
   render() {
