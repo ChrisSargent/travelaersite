@@ -1,4 +1,4 @@
-@import _tools
+@import tools
 
 .section-hero
   display: flex
@@ -62,11 +62,11 @@
       overflow: hidden
 
 @media screen and (min-width: $bp--mn)
-  .section-hero
-    .-hassubmenu + main &
-      .main-hero
-        margin-top: $ht-subheader
-
   .main-hero
+    transition: margin $tr--f
+    
     > .wysiwyg
       font-size: $fs--l
+
+    header.-hassubmenu ~ main &
+      margin-top: $ht-subheader

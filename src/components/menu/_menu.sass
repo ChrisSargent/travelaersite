@@ -1,6 +1,6 @@
-@import _tools
+@import tools
 
-=link-menu
+%link-menu
   +ff--nav
   +heading-spaced
   font-size: $fs--xs
@@ -29,32 +29,39 @@
   background-color: $co--blue-grey--tt
 
 .link-menu
-  +link-menu
+  @extend %link-menu
   color: $co--blue--dk
 
   &.-active
     color: $co--green
 
-    &.-hassub
-      &::after
-        +caret($co--green)
-
 .main-submenu
-  display: none
   background-color: $co--green
 
   > .container
     +clearfix
 
-  .link-menu.-active + &
-    display: block
+.link-submenu
+  @extend %link-menu
+  line-height: 0
+  visibility: hidden
+  overflow: hidden
+  max-height: 0
+  padding: 0
+  transition: all 0s
+  transition-delay: ($t--f + 100ms)
+  color: $co--wt
+  border: 0
 
-.list-submenu
-  .link-menu
-    color: $co--wt
+  &.-active
+    color: $co--brightyellow
 
-    &.-active
-      color: $co--brightyellow
+  .link-menu.-active + .main-submenu &
+    line-height: inherit
+    visibility: visible
+    max-height: 100vh
+    padding: $pd--m
+    border-bottom: 1px solid transparentize($co--wt, 0.7)
 
 #toggle-menu:checked ~ .list-menu
   transform: translate3d(0, 0, 0)
@@ -65,7 +72,8 @@
     position: relative
     top: auto
     width: auto
-    transform: none
+    transform: none!important
+    // Guard against if toggle is checked and screen is resized
     background: none
 
     > .item
@@ -74,17 +82,41 @@
       align-items: center
       height: 100%
 
+  .link-menu
+    &.-hassub
+      &::after
+        +caret($co--green)
+        transition: opacity $tr--f
+        opacity: 0
+
+      &.-active
+        &::after
+          opacity: 1
+
   .main-submenu
     +shadowborder($co--green)
-    padding: $pd--s
     position: fixed
+    z-index: $z--under
     top: $ht-header--dt
     left: 0
     width: 100%
+    padding: $pd--s
+    transition: transform $tr--f, opacity $tr--f
+    transform: translate3d(0, -130%, 0)
+    opacity: 0.01
 
     > .container
       +cont--xl
 
+    .link-menu.-active + &
+      opacity: 1
+      transform: translate3d(0, 0, 0)
+
   .list-submenu
     +inline-children-item
     float: right
+
+  .link-submenu
+    padding: 0!important
+    border: 0!important
+    transition: none!important

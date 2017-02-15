@@ -37,6 +37,13 @@ class Page extends Component {
   }
 
   render() {
+    var blocksMap,
+      travelPaasBlocks,
+      name,
+      content,
+      respSizes,
+      contSize,
+      allowFullsize
     const {page} = this.props
 
     if (!page)
@@ -46,12 +53,8 @@ class Page extends Component {
       return <Error/>
 
     if (page.acf.contentBlocks) {
-      var blocksMap = page.acf.contentBlocks.map((block, index) => {
-        var name,
-          content,
-          respSizes,
-          contSize,
-          allowFullsize
+      blocksMap = page.acf.contentBlocks.map((block, index) => {
+
         const {
           acf_fc_layout,
           image,
@@ -133,9 +136,8 @@ class Page extends Component {
     }
 
     if (page.acf.travelPaasContent) {
-      var travelPaasBlocks = page.acf.travelPaasContent.map((block, index) => {
-        var name,
-          content
+      travelPaasBlocks = page.acf.travelPaasContent.map((block, index) => {
+
         const {acf_fc_layout, skew, overlaps, section_id} = block
 
         switch (acf_fc_layout) {

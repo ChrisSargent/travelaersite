@@ -1,5 +1,7 @@
 body
-  background: $co--tint
+  background: $co--blue--dk
+  // To make nicer fade out
+
 
 html,
 body
@@ -15,11 +17,13 @@ body
     font-size: $fs--dt
 
 main
+  background: $co--tint
   overflow: hidden
   position: relative
   z-index: $z--base
   padding-bottom: $angle_h_ratio / 2
   margin-bottom: $angle_h_ratio / -1
+  width: 100vw
 
   @media screen and (max-width: $bp--mn - 1)
     &#comversational

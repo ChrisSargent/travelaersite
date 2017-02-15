@@ -8,10 +8,9 @@ import css from '../../lib/css'
 import MenuToggle from '../menu-toggle'
 import './_menu.sass'
 
-const MenuItem = ({item}) => {
+const MenuItem = ({item, compName}) => {
   var LinkType = Link,
     linkClass
-  const compName = 'menu'
   const itemLink = stripDomain(item.url)
 
   linkClass = css.link + compName
@@ -33,7 +32,7 @@ const SubMenuList = ({items}) => {
 
   const compName = 'submenu'
   const itemsMap = items.map((item) => {
-    return (<MenuItem key={item.ID} item={item}/>)
+    return (<MenuItem key={item.ID} item={item} compName={compName}/>)
   })
 
   return (
@@ -51,7 +50,7 @@ const MenuList = ({items, onClick}) => {
 
   const compName = 'menu'
   const itemsMap = items.map((item) => {
-    return (<MenuItem key={item.ID} item={item}/>)
+    return (<MenuItem key={item.ID} item={item} compName={compName}/>)
   })
 
   return (

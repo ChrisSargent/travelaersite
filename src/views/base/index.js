@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import {getDisplaySubmenu} from '../../reducers/pages'
 import {observableFonts} from '../../lib/css'
 import {fetchMenu, fetchOptions} from '../../actions/site'
@@ -10,6 +11,7 @@ import Header from '../../components/header'
 import Loader from '../../components/loader/'
 import SiteSchema from '../../components/site-schema/'
 import '../../lib/sass/index.sass'
+import './_base.sass'
 
 class Base extends Component {
   componentDidMount() {
@@ -40,14 +42,14 @@ class Base extends Component {
   render() {
     const {hasSubMenu, children} = this.props
     return (
-      <div>
+      <ReactCSSTransitionGroup component="div" transitionName="base" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
         <Head/>
         <Header hasSubMenu={hasSubMenu}/>
-        {children}
+        {React.cloneElement(children, {key: location.pathname})}
         <Footer/>
         <Loader/>
         <SiteSchema/>
-      </div>
+      </ReactCSSTransitionGroup>
     )
   }
 }

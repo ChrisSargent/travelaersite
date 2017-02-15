@@ -1,0 +1,19 @@
+@import tools
+
+.base-enter
+  position: absolute
+  top: 0
+  left: 0
+  opacity: 0.01
+
+.base-enter.base-enter-active
+  opacity: 1
+  transition: opacity $t--s ease-in
+  transition-delay: $t--f
+
+.base-leave
+  opacity: 1
+  transition: opacity $t--s ease-out
+
+.base-leave.base-leave-active
+  opacity: 0.01
