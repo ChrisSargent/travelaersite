@@ -5,15 +5,15 @@
   top: 0
   left: 0
   opacity: 0.01
+  pointer-events: none
 
 .base-enter.base-enter-active
   opacity: 1
-  transition: opacity $t--m ease-in
-  transition-delay: $t--f
+  transition: opacity $t--s ease-in
+  // transition-delay: $t--m
 
 .base-leave
-  opacity: 1
-  transition: opacity $t--f ease-out
+  opacity: 0
+  visibility: hidden
 
-.base-leave.base-leave-active
-  opacity: 0.01
+// .base-leave.base-leave-active

@@ -1255,9 +1255,9 @@
                 "value": "page"
             },
             {
-                "param": "page",
+                "param": "post_status",
                 "operator": "!=",
-                "value": "592"
+                "value": "private"
             }
         ]
     ],
@@ -1273,5 +1273,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1486541242
+    "modified": 1487180720
 }

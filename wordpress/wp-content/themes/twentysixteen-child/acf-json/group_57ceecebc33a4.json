@@ -3,54 +3,44 @@
     "title": "Page Shares \/ SEO",
     "fields": [
         {
-            "default_value": "",
-            "maxlength": 100,
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
             "key": "field_57ceeb8ff6312",
             "label": "Page Meta Title",
             "name": "page_meta_title",
             "type": "text",
-            "instructions": "Displays in the the tabs of browsers and on most search results pages. Recommended max length of 60 characters. If left blank, the post title is used instead.",
+            "instructions": "Displays in the the tabs of browsers and on most search results pages. Recommended max length of 60 characters. If left blank, the title is used instead.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": 100
         },
         {
-            "default_value": "",
-            "new_lines": "",
-            "maxlength": 200,
-            "placeholder": "",
-            "rows": 3,
             "key": "field_57ceec99f6313",
             "label": "Page Meta Description",
             "name": "page_meta_description",
             "type": "textarea",
-            "instructions": "Displays on most search engine results pages. Recommended max length of 160 characters. If left blank, a description is made from the content of the page or the default social description.",
+            "instructions": "Displays on most search engine results pages. Recommended max length of 160 characters. If left blank, we use the site description (in Appearance) for pages or the post excerpt for blog posts.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": 200,
+            "rows": 3,
+            "new_lines": ""
         },
         {
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 600,
-            "min_height": 315,
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
             "key": "field_57d6e7267312e",
             "label": "Page Meta Image",
             "name": "page_meta_image",
@@ -62,7 +52,17 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 600,
+            "min_height": 315,
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -71,6 +71,11 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "page"
+            },
+            {
+                "param": "post_status",
+                "operator": "!=",
+                "value": "private"
             }
         ]
     ],
@@ -82,5 +87,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1485548473
+    "modified": 1487184114
 }

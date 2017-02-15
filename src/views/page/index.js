@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Helmet from "react-helmet"
 import {connect} from 'react-redux'
 import {fetchPage} from '../../actions/pages'
 import {getPage} from '../../reducers/pages'
@@ -7,6 +6,7 @@ import Banner from '../../sections/banner'
 import Countries from '../../sections/countries'
 import Contact from '../../sections/contact'
 import Error from '../../components/error'
+import Head from '../../components/head'
 import Hero from '../../sections/hero'
 import ImageBanner from '../../sections/image-banner'
 import Gmap from '../../sections/map'
@@ -44,10 +44,10 @@ class Page extends Component {
       respSizes = '',
       contSize = '',
       allowFullsize = false,
-      mainClass = ''
-    const {page, hasSubMenu} = this.props
-    console.log(hasSubMenu);
+      mainClass = '',
+      meta_image = false
 
+    const {page, hasSubMenu} = this.props
     hasSubMenu && (mainClass = '-hassubmenu')
 
     if (!page)
@@ -74,6 +74,7 @@ class Page extends Component {
             name = 'hero'
             contentImage && (contSize = 'fullwidth')
             content = <Hero {...block} compName={name}/>
+            !meta_image && (meta_image = image)
             break
 
           case 'banner':
@@ -166,9 +167,19 @@ class Page extends Component {
       })
     }
 
+    const {title, slug} = page
+    const {page_meta_title, page_meta_description, page_meta_image} = page.acf
+
+    const metainfo = {
+      title: page_meta_title || title,
+      description: page_meta_description || false,
+      image: page_meta_image || meta_image,
+    }
+
     return (
-      <main id={page.slug} className={mainClass}>
-        <Helmet title={page.title}/> {blocksMap}
+      <main id={slug} className={mainClass}>
+        <Head {...metainfo}/>
+        {blocksMap}
         {travelPaasBlocks}
       </main>
     )

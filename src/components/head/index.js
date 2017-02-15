@@ -5,16 +5,20 @@ import {globals} from '../../lib/utils'
 import {getOptions} from '../../reducers/site'
 import Helmet from 'react-helmet'
 
-const Head = ({options, location}) => {
+const Head = ({options, location, title, description, image}) => {
   if (!options)
     return null
 
   const currentURL = globals.baseUrl + location.pathname
+  const chosenTitle = title || options.t_site_info.description
+  const chosenDesc = description || options.t_site_info.description
+  const chosenImage = image || options.fabSocialImg
+
   const metaInfo = {
     htmlAttributes: {
       lang: options.t_site_info.language
     },
-    title: options.t_site_info.description,
+    title: chosenTitle,
     titleTemplate: '%s | ' + options.t_site_info.name,
     meta: [
       {
@@ -22,7 +26,7 @@ const Head = ({options, location}) => {
         content: 'width=device-width, initial-scale=1'
       }, {
         name: 'description',
-        content: options.t_site_info.description
+        content: chosenDesc
       }, {
         name: 'keywords',
         content: options.t_site_info.defaultKeywords
@@ -37,7 +41,7 @@ const Head = ({options, location}) => {
         content: options.t_site_info.name
       }, {
         property: 'og:description',
-        content: options.t_site_info.description
+        content: chosenDesc
       }, {
         property: 'og:url',
         content: currentURL
@@ -95,19 +99,19 @@ const Head = ({options, location}) => {
     metaInfo.meta.push({property: 'fb:app_id', content: options.app_id})
   }
 
-  if (options.fabSocialImg) {
+  if (chosenImage) {
     metaInfo.meta.push({
       property: 'og:image',
-      content: options.fabSocialImg.url
+      content: chosenImage.url
     }, {
       property: 'og:image:type',
-      content: options.fabSocialImg.mime_type
+      content: chosenImage.mime_type
     }, {
       property: 'og:image:width',
-      content: options.fabSocialImg.width
+      content: chosenImage.width
     }, {
       property: 'og:image:height',
-      content: options.fabSocialImg.height
+      content: chosenImage.height
     })
   }
 

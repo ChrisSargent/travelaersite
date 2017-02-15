@@ -7,7 +7,6 @@ import {observableFonts} from '../../lib/css'
 import {fetchMenu, fetchOptions} from '../../actions/site'
 import FontFaceObserver from 'fontfaceobserver'
 import Footer from '../../components/footer'
-import Head from '../../components/head'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
 import SiteSchema from '../../components/site-schema/'
@@ -44,7 +43,6 @@ class Base extends Component {
     const {hasSubMenu, children} = this.props
     return (
       <ReactCSSTransitionGroup component="div" transitionName="base" transitionEnterTimeout={globals.pageTr} transitionLeaveTimeout={globals.pageTr}>
-        <Head/>
         <Header/>
         {React.cloneElement(children, {key: location.pathname, hasSubMenu: hasSubMenu})}
         <Footer/>

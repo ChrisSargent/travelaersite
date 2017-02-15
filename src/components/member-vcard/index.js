@@ -7,28 +7,32 @@ const MemberVcard = ({name, contacts}) => {
 
   if (contacts) {
     contactsMap = contacts.map((contact, index) => {
-      const {contact_detail, contact_type} = contact
-      var link
+      const {contact_detail, contact_type, link_icon, link_url} = contact
+      var link, icon
 
       switch (contact_type) {
         case 'phone':
-          link = 'tel:' + contact_detail
-          break
-
-        case 'twitter':
-          link = 'https://twitter.com/' + contact_detail
+          link = 'tel:+' + parseFloat(contact_detail.replace(/\D/g,''))
+          icon = contact_type
           break
 
         case 'email':
           link = 'mailto:' + contact_detail
+          icon = contact_type
+          break
+
+        case 'link':
+          link = link_url
+          icon = link_icon
           break
 
         default:
           return false
       }
+
       return (
         <li key={index}>
-          <SVG type={contact_type} />
+          <SVG type={icon} />
           <a className="link" href={link} target="_blank">{contact_detail}</a>
         </li>
       )

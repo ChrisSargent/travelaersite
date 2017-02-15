@@ -3,9 +3,9 @@ import {connect} from 'react-redux'
 import {fetchMorePosts, fetchInitPosts, fetchLatestPosts} from '../../actions/posts'
 import {getPostsObj, gotAllPosts, getLoadingMore} from '../../reducers/posts'
 import css from '../../lib/css'
-import {image404} from '../../lib/utils'
+import {image404, trimContent, stripTags} from '../../lib/utils'
 import Actions from '../../components/actions'
-import Helmet from 'react-helmet'
+import Head from '../../components/head'
 import Insta from '../../components/insta'
 import Post from '../../components/post'
 import PostError from '../../components/error-post'
@@ -76,19 +76,7 @@ class Posts extends Component {
 
     const {compName, overlap, actions} = this
     const singlePost = postsObj.main.length <= 1
-    const {invalid} = postsObj.main[0]
-
-    if (singlePost && !invalid) {
-      heroModifier = ''
-      pageTitle = postsObj.main[0].title
-    }
-
-    showMore = !gotAllPosts && !singlePost
-
-    getLoadingMore
-      ? actions[0].loading = true
-      : actions[0].loading = false
-
+    const mainPost = postsObj.main[0]
     const postsMap = postsObj.main.map((post, index) => {
       return (
         <li key={post.id || 'invalid'} className={css.item}>
@@ -99,9 +87,25 @@ class Posts extends Component {
       )
     })
 
+    showMore = !gotAllPosts && !singlePost
+
+    getLoadingMore
+      ? actions[0].loading = true
+      : actions[0].loading = false
+
+    if (singlePost && !mainPost.invalid) {
+      heroModifier = ''
+      pageTitle = mainPost.title
+    }
+
+    const metaInfo = {
+      title: pageTitle,
+      image: postsObj.heroImage,
+      description: stripTags(trimContent(mainPost.content))
+    }
+
     return (
       <main id={compName}>
-        <Helmet title={pageTitle}/>
         <Section compName={'hero' + heroModifier} image={postsObj.heroImage || image404} skew="bottom" overlaps={overlap}/>
         <Section compName={compName}>
           <div className={css.main + compName}>
@@ -109,12 +113,14 @@ class Posts extends Component {
               {postsMap}
             </ul>
             <aside className={css.sidebar + compName}>
-              <RecentPosts posts={postsObj.side}/> {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
+              <RecentPosts posts={postsObj.side}/>
+              {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
               <Insta/>
             </aside>
           </div>
           {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
         </Section>
+        <Head {...metaInfo}/>
       </main>
     )
   }

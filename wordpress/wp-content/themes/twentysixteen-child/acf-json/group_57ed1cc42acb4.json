@@ -3,11 +3,6 @@
     "title": "Page Options",
     "fields": [
         {
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
             "key": "field_57ed1cd1845ec",
             "label": "Footer Append",
             "name": "footerAppend",
@@ -19,7 +14,12 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -28,6 +28,11 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "page"
+            },
+            {
+                "param": "post_status",
+                "operator": "!=",
+                "value": "private"
             }
         ]
     ],
@@ -39,5 +44,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1485548468
+    "modified": 1487180798
 }

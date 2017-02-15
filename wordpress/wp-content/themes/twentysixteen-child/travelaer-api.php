@@ -223,7 +223,7 @@ function get_the_content_by_id($post_id)
 {
     $page_data = get_page($post_id);
     if ($page_data) {
-        return $page_data->post_content;
+        return wpautop($page_data->post_content);
     } else {
         return false;
     }
