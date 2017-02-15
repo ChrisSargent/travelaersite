@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import {getDisplaySubmenu} from '../../reducers/pages'
+import {globals} from '../../lib/utils'
 import {observableFonts} from '../../lib/css'
 import {fetchMenu, fetchOptions} from '../../actions/site'
 import FontFaceObserver from 'fontfaceobserver'
@@ -42,7 +43,7 @@ class Base extends Component {
   render() {
     const {hasSubMenu, children} = this.props
     return (
-      <ReactCSSTransitionGroup component="div" transitionName="base" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+      <ReactCSSTransitionGroup component="div" transitionName="base" transitionEnterTimeout={globals.pageTr} transitionLeaveTimeout={globals.pageTr}>
         <Head/>
         <Header hasSubMenu={hasSubMenu}/>
         {React.cloneElement(children, {key: location.pathname})}

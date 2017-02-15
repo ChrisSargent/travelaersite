@@ -9,7 +9,8 @@ export const globals = {
   productsUrl: '/products/',
   contactUrl: '/contact-us/',
   flagsUrl: '/assets/flags/',
-  homeID: 5
+  homeID: 5,
+  pageTr: 450
 }
 
 // Use hardcoded info here - because if we're having an error, we might not be able to get the info dynamically.

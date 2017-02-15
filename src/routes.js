@@ -16,14 +16,27 @@ const forceTrailingSlash = (nextState, replace) => {
   }
 }
 
-const scrollToTop = (nextState) => {
-  const {action} = nextState.location
-  action === 'PUSH' && (window.scrollTo(0, 0))
+const scrollToTop = () => {
+  var time = globals.pageTr
+  const interval = 1 / 60 * 1000
+  const tick = () => {
+    const distanceToTop = window.scrollY
+    const speed = (distanceToTop / time) * interval
+
+    if (time > 0) {
+      window.requestAnimationFrame(tick);
+      window.scrollTo(0, distanceToTop - speed);
+    } else {
+      window.scrollTo(0, 0);
+    }
+    time -= interval;
+  }
+  tick();
 }
 
 const handleSiteChange = (prevState, nextState, replace) => {
+  (nextState.location.action === 'PUSH') && scrollToTop()
   forceTrailingSlash(nextState, replace)
-  scrollToTop(nextState)
 }
 
 const handleSiteEnter = (nextState, replace) => {
