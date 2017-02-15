@@ -37,14 +37,18 @@ class Page extends Component {
   }
 
   render() {
-    var blocksMap,
-      travelPaasBlocks,
-      name,
-      content,
-      respSizes,
-      contSize,
-      allowFullsize
-    const {page} = this.props
+    var blocksMap = [],
+      travelPaasBlocks = [],
+      name = '',
+      content = '',
+      respSizes = '',
+      contSize = '',
+      allowFullsize = false,
+      mainClass = ''
+    const {page, hasSubMenu} = this.props
+    console.log(hasSubMenu);
+
+    hasSubMenu && (mainClass = '-hassubmenu')
 
     if (!page)
       return null
@@ -163,7 +167,7 @@ class Page extends Component {
     }
 
     return (
-      <main id={page.slug}>
+      <main id={page.slug} className={mainClass}>
         <Helmet title={page.title}/> {blocksMap}
         {travelPaasBlocks}
       </main>

@@ -45,8 +45,8 @@ class Base extends Component {
     return (
       <ReactCSSTransitionGroup component="div" transitionName="base" transitionEnterTimeout={globals.pageTr} transitionLeaveTimeout={globals.pageTr}>
         <Head/>
-        <Header hasSubMenu={hasSubMenu}/>
-        {React.cloneElement(children, {key: location.pathname})}
+        <Header/>
+        {React.cloneElement(children, {key: location.pathname, hasSubMenu: hasSubMenu})}
         <Footer/>
         <Loader/>
         <SiteSchema/>

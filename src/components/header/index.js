@@ -5,14 +5,10 @@ import Menu from '../menu'
 import './_header.sass'
 
 const Header = (props) => {
-  var headerClass = ''
-  const {hasSubMenu} = props
   const compName = 'siteheader'
 
-  hasSubMenu && (headerClass = ' -hassubmenu')
-
   return (
-    <header className={css.header + compName + headerClass}>
+    <header className={css.header + compName}>
       <div className={css.container}>
         <Logo/>
         <Menu />
