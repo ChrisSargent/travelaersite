@@ -25,6 +25,7 @@ class Page extends PureComponent {
     this.setupPage = this.setupPage.bind(this)
     this.setupPage(this.props.page)
   }
+  
   static fetchData(store, props) {
     const {pathname} = props.location
     return store.dispatch(fetchPage(pathname))

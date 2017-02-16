@@ -1,50 +1,66 @@
-import React from 'react'
+import React, {PureComponent} from 'react'
 import css from '../../lib/css'
 import RespImageCover from '../../components/resp-image-cover'
 import './_section.sass'
 
-const Section = ({compName, image, respSizes, allowFullsize, skew, overlaps, children, background, contSize, fullscreen}) => {
-  var sectionModifier = '',
-    contModifier = '',
-    skewClass = '',
-    skewCorrectionClass
-
-  if (skew) {
-    sectionModifier = ' -skew' + skew
-    skewClass = ' _skew'
-    skewCorrectionClass = ' _skewcorrect'
-  } else {
-    sectionModifier = ' -skewnone'
+class Section extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.section = this.setupSection()
   }
 
-  if (overlaps) {
-    skewClass += ' -ol' + overlaps[0].position
-    skewClass += ' -ol' + overlaps[0].type
-    skewClass += ' -ol' + overlaps[0].colour
+  shouldComponentUpdate(a) {
+    console.log('Section: ', a);
+    return true
   }
 
-  if (background) {
-    sectionModifier += ' -' + background
-  }
+  setupSection() {
+    var sectionModifier = ' -skewnone',
+      contModifier = '',
+      skewClass = '',
+      skewCorrectionClass
+    const {skew, overlaps, background, fullscreen, contSize} = this.props
 
-  if (fullscreen) {
-    sectionModifier += ' -fullscreen'
-  }
+    if (skew) {
+      sectionModifier = ' -skew' + skew
+      skewClass = ' _skew'
+      skewCorrectionClass = ' _skewcorrect'
+    }
 
-  if (contSize) {
-    contModifier += ' -' + contSize
-  }
+    if (overlaps) {
+      skewClass += ' -ol' + overlaps[0].position
+      skewClass += ' -ol' + overlaps[0].type
+      skewClass += ' -ol' + overlaps[0].colour
+    }
 
-  return (
-    <section className={css.section + compName + sectionModifier}>
-      {children && <div className={css.container + contModifier}>{children}</div>}
-      <div className={'section-background' + skewClass}>
-        <div className={'_bgcol' + skewCorrectionClass}>
-          <RespImageCover image={image} respSizes={respSizes} allowFullsize={allowFullsize}/>
+    background && (sectionModifier += ' -' + background)
+    fullscreen && (sectionModifier += ' -fullscreen')
+    contSize && (contModifier += ' -' + contSize)
+
+    const section = {
+      sectionModifier,
+      contModifier,
+      skewClass,
+      skewCorrectionClass
+    }
+
+    return section
+  }
+  render() {
+    const {compName, image, respSizes, allowFullsize, children} = this.props
+    const {sectionModifier, contModifier, skewClass, skewCorrectionClass} = this.section
+
+    return (
+      <section className={css.section + compName + sectionModifier}>
+        {children && <div className={css.container + contModifier}>{children}</div>}
+        <div className={'section-background' + skewClass}>
+          <div className={'_bgcol' + skewCorrectionClass}>
+            <RespImageCover image={image} respSizes={respSizes} allowFullsize={allowFullsize}/>
+          </div>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+    )
+  }
 }
 
 export default Section
