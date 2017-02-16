@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import Link from 'react-router/lib/Link'
 import withRouter from 'react-router/lib/withRouter'
 import {convertLinks} from '../../lib/utils'
 import css from '../../lib/css'
 import './_wysiwyg.sass'
 
-class Wysiwyg extends Component {
+class Wysiwyg extends PureComponent {
   constructor() {
     super()
     this.handleClick = this.handleClick.bind(this)

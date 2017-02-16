@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {getSubmitted} from '../../reducers/submit'
 import ArticleHeader from '../article-header'
@@ -8,7 +8,7 @@ import Message from '../message'
 import Section from '../../sections/section'
 import './_comments.sass'
 
-class Comments extends Component {
+class Comments extends PureComponent {
   constructor(props) {
     super(props)
     // Which reply has the comment on and which has the message on,
@@ -22,6 +22,8 @@ class Comments extends Component {
   componentWillReceiveProps(newProps) {
     // Puts the form back to the bottom of the page if it is submitted successfully
     newProps.submitted && this.setState({replyCommentID: false})
+    // Puts the messages back to the same comment as the reply when it is submitted
+    !newProps.submitted && this.setState({messageCommentID: this.state.replyCommentID})
   }
 
   handleClick(ev) {

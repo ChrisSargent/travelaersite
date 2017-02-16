@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import withRouter from 'react-router/lib/withRouter'
 import {globals} from '../../lib/utils'
 import {getOptions} from '../../reducers/site'
 import Helmet from 'react-helmet'
 
-class Head extends Component {
+class Head extends PureComponent {
   constructor(props) {
     super(props)
     this.setupHead()

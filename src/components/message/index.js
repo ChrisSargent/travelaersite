@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {resetMessages} from '../../actions/comments'
 import {getMessages} from '../../reducers/messages'
 import css from '../../lib/css'
 import './_message.sass'
 
-class Message extends Component {
+class Message extends PureComponent {
   constructor() {
     super()
     this.handleClose = this.handleClose.bind(this)

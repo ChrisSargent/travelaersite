@@ -9,11 +9,6 @@ class Section extends PureComponent {
     this.section = this.setupSection()
   }
 
-  shouldComponentUpdate(a) {
-    console.log('Section: ', a);
-    return true
-  }
-
   setupSection() {
     var sectionModifier = ' -skewnone',
       contModifier = '',

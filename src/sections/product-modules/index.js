@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import css from '../../lib/css'
 import Screenshots from '../../components/screenshots'
 import Wysiwyg from '../../components/wysiwyg'
@@ -70,7 +70,7 @@ const Modules = ({modules, activeIndex}) => {
   )
 }
 
-export default class ProductModules extends Component {
+export default class ProductModules extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {

@@ -20,6 +20,7 @@ const submit = (state = {
     case types.POST_COMMENT + '_PENDING':
       return {
         ...state,
+        submitted: false,
         showLoader: true,
       }
 
@@ -28,13 +29,14 @@ const submit = (state = {
         ...state,
         showLoader: false,
         submitted: true,
-        comment: '',
+        comment: ''
       }
 
     case types.POST_COMMENT + '_REJECTED':
       return {
         ...state,
-        showLoader: false
+        showLoader: false,
+        submitted: false,
       }
 
     case types.CACHE_COMMENT:

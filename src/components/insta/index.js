@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {fetchInsta} from '../../actions/insta'
 import {getOptions} from '../../reducers/site'
@@ -8,7 +8,7 @@ import RespImageCover from '../resp-image-cover'
 import SVG from '../svg'
 import './_insta.sass'
 
-class Insta extends Component {
+class Insta extends PureComponent {
   componentDidMount() {
     const {instAuthToken, instUserNameID} = this.props
     if (instAuthToken && instUserNameID) {

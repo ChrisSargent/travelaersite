@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {getDisplaySubmenu} from '../../reducers/pages'
 import {observableFonts} from '../../lib/css'
@@ -10,7 +10,7 @@ import Loader from '../../components/loader/'
 import SiteSchema from '../../components/site-schema/'
 import '../../lib/sass/index.sass'
 
-class Base extends Component {
+class Base extends PureComponent {
   componentDidMount() {
     this.observeFonts()
     this.props.fetchMenu('primary')

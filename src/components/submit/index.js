@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {postComment, resetMessages, cacheComment} from '../../actions/comments'
 import {getSubmit} from '../../reducers/submit'
@@ -8,7 +8,7 @@ import css from '../../lib/css'
 import SVG from '../svg'
 import './_submit.sass'
 
-class Submit extends Component {
+class Submit extends PureComponent {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
