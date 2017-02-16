@@ -106,6 +106,7 @@ class Posts extends Component {
 
     return (
       <main id={compName}>
+        <Head {...metaInfo}/>
         <Section compName={'hero' + heroModifier} image={postsObj.heroImage || image404} skew="bottom" overlaps={overlap}/>
         <Section compName={compName}>
           <div className={css.main + compName}>
@@ -120,7 +121,6 @@ class Posts extends Component {
           </div>
           {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
         </Section>
-        <Head {...metaInfo}/>
       </main>
     )
   }

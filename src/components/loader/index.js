@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {getLoading} from '../../reducers/loading'
 import {backgroundFetchPages} from '../../actions/pages'
@@ -7,7 +7,7 @@ import css from '../../lib/css'
 import SVG from '../svg'
 import './_loader.sass'
 
-class Loader extends Component {
+class Loader extends PureComponent {
   constructor (props) {
     super(props)
     this.backgroundFetch = this.backgroundFetch.bind(this)
