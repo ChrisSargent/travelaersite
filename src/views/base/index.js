@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import {getDisplaySubmenu} from '../../reducers/pages'
-import {globals} from '../../lib/utils'
 import {observableFonts} from '../../lib/css'
 import {fetchMenu, fetchOptions} from '../../actions/site'
 import FontFaceObserver from 'fontfaceobserver'
 import Footer from '../../components/footer'
+import Head from '../../components/head'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
 import SiteSchema from '../../components/site-schema/'
@@ -27,6 +26,15 @@ class Base extends Component {
     ])
   }
 
+  shouldComponentUpdate(nextProps) {
+    // TODO: Not really sure if we need this
+    if (nextProps.location.pathname === this.props.location.pathname) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   observeFonts() {
     observableFonts.map((font) => {
       const observedFont = new FontFaceObserver(font.family);
@@ -42,13 +50,14 @@ class Base extends Component {
   render() {
     const {hasSubMenu, children} = this.props
     return (
-      <ReactCSSTransitionGroup component="div" transitionName="base" transitionEnterTimeout={globals.pageTr} transitionLeaveTimeout={globals.pageTr}>
+      <div>
+        <Head/>
         <Header/>
-        {React.cloneElement(children, {key: location.pathname, hasSubMenu: hasSubMenu})}
+        {React.cloneElement(children, {hasSubMenu: hasSubMenu})}
         <Footer/>
         <Loader/>
         <SiteSchema/>
-      </ReactCSSTransitionGroup>
+      </div>
     )
   }
 }
