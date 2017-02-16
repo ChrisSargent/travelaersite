@@ -31,6 +31,8 @@ export const image404 = {
 }
 
 export const stripTags = (html) => {
+  if(!html)
+    return
   return html.replace(/<\/?[^>]+(>|$)/g, "");
 }
 
