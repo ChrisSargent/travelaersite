@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import css from '../../lib/css'
 import RespImage from '../resp-image'
 import './_resp-image-cover.sass'
 
-export default class RespImageCover extends Component {
+export default class RespImageCover extends PureComponent {
 
   /*
    * User Experience Notes:

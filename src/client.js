@@ -15,13 +15,10 @@ const store = configureStore(hydratedState)
 const root = document.getElementById('root')
 
 Perf.start()
+window.Perf = Perf
 
 render(
   <Provider store={store}>
     <Router routes={routes} history={browserHistory} />
   </Provider>,
   root)
-
-Perf.stop()
-Perf.getLastMeasurements()
-Perf.printWasted()

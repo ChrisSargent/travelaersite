@@ -63,7 +63,9 @@
 // ******************************* Effect Mixins *******************************
 
 =shadowborder($color: $co--wt)
-  box-shadow: 0px $bd--size 0px 0px transparentize($color, 0.5)
+  background-clip: padding-box
+  // box-shadow: 0px $bd--size 0px 0px transparentize($color, 0.5)
+  border-bottom: $bd--size solid transparentize($color, 0.5)
 
 =caret($color, $sz: 16px)
   display: block

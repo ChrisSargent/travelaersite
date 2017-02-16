@@ -10,7 +10,6 @@ import Header from '../../components/header'
 import Loader from '../../components/loader/'
 import SiteSchema from '../../components/site-schema/'
 import '../../lib/sass/index.sass'
-import './_base.sass'
 
 class Base extends Component {
   componentDidMount() {
@@ -53,7 +52,7 @@ class Base extends Component {
       <div>
         <Head/>
         <Header/>
-        {React.cloneElement(children, {hasSubMenu: hasSubMenu})}
+        {React.cloneElement(children, {key: location.pathname, hasSubMenu: hasSubMenu})}
         <Footer/>
         <Loader/>
         <SiteSchema/>

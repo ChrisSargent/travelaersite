@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import Link from 'react-router/lib/Link'
 import IndexLink from 'react-router/lib/IndexLink'
@@ -58,7 +58,7 @@ const MenuList = ({items, onClick}) => {
   )
 }
 
-class Menu extends Component {
+class Menu extends PureComponent {
 
   constructor() {
     super()
@@ -68,15 +68,7 @@ class Menu extends Component {
       atTop: true
     }
     this.checkbox = {}
-    // TODO: Remove code for scroll event if not using
-    // this.debounceScroll = this.debounceScroll.bind(this)
-    // this.handleScroll = this.handleScroll.bind(this)
-    // this.resizeTOut = null
   }
-
-  // componentWillMount() {
-  //   window.addEventListener('scroll', this.debounceScroll)
-  // }
 
   refMenu(el) {
     this.checkbox = el
@@ -85,19 +77,6 @@ class Menu extends Component {
   closeMenu() {
     this.checkbox.checked = false
   }
-
-  // debounceScroll(ev) {
-  //   clearTimeout(this.resizeTOut)
-  //   this.resizeTOut = setTimeout(() => this.handleScroll(ev.srcElement.body.scrollTop), 100)
-  // }
-  //
-  // handleScroll(pos) {
-  //   if (pos >= 200 && this.state.atTop)
-  //     this.setState({atTop: false})
-  //
-  //   if (pos < 200 && !this.state.atTop)
-  //     this.setState({atTop: true})
-  // }
 
   render() {
     const {menu} = this.props
