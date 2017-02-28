@@ -99,21 +99,22 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "multiple": 0,
-                                    "allow_null": 1,
                                     "choices": {
+                                        "car_hotel": "Car & Hotel",
                                         "car": "Car",
-                                        "bed": "Bed",
-                                        "plane": "Plane",
+                                        "stopover": "Stopover",
+                                        "copilot": "Co Pilot",
                                         "bubble": "Bubble",
-                                        "city": "City",
+                                        "multicity": "Multi-City",
                                         "fingerprint": "Finger Print"
                                     },
                                     "default_value": [],
+                                    "allow_null": 1,
+                                    "multiple": 0,
                                     "ui": 0,
                                     "ajax": 0,
-                                    "placeholder": "",
-                                    "return_format": "value"
+                                    "return_format": "value",
+                                    "placeholder": ""
                                 },
                                 {
                                     "key": "field_5881be42a998b",
@@ -337,5 +338,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1486560088
+    "modified": 1488289978
 }

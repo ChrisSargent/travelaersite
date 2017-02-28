@@ -19,11 +19,9 @@ export const fetchInsta = (user) => (dispatch, getState) => {
     return null
 
   const feed = new Instafeed({
-    // get: 'user',
-    // userId: user.instUserNameID,
-    get: 'tagged',
-    tagName: 'travelaer',
+    userId: user.instUserNameID,
     accessToken: user.instAuthToken,
+    get: 'user',
     resolution: 'standard_resolution',
     limit: 6,
     success: (response) => {
