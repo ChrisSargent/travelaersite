@@ -1,6 +1,7 @@
 import React from 'react'
 import htmlescape from 'htmlescape'
 import Helmet from 'react-helmet'
+import manifest from 'asset-manifest.json'
 
 const intercomScript = `  window.intercomSettings = {
     app_id: 'cbfc4rcs'
@@ -56,7 +57,7 @@ const html = ({children, hydrate}) => {
         <script id="hydrated-state" type="application/json" dangerouslySetInnerHTML={{
           __html: htmlescape(hydrate)
         }}></script>
-        <script src="/static/js/main.js"></script>
+        <script src={manifest.main.js}></script>
         <script src="//platform.twitter.com/widgets.js" async="" charSet="utf-8"></script>
         <script dangerouslySetInnerHTML={{__html: intercomScript}}></script>
       </body>

@@ -6,7 +6,7 @@ export const getInsta = ({insta}) => {
 
 const insta = (state = {
   lastFetched: false,
-  feed: []
+  feed: false
 }, action) => {
   switch (action.type) {
     case types.FETCH_INSTA + '_FULFILLED':

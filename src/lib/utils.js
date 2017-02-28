@@ -3,11 +3,6 @@ import packageJson from '../../package.json'
 export const globals = {
   baseUrl: process.env.NODE_ENV === `development` ? packageJson.proxy : packageJson.homepage,
   wpFolder: process.env.NODE_ENV === `development` ? packageJson.proxy + packageJson.wpFolder : packageJson.homepage + packageJson.wpFolder,
-  homeUrl: '/',
-  blogUrl: '/blog/',
-  companyUrl: '/company/',
-  productsUrl: '/products/',
-  contactUrl: '/contact-us/',
   flagsUrl: '/assets/flags/',
   homeID: 5,
   pageTr: 750

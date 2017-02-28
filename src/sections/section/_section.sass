@@ -17,6 +17,9 @@ section
   position: relative
   z-index: $z--base
 
+  &.-olbottom
+    padding-bottom: $overlap-size / 2
+
 ._skew
   +stretch
   z-index: $z--under
@@ -121,6 +124,10 @@ section
       height: calc(100% + #{$angle_h_ratio})
 
 @media screen and (min-width: $bp--mn)
+  section
+    &.-olbottom
+      padding-bottom: $overlap-size
+
   ._skew
     &.-olsingle
       &::after

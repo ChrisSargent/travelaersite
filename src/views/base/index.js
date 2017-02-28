@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import {getDisplaySubmenu} from '../../reducers/pages'
 import {observableFonts} from '../../lib/css'
 import {fetchMenu, fetchOptions} from '../../actions/site'
 import FontFaceObserver from 'fontfaceobserver'
 import Footer from '../../components/footer'
+import Head from '../../components/head'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
 import SiteSchema from '../../components/site-schema/'
@@ -46,23 +46,19 @@ class Base extends PureComponent {
   }
 
   render() {
-    const {hasSubMenu, children} = this.props
+    const {children, location} = this.props
+
     return (
       <div>
+        <Head />
         <Header/>
-        {React.cloneElement(children, {key: location.pathname, hasSubMenu: hasSubMenu})}
+        {React.cloneElement(children, {key: location.pathname})}
         <Footer/>
         <Loader/>
         <SiteSchema/>
       </div>
     )
   }
-}
-
-const mapStateToProps = (state, ownProps) => {
-  return ({
-    hasSubMenu: getDisplaySubmenu(state, ownProps.location.pathname)
-  })
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -74,4 +70,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Base)
+export default connect(null, mapDispatchToProps)(Base)

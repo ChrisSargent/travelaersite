@@ -26,6 +26,7 @@ class Section extends PureComponent {
       skewClass += ' -ol' + overlaps[0].position
       skewClass += ' -ol' + overlaps[0].type
       skewClass += ' -ol' + overlaps[0].colour
+      sectionModifier += ' -ol' + overlaps[0].position
     }
 
     background && (sectionModifier += ' -' + background)

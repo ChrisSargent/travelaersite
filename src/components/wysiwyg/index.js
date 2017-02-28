@@ -6,9 +6,10 @@ import css from '../../lib/css'
 import './_wysiwyg.sass'
 
 class Wysiwyg extends PureComponent {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.handleClick = this.handleClick.bind(this)
+    this.content = convertLinks(this.props.content)
   }
 
   handleClick(ev) {
@@ -24,10 +25,10 @@ class Wysiwyg extends PureComponent {
   }
 
   render() {
-    const {size, content, more} = this.props
+    const {size, more} = this.props
     var wysClass
 
-    if (!content)
+    if (!this.content)
       return false
 
     const compName = 'wysiwyg'
@@ -37,7 +38,7 @@ class Wysiwyg extends PureComponent {
     return (
       <div className={wysClass}>
         <div onClick={this.handleClick} dangerouslySetInnerHTML={{
-          __html: convertLinks(content)
+          __html: this.content
         }}></div>
       {more && <Link to={more} className={css.more}>&raquo;&nbsp;Read More</Link>}
       </div>

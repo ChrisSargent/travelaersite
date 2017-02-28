@@ -5,7 +5,7 @@ import browserHistory from 'react-router/lib/browserHistory'
 import Router from 'react-router/lib/Router'
 import configureStore from './store/configureStore'
 import routes from './routes'
-import Perf from 'react-addons-perf'
+// import Perf from 'react-addons-perf'
 
 var hydratedState = document.getElementById('hydrated-state')
 hydratedState
@@ -14,8 +14,8 @@ hydratedState
 const store = configureStore(hydratedState)
 const root = document.getElementById('root')
 
-Perf.start()
-window.Perf = Perf
+// Perf.start()
+// window.Perf = Perf
 
 render(
   <Provider store={store}>

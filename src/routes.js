@@ -1,7 +1,6 @@
 import React from 'react'
 import Route from 'react-router/lib/Route'
 import IndexRoute from 'react-router/lib/IndexRoute'
-import {globals} from './lib/utils'
 import Base from './views/base'
 import Page from './views/page'
 import Posts from './views/posts'
@@ -33,19 +32,19 @@ const handleSiteEnter = (nextState, replace) => {
 
 const routes = (
   <Route onEnter={handleSiteEnter} onChange={handleSiteChange} component={Base}>
-    <Route path={globals.blogUrl}>
+    <Route path='/blog/'>
       <IndexRoute component={Posts}/>
       <Route path="(:slug)" component={Posts}/>
     </Route>
-    <Route path={globals.companyUrl}>
+    <Route path='/company/'>
       <IndexRoute component={Page}/>
       <Route path="*" component={Page}/>
     </Route>
-    <Route path={globals.productsUrl}>
+    <Route path='/products/'>
       <IndexRoute component={Page}/>
       <Route path="*" component={Page}/>
     </Route>
-    <Route path={globals.homeUrl}>
+    <Route path='*'>
       <IndexRoute component={Page}/>
       <Route path="*" component={Page}/>
     </Route>

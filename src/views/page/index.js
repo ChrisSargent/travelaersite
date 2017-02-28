@@ -25,7 +25,7 @@ class Page extends PureComponent {
     this.setupPage = this.setupPage.bind(this)
     this.setupPage(this.props.page)
   }
-  
+
   static fetchData(store, props) {
     const {pathname} = props.location
     return store.dispatch(fetchPage(pathname))
@@ -177,7 +177,8 @@ class Page extends PureComponent {
   }
 
   render() {
-    const {page, hasSubMenu} = this.props
+    const {page} = this.props
+    var mainClass = ''
 
     if (!page)
       return null
@@ -185,14 +186,15 @@ class Page extends PureComponent {
     if (page.invalid)
       return <Error/>
 
-    const {title, slug} = page
+    const {title, slug, t_display_sub_menu} = page
     const {page_meta_title, page_meta_description, page_meta_image} = page.acf
-    const mainClass = hasSubMenu && '-hassubmenu'
     const metainfo = {
       title: page_meta_title || title,
       description: page_meta_description || false,
       image: page_meta_image || this.meta_image
     }
+
+    t_display_sub_menu && (mainClass = '-hassubmenu')
 
     return (
       <main id={slug} className={mainClass}>
