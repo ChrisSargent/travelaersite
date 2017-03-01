@@ -8,6 +8,7 @@ import Head from '../../components/head'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
 import SiteSchema from '../../components/site-schema/'
+// import Tracking from '../../components/tracking'
 import '../../lib/sass/index.sass'
 
 class Base extends PureComponent {
@@ -22,15 +23,6 @@ class Base extends PureComponent {
       store.dispatch(fetchMenu('primary')),
       store.dispatch(fetchOptions())
     ])
-  }
-
-  shouldComponentUpdate(nextProps) {
-    // TODO: Not really sure if we need this
-    if (nextProps.location.pathname === this.props.location.pathname) {
-      return false
-    } else {
-      return true
-    }
   }
 
   observeFonts() {

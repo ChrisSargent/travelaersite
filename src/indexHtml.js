@@ -1,9 +1,9 @@
 import React from 'react'
 import htmlescape from 'htmlescape'
 import Helmet from 'react-helmet'
-import manifest from 'asset-manifest.json'
+import manifest from '../build/asset-manifest.json'
 
-const intercomScript = `  window.intercomSettings = {
+const intercomScript = `window.intercomSettings = {
     app_id: 'cbfc4rcs'
   };
   (function() {
@@ -40,6 +40,12 @@ const intercomScript = `  window.intercomSettings = {
   })()
 `
 
+const tracking = `<!-- Google Tag Manager (noscript) -->
+                  <noscript>
+                    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTF4Z9" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+                  </noscript>
+                  <!-- End Google Tag Manager (noscript) -->`
+
 const html = ({children, hydrate}) => {
   let head = Helmet.rewind();
   const attrs = head.htmlAttributes.toComponent();
@@ -47,19 +53,21 @@ const html = ({children, hydrate}) => {
   return (
     <html {...attrs}>
       <head>
-        <meta charSet="utf-8"/>
-        {head.title.toComponent()}
+        <meta charSet="utf-8"/> {head.title.toComponent()}
         {head.meta.toComponent()}
         {head.link.toComponent()}
       </head>
       <body>
+        {tracking}
         <div id="root">{children}</div>
         <script id="hydrated-state" type="application/json" dangerouslySetInnerHTML={{
           __html: htmlescape(hydrate)
         }}></script>
         <script src={manifest.main.js}></script>
         <script src="//platform.twitter.com/widgets.js" async="" charSet="utf-8"></script>
-        <script dangerouslySetInnerHTML={{__html: intercomScript}}></script>
+        <script dangerouslySetInnerHTML={{
+          __html: intercomScript
+        }}></script>
       </body>
     </html>
   )

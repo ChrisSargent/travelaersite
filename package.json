@@ -51,6 +51,7 @@
     "style-loader": "*",
     "url-loader": "*",
     "webpack": "*",
+    "webpack-dev-middleware": "^1.10.1",
     "webpack-dev-server": "*",
     "webpack-manifest-plugin": "^1.1.0",
     "whatwg-fetch": "*"
