@@ -78,9 +78,6 @@ class Head extends PureComponent {
       ],
       link: [
         {
-          rel: 'stylesheet',
-          href: '/static/css/main.css'
-        }, {
           rel: 'shortcut icon',
           href: '/favicon.ico'
         }
@@ -131,13 +128,15 @@ class Head extends PureComponent {
     }
 
     if (options.google_tracking_code) {
-      metaInfo.script = [{
-        innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      metaInfo.script = [
+        {
+          innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-KTF4Z9');`
-      }]
+        }
+      ]
     }
     this.metaInfo = metaInfo
   }

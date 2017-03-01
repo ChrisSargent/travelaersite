@@ -6,7 +6,7 @@ import match from 'react-router/lib/match'
 import RouterContext from 'react-router/lib/RouterContext'
 import configureStore from './store/configureStore'
 import routes from './routes'
-import AppHTML from './indexHTML';
+import AppHTML from './server-html';
 
 const app = express()
 const PORT = 5000

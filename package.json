@@ -9,7 +9,6 @@
     "autoprefixer": "*",
     "babel-core": "*",
     "babel-eslint": "*",
-    "babel-jest": "*",
     "babel-loader": "*",
     "babel-preset-react-app": "*",
     "case-sensitive-paths-webpack-plugin": "*",
@@ -26,7 +25,7 @@
     "eslint-plugin-import": "*",
     "eslint-plugin-jsx-a11y": "*",
     "eslint-plugin-react": "*",
-    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "*",
     "filesize": "*",
     "find-cache-dir": "*",
@@ -35,14 +34,13 @@
     "html-webpack-plugin": "*",
     "http-proxy-middleware": "*",
     "ignore-loader": "*",
-    "jest": "*",
     "node-sass": "*",
     "nodemon": "*",
     "object-assign": "*",
     "path-exists": "*",
     "postcss-loader": "*",
     "promise": "*",
-    "react-addons-perf": "^15.4.2",
+    "react-addons-perf": "*",
     "react-dev-utils": "*",
     "recursive-readdir": "*",
     "rimraf": "*",
@@ -51,15 +49,14 @@
     "style-loader": "*",
     "url-loader": "*",
     "webpack": "*",
-    "webpack-dev-middleware": "^1.10.1",
     "webpack-dev-server": "*",
-    "webpack-manifest-plugin": "^1.1.0",
+    "webpack-manifest-plugin": "*",
     "whatwg-fetch": "*"
   },
   "dependencies": {
     "axios": "*",
     "classnames": "*",
-    "express": "^4.14.1",
+    "express": "*",
     "fontfaceobserver": "*",
     "he": "*",
     "history": "*",
@@ -70,7 +67,6 @@
     "react-helmet": "*",
     "react-redux": "*",
     "react-router": "*",
-    "react-router-page-transition": "^3.0.2",
     "redux": "*",
     "redux-logger": "*",
     "redux-promise-middleware": "*",
@@ -80,30 +76,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
+    "server": "NODE_ENV='production' webpack --config config/webpack.config.server.js",
+    "serve": "NODE_ENV='production' nodemon build/server.js",
     "deploy_wp": "rsync wordpress/ stgsear1@akascia.com:www/travelaer/wordpress --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
     "deploy_content": "rsync wordpress/wp-content/ stgsear1@akascia.com:www/travelaer/wordpress/wp-content --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
-    "deploy_app": "rsync build/ stgsear1@akascia.com:www/travelaer --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress",
-    "build:server": "NODE_ENV='development' webpack --config config/webpack.server.config.js",
-    "server": "NODE_ENV='production' nodemon build/server.js"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "jsx",
-      "js",
-      "json"
-    ],
-    "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jest/FileStub.js",
-      "^.+\\.css$": "<rootDir>/config/jest/CSSStub.js"
-    },
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/(build|docs|node_modules)/"
-    ],
-    "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js|jsx)$"
+    "deploy_app": "rsync build/ stgsear1@akascia.com:www/travelaer --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress"
   }
 }

@@ -16,36 +16,28 @@ module.exports = {
 
   target: 'node',
 
-  // keep node_module paths out of the bundle
-  // externals: fs.readdirSync(path.resolve(__dirname, 'node_modules')).concat([
-  //   'react-dom/server', 'react/addons',
-  // ]).reduce(function (ext, mod) {
-  //   ext[mod] = 'commonjs ' + mod
-  //   return ext
-  // }, {}),
-
   node: {
     __filename: true,
     __dirname: true
   },
 
   module: {
-    loaders: [
+    rules: [
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
         test: /\.(js|jsx)$/,
         enforce: 'pre',
-        loader: 'eslint-loader',
+        use: 'eslint-loader',
         include: paths.appSrc
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: 'babel-loader'
       }, {
         test: /\.css|sass$/,
-        loader: 'ignore-loader'
+        use: 'ignore-loader'
       }
     ]
   },
