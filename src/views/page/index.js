@@ -60,7 +60,6 @@ class Page extends PureComponent {
     var name = '',
       content = '',
       respSizes = '',
-      contSize = '',
       allowFullsize = false
 
     const contentBlocks = page.acf.contentBlocks.map((block, index) => {
@@ -70,14 +69,12 @@ class Page extends PureComponent {
         skew,
         overlaps,
         background,
-        contentImage,
         fullscreen
       } = block
 
       switch (acf_fc_layout) {
         case 'hero':
           name = 'hero'
-          contentImage && (contSize = 'fullwidth')
           content = <Hero {...block} compName={name}/>
           !this.meta_image && (this.meta_image = image)
           break
@@ -137,8 +134,9 @@ class Page extends PureComponent {
         default:
           break
       }
+      
       return (
-        <Section key={index} compName={name} fullscreen={fullscreen} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background} contSize={contSize}>
+        <Section key={index} compName={name} fullscreen={fullscreen} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background} >
           {content}
         </Section>
       )

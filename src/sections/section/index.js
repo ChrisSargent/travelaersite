@@ -11,10 +11,9 @@ class Section extends PureComponent {
 
   setupSection() {
     var sectionModifier = ' -skewnone',
-      contModifier = '',
       skewClass = '',
       skewCorrectionClass
-    const {skew, overlaps, background, fullscreen, contSize} = this.props
+    const {skew, overlaps, background, fullscreen} = this.props
 
     if (skew) {
       sectionModifier = ' -skew' + skew
@@ -31,11 +30,9 @@ class Section extends PureComponent {
 
     background && (sectionModifier += ' -' + background)
     fullscreen && (sectionModifier += ' -fullscreen')
-    contSize && (contModifier += ' -' + contSize)
 
     const section = {
       sectionModifier,
-      contModifier,
       skewClass,
       skewCorrectionClass
     }
@@ -44,11 +41,11 @@ class Section extends PureComponent {
   }
   render() {
     const {compName, image, respSizes, allowFullsize, children} = this.props
-    const {sectionModifier, contModifier, skewClass, skewCorrectionClass} = this.section
+    const {sectionModifier, skewClass, skewCorrectionClass} = this.section
 
     return (
       <section className={css.section + compName + sectionModifier}>
-        {children && <div className={css.container + contModifier}>{children}</div>}
+        {children && <div className={css.container}>{children}</div>}
         <div className={'section-background' + skewClass}>
           <div className={'_bgcol' + skewCorrectionClass}>
             <RespImageCover image={image} respSizes={respSizes} allowFullsize={allowFullsize}/>

@@ -194,7 +194,7 @@
                         },
                         {
                             "key": "field_5825ddae6fee8",
-                            "label": "Paragraph Width",
+                            "label": "Content Width",
                             "name": "paragraphWidth",
                             "type": "select",
                             "instructions": "Width of main hero paragraph text",
@@ -205,16 +205,17 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "multiple": 0,
-                            "allow_null": 1,
                             "choices": {
-                                "narrow": "Narrow"
+                                "narrow": "Narrow",
+                                "wide": "Wide"
                             },
                             "default_value": [],
+                            "allow_null": 1,
+                            "multiple": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": "",
-                            "return_format": "value"
+                            "return_format": "value",
+                            "placeholder": ""
                         },
                         {
                             "key": "field_5825c2bf7950e",
@@ -1249,5 +1250,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1488488090
+    "modified": 1488490109
 }

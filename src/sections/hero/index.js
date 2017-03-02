@@ -4,7 +4,7 @@ import SVG from '../../components/svg'
 import Wysiwyg from '../../components/wysiwyg'
 import './_hero.sass'
 
-const Hero = ({compName, headlinePre, headline, headlinePost, headlineImage, content, paragraphWidth, contentImage}) => {
+const Hero = ({compName, headlinePre, headline, headlinePost, headlineImage, content, paragraphWidth}) => {
   var hasHeadline
 
   headlinePre || headline || headlinePost || headlineImage
@@ -20,7 +20,6 @@ const Hero = ({compName, headlinePre, headline, headlinePost, headlineImage, con
         <SVG type={headlineImage}/>
       </h1>}
       <Wysiwyg content={content} size={paragraphWidth}/>
-      <SVG type={contentImage}/>
     </div>
   )
 }

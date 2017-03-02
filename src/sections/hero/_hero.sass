@@ -8,7 +8,7 @@
   // For when there is no content in the hero
 
   > .container
-    +cont--m
+    +cont--xl
     +block-pad
     min-height: 64vh
 
@@ -30,6 +30,7 @@
     width: 100%
     margin-bottom: 1.05em
     color: $co--wt
+    max-width: $sz--m
 
     strong
       +ff--feature($fs--j, $fs--xxj)
@@ -45,6 +46,13 @@
   > .wysiwyg
     text-align: center
     font-size: $fs--mms
+    max-width: $sz--m
+
+    &.-narrow
+      max-width: $sz--s
+
+    &.-wide
+      max-width: none
 
     a
       color: $co--brightyellow
