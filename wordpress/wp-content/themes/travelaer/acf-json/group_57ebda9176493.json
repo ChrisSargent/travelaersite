@@ -186,35 +186,11 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "default_value": "",
                             "tabs": "all",
                             "toolbar": "full",
-                            "media_upload": 0,
-                            "default_value": "",
+                            "media_upload": 1,
                             "delay": 0
-                        },
-                        {
-                            "key": "field_583d9c8edb80c",
-                            "label": "Content Image",
-                            "name": "contentImage",
-                            "type": "select",
-                            "instructions": "Use this option for including an available svg diagram in the content.",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "comversational-diagram": "Comversational Architecture Diagram"
-                            },
-                            "default_value": [],
-                            "allow_null": 1,
-                            "multiple": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "return_format": "value",
-                            "placeholder": ""
                         },
                         {
                             "key": "field_5825ddae6fee8",
@@ -1273,5 +1249,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1487180720
+    "modified": 1488488090
 }

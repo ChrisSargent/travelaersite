@@ -12,6 +12,7 @@
 
 require_once 'travelaer-wp.php';
 require_once 'travelaer-api.php';
+require_once 'shortcodes.php';
 
 // Write to the error log
 function wlog($log)
