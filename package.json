@@ -78,8 +78,8 @@
     "build": "node scripts/build.js",
     "server": "NODE_ENV='production' webpack --config config/webpack.config.server.js",
     "serve": "NODE_ENV='production' nodemon build/server.js",
-    "deploy_wp": "rsync wordpress/ travelaer.com@travelaer.com:domains/staging.travelaer.com/html/wordpress --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
-    "deploy_content": "rsync wordpress/wp-content/ travelaer.com@travelaer.com:domains/staging.travelaer.com/html/wordpress/wp-content --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
-    "deploy_app": "rsync build/ travelaer.com@travelaer.com:domains/staging.travelaer.com/html --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress --exclude *.php"
+    "deploy_wp": "rsync wordpress/ travelaer@46.101.194.227:/var/www/html/wordpress --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
+    "deploy_content": "rsync wordpress/wp-content/ travelaer@46.101.194.227:/var/www/html/wordpress/wp-content --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
+    "deploy_app": "rsync build/ travelaer@46.101.194.227:/var/www/html --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress --exclude *.php"
   }
 }

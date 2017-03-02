@@ -9,7 +9,7 @@ import routes from './routes'
 import AppHTML from './server-html';
 
 const app = express()
-const PORT = 5000
+const PORT = 8080
 
 app.use('/assets', express.static('build/assets'))
 app.use('/static', express.static('build/static'))
