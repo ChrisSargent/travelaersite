@@ -1,29 +1,5 @@
 <?php
 
-/**
- * Custom Endpoint Text
- */
-
-// add_action( 'rest_api_init', function () {
-// 	register_rest_route( 'travelaer/v1', '/page/(?P<pathname>([a-zA-Z-_]+))', array(
-// 		'methods' => 'GET',
-// 		'callback' => 'travelaer_get_page',
-// 	) );
-// } );
-//
-// function travelaer_get_page( $data ) {
-//   $pathname = $data['pathname'];
-//   $page_id = url_to_postid( get_site_url(null, $pathname) );
-//   $page = get_post($page_id);
-//
-// 	if ( empty( $page ) ) {
-// 		return null;
-// 	}
-//
-// 	return $page;
-// }
-
-
 // Add fields to the standard api responses
 add_action('rest_api_init', 'travelaer_api_custom_post_fields');
 function travelaer_api_custom_post_fields()
@@ -229,10 +205,10 @@ function get_the_content_by_id($post_id)
     }
 }
 
-add_filter('rest_cache_headers', function ($headers) {
-    $headers['Cache-Control'] = 'public, max-age=3600';
-    return $headers;
-});
+// add_filter('rest_cache_headers', function ($headers) {
+//     $headers['Cache-Control'] = 'public, max-age=3600';
+//     return $headers;
+// });
 
 // add_action('init', 'travelaer_handle_preflight');
 // function travelaer_handle_preflight()

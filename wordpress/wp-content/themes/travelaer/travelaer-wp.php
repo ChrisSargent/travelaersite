@@ -1,17 +1,7 @@
 <?php
 
-// Override the default 840 content width
-add_filter('twentysixteen_content_width', function ($content_width) {
-    $content_width = 2000;
-    return $content_width;
-});
-
-
-add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
-function my_theme_enqueue_styles()
-{
-    wp_enqueue_style('parent-style', get_template_directory_uri().'/style.css');
-}
+// Set the default content width
+$content_width = 2000;
 
 // Add Theme Settings Tab to admin page.
 if (function_exists('acf_add_options_page')) {
@@ -61,14 +51,14 @@ function travelaer_title_placeholders($title)
     return $title;
 }
 
-add_action('init', 'add_blur_preview_size');
-function add_blur_preview_size()
+add_action('init', 'travelaer_add_blur_preview_size');
+function travelaer_add_blur_preview_size()
 {
     add_image_size('preview', 20, 20);
 }
 
-add_filter('wp_generate_attachment_metadata', 'create_preview_blob_without_EWWW', 10, 2);
-function create_preview_blob_without_EWWW($meta, $id)
+add_filter('wp_generate_attachment_metadata', 'travelaer_create_preview_blob_without_EWWW', 10, 2);
+function travelaer_create_preview_blob_without_EWWW($meta, $id)
 {
     if (is_plugin_active('ewww-image-optimizer')) {
         return $meta;
@@ -78,23 +68,23 @@ function create_preview_blob_without_EWWW($meta, $id)
         $filename = $meta['sizes']['preview']['file'];
         $preview = trailingslashit($uploaddir['path']) . $filename;
         $file_content = base64_encode(file_get_contents($preview));
-        save_preview_blob_post_content($id, $file_content);
+        travelaer_save_preview_blob_post_content($id, $file_content);
         return $meta;
     }
 }
 
-add_action('ewww_image_optimizer_post_optimization', 'create_preview_blob_with_EWWW', 10, 2);
-function create_preview_blob_with_EWWW($fileName)
+add_action('ewww_image_optimizer_post_optimization', 'travelaer_create_preview_blob_with_EWWW', 10, 2);
+function travelaer_create_preview_blob_with_EWWW($fileName)
 {
     if (strpos($fileName, '-20x') !== false) {
         $file_content = base64_encode(file_get_contents($fileName));
-        $id = get_preview_blob_attachment_id($fileName);
-        save_preview_blob_post_content($id, $file_content);
+        $id = travelaer_get_preview_blob_attachment_id($fileName);
+        travelaer_save_preview_blob_post_content($id, $file_content);
     }
     return $fileName;
 }
 
-function save_preview_blob_post_content($id, $blob)
+function travelaer_save_preview_blob_post_content($id, $blob)
 {
     $image_blob = array(
       'ID'           => $id,
@@ -110,7 +100,7 @@ function save_preview_blob_post_content($id, $blob)
  *
  * @return int Attachment ID on success, 0 on failure
  */
-function get_preview_blob_attachment_id( $url ) {
+function travelaer_get_preview_blob_attachment_id( $url ) {
 	$attachment_id = 0;
 	$dir = wp_upload_dir();
 	if ( false !== strpos( $url, $dir['basedir'] . '/' ) ) { // Is URL in uploads directory?

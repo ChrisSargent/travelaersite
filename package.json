@@ -1,6 +1,6 @@
 {
   "name": "travelaersite",
-  "homepage": "http://travelaer.stickypixel.com",
+  "homepage": "http://46.101.194.227",
   "proxy": "http://travelaersite.dev",
   "wpFolder": "/wordpress",
   "version": "0.8.1",
@@ -25,7 +25,7 @@
     "eslint-plugin-import": "*",
     "eslint-plugin-jsx-a11y": "*",
     "eslint-plugin-react": "*",
-    "extract-text-webpack-plugin": "^2.0.0",
+    "extract-text-webpack-plugin": "*",
     "file-loader": "*",
     "filesize": "*",
     "find-cache-dir": "*",
@@ -78,8 +78,7 @@
     "build": "node scripts/build.js",
     "server": "NODE_ENV='production' webpack --config config/webpack.config.server.js",
     "serve": "NODE_ENV='production' nodemon build/server.js",
-    "deploy_wp": "rsync wordpress/ travelaer@46.101.194.227:/var/www/html/wordpress --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
-    "deploy_content": "rsync wordpress/wp-content/ travelaer@46.101.194.227:/var/www/html/wordpress/wp-content --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
-    "deploy_app": "rsync build/ travelaer@46.101.194.227:/var/www/html --rsh ssh --archive --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress --exclude *.php"
+    "deploy_content": "rsync wordpress/wp-content travelaer@46.101.194.227:/var/www/html/wordpress --rsh ssh --archive --no-perms --no-owner --no-group --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
+    "deploy_app": "rsync build/ travelaer@46.101.194.227:/var/www/html/ --rsh ssh --archive --no-perms --no-owner --no-group --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress --exclude phpmyadmin*"
   }
 }

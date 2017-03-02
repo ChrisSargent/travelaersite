@@ -56,9 +56,7 @@ const html = ({children, hydrate}) => {
       <body>
         <noscript dangerouslySetInnerHTML={{__html: tracking}}></noscript>
         <div id="root">{children}</div>
-        <script id="hydrated-state" type="application/json" dangerouslySetInnerHTML={{
-          __html: htmlescape(hydrate)
-        }}></script>
+        <script id="hydrated-state" type="application/json" dangerouslySetInnerHTML={{__html: htmlescape(hydrate)}}></script>
         <script src={'/' + manifest['main.js']}></script>
         <script src="//platform.twitter.com/widgets.js" async="" charSet="utf-8"></script>
         <script dangerouslySetInnerHTML={{__html: intercomScript}}></script>

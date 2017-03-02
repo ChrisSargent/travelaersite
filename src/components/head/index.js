@@ -43,7 +43,7 @@ class Head extends PureComponent {
           content: options.contactPerson
         }, {
           property: 'og:type',
-          content: 'website'
+          content: 'business.business'
         }, {
           property: 'og:title',
           content: options.t_site_info.name
@@ -70,7 +70,7 @@ class Head extends PureComponent {
           content: options.region
         }, {
           property: 'business:contact_data:postal_code',
-          content: options.postal_code
+          content: options.postalCode
         }, {
           property: 'business:contact_data:country_name',
           content: options.country
@@ -107,16 +107,16 @@ class Head extends PureComponent {
     if (chosenImage) {
       metaInfo.meta.push({
         property: 'og:image',
-        content: chosenImage.url
+        content: chosenImage.sizes['large']
       }, {
         property: 'og:image:type',
         content: chosenImage.mime_type
       }, {
         property: 'og:image:width',
-        content: chosenImage.width
+        content: chosenImage.sizes['large-width']
       }, {
         property: 'og:image:height',
-        content: chosenImage.height
+        content: chosenImage.sizes['large-height']
       })
     }
 
@@ -127,17 +127,17 @@ class Head extends PureComponent {
       })
     }
 
-    if (options.google_tracking_code) {
-      metaInfo.script = [
-        {
-          innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-KTF4Z9');`
-        }
-      ]
-    }
+    // if (options.google_tracking_code) {
+    //   metaInfo.script = [
+    //     {
+    //       innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    //     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    //     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    //     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    //     })(window,document,'script','dataLayer','GTM-KTF4Z9');`
+    //     }
+    //   ]
+    // }
     this.metaInfo = metaInfo
   }
 

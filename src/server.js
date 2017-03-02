@@ -9,7 +9,8 @@ import routes from './routes'
 import AppHTML from './server-html';
 
 const app = express()
-const PORT = 8080
+// Needs to be the same port as in the Nginx config
+const PORT = 8085
 
 app.use('/assets', express.static('build/assets'))
 app.use('/static', express.static('build/static'))
@@ -40,9 +41,11 @@ function handleRender(req, res) {
 }
 
 function setGlobals(req) {
+  const language = req.headers['accept-language']
+    ? req.headers['accept-language'].split(',')[0]
+    : 'en-US'
   global.navigator = {
-    userAgent: req.headers['user-agent'],
-    language: req.headers['accept-language'].split(',')[0]
+    language
   }
 }
 

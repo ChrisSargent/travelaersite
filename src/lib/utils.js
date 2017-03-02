@@ -60,6 +60,7 @@ export const dateFormat = (date, includeTime) => {
     month: 'short',
     day: 'numeric'
   }
+  console.log(navigator.language);
   dateString = date.toLocaleString(navigator.language, dateOptions)
 
   if (includeTime) {
