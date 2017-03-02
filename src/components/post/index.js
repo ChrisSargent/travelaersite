@@ -4,6 +4,7 @@ import ArticleHeader from '../article-header'
 import Author from '../author'
 import Comments from '../comments'
 import css from '../../lib/css'
+import Link from 'react-router/lib/Link'
 import PostInfo from '../post-info'
 import PostSchema from '../post-schema'
 import Wysiwyg from '../wysiwyg'
@@ -30,7 +31,9 @@ const Post = ({post, excerpt, main}) => {
 
   return (
     <article className={css.article + compName} >
-      <ArticleHeader title={post.title} compName={compName} image={headerImage}/>
+      <Link to={post.link} className="link">
+        <ArticleHeader title={post.title} compName={compName} image={headerImage}/>
+      </Link>
       <PostInfo {...post}/>
       <Wysiwyg content={content} more={readMore} />
       {!excerpt && <Author author={post.t_author}/>}
