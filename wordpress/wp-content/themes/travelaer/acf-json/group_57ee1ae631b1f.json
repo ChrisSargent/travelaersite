@@ -3,18 +3,6 @@
     "title": "Tile Options",
     "fields": [
         {
-            "multiple": 0,
-            "allow_null": 1,
-            "choices": {
-                "instagram": "Instagram",
-                "medium": "Medium",
-                "quote": "Quote"
-            },
-            "default_value": [],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_57ee1af21ce63",
             "label": "Type",
             "name": "type",
@@ -26,11 +14,22 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "choices": {
+                "instagram": "Instagram",
+                "quote": "Quote",
+                "blog": "Blog",
+                "post": "Post"
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
         },
         {
-            "default_value": "",
-            "placeholder": "",
             "key": "field_57ee1bd90e567",
             "label": "Link",
             "name": "link",
@@ -57,25 +56,15 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": "",
+            "placeholder": ""
         },
         {
-            "multiple": 0,
-            "allow_null": 1,
-            "choices": {
-                "teal": "Teal",
-                "yellowgreen": "Yellow Green",
-                "blue": "Blue"
-            },
-            "default_value": [],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
-            "key": "field_57ee1c500ed10",
-            "label": "Colour",
-            "name": "colour",
-            "type": "select",
+            "key": "field_58bd796062465",
+            "label": "Link",
+            "name": "link",
+            "type": "page_link",
             "instructions": "",
             "required": 0,
             "conditional_logic": [
@@ -83,7 +72,7 @@
                     {
                         "field": "field_57ee1af21ce63",
                         "operator": "==",
-                        "value": "medium"
+                        "value": "post"
                     }
                 ]
             ],
@@ -91,40 +80,28 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "post_type": [
+                "post"
+            ],
+            "taxonomy": [],
+            "allow_null": 0,
+            "allow_archives": 1,
+            "multiple": 0
         },
         {
-            "multiple": 0,
-            "allow_null": 1,
-            "choices": {
-                "square": "Square",
-                "narrow": "Narrower",
-                "large": "Larger"
-            },
-            "default_value": [],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
-            "key": "field_5825e73e76f78",
-            "label": "Size",
-            "name": "size",
-            "type": "select",
-            "instructions": "Choose a size. If none selected it will be a default size.",
+            "key": "field_58bd75fada5cc",
+            "label": "Tile Colour",
+            "name": "tile_colour",
+            "type": "taxonomy",
+            "instructions": "",
             "required": 0,
             "conditional_logic": [
                 [
                     {
                         "field": "field_57ee1af21ce63",
                         "operator": "==",
-                        "value": "medium"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_57ee1af21ce63",
-                        "operator": "==",
-                        "value": "quote"
+                        "value": ""
                     }
                 ]
             ],
@@ -132,14 +109,39 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "taxonomy": "tile_colours",
+            "field_type": "radio",
+            "allow_null": 1,
+            "add_term": 1,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "object",
+            "multiple": 0
         },
         {
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
+            "key": "field_58bd769226d4e",
+            "label": "Tile Size",
+            "name": "tile_size",
+            "type": "taxonomy",
+            "instructions": "Choose a size. If none selected it will be a default size.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "tile_size",
+            "field_type": "radio",
+            "allow_null": 1,
+            "add_term": 1,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "object",
+            "multiple": 0
+        },
+        {
             "key": "field_57f3e3ec35e51",
             "label": "Content \/ Quote \/ Alt",
             "name": "content",
@@ -151,14 +153,14 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
+            },
             "default_value": "",
-            "maxlength": "",
             "placeholder": "",
             "prepend": "",
             "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_57f3dd445b79f",
             "label": "Name",
             "name": "name",
@@ -178,14 +180,14 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
+            },
             "default_value": "",
-            "maxlength": "",
             "placeholder": "",
             "prepend": "",
             "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_57f3dd8c5b7a0",
             "label": "Job Title",
             "name": "job_title",
@@ -205,14 +207,14 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
+            },
             "default_value": "",
-            "maxlength": "",
             "placeholder": "",
             "prepend": "",
             "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_57f3dda15b7a1",
             "label": "Company",
             "name": "company",
@@ -232,19 +234,14 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
             "key": "field_57f3df39267fe",
             "label": "Image",
             "name": "image",
@@ -264,7 +261,17 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -298,5 +305,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1485548504
+    "modified": 1488819899
 }

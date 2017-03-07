@@ -4,7 +4,6 @@
   // Doesn't need adjustment, similar x height and letter spacing
   font-family: Helvetica, Arial, sans-serif
 
-  &.ff--base,
   .ff--base &
     font-family: $ff--base
 
@@ -12,7 +11,6 @@
   // Doesn't need adjustment, similar x height and letter spacing
   font-family: Georgia, Times, Courier, serif
 
-  &.ff--p,
   .ff--p &
     font-family: $ff--p
 
@@ -24,7 +22,7 @@
   @if $fsmb
     font-size: $fsmb * 0.8
 
-  &.ff--feature,
+
   .ff--feature &
     font-family: $ff--feature
     letter-spacing: normal
@@ -40,8 +38,6 @@
       .ff--feature &
         @if $fsdt
           font-size: $fsdt
-
-
 
 =ff--hdgs
   +ff--base

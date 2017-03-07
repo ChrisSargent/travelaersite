@@ -84,9 +84,14 @@ class Page extends PureComponent {
           content = <Banner {...block} compName={name}/>
           break
 
+        case 'mosaic_team':
+          name = 'mosaic'
+          content = <Mosaic {...block} compName={name} type="team"/>
+          break
+
         case 'mosaic':
           name = 'mosaic'
-          content = <Mosaic {...block} compName={name}/>
+          content = <Mosaic {...block} compName={name} type="content"/>
           break
 
         case 'products':
@@ -134,7 +139,7 @@ class Page extends PureComponent {
         default:
           break
       }
-      
+
       return (
         <Section key={index} compName={name} fullscreen={fullscreen} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background} >
           {content}

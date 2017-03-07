@@ -1,25 +1,39 @@
 import React from 'react'
+import Link from 'react-router/lib/Link'
 import css from '../../lib/css'
+import {stripDomain} from '../../lib/utils'
 import RespImageCover from '../resp-image-cover'
 import Wysiwyg from '../wysiwyg'
 import SVG from '../svg'
 import './_tile.sass'
 
-const MosaicTile = ({content, image, type, colour, size, link, name, job_title, company}) => {
-  const alt = content
-  const compName = 'tile'
+const ContentTile = ({
+  content,
+  image,
+  type,
+  tile_colour,
+  tile_size,
+  link,
+  name,
+  job_title,
+  company
+}) => {
+  const alt = content;
+  const compName = 'tile';
   var tileClass = '',
     TagType = 'a',
-    footer = null
+    footer = null,
+    target = null,
+    linkTo = null;
 
-  type && (tileClass += ' -' + type)
-  colour && (tileClass += ' -' + colour)
-  size && (tileClass += ' -' + size)
+  tile_colour && (tileClass += ' -' + tile_colour.slug)
+  tile_size && (tileClass += ' -' + tile_size.slug)
 
   switch (type) {
     case 'instagram':
       image = link.split('?')[0] + 'media?size=l'
       content = null
+      target = '_blank'
       break
 
     case 'quote':
@@ -35,13 +49,18 @@ const MosaicTile = ({content, image, type, colour, size, link, name, job_title, 
       )
       break
 
+    case 'post':
+      TagType = Link
+      linkTo = stripDomain(link)
+      break
+
     default:
       break
   }
 
   return (
     <li className={css.item + tileClass}>
-      <TagType href={link} target="_blank" className={css.main + compName}>
+      <TagType to={linkTo} href={link} target={target} className={css.main + compName}>
         <SVG type={type}/>
         <Wysiwyg content={content}/>
         {footer}
@@ -51,4 +70,4 @@ const MosaicTile = ({content, image, type, colour, size, link, name, job_title, 
   )
 }
 
-export default MosaicTile
+export default ContentTile

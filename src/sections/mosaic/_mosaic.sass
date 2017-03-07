@@ -1,5 +1,9 @@
 @import tools
 
+.section-mosaic
+  &:last-child
+    margin-bottom: $angle_h_ratio
+
 .list-mosaic
   display: flex
   flex-wrap: wrap
@@ -16,17 +20,9 @@
     flex-grow: 1
     z-index: $z--base
     transition: background-color $tr--m
+    flex-basis: 50%
 
-    &.-instagram
-      .wysiwyg
-        +sr-only
-
-    &.-instagram,
-    &.-square,
-    &.-narrow,
-    &.-default
-      flex-basis: 50%
-
+    &.-mlarge,
     &.-large
       flex-basis: 100%
 
@@ -48,23 +44,30 @@
       &:hover
         background: darken($co--blue--lt, 5)
 
+    &:last-child
+      flex-grow: 1!important
+
+#svg-filters
+  +sr-only
+
 @media screen and (min-width: $bp--mn)
   .list-mosaic
     > .item
+      flex: 2 1 400px
       min-height: 320px
+      min-width: 20%
 
       &::after
         display: none
 
-      &.-instagram,
       &.-square
-        flex: 1 0 320px
+        flex: 0 0 320px
 
       &.-narrow
-        flex: 1 3 220px
+        flex: 1 1 240px
 
-      &.-default
-        flex: 2 2 330px
+      &.-mlarge
+        flex: 3 1 520px
 
       &.-large
         flex: 3 1 700px

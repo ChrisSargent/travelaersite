@@ -144,6 +144,7 @@ function travelaer_rest_prepare($response, $post, $request)
         // Note: $content_block is assigned by reference
 
       switch ($content_block['acf_fc_layout']) {
+        case 'mosaic_team':
         case 'mosaic':
           $tiles = $content_block['tiles'];
           $content_block['tiles'] = travelaer_add_acf($tiles);

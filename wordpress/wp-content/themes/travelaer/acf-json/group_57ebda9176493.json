@@ -15,9 +15,9 @@
                 "class": "",
                 "id": ""
             },
+            "button_label": "Add Block",
             "min": "",
             "max": "",
-            "button_label": "Add Block",
             "layouts": [
                 {
                     "key": "5825029f7f075",
@@ -318,11 +318,46 @@
                 {
                     "key": "57ee24c00ad9d",
                     "name": "mosaic",
-                    "label": "Mosaic",
+                    "label": "Content Mosaic",
                     "display": "block",
                     "sub_fields": [
                         {
                             "key": "field_584ad2365875f",
+                            "label": "Tiles",
+                            "name": "tiles",
+                            "type": "relationship",
+                            "instructions": "Select which tiles should be included. Try not to include a 'large' tile after an Instagram tile.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "tiles"
+                            ],
+                            "taxonomy": [],
+                            "filters": [
+                                "search"
+                            ],
+                            "elements": "",
+                            "min": "",
+                            "max": "",
+                            "return_format": "id"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "58bd69e229dac",
+                    "name": "mosaic_team",
+                    "label": "Team Mosaic",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_58bd69e229dad",
                             "label": "Tiles",
                             "name": "tiles",
                             "type": "relationship",
@@ -335,15 +370,15 @@
                                 "id": ""
                             },
                             "post_type": [
-                                "tiles"
+                                "team_member"
                             ],
                             "taxonomy": [],
-                            "min": "",
-                            "max": "",
                             "filters": [
                                 "search"
                             ],
                             "elements": "",
+                            "min": "",
+                            "max": "",
                             "return_format": "id"
                         }
                     ],
@@ -1250,5 +1285,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1488490109
+    "modified": 1488820730
 }

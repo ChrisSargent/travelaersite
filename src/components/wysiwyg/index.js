@@ -17,7 +17,7 @@ class Wysiwyg extends PureComponent {
     if (!targetURL)
       return
 
-    if (targetURL.indexOf('http://') === 0 || targetURL.indexOf('https://') === 0) {
+    if (targetURL.indexOf('http://' + document.domain) === 0) {
       ev.preventDefault()
       const pathname = ev.target.pathname
       this.props.router.push(pathname)
@@ -37,10 +37,8 @@ class Wysiwyg extends PureComponent {
 
     return (
       <div className={wysClass}>
-        <div onClick={this.handleClick} dangerouslySetInnerHTML={{
-          __html: this.content
-        }}></div>
-      {more && <Link to={more} className={css.more}>&raquo;&nbsp;Read More</Link>}
+        <div onClick={this.handleClick} dangerouslySetInnerHTML={{__html: this.content}}></div>
+        {more && <Link to={more} className={css.more}>&raquo;&nbsp;Read More</Link>}
       </div>
     )
   }
