@@ -230,6 +230,11 @@ function travelaer_mce_before_init_insert_formats( $init_array ) {
 	$style_formats = array(
 		// Each array child is a format with it's own settings
 		array(
+			'title' => 'Main Headline',
+			'inline' => 'span',
+			'classes' => 'emph',
+		),
+		array(
 			'title' => 'Question',
 			'inline' => 'span',
 			'classes' => 'question',

@@ -4,21 +4,12 @@ import SVG from '../../components/svg'
 import Wysiwyg from '../../components/wysiwyg'
 import './_hero.sass'
 
-const Hero = ({compName, headlinePre, headline, headlinePost, headlineImage, content, paragraphWidth}) => {
-  var hasHeadline
-
-  headlinePre || headline || headlinePost || headlineImage
-    ? hasHeadline = true
-    : hasHeadline = false
+const Hero = ({compName, headlinePre, headline, headlinePost, headlineImage, content, paragraphWidth, headline_wysiwyg}) => {
 
   return (
     <div className={css.main + compName}>
-      {hasHeadline && <h1 className={css.title}>
-        {headlinePre}
-        {headline && <strong>{headline}</strong>}
-        {headlinePost}
-        <SVG type={headlineImage}/>
-      </h1>}
+      {headline_wysiwyg && <h1 className={css.title} dangerouslySetInnerHTML={{__html: headline_wysiwyg}}/>}
+      <SVG type={headlineImage}/>
       <Wysiwyg content={content} size={paragraphWidth}/>
     </div>
   )

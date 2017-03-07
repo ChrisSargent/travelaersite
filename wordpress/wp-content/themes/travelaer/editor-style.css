@@ -151,3 +151,8 @@ body#tinymce.wp-editor .number {
   font-size: 3em;
   display: block;
 }
+
+body#tinymce.wp-editor .emph {
+  display: block;
+  text-transform: uppercase;
+}
