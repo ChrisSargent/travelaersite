@@ -22,11 +22,11 @@ const Actions = ({actions, onClick}) => {
 
 
     if (action.param) {
-      return <li className={css.item}><button key={index} className={btnClass} type="button" disabled={action.loading} data-actionparam={action.param}>{action.linkTitle}{icon}</button></li>
+      return <li key={index} className={css.item}><button className={btnClass} type="button" disabled={action.loading} data-actionparam={action.param}>{action.linkTitle}{icon}</button></li>
     } else if (action.submit) {
-      return <li className={css.item}><button key={index} className={btnClass} type="submit" disabled={action.loading}>{action.linkTitle}{icon}</button></li>
+      return <li key={index} className={css.item}><button className={btnClass} type="submit" disabled={action.loading}>{action.linkTitle}{icon}</button></li>
     } else {
-      return <li className={css.item}><Link key={index} to={url} className={btnClass}>{action.linkTitle}</Link></li>
+      return <li key={index} className={css.item}><Link to={url} className={btnClass}>{action.linkTitle}</Link></li>
     }
   })
 
