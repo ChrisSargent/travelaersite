@@ -68,30 +68,6 @@
                             "layout": "block"
                         },
                         {
-                            "key": "field_5825029f7f07a",
-                            "label": "Hero BG Image",
-                            "name": "image",
-                            "type": "image",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": ""
-                        },
-                        {
                             "key": "field_58be9d208c29b",
                             "label": "Heading Content",
                             "name": "headline_wysiwyg",
@@ -131,14 +107,14 @@
                         },
                         {
                             "key": "field_5825ddae6fee8",
-                            "label": "Content Width",
+                            "label": "Paragraph Content Width",
                             "name": "paragraphWidth",
                             "type": "select",
                             "instructions": "Width of main hero paragraph text",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "30",
                                 "class": "",
                                 "id": ""
                             },
@@ -163,15 +139,98 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "30",
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": 0,
                             "message": "",
+                            "default_value": 0,
                             "ui": 0,
                             "ui_on_text": "",
                             "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_5825029f7f07a",
+                            "label": "Hero BG Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_58bec068767f1",
+                            "label": "Actions",
+                            "name": "actions",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "layout": "table",
+                            "button_label": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_58bec076767f2",
+                                    "label": "Link To",
+                                    "name": "linkTo",
+                                    "type": "page_link",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "post_type": [],
+                                    "taxonomy": [],
+                                    "allow_null": 0,
+                                    "allow_archives": 1,
+                                    "multiple": 0
+                                },
+                                {
+                                    "key": "field_58bec09f767f3",
+                                    "label": "Link Title",
+                                    "name": "linkTitle",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                }
+                            ]
                         }
                     ],
                     "min": "",
@@ -1159,11 +1218,11 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "collapsed": "",
                             "min": 0,
                             "max": 0,
                             "layout": "table",
                             "button_label": "",
-                            "collapsed": "",
                             "sub_fields": [
                                 {
                                     "key": "field_588188e0e039c",
@@ -1190,7 +1249,7 @@
                                     "name": "linkTitle",
                                     "type": "text",
                                     "instructions": "",
-                                    "required": 0,
+                                    "required": 1,
                                     "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
@@ -1198,10 +1257,10 @@
                                         "id": ""
                                     },
                                     "default_value": "",
-                                    "maxlength": "",
                                     "placeholder": "",
                                     "prepend": "",
-                                    "append": ""
+                                    "append": "",
+                                    "maxlength": ""
                                 }
                             ]
                         }
@@ -1238,5 +1297,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1488890016
+    "modified": 1488896209
 }

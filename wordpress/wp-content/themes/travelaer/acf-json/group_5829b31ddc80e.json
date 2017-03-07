@@ -11,22 +11,22 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
-            "multiple": 0,
-            "allow_null": 1,
             "choices": {
                 "top": "Top",
                 "bottom": "Bottom",
                 "both": "Both"
             },
             "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": "",
-            "return_format": "value"
+            "return_format": "value",
+            "placeholder": ""
         },
         {
             "key": "field_586cf1f2d4d03",
@@ -37,15 +37,15 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "75",
                 "class": "",
                 "id": ""
             },
+            "collapsed": "",
             "min": 0,
             "max": 1,
             "layout": "table",
             "button_label": "Add Overlap",
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_586cf20ed4d04",
@@ -145,5 +145,5 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
-    "modified": 1488811369
+    "modified": 1488894449
 }

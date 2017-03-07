@@ -1,18 +1,20 @@
 @import tools
 
 .footer-actions
-  display: flex
   clear: both
   margin-top: auto
+
+.list-actions
+  display: flex
+
+  > .item + .item
+    margin-left: 2px
 
   .btn
     +focus
     position: relative
     perspective: 50px
     perspective-origin: right
-
-    + .btn
-      margin-left: 2px
 
 .actions-icon
   position: absolute

@@ -35,6 +35,15 @@ if (! function_exists('travelaer_theme_setup')) {
         'caption',
     ));
     }
+
+    function travelaer_register_menus() {
+  register_nav_menus(
+    array(
+      'primary' => __( 'Primary Menu' )
+    )
+  );
+}
+add_action( 'init', 'travelaer_register_menus' );
 } // travelaer_theme_setup
 add_action('after_setup_theme', 'travelaer_theme_setup');
 

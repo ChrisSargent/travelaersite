@@ -7,31 +7,34 @@ import './_actions.sass'
 
 const Actions = ({actions, onClick}) => {
   if (!actions)
-    return
+    return null
 
   const compName = 'actions'
   const icon = <span className={compName + '-icon'}><SVG type='spinner' /></span>
   const actionsMap = actions.map((action, index) => {
-    var btnClass
+    var btnClass = css.btn, modifier = ' -cta'
     const url = stripDomain(action.linkTo)
 
-    btnClass = css.btn
-    action.modifier && (btnClass += ' -' + action.modifier)
+    action.modifier
+      ? btnClass += ' -' + action.modifier
+      : btnClass += modifier
     action.loading && (btnClass += css.loading)
 
 
     if (action.param) {
-      return <button key={index} className={btnClass} type="button" disabled={action.loading} data-actionparam={action.param}>{action.linkTitle}{icon}</button>
+      return <li className={css.item}><button key={index} className={btnClass} type="button" disabled={action.loading} data-actionparam={action.param}>{action.linkTitle}{icon}</button></li>
     } else if (action.submit) {
-      return <button key={index} className={btnClass} type="submit" disabled={action.loading}>{action.linkTitle}{icon}</button>
+      return <li className={css.item}><button key={index} className={btnClass} type="submit" disabled={action.loading}>{action.linkTitle}{icon}</button></li>
     } else {
-      return <Link key={index} to={url} className={btnClass}>{action.linkTitle}</Link>
+      return <li className={css.item}><Link key={index} to={url} className={btnClass}>{action.linkTitle}</Link></li>
     }
   })
 
   return (
     <footer className={css.footer + compName} onClick={onClick}>
-      {actionsMap}
+      <ul className={css.list + compName}>
+        {actionsMap}
+      </ul>
     </footer>
   )
 
