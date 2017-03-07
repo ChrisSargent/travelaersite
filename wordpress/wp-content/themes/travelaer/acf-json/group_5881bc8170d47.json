@@ -289,30 +289,6 @@
                             "max_size": "",
                             "mime_types": "",
                             "insert": "append"
-                        },
-                        {
-                            "key": "field_589ad133e5ddd",
-                            "label": "Architecture Diagram",
-                            "name": "architecture_diagram",
-                            "type": "select",
-                            "instructions": "Use this option for selecting an svg graphic instead of the screenshots.",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "travelpaas-diagram": "Travel Paas Architecture Diagram"
-                            },
-                            "default_value": [],
-                            "allow_null": 1,
-                            "multiple": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "return_format": "value",
-                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -338,5 +314,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1488289978
+    "modified": 1488877513
 }

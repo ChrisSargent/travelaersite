@@ -10,7 +10,9 @@ const Positions = ({title, content, positions, actions, compName}) => {
   const positionMap = positions.map((position, index) => {
     return (
       <li key={index} className={css.item}>
-        {position.position}
+        <a href={position.external_url} target="_blank" className="position">
+          {position.position}
+        </a>
       </li>
     )
   })

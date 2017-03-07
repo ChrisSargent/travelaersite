@@ -174,31 +174,6 @@
             ]
         },
         {
-            "key": "field_58bd301f5754e",
-            "label": "Gallery",
-            "name": "gallery",
-            "type": "gallery",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "min": "",
-            "max": "",
-            "insert": "append",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
             "key": "field_58bd868ad1bba",
             "label": "Tile Display",
             "name": "tile_display",
@@ -244,7 +219,7 @@
             "label": "Tile Size",
             "name": "tile_size",
             "type": "taxonomy",
-            "instructions": "",
+            "instructions": "Choose a size. If none selected it will be a default size.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -260,6 +235,31 @@
             "load_terms": 0,
             "return_format": "object",
             "multiple": 0
+        },
+        {
+            "key": "field_58bd301f5754e",
+            "label": "Gallery",
+            "name": "gallery",
+            "type": "gallery",
+            "instructions": "The first image in the gallery is used for the tile display.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": "",
+            "max": "",
+            "insert": "append",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -279,5 +279,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1488821166
+    "modified": 1488880853
 }

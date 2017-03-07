@@ -1166,11 +1166,11 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "collapsed": "",
                             "min": 0,
                             "max": 0,
                             "layout": "table",
                             "button_label": "",
-                            "collapsed": "",
                             "sub_fields": [
                                 {
                                     "key": "field_58808da5326ef",
@@ -1190,6 +1190,22 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": ""
+                                },
+                                {
+                                    "key": "field_58be7f9d91bd6",
+                                    "label": "External URL",
+                                    "name": "external_url",
+                                    "type": "url",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": ""
                                 }
                             ]
                         },
@@ -1285,5 +1301,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1488820730
+    "modified": 1488879548
 }

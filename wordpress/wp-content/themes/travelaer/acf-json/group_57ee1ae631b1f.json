@@ -1,6 +1,6 @@
 {
     "key": "group_57ee1ae631b1f",
-    "title": "Tile Options",
+    "title": "Content Tiles",
     "fields": [
         {
             "key": "field_57ee1af21ce63",
@@ -18,7 +18,6 @@
             "choices": {
                 "instagram": "Instagram",
                 "quote": "Quote",
-                "blog": "Blog",
                 "post": "Post"
             },
             "default_value": [],
@@ -305,5 +304,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1488819899
+    "modified": 1488880902
 }

@@ -9,18 +9,17 @@ $mg-defeat: $pd--h--dt / -1
 
   &.-architecture,
   &.-features
-    > .section-background ._bgcol
+    ._bgcol
       background-color: $co--blue--md
 
   &.-searchshop,
   &.-award
-    > .section-background ._bgcol
+    ._bgcol
       background-color: $co--green
 
   &.-instapricer
     z-index: $z--mid
-
-    > .section-background ._bgcol
+    ._bgcol
       background-color: $co--blue-grey--tt
       background-image: linear-gradient(to bottom, transparentize($co--blue-vio, 1) 0%, transparentize($co--blue-vio, 0.9) 100%)
 
@@ -35,12 +34,12 @@ $mg-defeat: $pd--h--dt / -1
     align-items: stretch
     justify-content: flex-start
 
-    .screenshot-block
-      order: 1
+  .screenshot-block
+    order: 1
 
-    .wysiwyg,
-    .list-tpaas
-      order: 2
+  .wysiwyg,
+  .list-tpaas
+    order: 2
 
   .title
     +heading-section
@@ -67,7 +66,7 @@ $mg-defeat: $pd--h--dt / -1
       margin: $pd--xs 0
 
   &.-instapricer
-    > .title
+    .title
       color: $co--blue--dk
 
     .wysiwyg
@@ -88,7 +87,7 @@ $mg-defeat: $pd--h--dt / -1
 .screenshot-block
   margin-bottom: $pd--ml
 
-  > .image
+  .image
     width: 100%
     border: 5px solid transparentize($co--wt, 0.5)
 
@@ -182,19 +181,11 @@ $mg-defeat: $pd--h--dt / -1
     &.-architecture
       @extend %textonright
 
-      .wysiwyg
-        > div
-          display: flex
-          flex-direction: column
-          height: 100%
-
-          > p
-            height: 33.3%
-            display: flex
-            align-items: center
-
       .screenshot-block
         display: block
+
+        .image
+          border: 0
 
     &.-instapricer
       @extend %textonright
@@ -217,7 +208,7 @@ $mg-defeat: $pd--h--dt / -1
         width: 62%
         margin-right: $mg-defeat
 
-        > .image
+        .image
           &:nth-of-type(1),
           &:nth-of-type(2)
             max-width: calc(60% - #{$pd--h--dt})
@@ -234,9 +225,11 @@ $mg-defeat: $pd--h--dt / -1
   .screenshot-block
     margin-bottom: 0
 
-    > .image:nth-child(n + 2)
-      display: block
+    .image
       border-width: 10px
+      
+      &:nth-child(n + 2)
+        display: block
 
   .list-tpaas
     &.-features
@@ -247,17 +240,3 @@ $mg-defeat: $pd--h--dt / -1
         overflow: hidden
         // Prevent alignment 'bug'
         break-inside: avoid
-
-    &.-architecture
-      > .item
-        display: flex
-        align-items: center
-
-      .image
-        display: block
-        position: relative
-        left: $mg-defeat
-        width: 50%
-
-      .wysiwyg
-        width: 50%
