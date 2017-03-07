@@ -29,7 +29,6 @@ if (! function_exists('travelaer_theme_setup')) {
      */
 
     add_theme_support('html5', array(
-        'search-form',
         'comment-form',
         'comment-list',
         'gallery',
@@ -63,7 +62,10 @@ add_action('after_setup_theme', 'travelaer_content_width', 0);
 
 function twentysixteen_content_image_sizes_attr($sizes, $size)
 {
-    $sizes = '(min-width: 630px) 600px, (min-width: 840px) 64vw, (min-width: 1120px) 675px, 100vw';
+    global $post;
+    if ($post->post_type === 'post') {
+      $sizes = '(min-width: 630px) 600px, (min-width: 840px) 64vw, (min-width: 1120px) 675px, 100vw';
+    }
     return $sizes;
 }
 add_filter('wp_calculate_image_sizes', 'twentysixteen_content_image_sizes_attr', 10, 2);

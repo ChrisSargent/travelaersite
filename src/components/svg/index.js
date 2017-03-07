@@ -1,6 +1,4 @@
 import React, {PureComponent} from 'react'
-import ComDiag from '../comversational-diagram'
-import TPaasDiag from '../travelpaas-diagram'
 import css from '../../lib/css'
 import './_svgs.sass'
 
@@ -182,18 +180,6 @@ class SVG extends PureComponent {
                   <path d="M40 0C17.8667 0 0 17.8667 0 40s17.8667 40 40 40 40-17.8667 40-40S62.1333 0 40 0zm0 73.1707C21.6898 73.1707 6.8293 58.3102 6.8293 40 6.8293 21.6898 21.6898 6.8293 40 6.8293c18.3102 0 33.1707 14.8605 33.1707 33.1707 0 18.3102-14.8605 33.1707-33.1707 33.1707z"/>
                   <path fillRule="evenodd" d="M40 51c6.075 0 11-4.925 11-11s-4.925-11-11-11-11 4.925-11 11 4.925 11 11 11zm0-10c.5523 0 1-.4477 1-1s-.4477-1-1-1-1 .4477-1 1 .4477 1 1 1z"/>
                 </g>
-        break
-
-      case 'comversational-diagram':
-        title = 'Comversational "'
-        viewbox = '0 0 2027 1103'
-        path = <ComDiag />
-        break
-
-      case 'travelpaas-diagram':
-        title = 'Travel Paas Architecture'
-        viewbox = '0 0 1015 1178'
-        path = <TPaasDiag />
         break
 
       default:
