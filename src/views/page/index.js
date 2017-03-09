@@ -17,6 +17,7 @@ import Products from '../../sections/products'
 import Team from '../../sections/team'
 import TPContentScreenshots from '../../sections/travel-paas/content-screenshots'
 import TPFeatures from '../../sections/travel-paas/features'
+// import TPQuotesGraphs from '../../sections/travel-paas/quotes-graphs'
 import Section from '../../sections/section'
 
 class Page extends PureComponent {
@@ -161,6 +162,11 @@ class Page extends PureComponent {
           name = 'tpaas -' + section_id
           content = <TPContentScreenshots {...block} compName={name}/>
           break
+
+        // case 'quote_graphs':
+        //   name = 'tpaas -quotes'
+        //   content = <TPQuotesGraphs {...block} compName={name}/>
+        //   break
 
         case 'features':
           name = 'tpaas -features'

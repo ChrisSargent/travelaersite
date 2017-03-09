@@ -37,7 +37,6 @@ const Actions = ({actions, onClick}) => {
       </ul>
     </footer>
   )
-
 }
 
 export default Actions

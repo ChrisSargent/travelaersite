@@ -58,7 +58,6 @@ function travelaer_display_submenu($object, $field_name, $request)
 
 function travelaer_get_author_info($object, $field_name, $request)
 {
-
     $user_id = $object['author'];
     $author['avatar'] = get_field('avatar', 'user_'.$user_id);
     $author['description'] = get_the_author_meta('description');
@@ -83,10 +82,10 @@ function travelaer_get_category_info($object, $field_name, $request)
 function travelaer_get_featured_image($object, $field_name, $request)
 {
     if (empty($object['featured_media'])) {
-      $default_image = get_field('fabImg', 'options');
-      $image_object = $default_image;
+        $default_image = get_field('fabImg', 'options');
+        $image_object = $default_image;
     } else {
-      $image_object = acf_get_attachment($object['featured_media']);
+        $image_object = acf_get_attachment($object['featured_media']);
     }
     return $image_object;
 }
@@ -135,52 +134,86 @@ function travelaer_get_comments_info($object, $field_name, $request)
 add_filter('rest_prepare_page', 'travelaer_rest_prepare', 20, 3);
 function travelaer_rest_prepare($response, $post, $request)
 {
-    $content_blocks =& $response->data['acf']['contentBlocks'];
+    $content_blocks = &$response->data['acf']['contentBlocks'];
+    $tpaas_blocks = &$response->data['acf']['travelPaasContent'];
     // Note: $content_blocks is assigned by reference
-    if (empty($content_blocks)) {
-        return $response;
+    if (!empty($content_blocks)) {
+      foreach ($content_blocks as &$content_block) {
+          // Note: $content_block is assigned by reference
+        switch ($content_block['acf_fc_layout']) {
+          case 'mosaic_team':
+          case 'mosaic':
+            $tiles = $content_block['tiles'];
+            $tiles = travelaer_add_acf($tiles);
+            foreach ($tiles as &$tile) {
+              if (isset($tile['acf']['type'])) {
+                if ($tile['acf']['type'] === 'quote') {
+                  $quote = travelaer_get_fields($tile['acf']['quote']);
+                  $tile['acf'] = array_merge($tile['acf'], $quote['acf']);
+                }
+              }
+            }
+            $content_block['tiles'] = $tiles;
+            break;
+
+          case 'team':
+            $members = $content_block['members'];
+            $content_block['members'] = travelaer_add_acf($members);
+            break;
+
+          case 'products':
+            $products = $content_block['products'];
+            $content_block['products'] = travelaer_add_acf($products);
+            break;
+
+          default:
+            break;
+        }
+      }
+
     }
-    foreach ($content_blocks as &$content_block) {
-        // Note: $content_block is assigned by reference
+    if (!empty($tpaas_blocks)) {
+      foreach ($tpaas_blocks as &$tpaas_block) {
+        switch ($tpaas_block['acf_fc_layout']) {
+          case 'quote_graphs':
+            foreach ($tpaas_block['quotes'] as &$quote) {
+              $quote = travelaer_get_fields($quote['quote']);
+            }
+            break;
 
-      switch ($content_block['acf_fc_layout']) {
-        case 'mosaic_team':
-        case 'mosaic':
-          $tiles = $content_block['tiles'];
-          $content_block['tiles'] = travelaer_add_acf($tiles);
-          break;
+          default:
+            break;
 
-        case 'team':
-          $members = $content_block['members'];
-          $content_block['members'] = travelaer_add_acf($members);
-          break;
-
-        case 'products':
-          $products = $content_block['products'];
-          $content_block['products'] = travelaer_add_acf($products);
-          break;
-
-        default:
-          break;
+        }
       }
     }
     return $response;
 }
 
-function travelaer_add_acf($items)
+function travelaer_add_acf($item_ids)
 {
-    foreach ($items as &$item) {
-        // Note: $item is assigned by reference
-    $item_id = $item;
-        $item = array(
-      'id' => $item_id,
-      'acf' => get_fields($item_id),
-      'title' => get_the_title($item_id),
-      'content' => get_the_content_by_id($item_id),
-    );
+    $items = [];
+    foreach ($item_ids as $item_id) {
+      $item = travelaer_get_fields($item_id);
+      $items[] = $item;
     }
     return $items;
 }
+
+function travelaer_get_fields($item_id)
+{
+  $item = array(
+    'id' => $item_id,
+    'acf' => get_fields($item_id),
+    'title' => get_the_title($item_id),
+    'content' => get_the_content_by_id($item_id),
+  );
+  return $item;
+}
+
+// function travelaer_get_tax_slug($id) {
+//   return get_term($id)->slug;
+// }
 
 add_filter('rest_allow_anonymous_comments', '__return_true');
 

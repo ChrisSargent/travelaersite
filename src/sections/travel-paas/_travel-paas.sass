@@ -17,7 +17,8 @@ $mg-defeat: $pd--h--dt / -1
     ._bgcol
       background-color: $co--green
 
-  &.-instapricer
+  &.-instapricer,
+  &.-manage
     z-index: $z--mid
     ._bgcol
       background-color: $co--blue-grey--tt
@@ -65,7 +66,8 @@ $mg-defeat: $pd--h--dt / -1
     p
       margin: $pd--xs 0
 
-  &.-instapricer
+  &.-instapricer,
+  &.-manage
     .title
       color: $co--blue--dk
 
@@ -187,14 +189,26 @@ $mg-defeat: $pd--h--dt / -1
         .image
           border: 0
 
-    &.-instapricer
+    &.-instapricer,
+    &.-manage
       @extend %textonright
 
       .wysiwyg
         @extend %wysiwygtoppad
 
       .screenshot-block
+        position: relative
+        z-index: -1
         margin-bottom: $pd--v / -1
+
+        .image
+          &:nth-child(2)
+            position: relative
+            width: 50%
+            right: -75%
+            top: -180px
+            z-index: 0
+            margin-bottom: -200px
 
     &.-award
       .wysiwyg
@@ -227,7 +241,7 @@ $mg-defeat: $pd--h--dt / -1
 
     .image
       border-width: 10px
-      
+
       &:nth-child(n + 2)
         display: block
 

@@ -139,3 +139,13 @@
   .wysiwyg
     blockquote
       margin: $pd--xl
+
+    iframe
+      &[src^="https://www.youtube"]
+        max-height: 40vw
+
+@media screen and (min-width: 1200px)
+  .wysiwyg
+    iframe
+      &[src^="https://www.youtube"]
+        max-height: 450px

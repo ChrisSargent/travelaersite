@@ -56,6 +56,10 @@ body#tinymce.wp-editor iframe {
   margin: 0 auto;
 }
 
+body#tinymce.wp-editor iframe[src^="https://www.youtube"] {
+  max-height: 40vw;
+}
+
 body#tinymce.wp-editor figure {
   width: 100% !important;
   border: 1px solid #eaebf0;

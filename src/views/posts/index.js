@@ -65,130 +65,130 @@ class Posts extends PureComponent {
   }
 
   setupLatestPosts(posts, slug) {
+    const {slugsByDate, fetchedPosts} = posts;
+    // Looks up the slug from the slugsByDate array, grabs the corresponding post from the fetchedPosts array and puts it into the returned object.
+    var count = 0,
+      maxPosts = slugsByDate.length,
+      latestPosts = [],
+      lookupSlug
+
+    slug && (maxPosts = 8)
+
+    for (var i = 0; i < slugsByDate.length; i++) {
+      lookupSlug = slugsByDate[i]
+      lookupSlug !== slug && count < maxPosts && (latestPosts.push(fetchedPosts[lookupSlug]))
+      count++
+    }
+    return latestPosts
+  }
+
+  setupPostsObject(posts, slug) {
+    // Returns an object with the main post or posts and those to display in the sidebar
     const {slugsByDate, fetchedPosts} = posts
-      // Looks up the slug from the slugsByDate array, grabs the corresponding post from the fetchedPosts array and puts it into the returned object.
-      var count = 0,
-        maxPosts = slugsByDate.length,
-        latestPosts = [],
-        lookupSlug
 
-      slug && (maxPosts = 8)
+    if (!slugsByDate || !fetchedPosts)
+      return null
 
-      for (var i = 0; i < slugsByDate.length; i++) {
-        lookupSlug = slugsByDate[i]
-        lookupSlug !== slug && count < maxPosts && (latestPosts.push(fetchedPosts[lookupSlug]))
-        count++
-      }
-      return latestPosts
-    }
+    const latestPosts = this.setupLatestPosts(posts, slug);
 
-    setupPostsObject(posts, slug) {
-      // Returns an object with the main post or posts and those to display in the sidebar
-      const {slugsByDate, fetchedPosts} = posts
-
-      if (!slugsByDate || !fetchedPosts)
-        return null
-
-      const latestPosts = this.setupLatestPosts(posts, slug);
-
-      if (slug) {
-        const singlePost = fetchedPosts[slug]
-        return {
-          main: [singlePost],
-          side: latestPosts,
-          heroImage: singlePost.t_featured_image,
-          excerpts: false
-        }
-      }
+    if (slug) {
+      const singlePost = fetchedPosts[slug]
       return {
-        main: latestPosts.slice(0, 5).concat(latestPosts.slice(10)),
-        side: latestPosts.slice(5, 10),
-        heroImage: latestPosts[0].t_featured_image,
-        excerpts: true
+        main: [singlePost],
+        side: latestPosts,
+        heroImage: singlePost.t_featured_image,
+        excerpts: false
       }
     }
-
-    handleClick(ev) {
-      if (!ev.target.dataset.actionparam)
-        return
-      ev.preventDefault()
-      this.props.fetchMorePosts()
-    }
-
-    render() {
-      var heroModifier = ' -small',
-        pageTitle = 'Blog',
-        showMore = true
-
-      const {gotAllPosts, getLoadingMore} = this.props
-      const {postsObj} = this
-
-      if (!postsObj)
-        return null
-
-      const {compName, overlap, actions} = this
-      const singlePost = postsObj.main.length <= 1
-      const mainPost = postsObj.main[0]
-      const postsMap = postsObj.main.map((post, index) => {
-        return (
-          <li key={post.id || 'invalid'} className={css.item}>
-            {post.invalid
-              ? <PostError/>
-              : <Post post={post} excerpt={postsObj.excerpts} main={index === 0}/>}
-          </li>
-        )
-      })
-
-      showMore = !gotAllPosts && !singlePost
-
-      getLoadingMore
-        ? actions[0].loading = true
-        : actions[0].loading = false
-
-      if (singlePost && !mainPost.invalid) {
-        heroModifier = ''
-        pageTitle = mainPost.title
-      }
-
-      const metaInfo = {
-        title: pageTitle,
-        image: postsObj.heroImage,
-        description: stripTags(trimContent(mainPost.content))
-      }
-
-      return (
-        <main id={compName}>
-          <Head {...metaInfo}/>
-          <Section compName={'hero' + heroModifier} image={postsObj.heroImage || image404} skew="bottom" overlaps={overlap}/>
-          <Section compName={compName}>
-            <div className={css.main + compName}>
-              <ul className={css.list + compName}>
-                {postsMap}
-              </ul>
-              <aside className={css.sidebar + compName}>
-                <RecentPosts posts={postsObj.side}/> {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
-                <Insta/>
-              </aside>
-            </div>
-            {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
-          </Section>
-        </main>
-      )
+    return {
+      main: latestPosts.slice(0, 5).concat(latestPosts.slice(10)),
+      side: latestPosts.slice(5, 10),
+      heroImage: latestPosts[0].t_featured_image,
+      excerpts: true
     }
   }
 
-  const mapStateToProps = (state) => ({posts: state.posts, gotAllPosts: gotAllPosts(state), getLoadingMore: getLoadingMore(state)})
+  handleClick(ev) {
+    if (!ev.target.dataset.actionparam)
+      return
+    ev.preventDefault()
+    this.props.fetchMorePosts()
+  }
 
-  const mapDispatchToProps = (dispatch) => ({
-    fetchLatestPosts() {
-      dispatch(fetchLatestPosts())
-    },
-    fetchMorePosts() {
-      dispatch(fetchMorePosts())
-    },
-    fetchInitPosts(slug) {
-      dispatch(fetchInitPosts(slug))
+  render() {
+    var heroModifier = ' -small',
+      pageTitle = 'Blog',
+      showMore = true
+
+    const {gotAllPosts, getLoadingMore} = this.props
+    const {postsObj} = this
+
+    if (!postsObj)
+      return null
+
+    const {compName, overlap, actions} = this
+    const singlePost = postsObj.main.length <= 1
+    const mainPost = postsObj.main[0]
+    const postsMap = postsObj.main.map((post, index) => {
+      return (
+        <li key={post.id || 'invalid'} className={css.item}>
+          {post.invalid
+            ? <PostError/>
+            : <Post post={post} excerpt={postsObj.excerpts} main={index === 0}/>}
+        </li>
+      )
+    })
+
+    showMore = !gotAllPosts && !singlePost
+
+    getLoadingMore
+      ? actions[0].loading = true
+      : actions[0].loading = false
+
+    if (singlePost && !mainPost.invalid) {
+      heroModifier = ''
+      pageTitle = mainPost.title
     }
-  })
 
-  export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+    const metaInfo = {
+      title: pageTitle,
+      image: postsObj.heroImage,
+      description: stripTags(trimContent(mainPost.content))
+    }
+
+    return (
+      <main id={compName}>
+        <Head {...metaInfo}/>
+        <Section compName={'hero' + heroModifier} image={postsObj.heroImage || image404} skew="bottom" overlaps={overlap}/>
+        <Section compName={compName}>
+          <div className={css.main + compName}>
+            <ul className={css.list + compName}>
+              {postsMap}
+            </ul>
+            <aside className={css.sidebar + compName}>
+              <RecentPosts posts={postsObj.side}/> {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
+              <Insta/>
+            </aside>
+          </div>
+          {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
+        </Section>
+      </main>
+    )
+  }
+}
+
+const mapStateToProps = (state) => ({posts: state.posts, gotAllPosts: gotAllPosts(state), getLoadingMore: getLoadingMore(state)})
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchLatestPosts() {
+    dispatch(fetchLatestPosts())
+  },
+  fetchMorePosts() {
+    dispatch(fetchMorePosts())
+  },
+  fetchInitPosts(slug) {
+    dispatch(fetchInitPosts(slug))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts)

@@ -22,6 +22,7 @@ const _addFetchedPosts = (action, fetchedPosts) => {
       // Don't need to 'he decode' content because it's used with dangerouslySetInnerHTML
       post.content = whichContent(post.content)
       post.title = he.decode(whichContent(post.title))
+      post.slug = he.decode(post.slug)
       !fetchedPosts[post.slug] && (addPosts[post.slug] = post)
     }
   } else {
@@ -34,7 +35,7 @@ const _addToPostsByDate = (action, slugsByDate) => {
   // Create an array of post slugs by date
   const posts = action.payload.data
   const addPosts = posts.map((post) => {
-    return post.slug
+    return he.decode(post.slug)
   })
   return [...slugsByDate, ...addPosts]
 }
