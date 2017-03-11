@@ -278,17 +278,36 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "library": "all",
                             "min": "",
                             "max": "",
+                            "insert": "append",
+                            "library": "all",
                             "min_width": "",
                             "min_height": "",
                             "min_size": "",
                             "max_width": "",
                             "max_height": "",
                             "max_size": "",
-                            "mime_types": "",
-                            "insert": "append"
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_58c3fb5d41a24",
+                            "label": "Full-Width Screenshots?",
+                            "name": "full_width_screenshots",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
                         }
                     ],
                     "min": "",
@@ -489,5 +508,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1488989293
+    "modified": 1489238908
 }

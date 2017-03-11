@@ -16,7 +16,7 @@ const ProductList = ({products, alignment}) => {
     const {product_screenshots} = product.acf
     const {title, content} = product
 
-    actions[0].modifier = 'cta'
+    actions.length && (actions[0].modifier = 'cta')
 
     return (
       <li key={product.id} className={css.item}>

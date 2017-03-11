@@ -14,8 +14,8 @@ const TileTeam = ({
   const compName = 'tile -team'
   var tileClass = '', svgClass = 'svgbg'
 
-  tile_colour && (svgClass += ' -' + tile_colour.slug)
-  tile_size && (tileClass += ' -' + tile_size.slug)
+  tile_colour && (svgClass += ' -' + tile_colour)
+  tile_size && (tileClass += ' -' + tile_size)
 
   return (
     <li className={css.item + tileClass}>

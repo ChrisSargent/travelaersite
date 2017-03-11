@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'react-router/lib/Link'
 import css from '../../lib/css'
 import {stripDomain} from '../../lib/utils'
+import Cite from '../../components/cite'
 import RespImageCover from '../resp-image-cover'
 import Wysiwyg from '../wysiwyg'
 import SVG from '../svg'
@@ -22,12 +23,11 @@ const ContentTile = ({
   const compName = 'tile';
   var tileClass = '',
     TagType = 'a',
-    footer = null,
     target = null,
     linkTo = null;
 
-  tile_colour && (tileClass += ' -' + tile_colour.slug)
-  tile_size && (tileClass += ' -' + tile_size.slug)
+  tile_colour && (tileClass += ' -' + tile_colour)
+  tile_size && (tileClass += ' -' + tile_size)
 
   switch (type) {
     case 'instagram':
@@ -38,15 +38,6 @@ const ContentTile = ({
 
     case 'quote':
       TagType = 'blockquote'
-      footer = (
-        <footer className={css.footer + compName}>
-          <cite>
-            {name && <span className="fn">{name}</span>}
-            {job_title && <span className="pos">{job_title}</span>}
-            {company && <span className="co">{company}</span>}
-          </cite>
-        </footer>
-      )
       break
 
     case 'post':
@@ -63,7 +54,7 @@ const ContentTile = ({
       <TagType to={linkTo} href={link} target={target} className={css.main + compName}>
         <SVG type={type}/>
         <Wysiwyg content={content}/>
-        {footer}
+        <Cite name={name} jobTitle={job_title} company={company} />
         <RespImageCover image={image} alt={alt} srcVersion="medium_large" respSizes="(min-width: 840px) 600px, 50vw"/>
       </TagType>
     </li>

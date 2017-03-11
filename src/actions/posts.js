@@ -1,7 +1,7 @@
 import axios from 'axios'
 import types from '.'
 
-const fields = 'content,date_gmt,id,link,modified_gmt,title,slug,t_author,t_categories,t_comments_info,t_content,t_featured_image'
+const fields = 'acf,content,date_gmt,id,link,modified_gmt,title,slug,t_author,t_categories,t_comments_info,t_content,t_featured_image'
 
 const _getPosts = (page = 1) => {
   var type

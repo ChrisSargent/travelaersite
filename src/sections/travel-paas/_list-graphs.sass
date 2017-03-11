@@ -1,0 +1,26 @@
+@import tools
+
+.list-graphs
+  width: 100%
+  padding-top: $pd--xl
+
+  > .item
+    margin: $pd--ll 0
+
+    &:first-child
+      margin-top: 0
+
+    &:last-child
+      margin-bottom: 0
+
+  .bar
+    margin-top: $pd--xxs
+    border: 2px solid $co--blue--dk
+    width: 100%
+    height: 20px
+    background-color: $co--blue--dk
+    background-repeat: no-repeat
+
+@media screen and (min-width: $bp--mn)
+  .list-graphs
+    padding-top: 0

@@ -8,18 +8,24 @@ $mg-defeat: $pd--h--dt / -1
     +block-pad
 
   &.-architecture,
-  &.-features
+  &.-features,
+  &.-quotes
+    color: $co--wt
+
     ._bgcol
       background-color: $co--blue--md
 
   &.-searchshop,
   &.-award
+    color: $co--wt
+
     ._bgcol
       background-color: $co--green
 
   &.-instapricer,
   &.-manage
     z-index: $z--mid
+
     ._bgcol
       background-color: $co--blue-grey--tt
       background-image: linear-gradient(to bottom, transparentize($co--blue-vio, 1) 0%, transparentize($co--blue-vio, 0.9) 100%)
@@ -35,21 +41,18 @@ $mg-defeat: $pd--h--dt / -1
     align-items: stretch
     justify-content: flex-start
 
-  .screenshot-block
+  .tpaas-graphics
     order: 1
 
-  .wysiwyg,
-  .list-tpaas
+  .tpaas-content
     order: 2
 
   .title
     +heading-section
-    color: $co--wt
 
   .wysiwyg
     +ff--base
     line-height: $lh--ml
-    color: $co--wt
 
     h1, h2
       font-size: $fs--mms
@@ -72,8 +75,6 @@ $mg-defeat: $pd--h--dt / -1
       color: $co--blue--dk
 
     .wysiwyg
-      color: $co--blue-grey--md
-
       h1, h2
         color: $co--blue--md
 
@@ -83,10 +84,10 @@ $mg-defeat: $pd--h--dt / -1
       text-align: left
 
   &.-architecture
-    .screenshot-block
+    .tpaas-graphics
       display: none
 
-.screenshot-block
+.tpaas-graphics
   margin-bottom: $pd--ml
 
   .image
@@ -107,23 +108,22 @@ $mg-defeat: $pd--h--dt / -1
     .i
       width: 2.5em
       height: 2.5em
-      color: $co--wt
 
 @media screen and (min-width: $bp--mn)
   %textonright
-    .wysiwyg
+    .tpaas-content
       flex-grow: 1
       order: 2
       width: 50%
-      padding-left: $pd--ll
+      padding-left: $pd--xl
 
-    .screenshot-block
+    .tpaas-graphics
       order: 1
       width: 50%
       max-width: 500px
       margin-left: $mg-defeat
 
-  %wysiwygtoppad
+  %contenttoppad
     padding-top: $pd--ml
 
   .section-tpaas
@@ -136,6 +136,7 @@ $mg-defeat: $pd--h--dt / -1
     > .container
       flex-direction: row
       justify-content: space-between
+      flex-wrap: wrap
 
     .wysiwyg
       line-height: $lh--xl
@@ -150,12 +151,12 @@ $mg-defeat: $pd--h--dt / -1
       > .container
         display: block
 
-      .wysiwyg
-        @extend %wysiwygtoppad
+      .tpaas-content
+        @extend %contenttoppad
         width: 50%
         padding-right: $pd--s
 
-      .screenshot-block
+      .tpaas-graphics
         margin-top: $pd--xl
 
         .image
@@ -181,22 +182,34 @@ $mg-defeat: $pd--h--dt / -1
             margin-right: $mg-defeat
 
     &.-architecture
-      @extend %textonright
-
-      .screenshot-block
+      .tpaas-graphics
+        order: 1
         display: block
 
         .image
           border: 0
 
-    &.-instapricer,
+      .tpaas-content
+        order: 2
+        margin: $pd--xxl auto 0
+        max-width: $sz--m
+
+    &.-instapricer
+      @extend %textonright
+
+      .tpaas-content
+        @extend %contenttoppad
+
+      .tpaas-graphics
+        margin-bottom: -2rem + ($pd--v / -1)
+
     &.-manage
       @extend %textonright
 
-      .wysiwyg
-        @extend %wysiwygtoppad
+      .tpaas-content
+        @extend %contenttoppad
 
-      .screenshot-block
+      .tpaas-graphics
         position: relative
         z-index: -1
         margin-bottom: $pd--v / -1
@@ -208,15 +221,16 @@ $mg-defeat: $pd--h--dt / -1
             right: -75%
             top: -180px
             z-index: 0
-            margin-bottom: -200px
+            margin-bottom: -50%
 
     &.-award
-      .wysiwyg
-        @extend %wysiwygtoppad
+      .tpaas-content
+        @extend %contenttoppad
         order: 1
         width: 38%
+        padding-right: $pd--s
 
-      .screenshot-block
+      .tpaas-graphics
         order: 2
         position: relative
         width: 62%
@@ -236,7 +250,18 @@ $mg-defeat: $pd--h--dt / -1
             right: 0
             max-width: 40%
 
-  .screenshot-block
+    &.-quotes
+      @extend %textonright
+
+      .tpaas-graphics
+        margin: 0
+        width: 55%
+        max-width: none
+
+      .tpaas-content
+        width: 45%
+
+  .tpaas-graphics
     margin-bottom: 0
 
     .image
@@ -244,6 +269,10 @@ $mg-defeat: $pd--h--dt / -1
 
       &:nth-child(n + 2)
         display: block
+
+    &.-fullwidth
+      width: 100%
+      flex: none
 
   .list-tpaas
     &.-features

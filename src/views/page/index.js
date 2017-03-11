@@ -17,7 +17,7 @@ import Products from '../../sections/products'
 import Team from '../../sections/team'
 import TPContentScreenshots from '../../sections/travel-paas/content-screenshots'
 import TPFeatures from '../../sections/travel-paas/features'
-// import TPQuotesGraphs from '../../sections/travel-paas/quotes-graphs'
+import TPQuotesGraphs from '../../sections/travel-paas/quotes-graphs'
 import Section from '../../sections/section'
 
 class Page extends PureComponent {
@@ -58,12 +58,11 @@ class Page extends PureComponent {
   }
 
   setupContentBlocks(page) {
-    var name = '',
-      content = '',
-      respSizes = '',
-      allowFullsize = false
-
     const contentBlocks = page.acf.contentBlocks.map((block, index) => {
+      var name = '',
+        content = '',
+        respSizes = '',
+        allowFullsize = false
       const {
         acf_fc_layout,
         image,
@@ -142,7 +141,7 @@ class Page extends PureComponent {
       }
 
       return (
-        <Section key={index} compName={name} fullscreen={fullscreen} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background} >
+        <Section key={index} compName={name} fullscreen={fullscreen} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background}>
           {content}
         </Section>
       )
@@ -151,10 +150,10 @@ class Page extends PureComponent {
   }
 
   setupTravelPassBlocks(page) {
-    var name = '',
-      content = ''
 
     const travelPaasBlocks = page.acf.travelPaasContent.map((block, index) => {
+      var name = '',
+        content = ''
       const {acf_fc_layout, skew, overlaps, section_id} = block
 
       switch (acf_fc_layout) {
@@ -163,10 +162,10 @@ class Page extends PureComponent {
           content = <TPContentScreenshots {...block} compName={name}/>
           break
 
-        // case 'quote_graphs':
-        //   name = 'tpaas -quotes'
-        //   content = <TPQuotesGraphs {...block} compName={name}/>
-        //   break
+        case 'quote_graphs':
+          name = 'tpaas -quotes'
+          content = <TPQuotesGraphs {...block} compName={name}/>
+          break
 
         case 'features':
           name = 'tpaas -features'
@@ -207,8 +206,7 @@ class Page extends PureComponent {
 
     return (
       <main id={slug} className={mainClass}>
-        <Head {...metainfo}/>
-        {this.contentBlocks}
+        <Head {...metainfo}/> {this.contentBlocks}
         {this.travelPaasBlocks}
       </main>
     )

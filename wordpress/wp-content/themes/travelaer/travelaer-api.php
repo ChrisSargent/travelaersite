@@ -138,20 +138,18 @@ function travelaer_rest_prepare($response, $post, $request)
     $tpaas_blocks = &$response->data['acf']['travelPaasContent'];
     // Note: $content_blocks is assigned by reference
     if (!empty($content_blocks)) {
-      foreach ($content_blocks as &$content_block) {
-          // Note: $content_block is assigned by reference
+        foreach ($content_blocks as &$content_block) {
+            // Note: $content_block is assigned by reference
         switch ($content_block['acf_fc_layout']) {
           case 'mosaic_team':
           case 'mosaic':
             $tiles = $content_block['tiles'];
             $tiles = travelaer_add_acf($tiles);
             foreach ($tiles as &$tile) {
-              if (isset($tile['acf']['type'])) {
-                if ($tile['acf']['type'] === 'quote') {
+                if (isset($tile['acf']['type']) && $tile['acf']['type'] === 'quote') {
                   $quote = travelaer_get_fields($tile['acf']['quote']);
                   $tile['acf'] = array_merge($tile['acf'], $quote['acf']);
                 }
-              }
             }
             $content_block['tiles'] = $tiles;
             break;
@@ -169,23 +167,22 @@ function travelaer_rest_prepare($response, $post, $request)
           default:
             break;
         }
-      }
-
+        }
     }
     if (!empty($tpaas_blocks)) {
-      foreach ($tpaas_blocks as &$tpaas_block) {
-        switch ($tpaas_block['acf_fc_layout']) {
-          case 'quote_graphs':
-            foreach ($tpaas_block['quotes'] as &$quote) {
-              $quote = travelaer_get_fields($quote['quote']);
+        foreach ($tpaas_blocks as &$tpaas_block) {
+            switch ($tpaas_block['acf_fc_layout']) {
+              case 'quote_graphs':
+                foreach ($tpaas_block['quotes'] as &$quote) {
+                    $quote = travelaer_get_fields($quote['quote']);
+                }
+                break;
+
+              default:
+                break;
+
             }
-            break;
-
-          default:
-            break;
-
         }
-      }
     }
     return $response;
 }
@@ -194,40 +191,22 @@ function travelaer_add_acf($item_ids)
 {
     $items = [];
     foreach ($item_ids as $item_id) {
-      $item = travelaer_get_fields($item_id);
-      $items[] = $item;
+        $item = travelaer_get_fields($item_id);
+        $items[] = $item;
     }
     return $items;
 }
 
 function travelaer_get_fields($item_id)
 {
-  $item = array(
+    $item = array(
     'id' => $item_id,
     'acf' => get_fields($item_id),
     'title' => get_the_title($item_id),
     'content' => get_the_content_by_id($item_id),
   );
-  return $item;
+    return $item;
 }
-
-// function travelaer_get_tax_slug($id) {
-//   return get_term($id)->slug;
-// }
-
-add_filter('rest_allow_anonymous_comments', '__return_true');
-
-add_filter('acf/rest_api/option/get_fields', function ($data) {
-    $t_site_info = array(
-      'name' => get_bloginfo('name'),
-      'description' => get_bloginfo('description'),
-      'charset' => get_bloginfo('charset'),
-      'language' => get_bloginfo('language'),
-      'url' => get_bloginfo('url'),
-    );
-    $data['acf']['t_site_info'] = $t_site_info;
-    return $data;
-});
 
 function get_the_content_by_id($post_id)
 {
@@ -238,6 +217,31 @@ function get_the_content_by_id($post_id)
         return false;
     }
 }
+
+function travelaer_add_site_info($data)
+{
+    $t_site_info = array(
+    'name' => get_bloginfo('name'),
+    'description' => get_bloginfo('description'),
+    'charset' => get_bloginfo('charset'),
+    'language' => get_bloginfo('language'),
+    'url' => get_bloginfo('url'),
+  );
+    $data['acf']['t_site_info'] = $t_site_info;
+    return $data;
+}
+add_filter('acf/rest_api/option/get_fields', 'travelaer_add_site_info');
+
+
+function travelaer_acf_format_tax_slug($value)
+{
+    if (!empty($value)) {
+        $value = get_term($value)->slug;
+    }
+    return $value;
+}
+add_filter('acf/format_value/type=taxonomy', 'travelaer_acf_format_tax_slug', 10, 3);
+
 
 // add_filter('rest_cache_headers', function ($headers) {
 //     $headers['Cache-Control'] = 'public, max-age=3600';
@@ -251,3 +255,5 @@ function get_the_content_by_id($post_id)
 //     header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
 //     header('Access-Control-Allow-Credentials: true');
 // }
+
+add_filter('rest_allow_anonymous_comments', '__return_true');

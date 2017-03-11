@@ -18,9 +18,11 @@ const Features = ({compName, feature}) => {
 
   return (
     <div className={css.main + compName}>
-      <ul className={css.list + compName}>
-        {featureMap}
-      </ul>
+      <div className="tpaas-content">
+        <ul className={css.list + compName}>
+          {featureMap}
+        </ul>
+      </div>
     </div>
   )
 }
