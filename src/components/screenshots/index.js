@@ -1,7 +1,7 @@
 import React from 'react'
+// import Gif from '../gif'
 import css from '../../lib/css'
 import RespImage from '../resp-image'
-
 import './_screenshots.sass'
 
 const ScreenShots = ({screenshots, modifier, activeIndex}) => {
@@ -23,6 +23,10 @@ const ScreenShots = ({screenshots, modifier, activeIndex}) => {
 
     // Create the image map
     imageMap = images.map((image, index) => {
+      // if (image.mime_type === 'image/gif') {
+      //   var playGif = (index === activeIndex)
+      //   return <Gif key={index} src={image.url} speed="2" playing={playGif}/>
+      // }
       return <RespImage key={index} image={image} respSizes="(min-width: 840px) 320px, 175px"/>
     })
 

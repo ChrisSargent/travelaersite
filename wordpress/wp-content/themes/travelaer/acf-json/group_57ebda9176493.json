@@ -231,6 +231,25 @@
                                     "maxlength": ""
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_58c68cb03d665",
+                            "label": "Include Latest Posts",
+                            "name": "latest_posts",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
                         }
                     ],
                     "min": "",
@@ -1316,5 +1335,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1489233341
+    "modified": 1489407183
 }

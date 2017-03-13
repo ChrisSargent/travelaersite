@@ -248,12 +248,4 @@ add_filter('acf/format_value/type=taxonomy', 'travelaer_acf_format_tax_slug', 10
 //     return $headers;
 // });
 
-// add_action('init', 'travelaer_handle_preflight');
-// function travelaer_handle_preflight()
-// {
-//     header('Access-Control-Allow-Origin: '.get_http_origin());
-//     header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
-//     header('Access-Control-Allow-Credentials: true');
-// }
-
 add_filter('rest_allow_anonymous_comments', '__return_true');

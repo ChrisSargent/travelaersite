@@ -21,6 +21,11 @@ const MemberVcard = ({name, contacts}) => {
           icon = contact_type
           break
 
+        case 'skype':
+          link = 'skype:' + contact_detail
+          icon = contact_type
+          break
+
         case 'link':
           link = link_url
           icon = link_icon

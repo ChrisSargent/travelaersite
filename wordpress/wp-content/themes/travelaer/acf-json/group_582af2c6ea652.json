@@ -78,9 +78,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "link": "Link",
                         "email": "Email",
-                        "phone": "Phone"
+                        "phone": "Phone",
+                        "skype": "Skype",
+                        "link": "Link"
                     },
                     "default_value": [],
                     "allow_null": 0,
@@ -279,5 +280,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1489131494
+    "modified": 1489247036
 }
