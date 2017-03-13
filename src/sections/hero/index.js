@@ -22,7 +22,7 @@ const Hero = ({
     }
   }
 
-  latestPosts.length && (modifier = ' -latestposts')
+  latestPosts && latestPosts.length && (modifier = ' -latestposts')
 
   return (
     <div className={css.main + compName + modifier}>
