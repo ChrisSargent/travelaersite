@@ -46,7 +46,7 @@ function travelaer_api_custom_post_fields()
     );
 }
 
-function travelaer_display_submenu($object, $field_name, $request)
+function travelaer_display_submenu($object)
 {
     $children = get_pages(array( 'child_of' => $object['id'] ));
     if (count($children) || $object['parent'] > 0) {
@@ -56,7 +56,7 @@ function travelaer_display_submenu($object, $field_name, $request)
     }
 }
 
-function travelaer_get_author_info($object, $field_name, $request)
+function travelaer_get_author_info($object)
 {
     $user_id = $object['author'];
     $author['avatar'] = get_field('avatar', 'user_'.$user_id);
@@ -66,7 +66,7 @@ function travelaer_get_author_info($object, $field_name, $request)
     return $author;
 }
 
-function travelaer_get_category_info($object, $field_name, $request)
+function travelaer_get_category_info($object)
 {
     $categories = [];
     foreach ($object['categories'] as $id) {
@@ -79,7 +79,7 @@ function travelaer_get_category_info($object, $field_name, $request)
     return $categories;
 }
 
-function travelaer_get_featured_image($object, $field_name, $request)
+function travelaer_get_featured_image($object)
 {
     if (empty($object['featured_media'])) {
         $default_image = get_field('fabImg', 'options');
@@ -90,7 +90,7 @@ function travelaer_get_featured_image($object, $field_name, $request)
     return $image_object;
 }
 
-function travelaer_get_comments_info($object, $field_name, $request)
+function travelaer_get_comments_info($object)
 {
     $comments = get_comments(array('status' => 'approve', 'post_id' => $object['id']));
     $t_comments_info['total'] = count($comments);
@@ -136,29 +136,38 @@ function travelaer_rest_prepare($response, $post, $request)
 {
     $content_blocks = &$response->data['acf']['contentBlocks'];
     $tpaas_blocks = &$response->data['acf']['travelPaasContent'];
-    // Note: $content_blocks is assigned by reference
+    $include_latest_posts = &$response->data['acf']['latest_posts'];
+
+    if ($include_latest_posts) {
+      $args = array(
+        'numberposts' => 2,
+        'post_type' => 'post',
+        'post_status' => 'publish',
+      );
+      $latest_posts = wp_get_recent_posts($args);
+      foreach ($latest_posts as &$post) {
+        $post['featured_media'] = get_post_thumbnail_id($post['ID']);
+        $mod_post['id'] = $post['ID'];
+        $mod_post['link'] = get_permalink($post['ID']);
+        $mod_post['title'] = $post['post_title'];
+        $mod_post['date_gmt'] = $post['post_date_gmt'];
+        $mod_post['t_featured_image'] = travelaer_get_featured_image($post);
+        $mod_post['t_author'] = travelaer_get_author_info($post);
+        $mod_post['t_comments_info'] = travelaer_get_comments_info($post);
+        $mod_post['t_categories'] = travelaer_get_category_info($post);
+        $post = $mod_post;
+      }
+      $include_latest_posts = $latest_posts;
+    }
+
     if (!empty($content_blocks)) {
         foreach ($content_blocks as &$content_block) {
             // Note: $content_block is assigned by reference
         switch ($content_block['acf_fc_layout']) {
           case 'hero':
             if ($content_block['latest_posts']) {
-              $args = array(
-              	'numberposts' => 2,
-              	// 'offset' => 0,
-              	// 'category' => 0,
-              	// 'orderby' => 'post_date',
-              	// 'order' => 'DESC',
-              	// 'include' => '',
-              	// 'exclude' => '',
-              	// 'meta_key' => '',
-              	// 'meta_value' =>'',
-              	'post_type' => 'post',
-              	'post_status' => 'publish',
-              	// 'suppress_filters' => true
-              );
-              $recent_posts = wp_get_recent_posts($args);
-              wlog($recent_posts);
+
+
             }
             break;
 
@@ -262,7 +271,6 @@ function travelaer_acf_format_tax_slug($value)
     return $value;
 }
 add_filter('acf/format_value/type=taxonomy', 'travelaer_acf_format_tax_slug', 10, 3);
-
 
 // add_filter('rest_cache_headers', function ($headers) {
 //     $headers['Cache-Control'] = 'public, max-age=3600';

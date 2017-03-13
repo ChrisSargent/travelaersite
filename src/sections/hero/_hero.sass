@@ -28,42 +28,48 @@
   height: 100%
   color: $co--wt
 
-  > .title
-    +heading-section
-    width: 100%
-    margin-bottom: 1.05em
-    color: $co--wt
-    max-width: $sz--m
+  > .container
 
-    .emph
-      +ff--feature($fs--j, $fs--xxj)
-      font-weight: 400
-      line-height: 0.8
-      display: block
-      margin-bottom: 0.2em
+    .title
+      +heading-section
+      width: 100%
+      margin-bottom: 1.05em
+      color: $co--wt
+      max-width: $sz--m
 
-    > .i
-      max-width: 100%
-      margin: $pd--xs auto 0
+      .emph
+        +ff--feature($fs--j, $fs--xxj)
+        font-weight: 400
+        line-height: 0.8
+        display: block
+        margin-bottom: 0.2em
 
-  > .wysiwyg
-    text-align: center
-    font-size: $fs--mms
-    max-width: $sz--m
-    width: 100%
+      .i
+        max-width: 100%
+        margin: $pd--xs auto 0
 
-    &.-narrow
-      max-width: $sz--s
+    .wysiwyg
+      text-align: center
+      font-size: $fs--mms
+      max-width: $sz--m
+      width: 100%
 
-    &.-wide
-      max-width: none
+      &.-narrow
+        max-width: $sz--s
 
-    a
-      color: $co--brightyellow
+      &.-wide
+        max-width: none
+
+      a
+        color: $co--brightyellow
+
+  &.-latestposts
+    .list-recentposts
+      display: none
 
 @media screen and (max-width: $bp--mn - 1)
-  main#contact-us .main-hero
-    > .title
+  main#contact-us .main-hero > .container
+    .title
       .emph
         font-size: $fs--xj
 
@@ -76,8 +82,23 @@
 
 @media screen and (min-width: $bp--mn)
   .main-hero
-    > .wysiwyg
-      font-size: $fs--l
+    > .container
+      .wysiwyg
+        font-size: $fs--l
+
+    &.-latestposts
+      flex-direction: row
+      justify-content: space-between
+
+      > .container
+        .title,
+        .wysiwyg
+          text-align: left
+
+      .list-recentposts
+        display: block
+        max-width: 600px
+        margin-left: $pd--ll
 
     main.-hassubmenu .section-hero:first-child &
       margin-top: $ht-subheader

@@ -166,7 +166,8 @@ class Posts extends PureComponent {
               {postsMap}
             </ul>
             <aside className={css.sidebar + compName}>
-              <RecentPosts posts={postsObj.side}/> {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
+              <RecentPosts posts={postsObj.side}/>
+              {showMore && <Actions actions={actions} onClick={this.handleClick}/>}
               <Insta/>
             </aside>
           </div>

@@ -81,9 +81,12 @@
   left: 50%
 
 =hover-scale
-  overflow: hidden
 
   ._bgimg
+    overflow: hidden
+
+  ._bgimgpreview,
+  ._bgimgfull,
     transform: none
     transition: transform $tr--s
 
@@ -92,7 +95,8 @@
     transition: transform $t--s cubic-bezier(0.2, 0.9, 0.6, 0.2)
 
   &:hover
-    ._bgimg
+    ._bgimgpreview,
+    ._bgimgfull
       transform: scale3d(1.05, 1.05, 1)
 
     .i

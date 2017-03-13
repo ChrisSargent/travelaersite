@@ -51,6 +51,9 @@ export const dateFormat = (date, includeTime) => {
     dateOptions,
     timeOptions
 
+  if (!date)
+    return null
+
   // Convert the date to UTC if not already in it
   !date.includes('T') && (date += ' UTC')
 

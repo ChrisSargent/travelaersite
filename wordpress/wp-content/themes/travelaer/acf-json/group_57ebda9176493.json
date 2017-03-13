@@ -1,6 +1,6 @@
 {
     "key": "group_57ebda9176493",
-    "title": "Content Blocks",
+    "title": "Page Sections",
     "fields": [
         {
             "key": "field_57ecf6f501517",
@@ -231,25 +231,6 @@
                                     "maxlength": ""
                                 }
                             ]
-                        },
-                        {
-                            "key": "field_58c68cb03d665",
-                            "label": "Include Latest Posts",
-                            "name": "latest_posts",
-                            "type": "true_false",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "message": "",
-                            "default_value": 0,
-                            "ui": 0,
-                            "ui_on_text": "",
-                            "ui_off_text": ""
                         }
                     ],
                     "min": "",
@@ -1307,6 +1288,25 @@
                     "max": ""
                 }
             ]
+        },
+        {
+            "key": "field_58c68cb03d665",
+            "label": "Include Latest Posts",
+            "name": "latest_posts",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -1335,5 +1335,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1489407183
+    "modified": 1489417614
 }

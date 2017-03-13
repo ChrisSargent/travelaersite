@@ -14,7 +14,6 @@
 // add_action('init', 'travelaer_handle_preflight');
 // function travelaer_handle_preflight()
 // {
-//     wlog(get_http_origin());
 //     header('Access-Control-Allow-Origin: '.get_http_origin());
 //     header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
 //     header('Access-Control-Allow-Credentials: true');

@@ -14,6 +14,7 @@ import Mosaic from '../../sections/mosaic'
 import Positions from '../../sections/positions'
 import ProductModules from '../../sections/product-modules'
 import Products from '../../sections/products'
+import RecentPosts from '../../components/recent-posts'
 import Team from '../../sections/team'
 import TPContentScreenshots from '../../sections/travel-paas/content-screenshots'
 import TPFeatures from '../../sections/travel-paas/features'
@@ -55,6 +56,7 @@ class Page extends PureComponent {
       return
     page.acf.contentBlocks && (this.contentBlocks = this.setupContentBlocks(page))
     page.acf.travelPaasContent && (this.travelPaasBlocks = this.setupTravelPassBlocks(page))
+    page.acf.latest_posts && (this.recentPostsBlock = this.setupRecentPostsBlock(page))
   }
 
   setupContentBlocks(page) {
@@ -69,13 +71,13 @@ class Page extends PureComponent {
         skew,
         overlaps,
         background,
-        fullscreen
+        fullscreen,
       } = block
 
       switch (acf_fc_layout) {
         case 'hero':
           name = 'hero'
-          content = <Hero {...block} compName={name}/>
+          content = <Hero {...block} compName={name} latestPosts={page.acf.latest_posts}/>
           !this.meta_image && (this.meta_image = image)
           break
 
@@ -184,6 +186,14 @@ class Page extends PureComponent {
     return travelPaasBlocks
   }
 
+  setupRecentPostsBlock(page) {
+    return (
+      <Section compName="recentposts">
+        <RecentPosts posts={page.acf.latest_posts} compact="true"/>
+      </Section>
+    )
+  }
+
   render() {
     const {page} = this.props
     var mainClass = ''
@@ -206,8 +216,10 @@ class Page extends PureComponent {
 
     return (
       <main id={slug} className={mainClass}>
-        <Head {...metainfo}/> {this.contentBlocks}
+        <Head {...metainfo}/>
+        {this.contentBlocks}
         {this.travelPaasBlocks}
+        {this.recentPostsBlock}
       </main>
     )
   }
