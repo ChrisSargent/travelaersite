@@ -29,10 +29,13 @@ const _getPages = (reqPathname) => {
 }
 
 // Gets all the pages from the API
-export const _backgroundGetPages = () => {
+export const _backgroundGetPages = (exclude) => {
   const params = {
-    fields
+    fields,
   }
+
+  exclude.length && (params.exclude = exclude.join())
+
   return {
     type: types.BACKGROUND_FETCH_PAGES,
     payload: axios.get('/wp/v2/pages', {params})
@@ -41,15 +44,21 @@ export const _backgroundGetPages = () => {
 
 // Checks if we are getting or have got all the pages and if not, does it.
 export const backgroundFetchPages = () => (dispatch, getState) => {
-  const {fetchingAllPages, fetchedAllPages} = getState().pages
+  var exclude = [];
+  const {fetchingAllPages, fetchedAllPages, fetchedPages} = getState().pages
+  for (var key in fetchedPages) {
+    if (fetchedPages.hasOwnProperty(key)) {
+      exclude.push(fetchedPages[key].id)
+    }
+  }
 
   if (!fetchingAllPages && !fetchedAllPages)
-    return dispatch(_backgroundGetPages())
+    return dispatch(_backgroundGetPages(exclude))
 }
 
 // Checks if a page exists in the cache and then calls the WP API if not
 export const fetchPage = (reqPathname) => (dispatch, getState) => {
-  const page = getState().pages[reqPathname]
+  const page = getState().pages.fetchedPages[reqPathname]
 
   return page
   ? Promise.resolve()

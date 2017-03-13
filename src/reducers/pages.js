@@ -3,13 +3,13 @@ import {stripDomain, whichContent} from '../lib/utils'
 import he from 'he'
 
 export const getPage = ({pages}, pathname) => {
-  const page = pages[pathname]
+  const page = pages.fetchedPages[pathname]
   return page
 }
 
 export const getPageAppend = ({pages}, pathname) => {
-  return pages[pathname]
-    ? pages[pathname].acf.footerAppend
+  return pages.fetchedPages[pathname]
+    ? pages.fetchedPages[pathname].acf.footerAppend
     : false
 }
 
@@ -18,39 +18,40 @@ export const getFetchedAllPages = ({pages}) => {
 }
 
 export const getDisplaySubmenu = ({pages}, pathname) => {
-  return pages[pathname]
-    ? pages[pathname].t_display_sub_menu
+  return pages.fetchedPages[pathname]
+    ? pages.fetchedPages[pathname].t_display_sub_menu
     : false
 }
 
 const _addPages = (action, state) => {
   const pages = action.payload.data
-  var pageArray = []
-  // Puts each page in to an array, indexed by its slug
+  var pageObj = {}
+  // Puts each page in to an object, indexed by its slug
   if (pages.length) {
     for (var i = 0; i < pages.length; i++) {
       const page = pages[i]
       const pathname = stripDomain(page.link)
       page.title = he.decode(whichContent(page.title))
-      !state[pathname] && (pageArray[pathname] = page)
+      pageObj[pathname] = page
     }
   } else {
-    pageArray[action.meta.reqPathname] = {invalid: true};
+    pageObj[action.meta.reqPathname] = {invalid: true};
   }
-  return pageArray
+  return pageObj
 }
 
 const pages = (state = {
   fetchedAllPages: false,
   fetchingAllPages: false,
+  fetchedPages: {},
 }, action) => {
 
   switch (action.type) {
     case types.FETCH_PAGE + '_FULFILLED':
-      const pageArray = _addPages(action, state)
+      const pageObj = _addPages(action, state)
       return {
         ...state,
-        ...pageArray,
+        fetchedPages: {...state.fetchedPages, ...pageObj}
       }
 
     case types.BACKGROUND_FETCH_PAGES + '_PENDING':
@@ -60,10 +61,10 @@ const pages = (state = {
       }
 
     case types.BACKGROUND_FETCH_PAGES + '_FULFILLED':
-      const pagesArray = _addPages(action, state)
+      const pagesObj = _addPages(action, state)
       return {
         ...state,
-        ...pagesArray,
+        fetchedPages: {...state.fetchedPages, ...pagesObj},
         fetchedAllPages: true,
         fetchingAllPages: false
       }

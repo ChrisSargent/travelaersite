@@ -141,6 +141,27 @@ function travelaer_rest_prepare($response, $post, $request)
         foreach ($content_blocks as &$content_block) {
             // Note: $content_block is assigned by reference
         switch ($content_block['acf_fc_layout']) {
+          case 'hero':
+            if ($content_block['latest_posts']) {
+              $args = array(
+              	'numberposts' => 2,
+              	// 'offset' => 0,
+              	// 'category' => 0,
+              	// 'orderby' => 'post_date',
+              	// 'order' => 'DESC',
+              	// 'include' => '',
+              	// 'exclude' => '',
+              	// 'meta_key' => '',
+              	// 'meta_value' =>'',
+              	'post_type' => 'post',
+              	'post_status' => 'publish',
+              	// 'suppress_filters' => true
+              );
+              $recent_posts = wp_get_recent_posts($args);
+              wlog($recent_posts);
+            }
+            break;
+
           case 'mosaic_team':
           case 'mosaic':
             $tiles = $content_block['tiles'];
