@@ -33,9 +33,11 @@
     .title
       +heading-section
       width: 100%
-      margin-bottom: 1.05em
-      color: $co--wt
       max-width: $sz--m
+      margin-right: auto
+      margin-bottom: 1.05em
+      margin-left: auto
+      color: $co--wt
 
       .emph
         +ff--feature($fs--j, $fs--xxj)
@@ -49,10 +51,12 @@
         margin: $pd--xs auto 0
 
     .wysiwyg
-      text-align: center
       font-size: $fs--mms
-      max-width: $sz--m
       width: 100%
+      max-width: $sz--m
+      margin-right: auto
+      margin-left: auto
+      text-align: center
 
       &.-narrow
         max-width: $sz--s
@@ -75,10 +79,10 @@
 
   main#comversational .section-hero
     &:last-of-type
+      overflow: hidden
       width: 0
       height: 0
       min-height: 0
-      overflow: hidden
 
 @media screen and (min-width: $bp--mn)
   .main-hero

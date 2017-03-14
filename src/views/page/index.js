@@ -64,10 +64,11 @@ class Page extends PureComponent {
       var name = '',
         content = '',
         respSizes = '',
-        allowFullsize = false
+        allowFullsize = false,
+        {image} = block
       const {
         acf_fc_layout,
-        image,
+        // image,
         skew,
         overlaps,
         background,
@@ -115,6 +116,7 @@ class Page extends PureComponent {
 
         case 'image_banner':
           name = 'imagebanner'
+          image = block.image_fixed
           content = <ImageBanner {...block} compName={name}/>
           break
 
