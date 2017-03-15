@@ -27,7 +27,7 @@ const QuotesGraphs = ({compName, graphs, quotes, title}) => {
 
     return (
       <li key={index} className={css.item}>
-        {graph.graph}
+        <span className='desc'>{graph.graph}</span>
         <div className='bar' style={barStyle}></div>
       </li>
     )

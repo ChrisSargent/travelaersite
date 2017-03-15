@@ -4,7 +4,6 @@ $ctrlminwidth: 200px
 $ctrlwidth: 27.78%
 
 .section-prodmods
-
   > .section-background
     ._bgcol
       background-color: $co--blue--md
@@ -50,34 +49,38 @@ $ctrlwidth: 27.78%
 
   > .control
     +focus
-    display: flex
-    align-items: center
-    justify-content: center
-    flex: none
     cursor: pointer
     background-color: $co--green
 
-    &::after
-      content: ' '
-      display: block
-      width: 0
-      height: 0
+    > .container
+      display: flex
+      align-items: center
+      justify-content: center
+      flex: none
       pointer-events: none
-      border-top: 9px solid transparent
-      border-bottom: 9px solid transparent
+
+      &::after
+        content: ' '
+        display: block
+        width: 0
+        height: 0
+        border-top: 9px solid transparent
+        border-bottom: 9px solid transparent
+
+      > .label
+        +sr-only
 
     &.-dec
-      &::after
-        border-right: 12px solid $co--wt
+      > .container
+        &::after
+          border-right: 12px solid $co--wt
     &.-inc
-      &::after
-        border-left: 12px solid $co--wt
+      > .container
+        &::after
+          border-left: 12px solid $co--wt
 
     &:active
       background-color: lighten($co--green, 10)
-
-    span
-      +sr-only
 
   > .container
     overflow: hidden
@@ -88,6 +91,8 @@ $ctrlwidth: 27.78%
   transition: transform $tr--m
 
   > .item
+    display: flex
+    align-items: center
     flex: none
     width: 100%
 

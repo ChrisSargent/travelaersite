@@ -24,7 +24,9 @@ const Controls = ({controls, activeIndex, onClick}) => {
   return (
     <div onClick={onClick} className={css.main + compName}>
       <button data-modtarget="dec" className={css.control + ' -dec'}>
-        <span>Prev</span>
+        <div className={css.container}>
+          <span className={css.label}>Prev</span>
+        </div>
       </button>
       <div className={css.container}>
         <ul className={css.list + compName} style={slideStyles}>
@@ -32,7 +34,9 @@ const Controls = ({controls, activeIndex, onClick}) => {
         </ul>
       </div>
       <button data-modtarget="inc" className={css.control + ' -inc'}>
-        <span>Next</span>
+        <div className={css.container}>
+          <span className={css.label}>Next</span>
+        </div>
       </button>
     </div>
   )
