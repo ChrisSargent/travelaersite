@@ -61,14 +61,14 @@ function hydrateAndRender(res, props) {
   return Promise.all(fetchDataArray).then(() => {
     const doctype = '<!doctype html>'
     const hydrate = store.getState()
-    const testing = renderToString(
+    const appHtml = renderToString(
       <AppHTML hydrate={hydrate}>
         <Provider store={store}>
           <RouterContext {...props}/>
         </Provider>
       </AppHTML>
     )
-    res.send(doctype + testing)
+    res.send(doctype + appHtml)
   }).catch((error) => {
     console.log(error);
     res.sendStatus(500)
