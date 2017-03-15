@@ -2,8 +2,8 @@
 $map-height: 200px
 
 .section-map
-  border-bottom: $map-height solid transparent
   z-index: $z--under
+  border-bottom: $map-height solid transparent
 
   > .container
     +cont--xl
@@ -19,9 +19,9 @@ $map-height: 200px
   justify-content: center
 
   > .vcard-company
-    padding-left: $pd--s
     line-height: $lh--lg
     display: block
+    padding-left: $pd--s
     color: $co--wt
 
     .item.-email
@@ -32,26 +32,27 @@ $map-height: 200px
 
   > .map
     position: absolute
+    height: calc(#{$map-height} + #{$angle_h_ratio})
     top: calc(100% - #{$angle_h_ratio / 2})
+    left: 0
     display: block
     width: 100%
-    height: calc(#{$map-height} + #{$angle_h_ratio})
 
 @media screen and (min-width: $bp--mn)
   .section-map
-    border-bottom: 0
     margin: ($angle_h_ratio / -2) 0!important
+    border-bottom: 0
 
     > .container
-      padding-left: 0
       padding-right: 0
+      padding-left: 0
 
   .main-map
     > .map
       position: relative
-      height: auto
-      top: auto
       z-index: $z--mid
+      top: auto
+      height: auto
       margin: ($pd--v / -1) 0
 
     > .vcard-company
