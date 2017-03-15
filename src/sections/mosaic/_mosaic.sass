@@ -8,19 +8,17 @@
   display: flex
   flex-wrap: wrap
   width: 100%
-  background-color: black
 
   > .item
-    +bg-cover
     line-height: $lh--m
     position: relative
+    z-index: $z--base
+    display: flex
+    flex: 1 1 50%
+    min-height: 50vw
+    transition: background-color $tr--m
     color: $co--wt
     background-color: $co--blue-grey--dk
-    min-height: 50vw
-    flex-grow: 1
-    z-index: $z--base
-    transition: background-color $tr--m
-    flex-basis: 50%
 
     &.-mlarge,
     &.-large
@@ -54,8 +52,8 @@
   .list-mosaic
     > .item
       flex: 2 1 400px
-      min-height: 320px
       min-width: 20%
+      min-height: 320px
 
       &::after
         display: none
