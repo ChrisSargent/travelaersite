@@ -13,8 +13,10 @@
 
 .list-social
   +inline-children-item(4px, 4px)
+  flex-wrap: wrap
 
 .link-social
+  font-weight: 400
   display: flex
   align-items: center
   justify-content: center
@@ -23,7 +25,6 @@
   text-align: center
   text-decoration: none
   color: $co--blue--md
-  font-weight: 400
 
   > .label
     font-size: $fs--m
@@ -40,9 +41,8 @@
     padding: $pd--ll
 
     &.-condensed
-      padding: 0
       min-width: 0
-
+      padding: 0
 
   .list-social
     display: block
