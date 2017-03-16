@@ -1,46 +1,11 @@
 import React, {PureComponent} from 'react'
+import {connect} from 'react-redux'
+import {getActiveIndex} from '../../reducers/sliders'
 import css from '../../lib/css'
 import Screenshots from '../../components/screenshots'
+import Slider from '../../components/slider'
 import Wysiwyg from '../../components/wysiwyg'
 import './_product-modules.sass'
-
-const Controls = ({controls, activeIndex, onClick}) => {
-  const compName = 'ctrls'
-  const slideStyles = {
-    transform: 'translate3d(' + activeIndex * -100 + '%, 0, 0)'
-  }
-  const controlsMap = controls.map((control, index) => {
-    var titleClass
-
-    titleClass = css.control + ' -text'
-    index === activeIndex && (titleClass += css.active)
-
-    return (
-      <li key={index} className={css.item}>
-        <button data-modtarget={index} className={titleClass}>{control.module_title}</button>
-      </li>
-    )
-  })
-  return (
-    <div onClick={onClick} className={css.main + compName}>
-      <button data-modtarget="dec" className={css.control + ' -dec'}>
-        <div className={css.container}>
-          <span className={css.label}>Prev</span>
-        </div>
-      </button>
-      <div className={css.container}>
-        <ul className={css.list + compName} style={slideStyles}>
-          {controlsMap}
-        </ul>
-      </div>
-      <button data-modtarget="inc" className={css.control + ' -inc'}>
-        <div className={css.container}>
-          <span className={css.label}>Next</span>
-        </div>
-      </button>
-    </div>
-  )
-}
 
 const Modules = ({modules, activeIndex}) => {
   const compName = 'prodmod'
@@ -52,7 +17,7 @@ const Modules = ({modules, activeIndex}) => {
     itemClass = css.item
     index === activeIndex && (itemClass += css.active)
 
-    // Effectily move each module on top of each other
+    // Effectively move each module on top of each other
     itemStyle = {
       left: -100 * (index - 1) + '%'
     }
@@ -74,77 +39,53 @@ const Modules = ({modules, activeIndex}) => {
   )
 }
 
-export default class ProductModules extends PureComponent {
+class ProductModules extends PureComponent {
   constructor(props) {
     super(props)
-    this.state = {
-      activeModule: 0,
-      totalModules: this.props.product_module.length
-    }
-    this.handleClick = this.handleClick.bind(this)
-    this.nextActiveIndex = this.nextActiveIndex.bind(this)
+    this.screenshots = []
+    this.createScreenshotArray()
   }
 
-  handleClick(ev) {
-    var {activeModule} = this.state,
-      nextActive
+  createScreenshotArray() {
+    // Create an array of screenshots to pass to the Screenshots module
+    const {product_module} = this.props
 
-    if (!ev.target.dataset.modtarget)
-      return
+    const images = product_module.map((modules) => {
+      return modules.module_screenshot;
+    })
 
-    ev.preventDefault()
-    switch (ev.target.dataset.modtarget) {
-      case 'inc':
-        nextActive = activeModule + 1
-        break
-
-      case 'dec':
-        nextActive = activeModule - 1
-        break
-
-      default:
-        nextActive = parseFloat(ev.target.dataset.modtarget)
+    this.screenshots[0] = {
+      images
     }
-    this.nextActiveIndex(nextActive)
-  }
-
-  nextActiveIndex(nextActive) {
-    const {totalModules} = this.state
-    if (nextActive < 0)
-      nextActive = totalModules - 1
-
-    if (nextActive > totalModules - 1)
-      nextActive = 0
-
-    this.setState({activeModule: nextActive})
   }
 
   render() {
-    var screenshots = [],
-      images = []
-    const {product_module, title, compName} = this.props
+    const {product_module, title, compName, activeSlide} = this.props
 
     if (!product_module)
-      return false
+      return null
 
-    const {activeModule} = this.state
-    // Create an array of screenshots to pass to the Screenshots module
-    for (var i = 0; i < product_module.length; i++) {
-      images[i] = product_module[i].module_screenshot
-    }
-    screenshots[0] = {
-      images
-    }
+    const titlesMap = product_module.map((mod, index) => {
+      return (
+        <button key={index} data-slideind={index} className={css.control + ' -text'}>{mod.module_title}</button>
+      )
+    })
 
     return (
       <div className={css.main + compName}>
         <div className={'side-' + compName}>
           <h1 className={css.title}>{title}</h1>
-          <Controls controls={product_module} activeIndex={activeModule} onClick={this.handleClick} modifier={compName}/>
+          <Slider slides={titlesMap} id={compName} />
         </div>
-        <Screenshots screenshots={screenshots} activeIndex={activeModule}/>
-        <Modules modules={product_module} activeIndex={activeModule}/>
+        <Screenshots screenshots={this.screenshots} activeIndex={activeSlide} />
+        <Modules modules={product_module} activeIndex={activeSlide} />
       </div>
     )
   }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  activeSlide: getActiveIndex(state, ownProps.compName)
+})
+
+export default connect(mapStateToProps)(ProductModules)

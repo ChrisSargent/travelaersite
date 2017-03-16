@@ -58,7 +58,7 @@ function travelaer_display_submenu($object)
 
 function travelaer_get_author_info($object)
 {
-    $user_id = $object['author'];
+    $user_id = travelaer_get_value($object, 'author');
     $author['avatar'] = get_field('avatar', 'user_'.$user_id);
     $author['description'] = get_the_author_meta('description');
     $author['name'] = get_the_author();
@@ -66,16 +66,33 @@ function travelaer_get_author_info($object)
     return $author;
 }
 
+function travelaer_get_id($post) {
+  if (isset($post['ID'])) {
+    return $post['ID'];
+  } else {
+    return $post['id'];
+  }
+}
+
+function travelaer_get_value($object, $key) {
+  if (isset($object[$key])) {
+      return $object[$key];
+  } else {
+      return $object['post_'.$key];
+  };
+}
+
 function travelaer_get_category_info($object)
 {
-    $categories = [];
-    foreach ($object['categories'] as $id) {
-        $category = get_the_category_by_ID($id);
-        if ('Uncategorized' !== $category) {
-            $categories[] = $category;
-        }
-    }
+    $post_id = travelaer_get_id($object);
+    $args = array('fields' => 'names');
+    $categories = wp_get_post_categories($post_id, $args);
 
+    foreach ($categories as $key => &$category) {
+      if ('Uncategorized' === $category) {
+          array_splice($categories, $key, 1);
+      }
+    };
     return $categories;
 }
 
@@ -92,7 +109,11 @@ function travelaer_get_featured_image($object)
 
 function travelaer_get_comments_info($object)
 {
-    $comments = get_comments(array('status' => 'approve', 'post_id' => $object['id']));
+    $post_id = travelaer_get_id($object);
+    $comments = get_comments(array(
+      'status' => 'approve',
+      'post_id' => $post_id
+    ));
     $t_comments_info['total'] = count($comments);
 
     if (empty($comments)) {
@@ -139,46 +160,40 @@ function travelaer_rest_prepare($response, $post, $request)
     $include_latest_posts = &$response->data['acf']['latest_posts'];
 
     if ($include_latest_posts) {
-      $args = array(
+        $args = array(
         'numberposts' => 2,
         'post_type' => 'post',
         'post_status' => 'publish',
       );
-      $latest_posts = wp_get_recent_posts($args);
-      foreach ($latest_posts as &$post) {
-        $post['featured_media'] = get_post_thumbnail_id($post['ID']);
-        $mod_post['id'] = $post['ID'];
-        $mod_post['link'] = get_permalink($post['ID']);
-        $mod_post['title'] = $post['post_title'];
-        $mod_post['date_gmt'] = $post['post_date_gmt'];
-        $mod_post['t_featured_image'] = travelaer_get_featured_image($post);
-        $mod_post['t_author'] = travelaer_get_author_info($post);
-        $mod_post['t_comments_info'] = travelaer_get_comments_info($post);
-        $mod_post['t_categories'] = travelaer_get_category_info($post);
-        $post = $mod_post;
-      }
-      $include_latest_posts = $latest_posts;
+        $latest_posts = wp_get_recent_posts($args);
+        // wlog($latest_posts);
+        foreach ($latest_posts as &$post) {
+            $post['featured_media'] = get_post_thumbnail_id($post['ID']);
+            $mod_post['id'] = $post['ID'];
+            $mod_post['link'] = get_permalink($post['ID']);
+            $mod_post['title'] = $post['post_title'];
+            $mod_post['date_gmt'] = $post['post_date_gmt'];
+            $mod_post['t_featured_image'] = travelaer_get_featured_image($post);
+            $mod_post['t_author'] = travelaer_get_author_info($post);
+            $mod_post['t_comments_info']['total'] = $post['comment_count'];
+            $mod_post['t_categories'] = travelaer_get_category_info($post);
+            $post = $mod_post;
+        }
+        $include_latest_posts = $latest_posts;
     }
 
     if (!empty($content_blocks)) {
         foreach ($content_blocks as &$content_block) {
             // Note: $content_block is assigned by reference
         switch ($content_block['acf_fc_layout']) {
-          case 'hero':
-            if ($content_block['latest_posts']) {
-
-
-            }
-            break;
-
           case 'mosaic_team':
           case 'mosaic':
             $tiles = $content_block['tiles'];
             $tiles = travelaer_add_acf($tiles);
             foreach ($tiles as &$tile) {
                 if (isset($tile['acf']['type']) && $tile['acf']['type'] === 'quote') {
-                  $quote = travelaer_get_fields($tile['acf']['quote']);
-                  $tile['acf'] = array_merge($tile['acf'], $quote['acf']);
+                    $quote = travelaer_get_fields($tile['acf']['quote']);
+                    $tile['acf'] = array_merge($tile['acf'], $quote['acf']);
                 }
             }
             $content_block['tiles'] = $tiles;
@@ -192,6 +207,11 @@ function travelaer_rest_prepare($response, $post, $request)
           case 'products':
             $products = $content_block['products'];
             $content_block['products'] = travelaer_add_acf($products);
+            break;
+
+          case 'quotes':
+            $quotes = $content_block['quotes'];
+            $content_block['quotes'] = travelaer_add_acf($quotes);
             break;
 
           default:
@@ -271,6 +291,16 @@ function travelaer_acf_format_tax_slug($value)
     return $value;
 }
 add_filter('acf/format_value/type=taxonomy', 'travelaer_acf_format_tax_slug', 10, 3);
+
+// function travelaer_acf_format_quotes($value)
+// {
+//     wlog($value);
+//     // if (!empty($value)) {
+//     //     $value = get_term($value)->slug;
+//     // }
+//     return $value;
+// }
+// add_filter('acf/format_value/type=post_object', 'travelaer_acf_format_quotes', 10, 3);
 
 // add_filter('rest_cache_headers', function ($headers) {
 //     $headers['Cache-Control'] = 'public, max-age=3600';

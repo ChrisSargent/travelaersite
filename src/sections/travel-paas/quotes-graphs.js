@@ -1,7 +1,6 @@
 import React from 'react'
 import css from '../../lib/css'
-import Cite from '../../components/cite'
-import Wysiwyg from '../../components/wysiwyg'
+import Quote from '../../components/quote'
 import './_travel-paas.sass'
 import './_list-graphs.sass'
 
@@ -11,10 +10,7 @@ const QuotesGraphs = ({compName, graphs, quotes, title}) => {
 
     return (
       <li key={index} className={css.item}>
-        <blockquote className={css.main + 'quote'}>
-          <Wysiwyg content={content}/>
-          <Cite name={name} jobTitle={job_title} company={company} />
-        </blockquote>
+        <Quote content={content} name={name} jobTitle={job_title} company={company} />
       </li>
     )
   })

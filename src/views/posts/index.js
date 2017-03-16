@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {fetchMorePosts, fetchInitPosts, fetchLatestPosts} from '../../actions/posts'
-import {gotAllPosts, getLoadingMore} from '../../reducers/posts'
+import {getPosts, gotAllPosts, getLoadingMore} from '../../reducers/posts'
 import css from '../../lib/css'
 import {image404, trimContent, stripTags} from '../../lib/utils'
 import Actions from '../../components/actions'
@@ -178,7 +178,7 @@ class Posts extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({posts: state.posts, gotAllPosts: gotAllPosts(state), getLoadingMore: getLoadingMore(state)})
+const mapStateToProps = (state) => ({posts: getPosts(state), gotAllPosts: gotAllPosts(state), getLoadingMore: getLoadingMore(state)})
 
 const mapDispatchToProps = (dispatch) => ({
   fetchLatestPosts() {

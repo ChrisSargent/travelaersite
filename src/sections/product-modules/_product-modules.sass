@@ -40,85 +40,6 @@ $ctrlwidth: 27.78%
     word-wrap: break-word
     color: $co--bk
 
-.main-ctrls
-  display: flex
-  align-items: center
-
-  .control
-    +input-reset
-
-  > .control
-    +focus
-    cursor: pointer
-    background-color: $co--green
-
-    > .container
-      display: flex
-      align-items: center
-      justify-content: center
-      flex: none
-      pointer-events: none
-
-      &::after
-        content: ' '
-        display: block
-        width: 0
-        height: 0
-        border-top: 9px solid transparent
-        border-bottom: 9px solid transparent
-
-      > .label
-        +sr-only
-
-    &.-dec
-      > .container
-        &::after
-          border-right: 12px solid $co--wt
-    &.-inc
-      > .container
-        &::after
-          border-left: 12px solid $co--wt
-
-    &:active
-      background-color: lighten($co--green, 10)
-
-  > .container
-    overflow: hidden
-    flex: 1
-
-.list-ctrls
-  display: flex
-  transition: transform $tr--m
-
-  > .item
-    display: flex
-    align-items: center
-    flex: none
-    width: 100%
-
-  .control.-text
-    +heading-spaced
-    font-size: $fs--mms
-    line-height: $lh--m
-    position: relative
-    z-index: $z--base
-    display: block
-    flex: none
-    width: 100%
-    height: 100%
-    padding: 0 $pd--xxs
-    text-align: center
-    color: $co--blue-grey--tt
-    background-color: transparent
-
-    &.-active,
-    &:focus
-      color: $co--wt
-      outline: none
-
-      &::before
-        transform: scale3d(1, 1, 1)
-
 .list-prodmod
   display: flex
   overflow: hidden
@@ -175,39 +96,10 @@ $ctrlwidth: 27.78%
       padding-left: $pd--m
       text-align: left
 
-  .list-ctrls
-    display: block
-    overflow: auto
-    width: auto
-    transform: none!important
-
-    .control.-text
-      font-size: $fs--xs
-      line-height: $lh--lg
-      padding: 0.42rem $pd--xl 0.42rem $pd--m
-      cursor: pointer
-      text-align: left
-
-      &::before
-        +stretch
-        content: ' '
-        z-index: $z--under
-        transition: transform $tr--f
-        transform: scale3d(1, 0, 1)
-        transform-origin: top
-        background: linear-gradient(to right, transparentize($co--blue--dk, 0.6) 0%, transparentize($co--blue--dk, 1) 100%)
-
-      &:hover
-        color: $co--brightyellow
-
   .list-prodmod
     align-items: center
     padding-top: 0
     padding-left: $pd--ml
-
-  .main-ctrls
-    > .control
-      display: none
 
   .main-prodmod
     > .title

@@ -1,0 +1,56 @@
+@import tools
+
+.main-quote
+  > .wysiwyg
+    &::before
+      content: '\201C'
+
+    &::after
+      content: '\201D'
+
+  .footer-quote
+    font-size: $fs--xs
+    margin-top: 1em
+    color: $co--brightyellow
+
+  &.-tile
+    > .wysiwyg
+      &::before,
+      &::after
+        content: none
+
+    .footer-quote
+      .fn,
+      .pos
+        color: $co--wt
+
+  &.-quotes
+    text-align: center
+    color: $co--wt
+
+    > .wysiwyg
+      +ff--base
+      line-height: $lh--ml
+      font-weight: 700
+
+.footer-quote
+  .fn
+    &::after
+      content: ', '
+
+  .co
+    display: block
+
+
+@media screen and (min-width: $bp--mn)
+  .main-quote
+    .footer-quote
+      font-size: $fs--lm
+
+    &.-tile
+      .footer-quote
+        font-size: $fs--m
+
+    &.-quotes
+      > .wysiwyg
+        font-size: $fs--xl

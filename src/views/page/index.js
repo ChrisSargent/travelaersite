@@ -12,6 +12,7 @@ import ImageBanner from '../../sections/image-banner'
 import Gmap from '../../sections/map'
 import Mosaic from '../../sections/mosaic'
 import Positions from '../../sections/positions'
+import Quotes from '../../sections/quotes'
 import ProductModules from '../../sections/product-modules'
 import Products from '../../sections/products'
 import RecentPosts from '../../components/recent-posts'
@@ -138,6 +139,11 @@ class Page extends PureComponent {
         case 'positions':
           name = 'positions'
           content = <Positions {...block} compName={name}/>
+          break
+
+        case 'quotes':
+          name = 'quotes'
+          content = <Quotes {...block} compName={name}/>
           break
 
         default:

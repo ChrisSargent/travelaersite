@@ -20,9 +20,14 @@ section
   &.-olbottom
     padding-bottom: $overlap-size / 2
 
-._skew
+.section-background
   +stretch
   z-index: $z--under
+
+  ._bgcol
+    +stretch
+
+._skew
   overflow: hidden
   box-sizing: content-box
   transform: skewY($angle--ban) scaleZ(1)
@@ -31,7 +36,6 @@ section
   // Prevents a rendering artefact
 
   > ._skewcorrect
-    +stretch
     transform: skewY($angle--ban / -1)
 
   &.-oltop,

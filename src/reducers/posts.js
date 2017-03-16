@@ -10,6 +10,10 @@ export const getLoadingMore = ({posts}) => {
   return posts.fetchingMore
 }
 
+export const getPosts = ({posts}) => {
+  return posts
+}
+
 const _addFetchedPosts = (action, fetchedPosts) => {
   // Puts each post in to an object, indexed by its slug (if it's not already present)
   const posts = action.payload.data
