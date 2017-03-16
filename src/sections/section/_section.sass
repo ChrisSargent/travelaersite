@@ -7,11 +7,8 @@
   left: 0
   display: block
   width: 100%
-  border-color: transparent
-
-=olcolor($color)
-  border-color: transparentize($color, 0.5)
-  background-color: transparentize($color, 0.5)
+  border-color: currentColor
+  background-color: currentColor
 
 section
   position: relative
@@ -19,6 +16,9 @@ section
 
   &.-olbottom
     padding-bottom: $overlap-size / 2
+
+  &.-olboth
+    margin-top: calc(#{$angle_h_ratio / -2} - #{$overlap-size} - 1px)
 
 .section-background
   +stretch
@@ -38,8 +38,10 @@ section
   > ._skewcorrect
     transform: skewY($angle--ban / -1)
 
+.section-background
   &.-oltop,
-  &.-olbottom
+  &.-olbottom,
+  &.-olboth
     &::after
       @extend %overlap
 
@@ -61,6 +63,15 @@ section
         border-bottom-width: $overlap-size / 2
         border-bottom-style: solid
 
+  &.-olboth
+    background-color: currentColor
+    box-shadow: 0px 10px 0px 30px currentColor
+    border-top: $overlap-size solid transparentize($co--wt, 0.8)
+    top: $overlap-size / -1
+
+    &::after
+      display: none
+
   &.-olsmall
     &::after
       height: $overlap-size / 2
@@ -74,20 +85,16 @@ section
       height: $overlap-size
 
   &.-olblue
-    &::after
-      +olcolor($co--blue--md)
+    color: transparentize($co--blue--md, 0.5)
 
   &.-olbluedk
-    &::after
-      +olcolor($co--blue--dk)
+    color: transparentize($co--blue--dk, 0.5)
 
   &.-olwhite
-    &::after
-      +olcolor($co--wt)
+    color: transparentize($co--wt, 0.5)
 
   &.-olgreen
-    &::after
-      +olcolor($co--green)
+    color: transparentize($co--green, 0.5)
 
 .-skewbottom,
 .-skewtop,
@@ -104,6 +111,9 @@ section
   + .-skewboth
     z-index: $z--top
     margin-top: calc(#{$angle_h_ratio / -2} - 1px)
+
+  + .-olboth
+    margin-top: calc(#{$angle_h_ratio / -2} - #{$overlap-size} - 1px)
 
 .-skewbottom
   > ._skew
@@ -132,7 +142,7 @@ section
     &.-olbottom
       padding-bottom: $overlap-size
 
-  ._skew
+  .section-background
     &.-olsingle
       &::after
         height: $overlap-size

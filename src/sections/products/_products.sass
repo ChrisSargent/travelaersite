@@ -8,12 +8,15 @@ $inset: 35vw
 
 .section-products
   z-index: $z--mid
+  transform: translateZ(10px)
 
   > .container
     +cont--xl
     +block-pad
 
   > .section-background
+    border-bottom: 0
+
     &::after
       $shadow: 60px
       content: ' '
@@ -46,7 +49,7 @@ $inset: 35vw
       ._bgcol
         background-image: linear-gradient(to bottom, transparentize($co--blue-vio, 1) 40%, transparentize($co--blue-vio, 0.6) 100%)
 
-  + section
+  + .section-hero
     padding-top: $pd--v / 2
     // Allow some extra from for the overlapping phones
 
@@ -86,7 +89,7 @@ $inset: 35vw
         background-size: auto 175%
         background-position-y: $pd--v + 3rem
 
-    + section
+    + .section-hero
       padding-top: $pd--v
       // Allow some extra from for the overlapping phones
 

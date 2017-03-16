@@ -22,6 +22,9 @@ class Slider extends PureComponent {
   }
 
   autoIncrement() {
+    const {length} = this.props.slides
+    if (length < 2)
+      return
     const self = this
     const timing = this.props.auto * 1000
     setTimeout(function () {

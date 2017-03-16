@@ -117,7 +117,7 @@ class Page extends PureComponent {
 
         case 'image_banner':
           name = 'imagebanner'
-          image = block.image_fixed
+          image = null
           content = <ImageBanner {...block} compName={name}/>
           break
 
