@@ -12,12 +12,12 @@ if (process.env.NODE_ENV === `development`) {
   Perf.start()
 }
 
-var hydratedState = document.getElementById('hydrated-state')
-hydratedState
-  ? hydratedState = JSON.parse(hydratedState.innerHTML)
-  : hydratedState = undefined
-const store = configureStore(hydratedState)
 const root = document.getElementById('root')
+const hydratedStateEl = document.getElementById('hydrated-state')
+const hydratedState = hydratedStateEl
+  ? JSON.parse(hydratedStateEl.innerHTML)
+  : undefined
+const store = configureStore(hydratedState)
 
 render(
   <Provider store={store}>

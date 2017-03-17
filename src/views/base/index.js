@@ -27,13 +27,21 @@ class Base extends PureComponent {
 
   observeFonts() {
     observableFonts.map((font) => {
-      const observedFont = new FontFaceObserver(font.family);
-      observedFont.load(null, 5000).then(() => {
-        document.body.className += ' ' + font.id;
+      const weights = font.weights.map((weight) => {
+        return new FontFaceObserver(font.family, {weight: weight});
+      })
+
+      const observedWeights = weights.map((weight) => {
+        return weight.load(null, 5000)
+      })
+
+      Promise.all(observedWeights).then(() => {
+        document.body.className += ' ' + font.id
       }, () => {
-        console.log(font.family + ' is not available after waiting 5 seconds');
-      });
-      return observedFont
+        console.log(font.family + ' is not available after waiting 5 seconds')
+      })
+
+      return null
     })
   }
 
@@ -42,7 +50,7 @@ class Base extends PureComponent {
 
     return (
       <div>
-        <Head />
+        <Head/>
         <Header/>
         {React.cloneElement(children, {key: location.pathname})}
         <Footer/>

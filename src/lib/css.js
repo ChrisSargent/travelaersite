@@ -36,13 +36,16 @@ module.exports = {
   observableFonts: [
     {
       id: 'ff--feature',
-      family: 'Alternate Gothic'
+      family: 'Alternate Gothic',
+      weights: [400]
     }, {
       id: 'ff--base',
-      family: 'Montserrat'
+      family: 'Montserrat',
+      weights: [300,400,700]
     }, {
       id: 'ff--p',
-      family: 'Neuton'
+      family: 'Neuton',
+      weights: [300,400,700]
     }
   ]
 }
