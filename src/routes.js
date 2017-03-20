@@ -34,6 +34,7 @@ const routes = (
   <Route onEnter={handleSiteEnter} onChange={handleSiteChange} component={Base}>
     <Route path='/blog/'>
       <IndexRoute component={Posts}/>
+      <Route path='category/:category' component={Posts}/>
       <Route path="(:slug)" component={Posts}/>
     </Route>
     <Route path='/company/'>

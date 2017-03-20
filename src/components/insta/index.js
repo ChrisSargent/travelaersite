@@ -9,10 +9,29 @@ import SVG from '../svg'
 import './_insta.sass'
 
 class Insta extends PureComponent {
+  constructor() {
+    super()
+    this.loadInsta = this.loadInsta.bind(this)
+  }
   componentDidMount() {
-    const {instAuthToken, instUserNameID} = this.props
+    this.loadInsta(this.props)
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.loadInsta(newProps)
+  }
+
+  loadInsta(props) {
+    if (!props.options)
+      return
+
+    const {instAuthToken, instUserNameID} = props.options
+    const user = {
+      instAuthToken,
+      instUserNameID
+    }
     if (instAuthToken && instUserNameID) {
-      this.props.dispatch(fetchInsta(this.props))
+      this.props.dispatch(fetchInsta(user))
     }
   }
 
@@ -65,9 +84,7 @@ class Insta extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const {instAuthToken, instUserName, instUserNameID} = getOptions(state)
-  const feed = getInsta(state)
-  return ({instAuthToken, instUserName, instUserNameID, feed})
+  return ({options: getOptions(state), feed: getInsta(state)})
 }
 
 export default connect(mapStateToProps)(Insta)

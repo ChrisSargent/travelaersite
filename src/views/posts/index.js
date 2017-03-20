@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import {fetchMorePosts, fetchInitPosts, fetchLatestPosts} from '../../actions/posts'
-import {getPosts, gotAllPosts, getLoadingMore} from '../../reducers/posts'
+import {fetchMorePosts, fetchInitPosts, fetchPosts} from '../../actions/posts'
+import {getPosts, getLoadingMore} from '../../reducers/posts'
 import css from '../../lib/css'
 import {image404, trimContent, stripTags} from '../../lib/utils'
 import Actions from '../../components/actions'
@@ -17,9 +17,11 @@ class Posts extends PureComponent {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this)
-    this.setupLatestPosts = this.setupLatestPosts.bind(this)
+    this.setupRelatedPosts = this.setupRelatedPosts.bind(this)
     this.setupPostsObject = this.setupPostsObject.bind(this)
-    this.postsObj = this.setupPostsObject(this.props.posts, this.props.params.slug)
+    this.setPostsCategory = this.setPostsCategory.bind(this)
+    this.setPostsCategory(this.props)
+    this.postsObj = this.setupPostsObject(this.props)
     this.compName = 'posts'
     this.overlap = [
       {
@@ -36,75 +38,89 @@ class Posts extends PureComponent {
         loading: false
       }
     ]
-    console.log(props);
   }
 
   static fetchData(store, props) {
     const {slug} = props.params
     if (slug) {
-      return store.dispatch(fetchInitPosts(slug))
+      return store.dispatch(fetchInitPosts(slug, this.postsCategory))
     } else {
-      return store.dispatch(fetchLatestPosts())
+      return store.dispatch(fetchPosts(this.postsCategory))
     }
   }
 
   componentDidMount() {
     const {slug} = this.props.params
     if (slug) {
-      this.props.fetchInitPosts(slug)
+      this.props.fetchInitPosts(slug, this.postsCategory)
     } else {
-      this.props.fetchLatestPosts()
+      this.props.fetchPosts(this.postsCategory)
     }
   }
 
   componentWillReceiveProps(newProps) {
-    this.postsObj = this.setupPostsObject(newProps.posts, newProps.params.slug)
+    this.setPostsCategory(newProps)
+    this.postsObj = this.setupPostsObject(newProps)
   }
 
   componentDidUpdate() {
     window.twttr && window.twttr.widgets.load()
   }
 
-  setupLatestPosts(posts, slug) {
-    const {slugsByDate, fetchedPosts} = posts;
-    // Looks up the slug from the slugsByDate array, grabs the corresponding post from the fetchedPosts array and puts it into the returned object.
+  setPostsCategory(props) {
+    this.postsCategory = props.params.category || '__latest'
+  }
+
+  setupRelatedPosts(props) {
+    const {fetchedPosts, orderedSlugs} = props.posts
+
+    if (!orderedSlugs[this.postsCategory])
+      return null
+
+    const {slug} = props.params
+    const {slugs} = orderedSlugs[this.postsCategory]
+    // Looks up the slug from the posts array, grabs the corresponding post from the fetchedPosts array and puts it into the returned object.
     var count = 0,
-      maxPosts = slugsByDate.length,
-      latestPosts = [],
+      maxPosts = slugs.length,
+      relatedPosts = [],
       lookupSlug
 
     slug && (maxPosts = 8)
 
-    for (var i = 0; i < slugsByDate.length; i++) {
-      lookupSlug = slugsByDate[i]
-      lookupSlug !== slug && count < maxPosts && (latestPosts.push(fetchedPosts[lookupSlug]))
+    for (var i = 0; i < slugs.length; i++) {
+      lookupSlug = slugs[i]
+      lookupSlug !== slug && count < maxPosts && (relatedPosts.push(fetchedPosts[lookupSlug]))
       count++
     }
-    return latestPosts
+    return relatedPosts
   }
 
-  setupPostsObject(posts, slug) {
+  setupPostsObject(props) {
     // Returns an object with the main post or posts and those to display in the sidebar
-    const {slugsByDate, fetchedPosts} = posts
+    const {fetchedPosts} = props.posts
+    const {slug} = props.params
 
-    if (!slugsByDate || !fetchedPosts)
+    if (!fetchedPosts)
       return null
 
-    const latestPosts = this.setupLatestPosts(posts, slug);
+    const relatedPosts = this.setupRelatedPosts(props);
+
+    if (!relatedPosts)
+      return null
 
     if (slug) {
       const singlePost = fetchedPosts[slug]
       return {
         main: [singlePost],
-        side: latestPosts,
+        side: relatedPosts,
         heroImage: singlePost.t_featured_image,
         excerpts: false
       }
     }
     return {
-      main: latestPosts.slice(0, 5).concat(latestPosts.slice(10)),
-      side: latestPosts.slice(5, 10),
-      heroImage: latestPosts[0].t_featured_image,
+      main: relatedPosts.slice(0, 5).concat(relatedPosts.slice(10)),
+      side: relatedPosts.slice(5, 10),
+      heroImage: relatedPosts[0].t_featured_image,
       excerpts: true
     }
   }
@@ -113,7 +129,7 @@ class Posts extends PureComponent {
     if (!ev.target.dataset.actionparam)
       return
     ev.preventDefault()
-    this.props.fetchMorePosts()
+    ev.target.dataset.actionparam === 'loadmore' && this.props.fetchMorePosts(this.postsCategory)
   }
 
   render() {
@@ -121,7 +137,7 @@ class Posts extends PureComponent {
       pageTitle = 'Blog',
       showMore = true
 
-    const {gotAllPosts, getLoadingMore} = this.props
+    const {getLoadingMore} = this.props
     const {postsObj} = this
 
     if (!postsObj)
@@ -140,11 +156,12 @@ class Posts extends PureComponent {
       )
     })
 
-    showMore = !gotAllPosts && !singlePost
+    const categoryObj = this.props.posts.orderedSlugs[this.postsCategory]
+    const gotAllCategoryPosts = categoryObj.slugs.length >=  categoryObj.totalPosts
 
-    getLoadingMore
-      ? actions[0].loading = true
-      : actions[0].loading = false
+    showMore = !gotAllCategoryPosts && !singlePost
+
+    actions[0].loading = getLoadingMore
 
     if (singlePost && !mainPost.invalid) {
       heroModifier = ''
@@ -179,17 +196,17 @@ class Posts extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({posts: getPosts(state), gotAllPosts: gotAllPosts(state), getLoadingMore: getLoadingMore(state)})
+const mapStateToProps = (state) => ({posts: getPosts(state), getLoadingMore: getLoadingMore(state)})
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchLatestPosts() {
-    dispatch(fetchLatestPosts())
+  fetchPosts(category) {
+    dispatch(fetchPosts(category))
   },
-  fetchMorePosts() {
-    dispatch(fetchMorePosts())
+  fetchMorePosts(category) {
+    dispatch(fetchMorePosts(category))
   },
-  fetchInitPosts(slug) {
-    dispatch(fetchInitPosts(slug))
+  fetchInitPosts(slug, category) {
+    dispatch(fetchInitPosts(slug, category))
   }
 })
 
