@@ -114,7 +114,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "30",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -131,25 +131,6 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5825c2bf7950e",
-                            "label": "Fullscreen Height",
-                            "name": "fullscreen",
-                            "type": "true_false",
-                            "instructions": "Select to make the hero section fullscreen height.",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "30",
-                                "class": "",
-                                "id": ""
-                            },
-                            "message": "",
-                            "default_value": 0,
-                            "ui": 0,
-                            "ui_on_text": "",
-                            "ui_off_text": ""
-                        },
-                        {
                             "key": "field_5825029f7f07a",
                             "label": "Hero BG Image",
                             "name": "image",
@@ -158,7 +139,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "40",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -1339,6 +1320,58 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                {
+                    "key": "58cbe70bf7101",
+                    "name": "news",
+                    "label": "News",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_58cbe70bf7102",
+                            "label": "Skew",
+                            "name": "skew",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "field_5829b3244235d"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_58cbe70bf7103",
+                            "label": "Overlaps",
+                            "name": "overlaps",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "field_586cf1f2d4d03"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             ]
         },
@@ -1399,5 +1432,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1489680895
+    "modified": 1489757981
 }

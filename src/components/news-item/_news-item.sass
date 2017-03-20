@@ -1,0 +1,47 @@
+@import tools
+
+.article-newsitem
+  width: 100%
+  color: $co--wt
+  margin: 0 auto
+
+  > .wysiwyg
+    +ff--base
+    line-height: $lh--lg
+    margin-top: $pd--s
+    opacity: 0.9
+    font-size: 0.8rem
+
+    a
+      color: $co--brightyellow
+
+  > .link
+    display: block
+    margin-top: $pd--s
+    text-decoration: none
+    color: $co--brightyellow
+    font-size: 0.8rem
+
+    &:hover
+      text-decoration: underline
+
+.header-newsitem
+  border-bottom: 1px solid transparentize($co--wt, 0.7)
+
+  .title
+    +header-default
+    color: $co--wt
+
+@media screen and (min-width: $bp--mn)
+  .article-newsitem
+    max-width: 600px
+
+  .article-newsitem
+    > .wysiwyg
+
+
+    > .link
+
+  .header-newsitem
+    .title
+      font-size: $fs--m

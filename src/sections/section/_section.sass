@@ -17,9 +17,6 @@ section
   &.-olbottom
     padding-bottom: $overlap-size / 2
 
-  &.-olboth
-    margin-top: calc(#{$angle_h_ratio / -2} - #{$overlap-size} - 1px)
-
 .section-background
   +stretch
   z-index: $z--under
@@ -65,9 +62,9 @@ section
 
   &.-olboth
     background-color: currentColor
-    box-shadow: 0px 10px 0px 30px currentColor
-    border-top: $overlap-size solid transparentize($co--wt, 0.8)
-    top: $overlap-size / -1
+    box-shadow: 0px 5px 0px 15px currentColor
+    border-top: $overlap-size / 2 solid transparentize($co--wt, 0.8)
+    top: $overlap-size / -2
 
     &::after
       display: none
@@ -111,9 +108,6 @@ section
   + .-skewboth
     z-index: $z--top
     margin-top: calc(#{$angle_h_ratio / -2} - 1px)
-
-  + .-olboth
-    margin-top: calc(#{$angle_h_ratio / -2} - #{$overlap-size} - 1px)
 
 .-skewbottom
   > ._skew
@@ -160,3 +154,8 @@ section
       &.-oldouble
         &::after
           border-bottom-width: $overlap-size
+
+    &.-olboth
+      box-shadow: 0px 10px 0px 30px currentColor
+      border-top-width: $overlap-size
+      top: $overlap-size / -1

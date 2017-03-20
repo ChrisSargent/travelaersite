@@ -11,6 +11,7 @@ import Hero from '../../sections/hero'
 import ImageBanner from '../../sections/image-banner'
 import Gmap from '../../sections/map'
 import Mosaic from '../../sections/mosaic'
+import News from '../../sections/news'
 import Positions from '../../sections/positions'
 import Quotes from '../../sections/quotes'
 import ProductModules from '../../sections/product-modules'
@@ -73,7 +74,6 @@ class Page extends PureComponent {
         skew,
         overlaps,
         background,
-        fullscreen,
       } = block
 
       switch (acf_fc_layout) {
@@ -146,12 +146,17 @@ class Page extends PureComponent {
           content = <Quotes {...block} compName={name}/>
           break
 
+        case 'news':
+          name = 'news'
+          content = <News {...block} compName={name}/>
+          break
+
         default:
           break
       }
 
       return (
-        <Section key={index} compName={name} fullscreen={fullscreen} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background}>
+        <Section key={index} compName={name} image={image} respSizes={respSizes} allowFullsize={allowFullsize} skew={skew} overlaps={overlaps} background={background}>
           {content}
         </Section>
       )

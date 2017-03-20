@@ -27,11 +27,8 @@ main
   margin-bottom: $angle_h_ratio / -1
   width: 100vw
   transform-origin: top
+  margin-top: $ht-header--mb
   // animation: fadeIn $t--s both
-
-  @media screen and (max-width: $bp--mn - 1)
-    &#comversational
-      margin-bottom: $angle_h_ratio / -1
 
 h1,
 h2,
@@ -68,4 +65,9 @@ strong
   &:disabled
     cursor: not-allowed!important
 
-@key
+@media screen and (min-width: $bp--mn)
+  main
+    margin-top: $ht-header--dt / 1.5
+
+    &.-hassubmenu
+      margin-top: $ht-header--dt / 1.5 + $ht-subheader

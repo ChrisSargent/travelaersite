@@ -13,7 +13,7 @@ class Section extends PureComponent {
     var sectionModifier = ' -skewnone',
       skewClass = '',
       skewCorrectionClass = ''
-    const {skew, overlaps, background, fullscreen} = this.props
+    const {skew, overlaps, background} = this.props
 
     if (skew) {
       sectionModifier = ' -skew' + skew
@@ -29,7 +29,6 @@ class Section extends PureComponent {
     }
 
     background && (sectionModifier += ' -' + background)
-    fullscreen && (sectionModifier += ' -fullscreen')
 
     const section = {
       sectionModifier,

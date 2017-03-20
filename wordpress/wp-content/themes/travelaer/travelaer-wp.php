@@ -264,3 +264,9 @@ function travelaer_mce_before_init_insert_formats( $init_array ) {
 }
 // Attach callback to 'tiny_mce_before_init'
 add_filter( 'tiny_mce_before_init', 'travelaer_mce_before_init_insert_formats' );
+
+
+function travelaer_excerpt_length() {
+  return 160;
+}
+add_filter('excerpt_length','travelaer_excerpt_length');

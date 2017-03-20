@@ -36,6 +36,7 @@ class Posts extends PureComponent {
         loading: false
       }
     ]
+    console.log(props);
   }
 
   static fetchData(store, props) {

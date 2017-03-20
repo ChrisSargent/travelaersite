@@ -11,6 +11,11 @@ class Slider extends PureComponent {
     this.handleClick = this.handleClick.bind(this)
     this.nextActiveIndex = this.nextActiveIndex.bind(this)
     this.autoIncrement = this.autoIncrement.bind(this)
+    this.handleMouseEnter = this.handleMouseEnter.bind(this)
+    this.handleMouseLeave = this.handleMouseLeave.bind(this)
+    this.pause = this.pause.bind(this)
+    this.start = this.start.bind(this)
+    this.userStopped = false
   }
 
   componentWillMount() {
@@ -18,19 +23,18 @@ class Slider extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.auto && this.autoIncrement()
+    this.start()
   }
 
   autoIncrement() {
     const {length} = this.props.slides
     if (length < 2)
       return
-    const self = this
     const timing = this.props.auto * 1000
-    setTimeout(function () {
-      const {activeSlide} = self.props
-      self.nextActiveIndex(activeSlide + 1)
-      self.autoIncrement()
+    this.timeOut = setTimeout(() => {
+      const {activeSlide} = this.props
+      this.nextActiveIndex(activeSlide + 1)
+      this.autoIncrement()
     }, timing);
   }
 
@@ -41,6 +45,9 @@ class Slider extends PureComponent {
 
     const {activeSlide} = this.props
     ev.preventDefault()
+    this.pause()
+    this.userStopped = true
+
     switch (ev.target.dataset.slideind) {
       case 'inc':
         nextActive = activeSlide + 1
@@ -66,12 +73,27 @@ class Slider extends PureComponent {
     this.props.updateSlideIndex(this.props.id, nextActive)
   }
 
+  handleMouseEnter(ev) {
+    this.pause()
+  }
+
+  handleMouseLeave(ev) {
+    !this.userStopped && this.start()
+  }
+
+  start() {
+    this.props.auto && this.autoIncrement()
+  }
+
+  pause() {
+    this.timeOut && clearTimeout(this.timeOut)
+  }
+
   render() {
     const {
       slides,
       activeSlide,
-      id,
-      auto
+      id
     } = this.props
 
 
@@ -93,23 +115,24 @@ class Slider extends PureComponent {
         </li>
       )
     })
+
     return (
       <div onClick={this.handleClick} className={css.main + compName + modifier}>
-        {!auto && <button data-slideind="dec" className={css.control + ' -dec'}>
+        <button data-slideind="dec" className={css.control + ' -dec'}>
           <div className={css.container}>
             <span className={css.label}>Prev</span>
           </div>
-        </button>}
-        <div className={css.container}>
+        </button>
+        <div className={css.container} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
           <ul className={css.list + compName + modifier} style={slideStyles}>
             {slidesMap}
           </ul>
         </div>
-        {!auto && <button data-slideind="inc" className={css.control + ' -inc'}>
+        <button data-slideind="inc" className={css.control + ' -inc'}>
           <div className={css.container}>
             <span className={css.label}>Next</span>
           </div>
-        </button>}
+        </button>
       </div>
     )
   }

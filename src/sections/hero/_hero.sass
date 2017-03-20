@@ -2,23 +2,19 @@
 
 .section-hero
   display: flex
-  min-height: 64vh
+  min-height: 70vh
   // For when there is no content in the hero
 
   > .container
     +cont--xl
     +block-pad
-    min-height: 64vh
+    min-height: 70vh
     display: flex
     align-items: center
 
   &.-small
     min-height: 45vh
     // For when there is no content in the hero
-
-  &.-fullscreen
-    > .container
-      min-height: 100vh
 
   .footer-actions
     margin-top: 0
@@ -33,7 +29,6 @@
   color: $co--wt
 
   > .container
-
     .title
       +heading-section
       width: 100%
@@ -83,10 +78,7 @@
 
   main#comversational .section-hero
     &:last-of-type
-      overflow: hidden
-      width: 0
-      height: 0
-      min-height: 0
+      +sr-only
 
 @media screen and (min-width: $bp--mn)
   .main-hero
@@ -107,6 +99,3 @@
         display: block
         max-width: 600px
         margin-left: $pd--ll
-
-    main.-hassubmenu .section-hero:first-child &
-      margin-top: $ht-subheader

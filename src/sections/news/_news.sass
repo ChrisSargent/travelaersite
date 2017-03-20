@@ -1,0 +1,22 @@
+@import tools
+
+.section-news
+  > .container
+    +cont--xl
+    +block-pad
+    display: flex
+    align-items: center
+    justify-content: left
+
+  > .section-background
+    ._bgcol
+      background-color: $co--green
+
+.main-news
+  width: 100%
+
+  > .title
+    +heading-light
+    +header-default($pd--ll)
+    color: $co--wt
+    text-align: center

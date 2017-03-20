@@ -161,25 +161,11 @@ function travelaer_rest_prepare($response, $post, $request)
 
     if ($include_latest_posts) {
         $args = array(
-        'numberposts' => 2,
-        'post_type' => 'post',
-        'post_status' => 'publish',
-      );
-        $latest_posts = wp_get_recent_posts($args);
-        // wlog($latest_posts);
-        foreach ($latest_posts as &$post) {
-            $post['featured_media'] = get_post_thumbnail_id($post['ID']);
-            $mod_post['id'] = $post['ID'];
-            $mod_post['link'] = get_permalink($post['ID']);
-            $mod_post['title'] = $post['post_title'];
-            $mod_post['date_gmt'] = $post['post_date_gmt'];
-            $mod_post['t_featured_image'] = travelaer_get_featured_image($post);
-            $mod_post['t_author'] = travelaer_get_author_info($post);
-            $mod_post['t_comments_info']['total'] = $post['comment_count'];
-            $mod_post['t_categories'] = travelaer_get_category_info($post);
-            $post = $mod_post;
-        }
-        $include_latest_posts = $latest_posts;
+          'numberposts' => 2,
+          'post_type' => 'post',
+          'post_status' => 'publish',
+        );
+        $include_latest_posts = travelaer_add_post_fields(wp_get_recent_posts($args), false);
     }
 
     if (!empty($content_blocks)) {
@@ -200,18 +186,25 @@ function travelaer_rest_prepare($response, $post, $request)
             break;
 
           case 'team':
-            $members = $content_block['members'];
-            $content_block['members'] = travelaer_add_acf($members);
+            $content_block['members'] = travelaer_add_acf($content_block['members']);
             break;
 
           case 'products':
-            $products = $content_block['products'];
-            $content_block['products'] = travelaer_add_acf($products);
+            $content_block['products'] = travelaer_add_acf($content_block['products']);
             break;
 
           case 'quotes':
-            $quotes = $content_block['quotes'];
-            $content_block['quotes'] = travelaer_add_acf($quotes);
+            $content_block['quotes'] = travelaer_add_acf($content_block['quotes']);
+            break;
+
+          case 'news':
+            $args = array(
+              'numberposts' => 5,
+              'post_type' => 'post',
+              'post_status' => 'publish',
+              'category_name' => 'news',
+            );
+            $content_block['news'] = travelaer_add_post_fields(wp_get_recent_posts($args), true);
             break;
 
           default:
@@ -253,16 +246,18 @@ function travelaer_get_fields($item_id)
     'id' => $item_id,
     'acf' => get_fields($item_id),
     'title' => get_the_title($item_id),
-    'content' => get_the_content_by_id($item_id),
+    'content' => travelaer_get_the_content_by_id($item_id),
   );
     return $item;
 }
 
-function get_the_content_by_id($post_id)
+function travelaer_get_the_content_by_id($post_id)
 {
     $page_data = get_page($post_id);
     if ($page_data) {
+        wlog($page_data);
         return wpautop($page_data->post_content);
+        // return apply_filters('the_content', $page_data->post_content);
     } else {
         return false;
     }
@@ -282,6 +277,24 @@ function travelaer_add_site_info($data)
 }
 add_filter('acf/rest_api/option/get_fields', 'travelaer_add_site_info');
 
+function travelaer_add_post_fields($posts, $include_content) {
+  foreach ($posts as &$post) {
+      $post_id = travelaer_get_id($post);
+      $post['featured_media'] = get_post_thumbnail_id($post_id);
+      $temp_post['id'] = $post_id;
+      $temp_post['link'] = get_permalink($post_id);
+      $temp_post['title'] = $post['post_title'];
+      $temp_post['date_gmt'] = $post['post_date_gmt'];
+      $temp_post['t_featured_image'] = travelaer_get_featured_image($post);
+      $temp_post['t_author'] = travelaer_get_author_info($post);
+      $temp_post['t_comments_info']['total'] = $post['comment_count'];
+      $temp_post['t_categories'] = travelaer_get_category_info($post);
+      !$include_content ?: $temp_post['t_excerpt'] = travelaer_get_the_content_by_id($post_id);
+      $post = $temp_post;
+  }
+  return $posts;
+}
+
 
 function travelaer_acf_format_tax_slug($value)
 {
@@ -291,16 +304,6 @@ function travelaer_acf_format_tax_slug($value)
     return $value;
 }
 add_filter('acf/format_value/type=taxonomy', 'travelaer_acf_format_tax_slug', 10, 3);
-
-// function travelaer_acf_format_quotes($value)
-// {
-//     wlog($value);
-//     // if (!empty($value)) {
-//     //     $value = get_term($value)->slug;
-//     // }
-//     return $value;
-// }
-// add_filter('acf/format_value/type=post_object', 'travelaer_acf_format_quotes', 10, 3);
 
 // add_filter('rest_cache_headers', function ($headers) {
 //     $headers['Cache-Control'] = 'public, max-age=3600';

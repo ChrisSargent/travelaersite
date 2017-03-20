@@ -32,10 +32,12 @@
         +sr-only
 
     &.-dec
+      margin-left: -6px
       > .container
         &::after
           border-right: 12px solid $co--wt
     &.-inc
+      margin-right: -6px
       > .container
         &::after
           border-left: 12px solid $co--wt
@@ -47,15 +49,19 @@
     overflow: hidden
     flex: 1
 
+  &.-news
+    .control
+      min-width: $ia-min-size
+      min-height: $ia-min-size
+
 .list-slider
   display: flex
   transition: transform $tr--m
+  align-items: center
 
   > .item
     display: flex
     overflow: hidden
-    align-items: center
-    justify-content: center
     flex: none
     width: 100%
 
@@ -116,5 +122,11 @@
         background: linear-gradient(to right, transparentize($co--blue--dk, 0.6) 0%, transparentize($co--blue--dk, 1) 100%)
 
   .main-slider
-    > .control
-      display: none
+    &:not(.-news)
+      > .control
+        display: none
+
+    &.-news
+      > .control > .container
+        &::after
+          border-width: 15px
