@@ -102,6 +102,7 @@ class Slider extends PureComponent {
 
     const compName = 'slider'
     const modifier = ' -' + id
+    const showCtrls = (slides.length > 1)
     const slideStyles = {
       transform: 'translate3d(' + activeSlide * -100 + '%, 0, 0)'
     }
@@ -118,21 +119,21 @@ class Slider extends PureComponent {
 
     return (
       <div onClick={this.handleClick} className={css.main + compName + modifier}>
-        <button data-slideind="dec" className={css.control + ' -dec'}>
+        {showCtrls && <button data-slideind="dec" className={css.control + ' -dec'}>
           <div className={css.container}>
             <span className={css.label}>Prev</span>
           </div>
-        </button>
+        </button>}
         <div className={css.container} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
           <ul className={css.list + compName + modifier} style={slideStyles}>
             {slidesMap}
           </ul>
         </div>
-        <button data-slideind="inc" className={css.control + ' -inc'}>
+        {showCtrls && <button data-slideind="inc" className={css.control + ' -inc'}>
           <div className={css.container}>
             <span className={css.label}>Next</span>
           </div>
-        </button>
+        </button>}
       </div>
     )
   }

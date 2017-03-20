@@ -8,7 +8,7 @@ import RespImageCover from '../resp-image-cover'
 import './_recent-posts.sass'
 
 const RecentPosts = ({posts, compact}) => {
-  if (!posts)
+  if (!posts || !posts.length)
     return null
 
   const compName = 'recentposts'

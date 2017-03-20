@@ -1,6 +1,8 @@
 @import tools
 
 .main-quote
+  margin: 0 auto
+
   > .wysiwyg
     &::before
       content: '\201C'
@@ -44,6 +46,8 @@
 
 @media screen and (min-width: $bp--mn)
   .main-quote
+    max-width: $sz--m
+
     .footer-quote
       font-size: $fs--lm
 

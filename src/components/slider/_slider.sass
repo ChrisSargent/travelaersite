@@ -49,7 +49,8 @@
     overflow: hidden
     flex: 1
 
-  &.-news
+  &.-news,
+  &.-quotes
     .control
       min-width: $ia-min-size
       min-height: $ia-min-size
@@ -122,7 +123,7 @@
         background: linear-gradient(to right, transparentize($co--blue--dk, 0.6) 0%, transparentize($co--blue--dk, 1) 100%)
 
   .main-slider
-    &:not(.-news)
+    .-prodmods
       > .control
         display: none
 

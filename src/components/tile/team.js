@@ -8,10 +8,10 @@ const TileTeam = ({
   gallery,
   tile_colour,
   tile_size,
-  title,
-  job_title
+  title
 }) => {
   const compName = 'tile -team'
+  const firstName = title.split(' ')[0]
   var tileClass = '', svgClass = 'svgbg'
 
   tile_colour && (svgClass += ' -' + tile_colour)
@@ -20,10 +20,10 @@ const TileTeam = ({
   return (
     <li className={css.item + tileClass}>
       <article className={css.main + compName}>
-        <h1 className={css.title}>{title}</h1>
+        <h1 className={css.title}>{firstName}</h1>
         <Wysiwyg content={tile_display}/>
         <svg className={svgClass} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" aria-labelledby="title">
-          <title>{title}</title>
+          <title>{firstName}</title>
           <g className="colorize">
             <image xlinkHref={gallery[0].sizes['large']} width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
           </g>

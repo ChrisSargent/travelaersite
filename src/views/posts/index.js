@@ -20,8 +20,8 @@ class Posts extends PureComponent {
     this.setupRelatedPosts = this.setupRelatedPosts.bind(this)
     this.setupPostsObject = this.setupPostsObject.bind(this)
     this.setPostsCategory = this.setPostsCategory.bind(this)
-    this.setPostsCategory(this.props)
-    this.postsObj = this.setupPostsObject(this.props)
+    this.setPostsCategory(props)
+    this.postsObj = this.setupPostsObject(props)
     this.compName = 'posts'
     this.overlap = [
       {
