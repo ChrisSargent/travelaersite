@@ -32,9 +32,9 @@ const _getPages = (reqPathname) => {
 export const _backgroundGetPages = (exclude) => {
   const params = {
     fields,
+    exclude: exclude.join()
   }
-
-  exclude.length && (params.exclude = exclude.join())
+  !params.exclude && delete params.exclude
 
   return {
     type: types.BACKGROUND_FETCH_PAGES,

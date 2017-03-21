@@ -1,5 +1,5 @@
 import types from '../actions'
-import {globals, stripDomain, whichContent} from '../lib/utils'
+import {globals, toRelative, whichContent} from '../lib/utils'
 import he from 'he'
 
 export const getLoadingMore = ({posts}) => {
@@ -17,7 +17,7 @@ const _addFetchedPosts = (action, fetchedPosts) => {
   if (posts.length) {
     for (var i = 0; i < posts.length; i++) {
       const post = posts[i]
-      post.link = stripDomain(post.link)
+      post.link = toRelative(post.link)
       post.url = globals.baseUrl + post.link
       // Don't need to 'he decode' content because it's used with dangerouslySetInnerHTML
       post.content = whichContent(post.content)

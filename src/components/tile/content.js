@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'react-router/lib/Link'
 import css from '../../lib/css'
-import {stripDomain} from '../../lib/utils'
+import {toRelative} from '../../lib/utils'
 import Quote from '../../components/quote'
 import RespImageCover from '../resp-image-cover'
 import Wysiwyg from '../wysiwyg'
@@ -46,7 +46,7 @@ const ContentTile = ({
 
     case 'post':
       TagType = Link
-      linkTo = stripDomain(link)
+      linkTo = toRelative(link)
       break
 
     default:

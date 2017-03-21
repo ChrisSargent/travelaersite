@@ -2,7 +2,7 @@ import axios from 'axios'
 import types from '.'
 import {globals} from '../lib/utils'
 
-axios.defaults.baseURL = globals.wpFolder + '/wp-json'
+axios.defaults.baseURL = globals.baseUrl + '/wp-json'
 
 // *****************************************************************************
 // ******************************* SITE ACTIONS ********************************

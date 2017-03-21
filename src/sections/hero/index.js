@@ -1,6 +1,6 @@
 import React from 'react'
 import Actions from '../../components/actions'
-import {stripDomain} from '../../lib/utils'
+import {toRelative} from '../../lib/utils'
 import css from '../../lib/css'
 import RecentPosts from '../../components/recent-posts'
 import Wysiwyg from '../../components/wysiwyg'
@@ -18,7 +18,7 @@ const Hero = ({
 
   for (var post in latestPosts) {
     if (latestPosts.hasOwnProperty(post)) {
-      latestPosts[post].link = stripDomain(latestPosts[post].link)
+      latestPosts[post].link = toRelative(latestPosts[post].link)
     }
   }
 

@@ -1,5 +1,5 @@
 import types from '../actions'
-import {stripDomain, whichContent} from '../lib/utils'
+import {toRelative, whichContent} from '../lib/utils'
 import he from 'he'
 
 export const getPage = ({pages}, pathname) => {
@@ -30,7 +30,7 @@ const _addPages = (action, state) => {
   if (pages.length) {
     for (var i = 0; i < pages.length; i++) {
       const page = pages[i]
-      const pathname = stripDomain(page.link)
+      const pathname = toRelative(page.link)
       page.title = he.decode(whichContent(page.title))
       pageObj[pathname] = page
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'react-router/lib/Link'
-import {stripDomain} from '../../lib/utils'
+import {toRelative} from '../../lib/utils'
 import css from '../../lib/css'
 import SVG from '../svg'
 import './_actions.sass'
@@ -13,7 +13,7 @@ const Actions = ({actions, onClick}) => {
   const icon = <span className={compName + '-icon'}><SVG type='spinner' /></span>
   const actionsMap = actions.map((action, index) => {
     var btnClass = css.btn, modifier = ' -cta'
-    const url = stripDomain(action.linkTo)
+    const url = toRelative(action.linkTo)
 
     action.modifier
       ? btnClass += ' -' + action.modifier

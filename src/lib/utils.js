@@ -2,12 +2,11 @@ import packageJson from '../../package.json'
 
 export const globals = {
   baseUrl: process.env.NODE_ENV === `development` ? packageJson.proxy : packageJson.homepage,
-  wpFolder: process.env.NODE_ENV === `development` ? packageJson.proxy + packageJson.wpFolder : packageJson.homepage + packageJson.wpFolder,
   flagsUrl: '/assets/flags/',
 }
 
 // Use hardcoded info here - because if we're having an error, we might not be able to get the info dynamically.
-const _filePath = packageJson.wpFolder + '/wp-content/uploads/2017/02/error-404-'
+const _filePath = '/wordpress/wp-content/uploads/2017/02/error-404-'
 export const image404 = {
   description: `/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2ODApLCBxdWFsaXR5ID0gODIK/9sAQwAGBAQFBAQGBQUFBgYGBwkOCQkICAkSDQ0KDhUSFhYVEhQUFxohHBcYHxkUFB0nHR8iIyUlJRYcKSwoJCshJCUk/9sAQwEGBgYJCAkRCQkRJBgUGCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQk/8AAEQgADQAUAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+l47iMDl1H40r3URUkOD9DXI6XrT3UF1K0QHkOwAz94D8KSbX5Y/skohj2zAtt54wR3oA3z9pE0p8klWYFeQONo/rmismeaAuGMDksAT+/f/ABopgf/Z`,
   sizes: {
@@ -29,10 +28,10 @@ export const stripTags = (html) => {
   return html.replace(/<\/?[^>]+(>|$)/g, "");
 }
 
-export const stripDomain = (url) => {
-  const {wpFolder} = globals
-  if (url && url.includes(wpFolder)) {
-    url = url.replace(wpFolder, '')
+export const toRelative = (url) => {
+  const {baseUrl} = globals
+  if (url && url.includes(baseUrl)) {
+    url = url.replace(baseUrl, '')
     url === '' && (url = '/')
   }
   return url
@@ -94,6 +93,6 @@ export const whichContent = (content) => {
 export const convertLinks = (content) => {
   if(!content)
     return
-  content = content.replace(new RegExp('href="' + globals.wpFolder, 'g'), 'href="');
+  content = content.replace(new RegExp('href="' + globals.baseUrl, 'g'), 'href="');
   return content
 }

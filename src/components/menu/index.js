@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Link from 'react-router/lib/Link'
 import IndexLink from 'react-router/lib/IndexLink'
 import {getMenu} from '../../reducers/site'
-import {globals, stripDomain} from '../../lib/utils'
+import {globals, toRelative} from '../../lib/utils'
 import css from '../../lib/css'
 import MenuToggle from '../menu-toggle'
 import './_menu.sass'
@@ -11,7 +11,7 @@ import './_menu.sass'
 const MenuItem = ({item, compName}) => {
   var LinkType = Link,
     linkClass
-  const itemLink = stripDomain(item.url)
+  const itemLink = toRelative(item.url)
 
   linkClass = css.link + compName
   item.children.length > 0 && (linkClass += " -hassub")

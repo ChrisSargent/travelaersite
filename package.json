@@ -1,9 +1,8 @@
 {
   "name": "travelaersite",
-  "homepage": "http://46.101.194.227",
-  "proxy_prod": "http://46.101.194.227",
-  "proxy": "http://travelaersite.dev",
-  "wpFolder": "/wordpress",
+  "homepage": "http://travelaer.dev",
+  "proxy": "http://travelaer.dev",
+  "wpFolder": "",
   "version": "0.14.0",
   "private": true,
   "devDependencies": {
