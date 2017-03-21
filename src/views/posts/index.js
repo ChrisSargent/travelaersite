@@ -5,6 +5,7 @@ import {getPosts, getLoadingMore} from '../../reducers/posts'
 import css from '../../lib/css'
 import {image404, trimContent, stripTags} from '../../lib/utils'
 import Actions from '../../components/actions'
+import Error from '../../components/error'
 import Head from '../../components/head'
 import Insta from '../../components/insta'
 import Post from '../../components/post'
@@ -42,10 +43,11 @@ class Posts extends PureComponent {
 
   static fetchData(store, props) {
     const {slug} = props.params
+    const category = props.params.category || '__latest'
     if (slug) {
-      return store.dispatch(fetchInitPosts(slug, this.postsCategory))
+      return store.dispatch(fetchInitPosts(slug, category))
     } else {
-      return store.dispatch(fetchPosts(this.postsCategory))
+      return store.dispatch(fetchPosts(category))
     }
   }
 
@@ -72,22 +74,30 @@ class Posts extends PureComponent {
   }
 
   setupRelatedPosts(props) {
-    const {fetchedPosts, orderedSlugs} = props.posts
+    const {fetchedPosts} = props.posts
+    const {slug} = props.params
+    const categoryObj = props.posts.orderedSlugs[this.postsCategory]
 
-    if (!orderedSlugs[this.postsCategory])
+    if (!categoryObj)
       return null
 
-    const {slug} = props.params
-    const {slugs} = orderedSlugs[this.postsCategory]
+    if (categoryObj.invalid)
+      return categoryObj
+
+    const {slugs} = categoryObj
+    const slugsLength = slugs.length
+
+    if (!slugsLength)
+      return null
+
     // Looks up the slug from the posts array, grabs the corresponding post from the fetchedPosts array and puts it into the returned object.
     var count = 0,
-      maxPosts = slugs.length,
       relatedPosts = [],
       lookupSlug
 
-    slug && (maxPosts = 8)
+    const maxPosts = (slug && 8) || slugsLength
 
-    for (var i = 0; i < slugs.length; i++) {
+    for (var i = 0; i < slugsLength; i++) {
       lookupSlug = slugs[i]
       lookupSlug !== slug && count < maxPosts && (relatedPosts.push(fetchedPosts[lookupSlug]))
       count++
@@ -99,14 +109,13 @@ class Posts extends PureComponent {
     // Returns an object with the main post or posts and those to display in the sidebar
     const {fetchedPosts} = props.posts
     const {slug} = props.params
-
-    if (!fetchedPosts)
-      return null
-
     const relatedPosts = this.setupRelatedPosts(props);
 
     if (!relatedPosts)
       return null
+
+    if (relatedPosts.invalid)
+      return relatedPosts
 
     if (slug) {
       const singlePost = fetchedPosts[slug]
@@ -125,6 +134,11 @@ class Posts extends PureComponent {
     }
   }
 
+  gotAllCategoryPosts() {
+    const categoryObj = this.props.posts.orderedSlugs[this.postsCategory]
+    return categoryObj.slugs.length >= categoryObj.totalPosts
+  }
+
   handleClick(ev) {
     if (!ev.target.dataset.actionparam)
       return
@@ -134,8 +148,7 @@ class Posts extends PureComponent {
 
   render() {
     var heroModifier = ' -small',
-      pageTitle = 'Blog',
-      showMore = true
+      pageTitle = 'Blog'
 
     const {getLoadingMore} = this.props
     const {postsObj} = this
@@ -143,9 +156,15 @@ class Posts extends PureComponent {
     if (!postsObj)
       return null
 
+    if (postsObj.invalid)
+      return (
+        <Error />
+      )
+
     const {compName, overlap, actions} = this
-    const singlePost = postsObj.main.length <= 1
+    const singlePost = postsObj.main.length === 1
     const mainPost = postsObj.main[0]
+    const showMore = !this.gotAllCategoryPosts() && !singlePost
     const postsMap = postsObj.main.map((post, index) => {
       return (
         <li key={post.id || 'invalid'} className={css.item}>
@@ -155,11 +174,6 @@ class Posts extends PureComponent {
         </li>
       )
     })
-
-    const categoryObj = this.props.posts.orderedSlugs[this.postsCategory]
-    const gotAllCategoryPosts = categoryObj.slugs.length >=  categoryObj.totalPosts
-
-    showMore = !gotAllCategoryPosts && !singlePost
 
     actions[0].loading = getLoadingMore
 
@@ -174,6 +188,7 @@ class Posts extends PureComponent {
       description: stripTags(trimContent(mainPost.content))
     }
 
+    console.log('test');
     return (
       <main id={compName}>
         <Head {...metaInfo}/>

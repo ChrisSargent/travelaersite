@@ -1,7 +1,6 @@
 @import tools
 
 .section-banner
-  z-index: $z--top
 
   > .section-background
     ._bgcol
@@ -11,6 +10,9 @@
     +cont--xl
     +block-pad
     border-bottom: 1rem solid transparent
+
+  .section-products + &
+    padding-top: $pd--v / 4
 
 .main-banner
   text-align: center

@@ -14,8 +14,12 @@ section
   position: relative
   z-index: $z--base
 
+  &.-oltop
+    padding-top: $overlap-size / 2
+
   &.-olbottom
     padding-bottom: $overlap-size / 2
+
 
 .section-background
   +stretch
@@ -133,6 +137,9 @@ section
 
 @media screen and (min-width: $bp--mn)
   section
+    &.-oltop
+      padding-top: $overlap-size
+
     &.-olbottom
       padding-bottom: $overlap-size
 

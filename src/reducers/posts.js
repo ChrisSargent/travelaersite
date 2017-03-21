@@ -12,8 +12,8 @@ export const getPosts = ({posts}) => {
 
 const _addFetchedPosts = (action, fetchedPosts) => {
   // Puts each post in to an object, indexed by its slug
-  const posts = action.payload.data
   var addPosts = {}
+  const posts = action.payload.data
   if (posts.length) {
     for (var i = 0; i < posts.length; i++) {
       const post = posts[i]
@@ -38,7 +38,8 @@ const _addFetchedPosts = (action, fetchedPosts) => {
 
 const _addToOrderedSlugs = (action, orderedSlugs) => {
   var nextPage = 2,
-    slugs = []
+    slugs = [],
+    addPosts
   const posts = action.payload.data
   const category = action.meta.category
   if (orderedSlugs[category]) {
@@ -46,22 +47,30 @@ const _addToOrderedSlugs = (action, orderedSlugs) => {
     slugs = orderedSlugs[category].slugs
   }
   // Create an array of post slugs
-  const addPosts = posts.reduce((result, post) => {
-    const slug = he.decode(post.slug)
-    slugs.indexOf(slug) < 0 && result.push(slug)
-    return result;
-  }, []);
-
-  return {
-    ...orderedSlugs,
-    [category]: {
-      ...orderedSlugs[category],
-      slugs: [
-        ...slugs,
-        ...addPosts
-      ],
-      totalPosts: parseFloat(action.payload.headers['x-wp-total']),
-      nextPage
+  if (posts.length) {
+    addPosts = posts.reduce((result, post) => {
+      const slug = he.decode(post.slug)
+      slugs.indexOf(slug) < 0 && result.push(slug)
+      return result;
+    }, []);
+    return {
+      ...orderedSlugs,
+      [category]: {
+        ...orderedSlugs[category],
+        slugs: [
+          ...slugs,
+          ...addPosts
+        ],
+        totalPosts: parseFloat(action.payload.headers['x-wp-total']),
+        nextPage
+      }
+    }
+  } else {
+    return {
+      ...orderedSlugs,
+      [category]: {
+        invalid: true
+      }
     }
   }
 }
@@ -80,6 +89,7 @@ const PostsReducer = (state = {
 
   var fetchedPosts,
     orderedSlugs
+
   switch (action.type) {
     case types.FETCH_MORE_POSTS + '_PENDING':
       return {
@@ -88,7 +98,7 @@ const PostsReducer = (state = {
       }
 
     case types.FETCH_MORE_POSTS + '_FULFILLED':
-    case types.FETCH_LATEST_POSTS + '_FULFILLED':
+    case types.FETCH_POSTS + '_FULFILLED':
       orderedSlugs = _addToOrderedSlugs(action, state.orderedSlugs)
       fetchedPosts = _addFetchedPosts(action, state.fetchedPosts)
       return {
@@ -98,7 +108,7 @@ const PostsReducer = (state = {
         fetchingMore: false
       }
 
-    case types.FETCH_CURRENT_POST + '_FULFILLED':
+    case types.FETCH_SINGLE_POST + '_FULFILLED':
       fetchedPosts = _addFetchedPosts(action, state.fetchedPosts)
       return {
         ...state,
