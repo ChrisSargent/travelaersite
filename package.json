@@ -80,7 +80,7 @@
     "build": "node scripts/build.js",
     "server": "NODE_ENV='production' webpack --config config/webpack.config.server.js",
     "serve": "NODE_ENV='production' nodemon build/server.js",
-    "deploy_content": "rsync wordpress/wp-content travelaer@46.101.194.227:/var/www/html/wordpress --rsh ssh --archive --no-perms --no-owner --no-group --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
-    "deploy_app": "rsync build/ travelaer@46.101.194.227:/var/www/html/ --rsh ssh --archive --no-perms --no-owner --no-group --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress --exclude phpmyadmin*"
+    "deploy_content": "rsync wordpress/wp-content travelaer@46.101.194.227:/var/www/html/wordpress -rltD --delete --verbose --progress --human-readable --compress --exclude .DS_Store",
+    "deploy_app": "rsync build/ travelaer@46.101.194.227:/var/www/html/ -rltD --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress --exclude phpmyadmin*"
   }
 }
