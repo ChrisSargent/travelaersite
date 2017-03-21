@@ -4,8 +4,6 @@ export const globals = {
   baseUrl: process.env.NODE_ENV === `development` ? packageJson.proxy : packageJson.homepage,
   wpFolder: process.env.NODE_ENV === `development` ? packageJson.proxy + packageJson.wpFolder : packageJson.homepage + packageJson.wpFolder,
   flagsUrl: '/assets/flags/',
-  homeID: 5,
-  pageTr: 750
 }
 
 // Use hardcoded info here - because if we're having an error, we might not be able to get the info dynamically.

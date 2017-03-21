@@ -158,7 +158,7 @@ class Posts extends PureComponent {
 
     if (postsObj.invalid)
       return (
-        <Error />
+        <Error message="any posts in the category"/>
       )
 
     const {compName, overlap, actions} = this
@@ -188,7 +188,6 @@ class Posts extends PureComponent {
       description: stripTags(trimContent(mainPost.content))
     }
 
-    console.log('test');
     return (
       <main id={compName}>
         <Head {...metaInfo}/>

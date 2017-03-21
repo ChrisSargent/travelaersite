@@ -11,16 +11,24 @@ export const refreshComments = (postID) => {
   }
 }
 
-export const postComment = (paramsString, updateComments) => (dispatch) => {
-  return updateComments
-    ? dispatch({
-      type: types.POST_COMMENT,
-      payload: axios.post('/wp/v2/comments' + paramsString)
-    }).then((response) => dispatch(refreshComments(response.value.data.post)))
-    : dispatch({
-      type: types.POST_COMMENT,
-      payload: axios.post('/wp/v2/comments' + paramsString)
-    })
+export const enquiryComment = (paramsString, messages) => (dispatch) => {
+  return dispatch({
+    type: types.POST_COMMENT,
+    payload: axios.post('/wp/v2/comments' + paramsString),
+    meta: {
+      messages
+    }
+  }).catch(error => {})
+}
+
+export const postComment = (paramsString, messages) => (dispatch) => {
+  return dispatch({
+    type: types.POST_COMMENT,
+    payload: axios.post('/wp/v2/comments' + paramsString),
+    meta: {
+      messages
+    }
+  }).then((response) => dispatch(refreshComments(response.value.data.post))).catch(error => {})
 }
 
 export const cacheComment = (uiState) => ({type: types.CACHE_COMMENT, payload: uiState})

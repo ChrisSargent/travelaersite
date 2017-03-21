@@ -5,7 +5,7 @@ import Section from '../../sections/section'
 import Wysiwyg from '../../components/wysiwyg'
 import './_error.sass'
 
-const Error = () => {
+const Error = ({message = "the page"}) => {
   const compName = 'error'
   const overlap = [
     {
@@ -15,7 +15,7 @@ const Error = () => {
     }
   ]
 
-  const content = "Uh oh, there was an error and we couldn't find the page you were looking for. Please try one of the links above or chat with us using the green button below"
+  const content = "Uh oh, there was an error and we couldn't find " + message + " you were looking for. Please try one of the links above or chat with us using the green button below"
 
   return (
     <Section compName={compName} image={image404} skew="bottom" overlaps={overlap}>

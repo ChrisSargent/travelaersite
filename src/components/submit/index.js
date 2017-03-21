@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import {postComment, resetMessages, cacheComment} from '../../actions/comments'
+import {postComment, enquiryComment, resetMessages, cacheComment} from '../../actions/comments'
 import {getSubmit} from '../../reducers/submit'
 import Actions from '../actions'
 import ArticleHeader from '../article-header'
@@ -23,14 +23,24 @@ class Submit extends PureComponent {
     // Setup some defaults based on the type
     switch (this.props.postType) {
       case 'comments':
-        this.title = 'Leave a Comment'
-        this.subtitle = 'Your email address will not be published'
-        this.updateComments = true
+        this.title = "Leave a Comment"
+        this.subtitle = "Your email address will not be published"
+        this.messages = {
+          successHold: "Thanks! Your comment has been submitted and is awaiting approval.",
+          success: "Thanks! Your comment has been approved and added.",
+          error: "Sorry, there was a problem with your comment and it was not submitted, please try again. The error was: "
+        }
+        this.submitAction = this.props.postComment
         break
 
       case 'enquiries':
-        this.title = 'Get in Touch Now'
-        this.updateComments = false
+        this.title = "Get in Touch Now"
+        this.messages = {
+          successHold: "Thanks! Your enquiry has been submitted and we'll be in touch as soon as possible.",
+          success: "Thanks! Your enquiry has been submitted and we'll be in touch as soon as possible.",
+          error: "Sorry, there was a problem with your enquiry and it was not submitted, please try again. The error was: "
+        }
+        this.submitAction = this.props.enquiryComment
         break
 
       default:
@@ -57,7 +67,7 @@ class Submit extends PureComponent {
     ev.preventDefault()
     this.props.resetMessages()
     const commentData = '?author_name=' + encodeURIComponent(this.state.name) + '&author_email=' + encodeURIComponent(this.state.email) + '&content=' + encodeURIComponent(this.state.comment) + '&parent=' + encodeURIComponent((this.props.parentCommentID || '0')) + '&post=' + encodeURIComponent(this.props.postID)
-    this.props.postComment(commentData, this.updateComments)
+    this.submitAction(commentData, this.messages)
   }
 
   render() {
@@ -98,8 +108,11 @@ class Submit extends PureComponent {
 
 const mapStateToProps = (state) => ({submit: getSubmit(state)})
 const mapDispatchToProps = (dispatch) => ({
-  postComment(commentData, updateComments) {
-    dispatch(postComment(commentData, updateComments)).catch(error => {})
+  postComment(commentData, messages) {
+    dispatch(postComment(commentData, messages))
+  },
+  enquiryComment(commentData, messages) {
+    dispatch(enquiryComment(commentData, messages))
   },
   cacheComment(uiState) {
     dispatch(cacheComment(uiState))

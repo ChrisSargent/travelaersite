@@ -9,13 +9,14 @@ const messages = (state = {
   type: '',
   error: ''
 }, action) => {
+  var messages
   switch (action.type) {
     case types.POST_COMMENT + '_FULFILLED':
       var content
-
+      messages = action.meta.messages
       action.payload.data.status === 'hold'
-        ? content = 'Thanks! Your comment has been submitted and is awaiting approval.'
-        : content = 'Thanks! Your comment has been approved and added.'
+        ? content = messages.successHold
+        : content = messages.success
 
       return {
         ...state,
@@ -25,9 +26,10 @@ const messages = (state = {
 
     case types.POST_COMMENT + '_REJECTED':
       const {message} = action.payload.response.data
+      messages = action.meta.messages
       return {
         ...state,
-        content: 'Sorry, there was a problem with your comment and it was not submitted. The error was: ',
+        content: messages.error,
         type: 'error',
         error: message
       }
