@@ -1414,6 +1414,25 @@
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_58d2ada857f98",
+            "label": "Display Call to Action Section",
+            "name": "call_to_action",
+            "type": "true_false",
+            "instructions": "Displays the 'Contact Us' strip just before the footer.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -1453,5 +1472,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1490197204
+    "modified": 1490202080
 }

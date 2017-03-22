@@ -5,6 +5,7 @@ import {getPage} from '../../reducers/pages'
 import Banner from '../../sections/banner'
 import Countries from '../../sections/countries'
 import Contact from '../../sections/contact'
+import CTA from '../../sections/cta'
 import Error from '../../components/error'
 import Head from '../../components/head'
 import Hero from '../../sections/hero'
@@ -59,6 +60,7 @@ class Page extends PureComponent {
     page.acf.contentBlocks && (this.contentBlocks = this.setupContentBlocks(page))
     page.acf.travelPaasContent && (this.travelPaasBlocks = this.setupTravelPassBlocks(page))
     page.acf.latest_posts && (this.recentPostsBlock = this.setupRecentPostsBlock(page))
+    page.acf.call_to_action && (this.ctaBlock = this.setupCTABlock(page))
   }
 
   setupContentBlocks(page) {
@@ -165,7 +167,6 @@ class Page extends PureComponent {
   }
 
   setupTravelPassBlocks(page) {
-
     const travelPaasBlocks = page.acf.travelPaasContent.map((block, index) => {
       var name = '',
         content = ''
@@ -207,6 +208,13 @@ class Page extends PureComponent {
     )
   }
 
+  setupCTABlock(page) {
+    const name = 'cta'
+    return (
+      <CTA compName={name}/>
+    )
+  }
+
   render() {
     const {page} = this.props
     var mainClass = ''
@@ -233,6 +241,7 @@ class Page extends PureComponent {
         {this.contentBlocks}
         {this.travelPaasBlocks}
         {this.recentPostsBlock}
+        {this.ctaBlock}
       </main>
     )
   }

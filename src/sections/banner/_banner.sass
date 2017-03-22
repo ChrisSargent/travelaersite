@@ -28,32 +28,27 @@
   flex-wrap: wrap
 
   > .item
-    width: 50%
+    flex: 0 0 50%
     position: relative
 
     .image
-      width: 80%
-      max-width: 200px
       margin: 0 auto
+      max-width: 220px
+      width: 100%
 
 @media screen and (min-width: $bp--mn)
   .section-banner
     > .container
       border-bottom-width: 2rem
 
-  .main-banner
-    &.-clients
-
   .list-banner
-    flex-wrap: nowrap
-
     > .item
+      flex-basis: 20%
 
       .image
         width: auto
         max-width: 100%
         height: auto
-        max-height: 50px
 
         .-clients &
           max-height: 120px

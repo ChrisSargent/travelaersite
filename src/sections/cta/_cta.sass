@@ -1,0 +1,26 @@
+@import tools
+
+.section-cta
+  > .section-background
+    ._bgcol
+      background-color: $co--blue--dk
+
+  > .container
+    +cont--xl
+    +block-pad
+
+.main-cta
+  +block-pad
+  text-align: center
+
+  > .title
+    +heading-section
+    color: $co--wt
+
+  > .link
+    font-weight: 300
+    color: $co--brightyellow
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
