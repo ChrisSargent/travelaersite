@@ -10,7 +10,6 @@
     line-height: $lh--lg
     margin-top: $pd--s
     opacity: 0.9
-    font-size: 0.8rem
 
     a
       color: $co--brightyellow
@@ -20,7 +19,6 @@
     margin-top: $pd--s
     text-decoration: none
     color: $co--brightyellow
-    font-size: 0.8rem
 
     &:hover
       text-decoration: underline
@@ -31,17 +29,13 @@
   .title
     +header-default
     color: $co--wt
+    font-size: $fs--m
 
 @media screen and (min-width: $bp--mn)
   .article-newsitem
     max-width: $sz--s
 
-  .article-newsitem
-    > .wysiwyg
-
-
-    > .link
-
   .header-newsitem
     .title
-      font-size: $fs--m
+      text-align: left
+      font-size: $fs--lm
