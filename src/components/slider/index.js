@@ -20,15 +20,20 @@ class Slider extends PureComponent {
 
   componentWillMount() {
     this.props.registerSlider(this.props.id);
+    this.props.updateSlideIndex(this.props.id, 0)
   }
 
   componentDidMount() {
     this.start()
   }
 
+  componentWillUnmount() {
+    this.timeOut && clearTimeout(this.timeOut)
+  }
+
   autoIncrement() {
     const {length} = this.props.slides
-    if (length < 2)
+    if (length <= 1)
       return
     const timing = this.props.auto * 1000
     this.timeOut = setTimeout(() => {
