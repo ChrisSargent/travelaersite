@@ -20,23 +20,26 @@ section
   &.-olbottom
     padding-bottom: $overlap-size / 2
 
-
 .section-background
   +stretch
   z-index: $z--under
 
   ._bgcol
     +stretch
+    z-index: $z--base
 
 ._skew
   overflow: hidden
   box-sizing: content-box
-  transform: skewY($angle--ban) scaleZ(1)
-  // Having the scaleZ gives a nicer render
+  transform: skewY($angle--ban)
+  backface-visibility: hidden
+  // Prevents jagged edge and other strange artefacts
+  // Don't use on the correct though - badly affects fps
 
   > ._skewcorrect
-    transform: skewY($angle--ban / -1) scaleZ(1)
-
+    // Put on z-layer to prevent strange chrome bug but better fps without
+    transform: skewY($angle--ban / -1)
+    
 .section-background
   &.-oltop,
   &.-olbottom,

@@ -66,12 +66,11 @@
     flex: none
     width: 100%
 
-    &.-active
-     .control.-text
-       color: $co--wt
+    &.-active .control.-text
+      color: $co--wt
 
-       &::before
-         transform: scale3d(1, 1, 1)
+      &::before
+       transform: scaleY(1)
 
   .control.-text
     +heading-spaced
@@ -102,10 +101,6 @@
       width: auto
       transform: none!important
 
-    > .item.-active
-        .control.-text::before
-          transform: scale3d(1, 1, 1)
-
     .control.-text
       font-size: $fs--xs
       line-height: $lh--lg
@@ -118,7 +113,7 @@
         content: ' '
         z-index: $z--under
         transition: transform $tr--f
-        transform: scale3d(1, 0, 1)
+        transform: scaleY(0)
         transform-origin: top
         background: linear-gradient(to right, transparentize($co--blue--dk, 0.6) 0%, transparentize($co--blue--dk, 1) 100%)
 

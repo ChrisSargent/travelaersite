@@ -44,7 +44,7 @@ class ScreenShots extends PureComponent {
         // Setup the styles if it's being used in a carousel
         if (activeIndex) {
           screenStyles = {
-            transform: 'translate3d(0, ' + activeIndex * -100 + '%, 0)'
+            transform: 'translateY(' + activeIndex * -100 + '%)'
           }
         }
         return (

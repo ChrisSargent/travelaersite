@@ -109,7 +109,7 @@ class Slider extends PureComponent {
     const modifier = ' -' + id
     const showCtrls = (slides.length > 1)
     const slideStyles = {
-      transform: 'translate3d(' + activeSlide * -100 + '%, 0, 0)'
+      transform: 'translateX(' + activeSlide * -100 + '%)'
     }
 
     const slidesMap = slides.map((slide, index) => {
