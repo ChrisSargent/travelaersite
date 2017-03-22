@@ -73,8 +73,6 @@ export default class RespImageCover extends PureComponent {
       // Only return if there is no image and this is NOT an avatar
       return null
 
-    console.log(image);
-
     avatar
       ? tagClass = css.avatar
       : tagClass = '_bgimg'
@@ -93,9 +91,9 @@ export default class RespImageCover extends PureComponent {
         <RespImage {...this.props} onLoadCb={this.handleLoad} onMountCb={this.handleMount}/>
         <div className={previewBgClass} style={previewBgStyle}></div>
         <div className={fullBgClass} style={fullBgStyle}></div>
-        <noscript>
+        {!process.browser && <noscript>
           <div className="_bgimgfull -loaded" style={this.getBgStyle(noJsImgUrl)}></div>
-        </noscript>
+        </noscript>}
       </div>
     )
   }

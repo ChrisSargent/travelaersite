@@ -1,5 +1,4 @@
 <?php
-
 // Add fields to the standard api responses
 add_action('rest_api_init', 'travelaer_api_custom_post_fields');
 function travelaer_api_custom_post_fields()
@@ -292,7 +291,6 @@ function travelaer_add_post_fields($posts, $include_content) {
   }
   return $posts;
 }
-
 
 function travelaer_acf_format_tax_slug($value)
 {

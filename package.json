@@ -2,7 +2,6 @@
   "name": "travelaersite",
   "homepage": "http://travelaer.dev",
   "proxy": "http://travelaer.dev",
-  "wpFolder": "",
   "version": "0.14.0",
   "private": true,
   "devDependencies": {

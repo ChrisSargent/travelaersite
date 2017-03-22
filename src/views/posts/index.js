@@ -66,7 +66,6 @@ class Posts extends PureComponent {
   }
 
   componentDidUpdate() {
-    console.log(window.twttr);
     window.twttr && window.twttr.widgets.load()
   }
 

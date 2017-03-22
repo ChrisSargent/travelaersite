@@ -37,14 +37,14 @@ if (! function_exists('travelaer_theme_setup')) {
     }
 
     function travelaer_register_menus() {
-  register_nav_menus(
-    array(
-      'primary' => __( 'Primary Menu' )
-    )
-  );
+      register_nav_menus(
+        array(
+          'primary' => __( 'Primary Menu' )
+        )
+      );
+    }
+  add_action( 'init', 'travelaer_register_menus' );
 }
-add_action( 'init', 'travelaer_register_menus' );
-} // travelaer_theme_setup
 add_action('after_setup_theme', 'travelaer_theme_setup');
 
 /**
@@ -233,11 +233,9 @@ function travelaer_mce_buttons_2( $buttons ) {
 	array_unshift( $buttons, 'styleselect' );
 	return $buttons;
 }
-// Register our callback to the appropriate filter
 add_filter( 'mce_buttons_2', 'travelaer_mce_buttons_2' );
 
 function travelaer_mce_before_init_insert_formats( $init_array ) {
-	// Define the style_formats array
 	$style_formats = array(
 		// Each array child is a format with it's own settings
 		array(
@@ -258,15 +256,6 @@ function travelaer_mce_before_init_insert_formats( $init_array ) {
 	);
 	// Insert the array, JSON ENCODED, into 'style_formats'
 	$init_array['style_formats'] = json_encode( $style_formats );
-
 	return $init_array;
-
 }
-// Attach callback to 'tiny_mce_before_init'
 add_filter( 'tiny_mce_before_init', 'travelaer_mce_before_init_insert_formats' );
-
-
-function travelaer_excerpt_length() {
-  return 160;
-}
-add_filter('excerpt_length','travelaer_excerpt_length');
