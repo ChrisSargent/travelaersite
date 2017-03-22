@@ -66,7 +66,7 @@ export const fetchInitPosts = (slug, category) => (dispatch, getState) => {
       type: types.FETCH_INIT_POSTS,
       payload: Promise.all([
         dispatch(_getSinglePost(slug)),
-        dispatch(_getPosts(category)),
+        dispatch(fetchPosts(category)),
       ]).catch((error)=>{
         console.log('Error: ' + error);
       })

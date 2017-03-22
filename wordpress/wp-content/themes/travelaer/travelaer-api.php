@@ -170,7 +170,6 @@ function travelaer_rest_prepare($response, $post, $request)
 
     if (!empty($content_blocks)) {
         foreach ($content_blocks as &$content_block) {
-            // Note: $content_block is assigned by reference
         switch ($content_block['acf_fc_layout']) {
           case 'mosaic_team':
           case 'mosaic':
@@ -243,11 +242,11 @@ function travelaer_add_acf($item_ids)
 function travelaer_get_fields($item_id)
 {
     $item = array(
-    'id' => $item_id,
-    'acf' => get_fields($item_id),
-    'title' => get_the_title($item_id),
-    'content' => travelaer_get_the_content_by_id($item_id),
-  );
+      'id' => $item_id,
+      'acf' => get_fields($item_id),
+      'title' => get_the_title($item_id),
+      'content' => travelaer_get_the_content_by_id($item_id),
+    );
     return $item;
 }
 
@@ -303,10 +302,5 @@ function travelaer_acf_format_tax_slug($value)
     return $value;
 }
 add_filter('acf/format_value/type=taxonomy', 'travelaer_acf_format_tax_slug', 10, 3);
-
-// add_filter('rest_cache_headers', function ($headers) {
-//     $headers['Cache-Control'] = 'public, max-age=3600';
-//     return $headers;
-// });
 
 add_filter('rest_allow_anonymous_comments', '__return_true');

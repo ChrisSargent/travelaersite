@@ -66,6 +66,7 @@ class Posts extends PureComponent {
   }
 
   componentDidUpdate() {
+    console.log(window.twttr);
     window.twttr && window.twttr.widgets.load()
   }
 
@@ -119,6 +120,10 @@ class Posts extends PureComponent {
 
     if (slug) {
       const singlePost = fetchedPosts[slug]
+
+      if (!singlePost)
+        return null
+
       return {
         main: [singlePost],
         side: relatedPosts,

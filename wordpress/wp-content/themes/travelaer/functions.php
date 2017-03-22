@@ -10,16 +10,6 @@
  * {@link https://codex.wordpress.org/Plugin_API}
  */
 
-
-// add_action('init', 'travelaer_handle_preflight');
-// function travelaer_handle_preflight()
-// {
-//     header('Access-Control-Allow-Origin: '.get_http_origin());
-//     header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
-//     header('Access-Control-Allow-Credentials: true');
-// }
-
-
 require_once 'travelaer-wp.php';
 require_once 'travelaer-api.php';
 require_once 'shortcodes.php';
