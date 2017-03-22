@@ -1,10 +1,11 @@
 import React from 'react'
 import css from '../../lib/css'
 import Quote from '../../components/quote'
+import Wysiwyg from '../../components/wysiwyg'
 import './_travel-paas.sass'
 import './_list-graphs.sass'
 
-const QuotesGraphs = ({compName, graphs, quotes, title}) => {
+const QuotesGraphs = ({compName, graphs, quotes, title, content}) => {
   const quoteMap = quotes.map((quote, index) => {
     const {name, content, job_title, company} = quote.acf
 
@@ -32,6 +33,7 @@ const QuotesGraphs = ({compName, graphs, quotes, title}) => {
   return (
     <div className={css.main + compName}>
       <h2 className={css.title}>{title}</h2>
+      <Wysiwyg content={content} />
       <div className={css.container}>
         <div className="tpaas-content">
           <ul className={css.list + 'quotes'}>

@@ -381,6 +381,25 @@
                             "maxlength": ""
                         },
                         {
+                            "key": "field_58d29e9c21792",
+                            "label": "Content",
+                            "name": "content",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
                             "key": "field_58c02c2dbcf74",
                             "label": "Quotes",
                             "name": "quotes",
@@ -508,5 +527,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1489238908
+    "modified": 1490198208
 }
