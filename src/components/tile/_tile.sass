@@ -11,6 +11,11 @@
   padding: 1.25em 1em 2em
   text-decoration: none
   color: inherit
+  transform: scale(1)
+  transition: transform $tr--f
+
+  .-hide &
+    transform: scale(0)
 
   > .i
     display: block

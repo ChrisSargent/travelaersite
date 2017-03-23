@@ -25,7 +25,7 @@ const TileTeam = ({
         <svg className={svgClass} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" aria-labelledby="title">
           <title>{firstName}</title>
           <g className="colorize">
-            <image xlinkHref={gallery[0].sizes['large']} width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
+            <image className="_bgimgsvg" xlinkHref={gallery[0].sizes['large']} width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
           </g>
         </svg>
         {!tile_colour && <div className="fade"></div>}

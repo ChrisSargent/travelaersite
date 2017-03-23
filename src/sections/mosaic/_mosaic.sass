@@ -8,6 +8,7 @@
   display: flex
   flex-wrap: wrap
   width: 100%
+  background-color: $co--blue--dk
 
   > .item
     line-height: $lh--m
@@ -16,10 +17,18 @@
     display: flex
     flex: 1 1 50%
     min-height: 50vw
-    transition: background-color $tr--m
     color: $co--wt
-    background-color: $co--blue-grey--dk
     overflow: hidden
+    transition: background-color $tr--m, opacity $tr--m
+
+    &.-hide
+      height: 0!important
+      min-height: 0!important
+      overflow: hidden!important
+      visibility: hidden!important
+      opacity: 0!important
+      transition: none!important
+      transform: scale(0)!important
 
     &.-mlarge,
     &.-large
@@ -32,7 +41,7 @@
         background: darken($co--teal, 5)
 
     &.-yellowgreen
-      background-color: $co--yelgreen--lt
+      background: $co--yelgreen--lt
 
       &:hover
         background: darken($co--yelgreen--lt, 10)
@@ -43,30 +52,22 @@
       &:hover
         background: darken($co--blue--lt, 5)
 
-    &:last-child
-      flex-grow: 1!important
-
-#svg-filters
-  +sr-only
-
 @media screen and (min-width: $bp--mn)
   .list-mosaic
     > .item
-      flex: 2 1 400px
-      min-width: 20%
+      flex: 1 1 20%
       min-height: 320px
-
-      &::after
-        display: none
+      min-width: 220px
+      width: auto
 
       &.-square
-        flex: 0 0 320px
+        flex: 0.5 0 320px
 
       &.-narrow
-        flex: 1 1 240px
+        flex-basis: 15%
 
       &.-mlarge
-        flex: 3 1 520px
+        flex-basis: 35%
 
       &.-large
-        flex: 3 1 700px
+        flex-basis: 50%

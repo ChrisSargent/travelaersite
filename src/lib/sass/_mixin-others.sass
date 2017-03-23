@@ -87,8 +87,11 @@
 
   ._bgimgpreview,
   ._bgimgfull,
+  ._bgimgsvg
     transform: scale3d(1, 1, 1)
     transition: transform $tr--s
+    transform-origin: center
+
 
   .i
     transform: none
@@ -96,7 +99,8 @@
 
   &:hover
     ._bgimgpreview,
-    ._bgimgfull
+    ._bgimgfull,
+    ._bgimgsvg
       transform: scale3d(1.05, 1.05, 1)
 
     .i
