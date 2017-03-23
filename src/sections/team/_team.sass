@@ -26,7 +26,7 @@
       border-top: 1px solid transparentize($co--blue-grey, 0.7)
 
 .article-member
-  +avatar-default
+  +has-avatar
 
   > .avatar
     width: 29%
@@ -40,7 +40,7 @@
     clear: both
 
 .header-member
-  +header-default
+  +header-default($pd--m)
   .title
     font-size: $fs--l
     font-weight: 700
@@ -50,12 +50,7 @@
     text-transform: uppercase
     color: $co--blue-grey
 
-@media screen and (min-width: $bp--sm)
-  .article-member
-    > .wysiwyg
-      clear: none
-
-@media screen and (min-width: $bp--lg)
+@media screen and (min-width: $bp--mn)
   .list-team
     > .item
       padding: 0
@@ -66,17 +61,33 @@
       border: 0
 
   .article-member
+    $side-width: 14rem
     > .vcard-member
       float: right
-      min-width: 14em
+      min-width: $side-width
+      margin-left: 2%
+      margin-bottom: 2%
 
     > .wysiwyg
+      clear: none
+      overflow: visible
       font-size: $fs--m
       padding-top: 0
-      padding-right: 2%
+      margin-bottom: $pd--ll
+      margin-right: calc(#{$side-width} + 2%)
+
+      .list-team > .item:last-child &
+        margin-bottom: 0
+
+      > .excerpt
+        overflow: hidden
+
+      > .content
+        clear: left
+        overflow: hidden!important
 
   .header-member
-    padding-top: $pd--ml
+    padding-top: $pd--xxs
 
     .title
       font-size: $fs--xl

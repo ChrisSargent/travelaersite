@@ -27,7 +27,7 @@ $spacing--dt: $pd--xl / 2
       padding-top: 0
 
 .main-comment
-  +avatar-default
+  +has-avatar
 
   > .avatar
     max-width: 64px
@@ -35,6 +35,8 @@ $spacing--dt: $pd--xl / 2
     border-radius: 50%
 
 .article-comment
+  overflow: hidden
+  
   > .wysiwyg
     font-weight: 300
     line-height: $lh--xl

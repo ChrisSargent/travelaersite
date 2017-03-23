@@ -25,6 +25,8 @@ module.exports = {
   avatar: 'avatar',
   control: 'control',
   more: 'more',
+  content: 'content',
+  excerpt: 'excerpt',
 
   // Modifiers
   loading: ' -loading',

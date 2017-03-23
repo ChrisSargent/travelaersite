@@ -1,8 +1,11 @@
 import packageJson from '../../package.json'
 
 export const globals = {
-  baseUrl: process.env.NODE_ENV === `development` ? packageJson.proxy : packageJson.homepage,
+  baseUrl: process.env.NODE_ENV === `development`
+    ? packageJson.proxy
+    : packageJson.homepage,
   flagsUrl: '/assets/flags/',
+  readMore: '\u00bb\xa0Read More'
 }
 
 // Use hardcoded info here - because if we're having an error, we might not be able to get the info dynamically.
@@ -22,21 +25,6 @@ export const image404 = {
   alt: 'Sorry, there was an error'
 }
 
-export const stripTags = (html) => {
-  if(!html)
-    return
-  return html.replace(/<\/?[^>]+(>|$)/g, "");
-}
-
-export const toRelative = (url) => {
-  const {baseUrl} = globals
-  if (url && url.includes(baseUrl)) {
-    url = url.replace(baseUrl, '')
-    url === '' && (url = '/')
-  }
-  return url
-}
-
 export const getRequestedSlug = (pathname) => {
   const pathnameArray = pathname.split('/')
   const requestedSlug = pathnameArray[pathnameArray.length - 2] || 'home'
@@ -49,9 +37,9 @@ export const dateFormat = (date, includeTime) => {
     timeOptions
 
   if (!date)
-    return null
+    return date
 
-  // Convert the date to UTC if not already in it
+    // Convert the date to UTC if not already in it
   !date.includes('T') && (date += ' UTC')
 
   date = new Date(date)
@@ -76,23 +64,56 @@ export const dateFormat = (date, includeTime) => {
 }
 
 export const trimContent = (content, paras = 1) => {
-  if(!content)
-    return
+  if (!content)
+    return content
   var excerpt = content.split('</p>', paras)
   return excerpt.join('')
 }
 
+export const splitExcerpt = (content) => {
+  if (!content)
+    return content
+
+  content = content.split('<p><!--more--></p>')
+
+  if (content.length > 1) {
+    content = {
+      excerpt: content[0],
+      content: content[1]
+    }
+  } else {
+    content = {
+      excerpt: false,
+      content: content[0]
+    }
+  }
+  return content
+}
+
 export const whichContent = (content) => {
-  if(!content)
-    return
-  var useContent
-  content.rendered !== undefined && (useContent = content.rendered)
-  return useContent
+  if (!content)
+    return content
+  return content.rendered !== undefined ? content.rendered : content
 }
 
 export const convertLinks = (content) => {
-  if(!content)
-    return
-  content = content.replace(new RegExp('href="' + globals.baseUrl, 'g'), 'href="');
-  return content
+  if (!content)
+    return content
+  return content.replace(new RegExp('href="' + globals.baseUrl, 'g'), 'href="');
+}
+
+export const stripTags = (html) => {
+  // Used for stripping html tags out of meta descriptions etc.
+  if (!html)
+    return html
+  return html.replace(/<\/?[^>]+(>|$)/g, "");
+}
+
+export const toRelative = (url) => {
+  const {baseUrl} = globals
+  if (url && url.includes(baseUrl)) {
+    url = url.replace(baseUrl, '')
+    url === '' && (url = '/')
+  }
+  return url
 }

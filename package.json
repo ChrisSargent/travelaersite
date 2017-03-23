@@ -1,7 +1,7 @@
 {
   "name": "travelaersite",
   "homepage": "http://46.101.194.227",
-  "proxy": "http://46.101.194.227",
+  "proxy": "http://travelaer.dev",
   "version": "0.15.0",
   "private": true,
   "devDependencies": {
@@ -62,6 +62,7 @@
     "htmlescape": "*",
     "instafeed.js": "*",
     "react": "*",
+    "react-animate-height": "*",
     "react-dom": "*",
     "react-gif": "*",
     "react-helmet": "*",

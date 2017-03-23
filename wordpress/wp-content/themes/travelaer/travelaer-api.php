@@ -251,12 +251,12 @@ function travelaer_get_fields($item_id)
 
 function travelaer_get_the_content_by_id($post_id)
 {
-    $page_data = get_page($post_id);
+    $page_data = get_post($post_id);
     if ($page_data) {
-      // return wpautop($page_data->post_content);
+      wlog($page_data);
       return apply_filters('the_content', $page_data->post_content);
     } else {
-        return false;
+      return false;
     }
 }
 
