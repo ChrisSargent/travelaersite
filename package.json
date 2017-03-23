@@ -42,6 +42,7 @@
     "react-addons-perf": "*",
     "react-dev-utils": "*",
     "recursive-readdir": "*",
+    "redux-logger": "*",
     "rimraf": "*",
     "sass-loader": "*",
     "strip-ansi": "*",
@@ -54,7 +55,6 @@
   },
   "dependencies": {
     "axios": "*",
-    "classnames": "*",
     "express": "*",
     "fontfaceobserver": "*",
     "he": "*",
@@ -64,12 +64,10 @@
     "react": "*",
     "react-animate-height": "*",
     "react-dom": "*",
-    "react-gif": "*",
     "react-helmet": "*",
     "react-redux": "*",
     "react-router": "^3.0.2",
     "redux": "*",
-    "redux-logger": "*",
     "redux-promise-middleware": "*",
     "redux-thunk": "*",
     "reset-css": "*"
