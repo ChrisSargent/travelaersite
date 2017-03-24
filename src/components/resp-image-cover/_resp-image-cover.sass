@@ -22,7 +22,9 @@
 
 ._bgimgfull
   opacity: 0
+  transform: scale(0.97)
+  transition: opacity $tr--s, transform $tr--s
 
   &.-loaded
-    transition: opacity $tr--s
+    transform: scale(1)
     opacity: 1
