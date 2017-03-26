@@ -22,9 +22,9 @@ const Vcard = ({options, pin}) => {
         <span className="stop">.</span>
       </div>
       <div className={css.container}>
+        {options.contactEmail && <span className={css.item + ' -email'}><span className={css.label}>Email:&nbsp;</span><a href={'mailto:' + options.contactEmail} rel="nofollow">{options.contactEmail}</a></span> }
         {options.contactTelephone && <span className={css.item + ' -tel'}><span className={css.label}>Tel:&nbsp;</span><a href={'tel:' + options.contactTelephone} rel="nofollow">{options.contactTelephone}</a></span> }
         {options.contactFax && <span className={css.item + ' -fax'}><span className={css.label}>Fax:&nbsp;</span><a href={'fax:' + options.contactFax} rel="nofollow">{options.contactFax}</a></span> }
-        {options.contactEmail && <span className={css.item + ' -email'}><span className={css.label}>Email:&nbsp;</span><a href={'mailto:' + options.contactEmail} rel="nofollow">{options.contactEmail}</a></span> }
         {options.coRegNumber && <span className={css.item + ' -co'}><span className={css.label}>Company Registration Number:&nbsp;</span>{options.coRegNumber}</span> }
         {options.coTaxNumber && <span className={css.item + ' -co'}><span className={css.label}>Company Tax Number:&nbsp;</span>{options.coTaxNumber}</span> }
       </div>

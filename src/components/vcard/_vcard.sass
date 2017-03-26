@@ -16,11 +16,10 @@
     &.-co
       text-transform: uppercase
 
-    &.-tel,
     &.-fax
       display: none
 
-    > .label
+    &:not(.-tel) > .label
       +sr-only
 
   > .i.-pin
@@ -30,8 +29,15 @@
     left: $pd--s / -1
 
   a
+    color: inherit
     text-decoration: none
-    color: $co--blue--md
+
+  .footer-sitefooter &
+    .item.-tel .label
+      +sr-only
+
+    a
+      color: $co--blue--md
 
   > .container + .container
     padding-top: $pd--xxs
