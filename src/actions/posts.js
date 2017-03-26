@@ -58,9 +58,9 @@ export const fetchPosts = (category) => (dispatch, getState) => {
 }
 
 export const fetchInitPosts = (slug, category) => (dispatch, getState) => {
-  const post = getState().posts.fetchedPosts[slug]
+  const post = getState().posts.orderedSlugs[category].slugs.indexOf(slug)
 
-  return post
+  return post >= 0
     ? Promise.resolve()
     : dispatch({
       type: types.FETCH_INIT_POSTS,

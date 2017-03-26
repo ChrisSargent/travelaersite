@@ -214,7 +214,8 @@ class Posts extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({posts: getPosts(state), getLoadingMore: getLoadingMore(state)})
+const mapStateToProps = (state) => {
+  return ({posts: getPosts(state), getLoadingMore: getLoadingMore(state)})}
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPosts(category) {
