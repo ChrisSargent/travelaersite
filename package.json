@@ -2,7 +2,7 @@
   "name": "travelaersite",
   "homepage": "http://www.travelaer.com",
   "proxy": "http://travelaer.dev",
-  "version": "0.16.0",
+  "version": "1.0.0",
   "private": true,
   "devDependencies": {
     "autoprefixer": "*",
