@@ -1,6 +1,6 @@
 {
   "name": "travelaersite",
-  "homepage": "http://46.101.194.227",
+  "homepage": "http://www.travelaer.com",
   "proxy": "http://travelaer.dev",
   "version": "0.16.0",
   "private": true,

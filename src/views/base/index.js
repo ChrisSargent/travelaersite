@@ -8,7 +8,6 @@ import Head from '../../components/head'
 import Header from '../../components/header'
 import Loader from '../../components/loader/'
 import SiteSchema from '../../components/site-schema/'
-// import Tracking from '../../components/tracking'
 import '../../lib/sass/index.sass'
 
 class Base extends PureComponent {

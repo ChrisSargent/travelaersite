@@ -3,7 +3,7 @@ import htmlescape from 'htmlescape'
 import Helmet from 'react-helmet'
 import manifest from '../build/asset-manifest.json'
 
-const tracking = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTF4Z9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`
+const tracking = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTF4Z9" height="0" width="0" style="display:none;visibility:hidden"></iframe>`
 const intercomScript = `window.intercomSettings = {
     app_id: 'cbfc4rcs'
   };
