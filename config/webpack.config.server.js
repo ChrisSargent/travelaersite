@@ -15,7 +15,11 @@ module.exports = {
   },
 
   target: 'node',
-
+  externals: [
+    {
+      pg: true
+    }
+  ],
   node: {
     __filename: true,
     __dirname: true
