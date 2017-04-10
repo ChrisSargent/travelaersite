@@ -152,7 +152,8 @@ class Posts extends PureComponent {
 
   render() {
     var heroModifier = ' -small',
-      pageTitle = 'Blog'
+      pageTitle = 'Blog',
+      metaInfo = {}
 
     const {getLoadingMore} = this.props
     const {postsObj} = this
@@ -182,17 +183,17 @@ class Posts extends PureComponent {
     actions[0].loading = getLoadingMore
 
     if (singlePost && !mainPost.invalid) {
+      const {page_meta_title, page_meta_description, page_meta_image} = mainPost.acf
       heroModifier = ''
       pageTitle = mainPost.title
+      metaInfo = {
+        title: page_meta_title || pageTitle,
+        description: page_meta_description || stripTags(trimContent(mainPost.content)),
+        image: page_meta_image || postsObj.heroImage,
+      }
     }
 
-    const {page_meta_title, page_meta_description, page_meta_image} = mainPost.acf
 
-    const metaInfo = {
-      title: page_meta_title || pageTitle,
-      description: page_meta_description || stripTags(trimContent(mainPost.content)),
-      image: page_meta_image || postsObj.heroImage,
-    }
 
     return (
       <main id={compName}>
