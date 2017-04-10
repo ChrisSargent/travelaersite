@@ -52,6 +52,7 @@ const html = ({children, hydrate}) => {
         {head.meta.toComponent()}
         {head.link.toComponent()}
         <link rel="stylesheet" href={'/' + manifest['main.css']}/>
+        <link rel="shortcut icon" href="/favicon.ico" />
       </head>
       <body>
         <noscript dangerouslySetInnerHTML={{__html: tracking}}></noscript>

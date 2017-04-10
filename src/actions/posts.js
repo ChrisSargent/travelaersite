@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Raven from 'raven-js'
 import types from '.'
 
 const fields = 'acf,content,date_gmt,id,link,modified_gmt,title,slug,t_author,t_categories,t_comments_info,t_content,t_featured_image'
@@ -66,9 +67,9 @@ export const fetchInitPosts = (slug, category) => (dispatch, getState) => {
       type: types.FETCH_INIT_POSTS,
       payload: Promise.all([
         dispatch(_getSinglePost(slug)),
-        dispatch(fetchPosts(category)),
-      ]).catch((error)=>{
-        console.log('Error: ' + error);
+        dispatch(fetchPosts(category))
+      ]).catch((error) => {
+        Raven.captureException(error)
       })
     })
 }

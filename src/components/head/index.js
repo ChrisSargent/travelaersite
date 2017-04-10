@@ -46,7 +46,7 @@ class Head extends PureComponent {
           content: 'business.business'
         }, {
           property: 'og:title',
-          content: options.t_site_info.name
+          content: title || options.t_site_info.name
         }, {
           property: 'og:description',
           content: chosenDesc
@@ -77,10 +77,6 @@ class Head extends PureComponent {
         }
       ],
       link: [
-        {
-          rel: 'shortcut icon',
-          href: '/favicon.ico'
-        }
       ]
     }
 

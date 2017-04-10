@@ -1,7 +1,7 @@
 {
   "name": "travelaersite",
   "homepage": "http://www.travelaer.com",
-  "proxy": "http://travelaer.dev",
+  "proxy": "http://www.travelaer.com",
   "version": "1.0.2",
   "private": true,
   "devDependencies": {
@@ -61,6 +61,9 @@
     "history": "*",
     "htmlescape": "*",
     "instafeed.js": "*",
+    "raven": "^1.2.1",
+    "raven-for-redux": "^0.5.0",
+    "raven-js": "^3.14.0",
     "react": "*",
     "react-animate-height": "*",
     "react-dom": "*",

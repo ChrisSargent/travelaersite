@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
+import Raven from 'raven-js'
 import {observableFonts} from '../../lib/css'
 import {fetchMenu, fetchOptions} from '../../actions/site'
 import FontFaceObserver from 'fontfaceobserver'
@@ -37,7 +38,7 @@ class Base extends PureComponent {
       Promise.all(observedWeights).then(() => {
         document.body.className += ' ' + font.id
       }, () => {
-        console.log(font.family + ' is not available after waiting 5 seconds')
+        Raven.captureMessage(font.family + ' is not available after waiting 5 seconds')
       })
 
       return null

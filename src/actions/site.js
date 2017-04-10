@@ -1,8 +1,15 @@
 import axios from 'axios'
+import Raven from 'raven-js'
 import types from '.'
 import {globals} from '../lib/utils'
 
 axios.defaults.baseURL = globals.baseUrl + '/wp-json'
+axios.interceptors.response.use((response) => {
+    return response;
+  }, (error) => {
+    Raven.captureException(error)
+    return Promise.reject(error);
+  });
 
 // *****************************************************************************
 // ******************************* SITE ACTIONS ********************************

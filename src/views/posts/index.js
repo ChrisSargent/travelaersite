@@ -186,10 +186,12 @@ class Posts extends PureComponent {
       pageTitle = mainPost.title
     }
 
+    const {page_meta_title, page_meta_description, page_meta_image} = mainPost.acf
+
     const metaInfo = {
-      title: pageTitle,
-      image: postsObj.heroImage,
-      description: stripTags(trimContent(mainPost.content))
+      title: page_meta_title || pageTitle,
+      description: page_meta_description || stripTags(trimContent(mainPost.content)),
+      image: page_meta_image || postsObj.heroImage,
     }
 
     return (
