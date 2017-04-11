@@ -8,7 +8,7 @@ class Header extends PureComponent {
 
   render() {
     const compName = 'siteheader'
-    
+
     return (
       <header className={css.header + compName}>
         <div className={css.container}>

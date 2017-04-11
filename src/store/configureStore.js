@@ -33,19 +33,21 @@ const _ravenBreadcrumbData = (action) => {
 // }
 
 const configureStore = (hydratedState) => {
-  Raven.config('https://51a14cb683344ad1b2f1b64d037d8d88@sentry.io/156925').install()
-
   var middleware = [
     promise(),
     thunk,
-    createRavenMiddleware(Raven, {breadcrumbDataFromAction: _ravenBreadcrumbData})
   ];
 
   if (process.env.NODE_ENV === 'development') {
-    const logger = createLogger();
     middleware = [
       ...middleware,
-      logger
+      createLogger(),
+    ];
+  } else {
+    Raven.config('https://51a14cb683344ad1b2f1b64d037d8d88@sentry.io/156925', {release: process.env.PACKAGE.version}).install()
+    middleware = [
+      ...middleware,
+      createRavenMiddleware(Raven, {breadcrumbDataFromAction: _ravenBreadcrumbData}),
     ];
   }
 
