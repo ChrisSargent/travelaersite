@@ -191,7 +191,8 @@ module.exports = {
       output: {
         comments: false,
         screw_ie8: true
-      }
+      },
+      sourceMap: true
     }),
     new ExtractTextPlugin(cssFilename),
     // Generate a manifest file which contains a mapping of all asset filenames

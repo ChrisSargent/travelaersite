@@ -15,19 +15,23 @@ class Wysiwyg extends PureComponent {
     this.content = convertLinks(this.props.content)
     this.content = splitExcerpt(this.content)
     this.state = {
-      expanded: this.content.excerpt ? 0 : 'auto'
+      expanded: this.content.excerpt
+        ? 0
+        : 'auto'
     }
   }
 
   handleClick(ev) {
     const {target} = ev
 
-    if (target.href && target.href.indexOf('http://' + document.domain) === 0)
+    if (target.href && target.href.indexOf('http://' + document.domain) === 0) {
       this.handleWithRouter(target.pathname)
       ev.preventDefault()
+    }
 
-    if (target.dataset.action && target.dataset.action === 'expand')
+    if (target.dataset.action && target.dataset.action === 'expand') {
       this.toggleContent()
+    }
   }
 
   toggleContent() {
@@ -53,15 +57,20 @@ class Wysiwyg extends PureComponent {
 
     return (
       <div className={wysClass} onClick={this.handleClick}>
-        {this.content.excerpt &&
-          <div className={css.excerpt}>
-            <div dangerouslySetInnerHTML={{__html: this.content.excerpt}} />
-            <button data-action="expand" className={css.btn + ' -link'}>{globals.readMore}</button>
-          </div>
-        }
+        {this.content.excerpt && <div className={css.excerpt}>
+          <div dangerouslySetInnerHTML={{
+            __html: this.content.excerpt
+          }}/>
+          <button data-action="expand" className={css.btn + ' -link'}>{globals.readMore}</button>
+        </div>
+}
         {this.content.excerpt
-          ? <AnimateHeight className={css.content} duration={200} height={this.state.expanded}><div dangerouslySetInnerHTML={{__html: this.content.content}}/></AnimateHeight>
-          : <div dangerouslySetInnerHTML={{__html: this.content.content}}/>}
+          ? <AnimateHeight className={css.content} duration={200} height={this.state.expanded}><div dangerouslySetInnerHTML={{
+              __html: this.content.content
+            }}/></AnimateHeight>
+          : <div dangerouslySetInnerHTML={{
+            __html: this.content.content
+          }}/>}
         {more && <Link to={more} className={css.more}>{globals.readMore}</Link>}
       </div>
     )
