@@ -1,5 +1,4 @@
 import React from 'react'
-// import Gif from '../gif'
 import css from '../../lib/css'
 import RespImage from '../resp-image'
 import './_screenshots.sass'
@@ -23,10 +22,6 @@ const ScreenShots = ({screenshots, modifier, activeIndex}) => {
 
     // Create the image map
     imageMap = images.map((image, index) => {
-      // if (image.mime_type === 'image/gif') {
-      //   var playGif = (index === activeIndex)
-      //   return <Gif key={index} src={image.url} speed="2" playing={playGif}/>
-      // }
       return <RespImage key={index} image={image} respSizes="(min-width: 840px) 320px, 175px"/>
     })
 
@@ -38,7 +33,7 @@ const ScreenShots = ({screenshots, modifier, activeIndex}) => {
     }
     return (
       <li key={index} className={css.item}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 1018" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 1018" xmlnsXlink="http://www.w3.org/1999/xlink" className="phone">
           <g fill="#fff" fillRule="evenodd" transform="translate(0 2)">
             <rect width="491" height="1014" x="5" fillOpacity=".3" stroke="#fff" strokeWidth="4" rx="75"/>
             <rect width="6" height="75" x="495" y="215" rx="3"/>
