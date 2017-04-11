@@ -1,4 +1,4 @@
-Repository for [Travelaer](http://www.travelaer.com), a project by Sticky Pixel - a React Powered single-page-application using WordPress as a CMS, serving data through it's JSON API. This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). Below you will find some information on how to perform common tasks. You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+Repository for [Travelaer](http://www.travelaer.com), a project by Sticky Pixel - a React-Powered, universal, single-page-application using WordPress as a CMS, serving data through it's JSON API. This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). Below you will find some information on how to perform common tasks. You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Table of Contents
 
@@ -92,7 +92,7 @@ Builds the app for production to the `build` folder. It correctly bundles React 
 
 Builds the app for use on a node server for universal functioning
 
-### `npm sun serve`
+### `npm run serve`
 
 Runs the server. Open [http://localhost:8085](http://localhost:8085) to view it in the browser.
 
