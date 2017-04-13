@@ -6,54 +6,58 @@ import Raven from 'raven-js'
 import createRavenMiddleware from 'raven-for-redux';
 import reducers from '../reducers'
 
-const _ravenBreadcrumbData = (action) => {
-  return action.type
+const _removeFields = (items, fields) => {
+  var modItems = {};
+  for (let item in items) {
+    if (items.hasOwnProperty(item)) {
+      modItems[item] = Object.keys(items[item]).reduce((result, key) => {
+        !fields.includes(key) && (result[key] = items[item][key])
+        return result;
+      }, {})
+    }
+  }
+  return modItems
 }
 
-// const _ravenStateTransform = (state) => {
-// const newState = {...state, new: true}
-// for (var acf in newState.pages.fetchedPages) {
-//   if (newState.pages.fetchedPages.hasOwnProperty(acf)) {
-//     delete newState.pages.fetchedPages[acf]['acf']
-//   }
-// }
-// for (var content in newState.posts.fetchedPosts) {
-//   if (newState.posts.fetchedPosts.hasOwnProperty(content)) {
-//     delete newState.posts.fetchedPosts[content]['content']
-//     delete newState.posts.fetchedPosts[content]['t_author']
-//     delete newState.posts.fetchedPosts[content]['t_categories']
-//     delete newState.posts.fetchedPosts[content]['t_comments_info']
-//     delete newState.posts.fetchedPosts[content]['t_featured_image']
-//   }
-// }
-// console.log('Original: ', state)
-// console.log('New: ', newState)
-
-//   return state
-// }
+const _ravenStateTransform = (state) => {
+  const stateForRaven = {
+    ...state,
+    pages: {
+      ...state.pages,
+      fetchedPages: {
+        ..._removeFields(state.pages.fetchedPages, 'acf')
+      }
+    },
+    posts: {
+      ...state.posts,
+      fetchedPosts: {
+        ..._removeFields(state.posts.fetchedPosts, ['acf', 'content', 't_author', 't_categories', 't_comments_info', 't_featured_image'])
+      }
+    }
+  }
+  return stateForRaven
+}
 
 const configureStore = (hydratedState) => {
-  var middleware = [
-    promise(),
-    thunk,
-  ];
+  var middleware = [promise(), thunk];
 
   if (process.env.NODE_ENV === 'development') {
     middleware = [
       ...middleware,
-      createLogger(),
+      createLogger()
     ];
-  } else {
+  }
+  else {
     Raven.config('https://51a14cb683344ad1b2f1b64d037d8d88@sentry.io/156925', {release: process.env.PACKAGE.version}).install()
     middleware = [
       ...middleware,
-      createRavenMiddleware(Raven, {breadcrumbDataFromAction: _ravenBreadcrumbData}),
+      createRavenMiddleware(Raven, {
+        stateTransformer: _ravenStateTransform
+      })
     ];
   }
 
-  const store = createStore(reducers, hydratedState, applyMiddleware(...middleware))
-
-  return store
+  return createStore(reducers, hydratedState, applyMiddleware(...middleware))
 }
 
 export default configureStore
