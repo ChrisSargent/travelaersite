@@ -405,6 +405,7 @@ Note that the server will use a self-signed certificate, so your web browser wil
 
 ## Deployment Process
 
+0. Test eveything is working properly with build / server / serve!
 1. Commit all changes
 2. Create a release using npm (necessary to ensure source maps on Sentry are updates): `npm version [major / minor / patch] -m "%s"`
 3. Build the optimised production site: `npm run build`
