@@ -11,7 +11,7 @@ const _removeFields = (items, fields) => {
   for (let item in items) {
     if (items.hasOwnProperty(item)) {
       modItems[item] = Object.keys(items[item]).reduce((result, key) => {
-        !fields.includes(key) && (result[key] = items[item][key])
+        fields.indexOf(key) < 0 && (result[key] = items[item][key])
         return result;
       }, {})
     }
@@ -47,7 +47,7 @@ const configureStore = (hydratedState) => {
       createLogger()
     ];
   }
-  else {
+  // else {
     Raven.config('https://51a14cb683344ad1b2f1b64d037d8d88@sentry.io/156925', {release: process.env.PACKAGE.version}).install()
     middleware = [
       ...middleware,
@@ -55,7 +55,7 @@ const configureStore = (hydratedState) => {
         stateTransformer: _ravenStateTransform
       })
     ];
-  }
+  // }
 
   return createStore(reducers, hydratedState, applyMiddleware(...middleware))
 }
