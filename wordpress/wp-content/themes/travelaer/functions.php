@@ -15,7 +15,7 @@ require_once 'travelaer-api.php';
 require_once 'shortcodes.php';
 
 // Write to the error log
-function wlog($log)
+function travelaer_wlog($log)
 {
     if (is_array($log) || is_object($log)) {
         error_log(print_r($log, true));

@@ -268,7 +268,7 @@ function travelaer_mce_before_init_insert_formats( $init_array ) {
 add_filter( 'tiny_mce_before_init', 'travelaer_mce_before_init_insert_formats' );
 
 
-function travelaer_comment_inserted($comment_id, $comment_object) {
+function travelaer_comment_inserted($comment_id) {
   wp_notify_postauthor( $comment_id );
 }
 
