@@ -25,11 +25,10 @@ const wysiwygIgnore = (name, id, msg) => {
 if (process.env.NODE_ENV === `development`) {
   window.Perf = Perf
   Perf.start()
-  a11y(React, {
-    ReactDOM,
-    filterFn: wysiwygIgnore,
-    includeSrcNode: true
-  })
+  // a11y(React, {
+  //   ReactDOM,
+  //   filterFn: wysiwygIgnore,
+  // })
 }
 
 const root = document.getElementById('root')

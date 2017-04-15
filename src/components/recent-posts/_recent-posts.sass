@@ -33,6 +33,7 @@
   position: relative
   z-index: $z--base
   display: flex
+  align-items: center
   background-color: $co--wt
   margin: 1px 0
 
@@ -43,8 +44,8 @@
     color: $co--blue-grey
 
   &.-large
-    display: flex
-    justify-content: flex-end
+    display: block
+    // justify-content: flex-end
     width: 100%
     min-height: 120px
     color: $co--wt
@@ -71,29 +72,25 @@
 
 .header-recentpost
   +header-default(0)
-  display: flex
-  align-items: center
-  flex-grow: 1
   padding: $pd--s
+  font-size: $fs--xxs
 
   .title
-    font-size: $fs--mss
+    margin-bottom: 0.3em
 
   .subtitle
-    font-size: $fs--t
+    font-size: $fsr--s
 
   &.-large
-    display: flex
     align-items: flex-start
     flex: none
     width: 50%
     padding: $pd--xs $pd--xxs
 
     .i.-post
-      flex: none
       width: 1em
       height: 1em
-      margin-right: $pd--xxs
+      margin-bottom: 0.3em
 
     .title
       color: $co--wt
@@ -120,20 +117,22 @@
       display: none
 
   .header-recentpost
-    .subtitle
-      font-size: $fs--t
+    display: flex
+    align-items: center
+    flex-grow: 1
+    font-size: $fs--ss
 
     &.-large
       position: absolute
       bottom: 0
       left: 0
       width: 100%
-      padding: $pd--l $pd--s
+      padding: $pd--ml $pd--s
+      font-size: $fs--mms
 
       .i.-post
-        width: 1.5em
-        height: 1.5em
+        flex: none
+        width: 1.2em
+        height: 1.2em
         margin-right: $pd--xs
-
-      .title
-        font-size: $fs--lm
+        margin-bottom: 0
