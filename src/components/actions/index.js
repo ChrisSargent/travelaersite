@@ -10,7 +10,7 @@ const Actions = ({actions, onClick}) => {
     return null
 
   const compName = 'actions'
-  const icon = <span className={compName + '-icon'}><SVG type='spinner' /></span>
+  const icon = <span className={compName + '-icon'}><SVG type='loader' /></span>
   const actionsMap = actions.map((action, index) => {
     var btnClass = css.btn, modifier = ' -cta'
     const url = toRelative(action.linkTo)

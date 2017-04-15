@@ -35,7 +35,7 @@ class Loader extends PureComponent {
 
     return (
       <div className={css.loader + loadingClass}>
-        <SVG type="spinner"/>
+        <SVG type="loader"/>
       </div>
     )
   }

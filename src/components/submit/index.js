@@ -100,7 +100,7 @@ class Submit extends PureComponent {
           <span className="comment"><textarea placeholder="Your Comment" aria-label="Your Comment" name="comment" value={comment} onChange={this.handleTyping} onBlur={this.handleBlur} required/></span>
           <Actions actions={submitActions}/>
         </form>
-        <div className={css.loader + loadingClass + ' -submit'}><SVG type="spinner"/></div>
+        <div className={css.loader + loadingClass + ' -submit'}><SVG type="loader"/></div>
       </section>
     )
   }
