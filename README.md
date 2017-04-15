@@ -403,7 +403,7 @@ HTTPS=true npm start
 Note that the server will use a self-signed certificate, so your web browser will almost definitely display a warning upon accessing the page.
 
 
-## Deployment Process
+## Deployment Process (Order is important)
 
 0. Test eveything is working properly with build / server / serve!
 1. Commit all changes
