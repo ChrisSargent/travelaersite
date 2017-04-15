@@ -1,6 +1,5 @@
 import thunk from 'redux-thunk'
 import {applyMiddleware, createStore} from 'redux'
-import {createLogger} from 'redux-logger'
 import promise from 'redux-promise-middleware'
 import Raven from 'raven-js'
 import createRavenMiddleware from 'raven-for-redux';
@@ -42,9 +41,10 @@ const configureStore = (hydratedState) => {
   var middleware = [promise(), thunk];
 
   if (process.env.NODE_ENV === 'development') {
+    const reduxLogger = require('redux-logger')
     middleware = [
       ...middleware,
-      createLogger()
+      reduxLogger.createLogger()
     ];
   }
   else {
