@@ -411,6 +411,7 @@ Note that the server will use a self-signed certificate, so your web browser wil
 3. Build the optimised production site: `npm run build`
 4. Build the Node / Express server code: `npm run server`
 5. Test that it's working correctly with: `npm run serve` and check localhost:8085
-6. If you've made changes to the PHP / WordPress code, push the theme folder to the server: `npm run deploy_theme`
-7. Push the build folder to the server: `npm run deploy_app`
-8. Restart Node / Express on the Production Server (after logging in via ssh): `pm2 restart server`
+6. Update Sentry: `npm run update_sentry`
+7. If you've made changes to the PHP / WordPress code, push the theme folder to the server: `npm run deploy_theme`
+8. Push the build folder to the server: `npm run deploy_app`
+9. Restart Node / Express on the Production Server (after logging in via ssh): `pm2 restart server`
