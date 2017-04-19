@@ -34,12 +34,14 @@ const _ravenStateTransform = (state) => {
       }
     }
   }
+  console.log('STATE:', stateForRaven);
   return stateForRaven
 }
 
 const configureStore = (hydratedState) => {
   var middleware = [promise(), thunk];
 
+  // If we're in dev mode, log state changes in the console
   if (process.env.NODE_ENV === 'development') {
     const reduxLogger = require('redux-logger')
     middleware = [
@@ -47,6 +49,7 @@ const configureStore = (hydratedState) => {
       reduxLogger.createLogger()
     ];
   }
+  // Else if we're not in dev mode, log errors to Sentry.io
   else {
     Raven.config('https://51a14cb683344ad1b2f1b64d037d8d88@sentry.io/156925', {release: process.env.PACKAGE.version}).install()
     middleware = [

@@ -6,6 +6,7 @@ import Router from 'react-router/lib/Router'
 import configureStore from './store/configureStore'
 import routes from './routes'
 
+// If development mode, use Performance Tools and Accessibility Checker
 if (process.env.NODE_ENV === `development`) {
   const wysiwygIgnore = (name, id, msg) => {
     const components = [
