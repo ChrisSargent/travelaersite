@@ -21,10 +21,8 @@ class Loader extends PureComponent {
     const {getLoading, getFetchedAllPages, backgroundFetchPages} = this.props
     // Put this in a lifecycle function that doesn't get called in the SSR render because window is not available
     !getLoading && !getFetchedAllPages && setTimeout(() => {
-      window.requestAnimationFrame(() => {
-        // If we've finished loading and we haven't fetched all the pages yet, do it in the background!
-        backgroundFetchPages()
-      })
+      // If we've finished loading and we haven't fetched all the pages yet, do it in the background!
+      backgroundFetchPages()
     }, 2000);
   }
 

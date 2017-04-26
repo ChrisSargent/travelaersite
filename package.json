@@ -39,7 +39,7 @@
     "path-exists": "*",
     "postcss-loader": "*",
     "promise": "*",
-    "react-a11y": "^0.3.3",
+    "react-a11y": "*",
     "react-addons-perf": "*",
     "react-dev-utils": "*",
     "recursive-readdir": "*",

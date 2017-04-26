@@ -16,9 +16,7 @@ const forceTrailingSlash = (nextState, replace) => {
 }
 
 const scrollToTop = () => {
-  window.requestAnimationFrame(() => {
-    window.scrollTo(0, 0);
-  })
+  window.scrollTo(0, 0)
 }
 
 const handleSiteChange = (prevState, nextState, replace) => {

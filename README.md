@@ -405,10 +405,10 @@ Note that the server will use a self-signed certificate, so your web browser wil
 
 ## Deployment Process (Order is important)
 
-0. Test eveything is working properly with build / server / serve!
+0. Test everything is working properly with build / server / serve!
 1. Commit all changes
 2. Create a release using npm (necessary to ensure source maps on Sentry are updates): `npm version [major / minor / patch] -m "%s"`
-3. Build the optimised production site: `npm run build`
+3. Build the optimized production site: `npm run build`
 4. Build the Node / Express server code: `npm run server`
 5. Test that it's working correctly with: `npm run serve` and check localhost:8085
 6. Update Sentry: `npm run update_sentry`
