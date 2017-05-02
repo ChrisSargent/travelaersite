@@ -32,13 +32,13 @@ class Base extends PureComponent {
       })
 
       const observedWeights = weights.map((weight) => {
-        return weight.load(null, 5000)
+        return weight.load(null, 15000)
       })
 
       Promise.all(observedWeights).then(() => {
         document.body.className += ' ' + font.id
       }, () => {
-        Raven.captureMessage(font.family + ' is not available after waiting 5 seconds')
+        Raven.captureMessage(font.family + ' is not available after waiting 15 seconds')
       })
 
       return null
