@@ -1,5 +1,4 @@
 <?php
-
 if (! function_exists('travelaer_theme_setup')) {
     function travelaer_theme_setup()
     {
@@ -273,3 +272,9 @@ function travelaer_comment_inserted($comment_id) {
 }
 
 add_action('wp_insert_comment','travelaer_comment_inserted');
+
+
+add_filter( 'wp_mail_from', 'travelaer_mail_from' );
+function travelaer_mail_from( $email ) {
+    return 'info@travelaer.com';
+}

@@ -412,6 +412,7 @@ Note that the server will use a self-signed certificate, so your web browser wil
 4. Build the Node / Express server code: `npm run server`
 5. Test that it's working correctly with: `npm run serve` and check localhost:8085
 6. Update Sentry: `npm run update_sentry`
-7. If you've made changes to the PHP / WordPress code, push the theme folder to the server: `npm run deploy_theme`
-8. Push the build folder to the server: `npm run deploy_app`
-9. Restart Node / Express on the Production Server (after logging in via ssh): `pm2 restart server`
+7. Update the version of `style.css` in the WordPress Travelaer theme file.
+8. Push the theme folder to the server: `npm run deploy_theme`
+9. Push the build folder to the server: `npm run deploy_app`
+10. Restart Node / Express on the Production Server (after logging in via ssh): `pm2 restart server`
