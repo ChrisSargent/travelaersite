@@ -27,7 +27,8 @@ function getClientEnvironment(publicUrl) {
         version,
         proxy,
         homepage
-      }
+      },
+      'TARGET': process.env.TARGET
     });
   // Stringify all values so we can feed into Webpack DefinePlugin
   var stringified = {

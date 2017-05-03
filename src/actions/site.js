@@ -7,7 +7,7 @@ axios.defaults.baseURL = globals.baseUrl + '/wp-json'
 axios.interceptors.response.use((response) => {
     return response;
   }, (error) => {
-    Raven.captureException(error)
+    // Raven.captureException(error)
     return Promise.reject(error);
   });
 

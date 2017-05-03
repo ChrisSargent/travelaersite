@@ -48,8 +48,8 @@ const configureStore = (hydratedState) => {
       reduxLogger.createLogger()
     ];
   }
-  // Else if we're not in dev mode, log errors to Sentry.io
-  else {
+  // Else if we're not in dev mode and not on the server, log errors to Sentry.io
+  else if (process.env.NODE_ENV !== 'development' && process.env.TARGET !== 'server') {
     Raven.config('https://51a14cb683344ad1b2f1b64d037d8d88@sentry.io/156925', {release: process.env.PACKAGE.version}).install()
     middleware = [
       ...middleware,

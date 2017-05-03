@@ -35,8 +35,8 @@ function handleRender(req, res) {
     // in here we can make some decisions all at once
     if (err) {
       // there was an error somewhere during route matching
-      Raven.captureException(err)
       res.sendStatus(500)
+      Raven.captureException(err)
     } else if (redirect) {
       // we haven't talked about `onEnter` hooks on routes, but before a
       // route is entered, it can redirect. Here we handle on the server.
@@ -83,8 +83,8 @@ function hydrateAndRender(res, props) {
     )
     res.send(doctype + appHtml)
   }).catch((error) => {
+    res.status(500).end('Sorry, it seems like our API isn\'t working just now, please try later... ' + error + '\n');
     Raven.captureException(error)
-    res.sendStatus(500)
   })
 }
 

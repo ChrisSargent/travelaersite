@@ -79,8 +79,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "server": "NODE_ENV='production' webpack --config config/webpack.config.server.js",
-    "serve": "NODE_ENV='production' nodemon build/server.js",
+    "server": "NODE_ENV='production' TARGET='server' webpack --config config/webpack.config.server.js",
+    "serve": "nodemon build/server.js",
     "deploy_theme": "rsync wordpress/wp-content/themes/travelaer travelaer@travelaer.com:/var/www/html/wordpress/wp-content/themes -rlD --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude acf-json",
     "deploy_app": "rsync build/ travelaer@travelaer.com:/var/www/html/ -rltD --delete --verbose --progress --human-readable --compress --exclude .DS_Store --exclude wordpress --exclude phpmyadmin*",
     "update_sentry": "sentry-cli releases new ${npm_package_version} && sentry-cli releases files ${npm_package_version} upload-sourcemaps --validate ./build/static"
