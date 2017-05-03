@@ -34,7 +34,6 @@ const _ravenStateTransform = (state) => {
       }
     }
   }
-  console.log('STATE:', stateForRaven);
   return stateForRaven
 }
 

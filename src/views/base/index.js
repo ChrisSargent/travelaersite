@@ -38,7 +38,7 @@ class Base extends PureComponent {
       Promise.all(observedWeights).then(() => {
         document.body.className += ' ' + font.id
       }, () => {
-        Raven.captureMessage(font.family + ' is not available after waiting 15 seconds')
+        Raven.captureMessage(font.family + ' is not available after waiting 15 seconds', {level: 'info'})
       })
 
       return null
