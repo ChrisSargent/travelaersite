@@ -406,13 +406,13 @@ Note that the server will use a self-signed certificate, so your web browser wil
 ## Deployment Process (Order is important)
 
 0. Test everything is working properly with build / server / serve!
-1. Commit all changes
-2. Create a release using npm (necessary to ensure source maps on Sentry are updates): `npm version [major / minor / patch] -m "%s"`
-3. Build the optimized production site: `npm run build`
-4. Build the Node / Express server code: `npm run server`
-5. Test that it's working correctly with: `npm run serve` and check localhost:8085
-6. Update Sentry: `npm run update_sentry`
-7. Update the version of `style.css` in the WordPress Travelaer theme file.
+1. Bump the version of `style.css` in the WordPress Travelaer theme file.
+2. Commit all changes
+3. Create a release using npm (necessary to ensure source maps on Sentry are updates): `npm version [major / minor / patch] -m "%s"`
+4. Build the optimized production site: `npm run build`
+5. Build the Node / Express server code: `npm run server`
+6. Test that it's working correctly with: `npm run serve` and check localhost:8085
+7. Update Sentry: `npm run update_sentry`
 8. Push the theme folder to the server: `npm run deploy_theme`
 9. Push the build folder to the server: `npm run deploy_app`
 10. Restart Node / Express on the Production Server (after logging in via ssh): `pm2 restart server`
