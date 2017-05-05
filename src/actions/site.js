@@ -17,12 +17,14 @@ axios.interceptors.response.use((response) => {
 
 export const fetchMenu = (location) => (dispatch, getState) => {
   const menu = getState().site.menu
-
+  const params = {
+    fields: 'title,ID,children,url'
+  }
   return menu
     ? Promise.resolve()
     : dispatch({
       type: types.FETCH_MENU,
-      payload: axios.get('/wp-api-menus/v2/menu-locations/' + location),
+      payload: axios.get('/wp-api-menus/v2/menu-locations/' + location, {params}),
       meta: {
         id: 'menu'
       }
