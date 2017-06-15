@@ -21,7 +21,6 @@ const ContentTile = ({
 }) => {
   var tileClass = '',
     TagType = 'a',
-    target = null,
     linkTo = null,
     component = <Wysiwyg content={content}/>
 
@@ -34,7 +33,6 @@ const ContentTile = ({
     case 'instagram':
       image = link.split('?')[0] + 'media?size=l'
       component = null
-      target = '_blank'
       break
 
     case 'quote':
@@ -55,7 +53,7 @@ const ContentTile = ({
 
   return (
     <li className={css.item + tileClass}>
-      <TagType to={linkTo} href={link} target={target} className={css.main + compName}>
+      <TagType to={linkTo} href={link} className={css.main + compName}>
         <SVG type={type}/>
         {component}
         <RespImageCover image={image} alt={alt} srcVersion="medium_large" respSizes="(min-width: 840px) 600px, 50vw"/>

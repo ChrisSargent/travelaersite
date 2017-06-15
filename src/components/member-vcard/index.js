@@ -38,7 +38,7 @@ const MemberVcard = ({name, contacts}) => {
       return (
         <li key={index}>
           <SVG type={icon} />
-          <a className="link" href={link} target="_blank">{contact_detail}</a>
+          <a className="link" href={link}>{contact_detail}</a>
         </li>
       )
     })

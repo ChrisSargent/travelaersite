@@ -11,7 +11,7 @@ const Links = ({externalLinks}) => {
   const linkMap = externalLinks.map((link, index) => {
     return (
       <li key={index} className={css.item}>
-        <a className="link" href={link.external_link} target="_blank">
+        <a className="link" href={link.external_link}>
           <RespImage image={link.external_logo} srcVersion='medium' respSizes="130px"/>
         </a>
       </li>

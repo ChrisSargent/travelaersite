@@ -228,6 +228,7 @@ class Page extends PureComponent {
     const {title, slug, t_display_sub_menu} = page
     const {page_meta_title, page_meta_description, page_meta_image} = page.acf
     const metainfo = {
+      htmlClass: slug,
       title: page_meta_title || title,
       description: page_meta_description || false,
       image: page_meta_image || this.meta_image

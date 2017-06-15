@@ -1,18 +1,18 @@
-var fs = require('fs');
-var path = require('path');
-var paths = require('./paths');
-var webpack = require('webpack');
-var getClientEnvironment = require('./env');
+const fs = require('fs');
+const path = require('path');
+const paths = require('./paths');
+const webpack = require('webpack');
+const getClientEnvironment = require('./env');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
-var publicPath = paths.servedPath;
+const publicPath = paths.servedPath;
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
-var publicUrl = publicPath.slice(0, -1);
+const publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
-var env = getClientEnvironment(publicUrl);
+const env = getClientEnvironment(publicUrl);
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.

@@ -24,7 +24,7 @@ const Social = ({socialNetworks, modifier}) => {
 
     return (
       <li key={index} className={css.item}>
-        <a href={network.link} target="_blank" className={css.link + compName}>
+        <a href={network.link} className={css.link + compName}>
           <SVG type={network.iconType.value}/>
           <span className={css.label}>{network.iconType.label}</span>
         </a>

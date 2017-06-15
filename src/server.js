@@ -8,6 +8,7 @@ import configureStore from './store/configureStore'
 import routes from './routes'
 import AppHTML from './server-html'
 import Raven from 'raven'
+import Helmet from 'react-helmet'
 
 const app = express()
 // Needs to be the same port as in the Nginx config
@@ -74,14 +75,17 @@ function hydrateAndRender(res, props) {
   return Promise.all(fetchDataArray).then(() => {
     const doctype = '<!doctype html>'
     const hydrate = store.getState()
-    const appHtml = renderToString(
-      <AppHTML hydrate={hydrate}>
-        <Provider store={store}>
-          <RouterContext {...props}/>
-        </Provider>
-      </AppHTML>
+    const markup = renderToString(
+      <Provider store={store}>
+        <RouterContext {...props}/>
+      </Provider>
     )
-    res.send(doctype + appHtml)
+    const helmet = Helmet.renderStatic();
+    res.send(doctype + AppHTML({
+      hydrate,
+      helmet,
+      markup
+    }))
   }).catch((error) => {
     res.status(500).end('Sorry, it seems like our API isn\'t working just now, please try later... ' + error + '\n');
     Raven.captureException(error)

@@ -12,7 +12,7 @@ class Head extends PureComponent {
   }
 
   setupHead() {
-    const {options, location, title, description, image} = this.props
+    const {options, htmlClass, location, title, description, image} = this.props
 
     if (!options)
       return null
@@ -24,7 +24,8 @@ class Head extends PureComponent {
 
     const metaInfo = {
       htmlAttributes: {
-        lang: options.t_site_info.language
+        lang: options.t_site_info.language,
+        class: htmlClass
       },
       title: chosenTitle,
       titleTemplate: '%s | ' + options.t_site_info.name,

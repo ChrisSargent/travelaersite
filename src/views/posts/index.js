@@ -152,8 +152,10 @@ class Posts extends PureComponent {
 
   render() {
     var heroModifier = ' -small',
-      pageTitle = 'Blog',
-      metaInfo = {}
+      metaInfo = {
+        title: 'Blog',
+        htmlClass: 'blog'
+      }
 
     const {getLoadingMore} = this.props
     const {postsObj} = this
@@ -162,9 +164,7 @@ class Posts extends PureComponent {
       return null
 
     if (postsObj.invalid)
-      return (
-        <Error message="any posts in the category"/>
-      )
+      return <Error message="any posts in the category"/>
 
     const {compName, overlap, actions} = this
     const singlePost = postsObj.main.length === 1
@@ -185,9 +185,9 @@ class Posts extends PureComponent {
     if (singlePost && !mainPost.invalid) {
       const {page_meta_title, page_meta_description, page_meta_image} = mainPost.acf
       heroModifier = ''
-      pageTitle = mainPost.title
       metaInfo = {
-        title: page_meta_title || pageTitle,
+        htmlClass: 'blog',
+        title: page_meta_title || mainPost.title,
         description: page_meta_description || stripTags(trimContent(mainPost.content)),
         image: page_meta_image || postsObj.heroImage,
       }

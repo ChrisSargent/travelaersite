@@ -46,21 +46,26 @@ export const _backgroundGetPages = (exclude) => {
 export const backgroundFetchPages = () => (dispatch, getState) => {
   var exclude = [];
   const {fetchingAllPages, fetchedAllPages, fetchedPages} = getState().pages
+
+  // Exclude already fetchedpages from fetching
   for (var key in fetchedPages) {
     if (fetchedPages.hasOwnProperty(key)) {
       exclude.push(fetchedPages[key].id)
     }
   }
 
+  // Wait for 2s then background fetch
   if (!fetchingAllPages && !fetchedAllPages)
-    return dispatch(_backgroundGetPages(exclude))
-}
+    setTimeout(() => {
+      return dispatch(_backgroundGetPages(exclude))
+    }, 0);
+  }
 
 // Checks if a page exists in the cache and then calls the WP API if not
 export const fetchPage = (reqPathname) => (dispatch, getState) => {
   const page = getState().pages.fetchedPages[reqPathname]
 
   return page
-  ? Promise.resolve()
-  : dispatch(_getPages(reqPathname))
+    ? Promise.resolve()
+    : dispatch(_getPages(reqPathname))
 }

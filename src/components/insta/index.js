@@ -67,7 +67,7 @@ class Insta extends PureComponent {
 
       return (
         <li key={item.id} className={css.item}>
-          <a href={item.link} target="_blank" className={css.link + compName}>
+          <a href={item.link} className={css.link + compName}>
             <SVG type="instagram"/>
             <RespImageCover image={image}/>
           </a>
