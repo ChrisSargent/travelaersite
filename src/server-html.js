@@ -1,4 +1,3 @@
-import React from 'react'
 import htmlescape from 'htmlescape'
 import manifest from '../build/asset-manifest.json'
 
