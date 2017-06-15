@@ -1,9 +1,13 @@
 import htmlescape from 'htmlescape'
 import manifest from '../build/asset-manifest.json'
 
-const tracking = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTF4Z9" height="0" width="0" style="display:none;visibility:hidden"></iframe>`
-const intercom = `window.intercomSettings = {
-        app_id: 'cbfc4rcs'
+const googleTrackingNoJs = (trackingCode) => {
+  return `<iframe src="https://www.googletagmanager.com/ns.html?id=${trackingCode}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`
+}
+
+const intercom = (appID) => {
+  return `window.intercomSettings = {
+        app_id: '${appID}'
       };
       (function() {
         var w = window;
@@ -38,9 +42,10 @@ const intercom = `window.intercomSettings = {
         }
       })()
     `
+}
+
 const html = ({hydrate, helmet, markup}) => {
-  return (
-    `<html ${helmet.htmlAttributes.toString()}>
+  return (`<html ${helmet.htmlAttributes.toString()}>
       <head>
         <meta charSet="utf-8"/>
         ${helmet.title.toString()}
@@ -51,15 +56,14 @@ const html = ({hydrate, helmet, markup}) => {
         <link rel="shortcut icon" href="/favicon.ico" />
       </head>
       <body ${helmet.bodyAttributes.toString()}>
-        <noscript>${tracking}</noscript>
+        <noscript>${googleTrackingNoJs(hydrate.site.options.google_tracking_code)}</noscript>
         <div id="root">${markup}</div>
         <script id="hydrated-state" type="application/json">${htmlescape(hydrate)}</script>
         <script src="/${manifest['main.js']}"></script>
         <script src="//platform.twitter.com/widgets.js" async="" charSet="utf-8"></script>
-        <script>${intercom}</script>
+        <script>${intercom(hydrate.site.options.intercom_app_id)}</script>
       </body>
-    </html>`
-  )
+    </html>`)
 }
 
 export default html

@@ -44,7 +44,7 @@ class Head extends PureComponent {
           content: options.contactPerson
         }, {
           property: 'og:type',
-          content: 'business.business'
+          content: options.og_type
         }, {
           property: 'og:title',
           content: title || options.t_site_info.name
@@ -59,7 +59,7 @@ class Head extends PureComponent {
           content: options.t_site_info.name
         }, {
           property: 'og:locale',
-          content: 'en_US'
+          content: options.og_locale
         }, {
           property: 'business:contact_data:street_address',
           content: [options.streetAddress1, options.streetAddress2].join(', ')
