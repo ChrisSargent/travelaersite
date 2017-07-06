@@ -58,7 +58,7 @@ export const backgroundFetchPages = () => (dispatch, getState) => {
   if (!fetchingAllPages && !fetchedAllPages)
     setTimeout(() => {
       return dispatch(_backgroundGetPages(exclude))
-    }, 0);
+    }, 2000);
   }
 
 // Checks if a page exists in the cache and then calls the WP API if not

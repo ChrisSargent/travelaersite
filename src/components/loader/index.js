@@ -7,6 +7,14 @@ import SVG from '../svg'
 import './_loader.sass'
 
 class Loader extends PureComponent {
+  componentDidMount() {
+    const {getLoading, backgroundFetchPages} = this.props
+    // When we've finished loading try fetching rest of the pages in the background
+
+    if (getLoading <= 0)
+      backgroundFetchPages()
+  }
+
   componentWillReceiveProps(newProps) {
     const {getLoading, backgroundFetchPages} = newProps
     // When we've finished loading try fetching rest of the pages in the background
