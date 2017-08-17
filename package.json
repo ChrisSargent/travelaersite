@@ -1,7 +1,7 @@
 {
   "name": "travelaersite",
   "homepage": "https://www.travelaer.com",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "devDependencies": {
     "autoprefixer": "^7.1.1",
