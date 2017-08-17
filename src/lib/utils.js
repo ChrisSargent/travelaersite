@@ -1,7 +1,8 @@
 export const globals = {
-  baseUrl: process.env.NODE_ENV === `development`
-    ? process.env.PACKAGE.proxy
-    : process.env.PACKAGE.homepage,
+  // baseUrl: process.env.NODE_ENV === `development`
+  //   ? process.env.PACKAGE.proxy
+  //   : process.env.PACKAGE.homepage,
+  baseUrl: process.env.PACKAGE.homepage,
   flagsUrl: '/assets/flags/',
   readMore: '\u00bb\xa0Read More'
 }
@@ -42,10 +43,15 @@ export const dateFormat = (date, includeTime) => {
   if (!date)
     return date
 
-    // Convert the date to UTC if not already in it
-  !date.includes('T') && (date += ' UTC')
+  // Some Queries in WordPress don't include the T time separator. This puts it back in.
+  date = date.replace(/ /g, 'T')
+  // !date.includes('T') && (date += ' UTC')
 
+  console.log(date);
+  // date = date.replace(/-/g, '/')
+  console.log(date);
   date = new Date(date)
+  console.log(date);
   dateOptions = {
     year: 'numeric',
     month: 'short',

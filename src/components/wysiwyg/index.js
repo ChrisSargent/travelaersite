@@ -24,7 +24,7 @@ class Wysiwyg extends PureComponent {
   handleClick(ev) {
     const {target} = ev
 
-    if (target.href && target.href.indexOf('http://' + document.domain) === 0) {
+    if (target.href && target.href.indexOf(document.domain) >= 0) {
       this.handleWithRouter(target.pathname)
       ev.preventDefault()
     }

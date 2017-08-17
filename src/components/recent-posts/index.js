@@ -13,10 +13,12 @@ const RecentPosts = ({posts, compact}) => {
 
   const compName = 'recentposts'
   const postsMap = posts.map((post, index) => {
+    console.log(post);
     const compName = 'recentpost'
     var modifier = compName,
       icon
 
+    console.log('HERE:');
     const dateString = dateFormat(post.date_gmt, false)
 
     if (index < 2 && !compact) {
