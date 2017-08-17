@@ -1,7 +1,7 @@
 {
   "name": "travelaersite",
-  "homepage": "http://www.travelaer.com",
-  "proxy": "http://travelaer.dev",
+  "homepage": "https://www.travelaer.com",
+  "proxy": "https://www.travelaer.com",
   "version": "1.1.16",
   "private": true,
   "devDependencies": {
