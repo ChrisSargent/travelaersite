@@ -45,13 +45,8 @@ export const dateFormat = (date, includeTime) => {
 
   // Some Queries in WordPress don't include the T time separator. This puts it back in.
   date = date.replace(/ /g, 'T')
-  // !date.includes('T') && (date += ' UTC')
-
-  console.log(date);
-  // date = date.replace(/-/g, '/')
-  console.log(date);
   date = new Date(date)
-  console.log(date);
+  
   dateOptions = {
     year: 'numeric',
     month: 'short',
