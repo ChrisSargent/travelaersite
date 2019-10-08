@@ -41,7 +41,7 @@
     "promise": "^7.3.0",
     "react-a11y": "^0.3.4",
     "react-addons-perf": "^15.4.2",
-    "react-dev-utils": "^3.0.0",
+    "react-dev-utils": "^3.1.2",
     "react-error-overlay": "^1.0.7",
     "recursive-readdir": "^2.2.1",
     "redux-logger": "^3.0.6",
