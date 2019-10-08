@@ -50,6 +50,7 @@ wordpress/*
 !wordpress/wp-content
 wordpress/wp-content/*
 !wordpress/wp-content/themes/
+!wordpress/wp-content/uploads/
 wordpress/wp-content/themes/twenty*
 wordpress/wp-content/themes/*/vendor/*
 wordpress_bak
